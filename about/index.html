@@ -1,1 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
 
+ <title>About Household Expense Tools | Simple Browser-Based Expense Tools</title>
+ <meta name="description" content="Learn what Household Expense Tools does, how the Daily Expense Tracker works, how browser storage is used, and what limits users should know.">
+ <meta name="robots" content="index, follow">
+ <meta name="theme-color" content="#0f766e">
+
+ <link rel="canonical" href="https://farmingvichar.github.io/household-expense-tools/about/">
+
+ <meta property="og:title" content="About Household Expense Tools">
+ <meta property="og:description" content="Simple, privacy-friendly browser tools for everyday household expense tracking and home budget organization.">
+ <meta property="og:type" content="website">
+ <meta property="og:url" content="https://farmingvichar.github.io/household-expense-tools/about/">
+
+ <meta name="twitter:card" content="summary">
+ <meta name="twitter:title" content="About Household Expense Tools">
+ <meta name="twitter:description" content="Learn how Household Expense Tools works and what users should know before using the tools.">
+
+ <link rel="manifest" href="../manifest.json">
+
+ <link rel="stylesheet" href="../assets/css/reset.css">
+ <link rel="stylesheet" href="../assets/css/variables.css">
+ <link rel="stylesheet" href="../assets/css/typography.css">
+ <link rel="stylesheet" href="../assets/css/layout.css">
+ <link rel="stylesheet" href="../assets/css/components.css">
+ <link rel="stylesheet" href="../assets/css/utilities.css">
+ <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+
+<body>
+ <a class="skip-link" href="#main-content">Skip to content</a>
+
+ <header class="site-header" role="banner">
+  <div class="container header-inner">
+   <a class="brand" href="../" aria-label="Household Expense Tools home">
+    <span class="brand-mark" aria-hidden="true">
+     <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
+      <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
+      <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+     </svg>
+    </span>
+    <span class="brand-text">Household Expense Tools</span>
+   </a>
+
+   <nav class="primary-nav" aria-label="Primary navigation">
+    <ul>
+     <li><a href="../">Home</a></li>
+     <li><a href="../#popular-tools">Tools</a></li>
+     <li><a href="../tools/daily-expense-tracker/">Daily Expense Tracker</a></li>
+     <li><a href="../#faq-preview">FAQ</a></li>
+    </ul>
+   </nav>
+  </div>
+ </header>
+
+ <main id="main-content">
+  <section class="hero section">
+   <div class="container hero-grid">
+    <div class="hero-content">
+     <p class="eyebrow">About this website</p>
+     <h1>Simple household expense tools that run in your browser.</h1>
+     <p class="hero-text">
+      Household Expense Tools is a small collection of browser-based utilities for everyday home spending, grocery costs, kitchen planning, and basic household budget organization.
+     </p>
+    </div>
+
+    <aside class="hero-card" aria-label="Site summary">
+     <h2 class="card-title">Current status</h2>
+     <ul class="check-list">
+      <li>First live tool: Daily Expense Tracker</li>
+      <li>No login or account required</li>
+      <li>No backend database for saved expenses</li>
+      <li>Entries stay in the current browser</li>
+     </ul>
+    </aside>
+   </div>
+  </section>
+
+  <section class="section section-soft" aria-labelledby="what-site-does">
+   <div class="container">
+    <div class="section-header">
+     <p class="eyebrow">What the site does</p>
+     <h2 id="what-site-does">Built for basic household organization</h2>
+     <p>
+      The site is made for people who want simple tools without installing a full finance app or creating an account.
+     </p>
+    </div>
+
+    <div class="feature-grid">
+     <article class="feature-card">
+      <h3>Daily expense tracking</h3>
+      <p>
+       The current Daily Expense Tracker lets users add everyday household expenses and review simple totals for today, this month, all saved entries, and total number of entries.
+      </p>
+     </article>
+
+     <article class="feature-card">
+      <h3>Household-first use</h3>
+      <p>
+       The tools are intended for common home costs such as groceries, food, transport, bills, household items, education, health, and other daily spending.
+      </p>
+     </article>
+
+     <article class="feature-card">
+      <h3>Lightweight pages</h3>
+      <p>
+       The website is built as a static GitHub Pages site using plain HTML, CSS, and JavaScript. It does not need a server account system to run the current tool.
+      </p>
+     </article>
+
+     <article class="feature-card">
+      <h3>Free to use</h3>
+      <p>
+       The current tool is free to use in the browser. Advertising may be added later, but no external ad scripts are currently used on the site.
+      </p>
+     </article>
+    </div>
+   </div>
+  </section>
+
+  <section class="section" aria-labelledby="how-storage-works">
+   <div class="container">
+    <div class="section-header">
+     <p class="eyebrow">How it works</p>
+     <h2 id="how-storage-works">Your saved expenses use browser storage</h2>
+     <p>
+      The Daily Expense Tracker uses localStorage, which is a storage area inside your web browser.
+     </p>
+    </div>
+
+    <div class="faq-list">
+     <details open>
+      <summary>What does localStorage mean here?</summary>
+      <p>
+       When you add an expense, the entry is saved in the browser you are currently using on the current device. The site does not send those expense entries to a backend database.
+      </p>
+     </details>
+
+     <details>
+      <summary>Will my entries appear on another device?</summary>
+      <p>
+       No. Because there is no account system or cloud sync, entries saved in one browser will not automatically appear in another browser or on another device.
+      </p>
+     </details>
+
+     <details>
+      <summary>Can browser data be removed?</summary>
+      <p>
+       Yes. If you clear site data, clear browser storage, use private browsing, reset the browser, or change devices, saved entries may no longer be available.
+      </p>
+     </details>
+    </div>
+   </div>
+  </section>
+
+  <section class="section section-soft" aria-labelledby="what-site-does-not-do">
+   <div class="container">
+    <div class="section-header">
+     <p class="eyebrow">Clear limits</p>
+     <h2 id="what-site-does-not-do">What this site does not do</h2>
+     <p>
+      Household Expense Tools is made for simple personal organization only.
+     </p>
+    </div>
+
+    <div class="feature-grid">
+     <article class="feature-card">
+      <h3>No professional advice</h3>
+      <p>
+       The tools do not provide financial advice, tax advice, legal advice, investment advice, or professional accounting advice.
+      </p>
+     </article>
+
+     <article class="feature-card">
+      <h3>No guaranteed results</h3>
+      <p>
+       The site does not promise savings, income growth, debt reduction, or any financial improvement. It only helps users organize simple entries and totals.
+      </p>
+     </article>
+
+     <article class="feature-card">
+      <h3>No account-level reporting</h3>
+      <p>
+       The current tracker is not a replacement for bank statements, accounting software, tax records, or professional bookkeeping tools.
+      </p>
+     </article>
+
+     <article class="feature-card">
+      <h3>No fake credentials</h3>
+      <p>
+       The site does not claim awards, expert status, user numbers, or professional finance credentials that are not part of the project.
+      </p>
+     </article>
+    </div>
+   </div>
+  </section>
+
+  <section class="section" aria-labelledby="who-site-is-for">
+   <div class="container">
+    <div class="section-header">
+     <p class="eyebrow">Who it is for</p>
+     <h2 id="who-site-is-for">For everyday home expense tracking</h2>
+     <p>
+      Household Expense Tools is useful for people who want a simple place to note spending and review basic totals without a complex setup.
+     </p>
+    </div>
+
+    <div class="feature-grid">
+     <article class="feature-card">
+      <h3>Grocery and market spending</h3>
+      <p>
+       Users can record regular purchases such as vegetables, food items, household supplies, and other daily costs.
+      </p>
+     </article>
+
+     <article class="feature-card">
+      <h3>Small household budgets</h3>
+      <p>
+       The site can support basic home budget habits by making everyday spending easier to write down and review.
+      </p>
+     </article>
+
+     <article class="feature-card">
+      <h3>Simple personal records</h3>
+      <p>
+       It works best for personal reference, not for official accounting, tax filing, investment planning, or business finance reporting.
+      </p>
+     </article>
+    </div>
+   </div>
+  </section>
+
+  <section class="section section-soft" aria-labelledby="future-tools">
+   <div class="container">
+    <div class="section-header">
+     <p class="eyebrow">Planned direction</p>
+     <h2 id="future-tools">More household tools may be added over time</h2>
+     <p>
+      The website may expand with tools for grocery expense tracking, home budget planning, kitchen cost calculations, bill planning, pantry organization, and other household utilities.
+     </p>
+    </div>
+
+    <p>
+     New tools should follow the same basic approach: clear purpose, no unnecessary data collection, plain language, and practical calculations for everyday home use.
+    </p>
+   </div>
+  </section>
+ </main>
+
+ <footer class="site-footer" role="contentinfo">
+  <div class="container footer-grid">
+   <div>
+    <a class="footer-brand" href="../">Household Expense Tools</a>
+    <p>Simple, fast, privacy-friendly tools for home expenses, groceries, budgets, and kitchen planning.</p>
+   </div>
+
+   <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="../about/" aria-current="page">About</a>
+    <a href="../privacy/">Privacy</a>
+    <a href="../terms/">Terms</a>
+    <a href="../contact/">Contact</a>
+    <a href="../faq/">FAQ</a>
+   </nav>
+  </div>
+
+  <div class="container footer-bottom">
+   <p>&copy; <span id="current-year">2026</span> Household Expense Tools. All rights reserved.</p>
+  </div>
+ </footer>
+</body>
+</html>
