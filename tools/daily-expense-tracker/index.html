@@ -1,1 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daily Expense Tracker | Household Expense Tools</title>
+  <meta name="description" content="Track daily expenses, view simple totals, and save entries locally in your browser.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0f766e">
 
+  <link rel="manifest" href="../../manifest.json">
+
+  <link rel="stylesheet" href="../../assets/css/reset.css">
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/typography.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/utilities.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
+
+<script src="../../assets/js/daily-expense-tracker.js?v=7" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Daily Expense Tracker",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "description": "A free browser-based household expense tracker for adding expenses, viewing daily and monthly totals, and saving entries locally on the user's device.",
+    "isAccessibleForFree": true,
+    "featureList": [
+      "Add household expenses",
+      "Track today total",
+      "Track this month total",
+      "View total entries",
+      "Delete individual expenses",
+      "Clear all saved expenses",
+      "Save entries locally in the browser"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this daily expense tracker free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The Daily Expense Tracker is free to use in your browser and does not require login or account registration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where are my expense entries saved?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your entries are saved only in localStorage in the browser on your current device. They are not sent to a server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I delete saved expenses?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can delete a single expense from the list or clear all saved expenses after confirmation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool give financial advice?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This tool is only a simple household expense tracking utility and should not be treated as financial, tax, or legal advice."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+ <header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="../../" aria-label="Household Expense Tools home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
+          <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+      </span>
+      <span class="brand-text">Household Expense Tools</span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../#popular-tools">Tools</a></li>
+        <li><a href="../../#faq-preview">FAQ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <main id="main-content">
+    <section class="hero section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <p class="eyebrow">Free household expense tool</p>
+<h1>Daily Expense Tracker</h1>
+<p class="hero-text">
+  Add everyday household expenses, check today’s total, review this month’s total, and keep your entries saved in this browser without login or tracking.
+</p>
+          </div>
+
+          <div class="hero-card" aria-labelledby="tracker-heading">
+            <div class="section-header">
+              <h2 id="tracker-heading">Track an expense</h2>
+              <p>
+                Enter a name, amount, category, and date. Amounts are shown as clean numbers so the tracker can be used with any currency.
+              </p>
+            </div>
+
+            <p class="privacy-note">
+              Privacy note: your expense entries are saved only in this browser on this device using localStorage. No login, backend, analytics, or tracking is used.
+            </p>
+
+            <form id="expense-form" class="tool-form" novalidate>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="expense-name">Expense name</label>
+                  <input
+                    type="text"
+                    id="expense-name"
+                    name="expenseName"
+                    autocomplete="off"
+                    maxlength="80"
+                    placeholder="Example: Weekly groceries"
+                    required
+                  >
+                </div>
+
+                <div class="form-field">
+                  <label for="expense-amount">Amount</label>
+                  <input
+                    type="number"
+                    id="expense-amount"
+                    name="expenseAmount"
+                    inputmode="decimal"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="Example: 250"
+                    required
+                  >
+                </div>
+
+                <div class="form-field">
+                  <label for="expense-category">Category</label>
+                  <select id="expense-category" name="expenseCategory" required>
+                    <option value="">Select category</option>
+                    <option value="Grocery">Grocery</option>
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Household">Household</option>
+                    <option value="Health">Health</option>
+                    <option value="Education">Education</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label for="expense-date">Date</label>
+                  <input
+                    type="date"
+                    id="expense-date"
+                    name="expenseDate"
+                    required
+                  >
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="button button-primary">Add expense</button>
+              </div>
+            </form>
+
+            <div id="expense-status" class="status-message" role="status" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" aria-labelledby="summary-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="summary-heading">Expense summary</h2>
+          <p>Review your saved totals based on the expenses stored in this browser.</p>
+        </div>
+
+        <div class="feature-grid" aria-label="Expense summary totals">
+          <article class="feature-card summary-card">
+  <h3>Today total</h3>
+  <p id="today-total">0.00</p>
+  <small>Expenses dated today</small>
+</article>
+
+<article class="feature-card summary-card">
+  <h3>This month total</h3>
+  <p id="month-total">0.00</p>
+  <small>Current calendar month</small>
+</article>
+
+<article class="feature-card summary-card">
+  <h3>All saved total</h3>
+  <p id="all-total">0.00</p>
+  <small id="all-total-range">All saved dates</small>
+</article>
+
+<article class="feature-card summary-card">
+  <h3>Total entries</h3>
+  <p id="entry-count">0</p>
+  <small>Saved expense items</small>
+</article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="expense-list-heading">
+      <div class="container">
+        <div class="hero-card">
+          <div class="section-header">
+            <h2 id="expense-list-heading">Expense list</h2>
+            <p>Saved expenses are shown newest first.</p>
+          </div>
+
+          <div id="empty-state" class="empty-state">
+            <p>No expenses added yet. Add your first expense using the form above.</p>
+          </div>
+
+          <ul id="expense-list" class="expense-list" aria-label="Saved expenses"></ul>
+
+          <div class="form-actions">
+            <button type="button" id="clear-expenses" class="button button-secondary">
+              Clear all expenses
+            </button>
+          </div>
+
+          <noscript>
+            <div class="empty-state">
+              <p>
+                JavaScript is required to add, save, delete, and calculate expenses in this browser-based tracker.
+              </p>
+            </div>
+          </noscript>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <aside class="ad-placeholder" aria-label="Advertisement space reserved">
+        <span>Advertisement space reserved</span>
+      </aside>
+    </div>
+
+    <section class="section section-soft" aria-labelledby="how-to-use-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="how-to-use-heading">How to use the Daily Expense Tracker</h2>
+          <p>Use the tracker for simple daily household expense logging in your browser.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>1. Add the expense details</h3>
+            <p>
+              Enter a short expense name, add the amount as a number without any currency symbol, choose a category, and select the date.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <h3>2. Save the entry</h3>
+            <p>
+              Select Add expense to save the entry locally in this browser on this device.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <h3>3. Review and manage</h3>
+            <p>
+              Review today’s total, this month’s total, and your saved entries. Delete single entries or clear all expenses when needed.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="calculates-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="calculates-heading">What this tracker calculates</h2>
+          <p>
+            This tool calculates the total amount added for the current browser date, the total amount added for the current month, and the total number of saved entries.
+          </p>
+          <p>
+            It is designed for simple household tracking only. It does not provide budgeting advice, financial advice, tax advice, legal advice, or account-level reporting.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" aria-labelledby="privacy-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="privacy-heading">Privacy and localStorage note</h2>
+          <p>
+            The tracker uses your browser’s localStorage to remember the expenses you enter. This means your data stays on the current device and browser unless you clear it.
+          </p>
+          <p>
+            Because there is no account system or backend, your saved entries will not automatically sync across devices or browsers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="faq-heading">FAQ</h2>
+          <p>Common questions about this browser-based expense tracker.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <details>
+              <summary>Is this daily expense tracker free to use?</summary>
+              <p>
+                Yes. The Daily Expense Tracker is free to use in your browser and does not require login or account registration.
+              </p>
+            </details>
+          </article>
+
+          <article class="feature-card">
+            <details>
+              <summary>Where are my expense entries saved?</summary>
+              <p>
+                Your entries are saved only in localStorage in the browser on your current device. They are not sent to a server.
+              </p>
+            </details>
+          </article>
+
+          <article class="feature-card">
+            <details>
+              <summary>Can I delete saved expenses?</summary>
+              <p>
+                Yes. You can delete a single expense from the list or clear all saved expenses after confirmation.
+              </p>
+            </details>
+          </article>
+
+          <article class="feature-card">
+            <details>
+              <summary>Does this tool give financial advice?</summary>
+              <p>
+                No. This tool is only a simple household expense tracking utility and should not be treated as financial, tax, or legal advice.
+              </p>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <aside class="ad-placeholder" aria-label="Advertisement space reserved">
+        <span>Advertisement space reserved</span>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="section site-footer">
+    <div class="container">
+      <p>
+        <a href="../../">Back to home</a>
+      </p>
+      <p>
+        Household Expense Tools provides simple browser-based utilities for everyday household tracking.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
