@@ -1,1 +1,109 @@
+html,
+body {
+  max-inline-size: 100%;
+  overflow-x: clip;
+}
 
+@supports not (overflow: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+button,
+input,
+select,
+textarea,
+a {
+  touch-action: manipulation;
+}
+
+.primary-nav a,
+.footer-nav a,
+.tool-card a,
+.section-link a {
+  min-block-size: var(--touch-target);
+}
+
+.ad-placeholder {
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+
+.hero-card,
+.tool-card,
+.category-card,
+.feature-card,
+.search-box,
+.faq-list details {
+  min-inline-size: 0;
+}
+
+@media (max-width: 22.5rem) {
+  :root {
+    --container-padding: 0.875rem;
+  }
+
+  .brand-text {
+    max-inline-size: 11rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .button {
+    inline-size: 100%;
+  }
+
+  .search-box button {
+    inline-size: 100%;
+  }
+}
+
+@media (max-width: 47.9375rem) {
+  .primary-nav {
+    max-block-size: calc(100vh - var(--header-height) - var(--space-4));
+    overflow-y: auto;
+  }
+
+  .primary-nav a {
+    inline-size: 100%;
+  }
+}
+
+@media (min-width: 48rem) {
+  .brand-text {
+    white-space: nowrap;
+  }
+
+  .ad-placeholder {
+    margin-block: var(--space-8);
+  }
+}
+
+@media (min-width: 80rem) {
+  .hero-grid {
+    gap: var(--space-16);
+  }
+}
+
+@media print {
+  .site-header,
+  .nav-toggle,
+  .primary-nav,
+  .ad-placeholder,
+  .hero-actions,
+  .site-footer {
+    display: none;
+  }
+
+  body {
+    overflow: visible;
+  }
+
+  .section {
+    padding-block: var(--space-6);
+  }
+}
