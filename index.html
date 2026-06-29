@@ -1,1 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <title>Household Expense Tools | Free Home Budget and Grocery Calculators</title>
+  <meta name="description" content="Free, no-login household expense tools for daily spending, grocery costs, monthly budgets, pantry tracking, food waste, and cost per meal calculations.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f766e">
+
+  <!-- Canonical URL placeholder: add only after your final GitHub Pages or custom domain URL is confirmed. -->
+  <!-- <link rel="canonical" href="https://your-domain.example/"> -->
+
+  <meta property="og:title" content="Household Expense Tools">
+  <meta property="og:description" content="Simple privacy-friendly tools for tracking household expenses, groceries, pantry items, and budgets.">
+  <meta property="og:type" content="website">
+  
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Household Expense Tools">
+  <meta name="twitter:description" content="Free no-login household expense tools for daily home budgeting and grocery planning.">
+
+  <link rel="manifest" href="./manifest.json">
+
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/variables.css">
+  <link rel="stylesheet" href="./assets/css/typography.css">
+  <link rel="stylesheet" href="./assets/css/layout.css">
+  <link rel="stylesheet" href="./assets/css/components.css">
+  <link rel="stylesheet" href="./assets/css/utilities.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="Household Expense Tools home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
+            <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span class="brand-text">Household Expense Tools</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+
+      <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation">
+        <ul>
+          <li><a href="#popular-tools">Popular Tools</a></li>
+          <li><a href="#categories">Categories</a></li>
+          <li><a href="#why-use">Why Use Us</a></li>
+          <li><a href="#faq-preview">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <p class="eyebrow">Free household calculators and trackers</p>
+          <h1>Simple tools to track home expenses, groceries, budgets, and kitchen costs.</h1>
+          <p class="hero-text">
+            Household Expense Tools helps you organize daily spending without login, tracking scripts, or complicated setup. Start with practical calculators built for everyday home budgeting.
+          </p>
+
+          <div class="hero-actions" aria-label="Main actions">
+            <a class="button button-primary" href="#popular-tools">Explore tools</a>
+            <a class="button button-secondary" href="#categories">Browse categories</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Website benefits">
+          <h2 class="card-title">Built for everyday use</h2>
+          <ul class="check-list">
+            <li>No account required</li>
+            <li>Privacy-friendly by design</li>
+            <li>Mobile-first layout</li>
+            <li>Fast and lightweight pages</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-soft" aria-labelledby="search-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Find a tool</p>
+          <h2 id="search-heading">Search household expense tools</h2>
+          <p>Search is ready for future tool pages. Current starter version shows planned tools safely without broken pages.</p>
+        </div>
+
+       <div class="search-box" role="search" aria-label="Search tools">
+          <label class="visually-hidden" for="tool-search">Search tools</label>
+          <input id="tool-search" name="q" type="search" placeholder="Try grocery, budget, pantry, meal cost..." autocomplete="off">
+
+          <button type="button" id="tool-search-button" aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
+              <path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+            </svg>
+            <span>Search</span>
+          </button>
+        </div>
+        <div class="search-suggestions" aria-label="Suggested searches">
+  <span>Try:</span>
+  <button type="button" data-search-suggestion="grocery">Grocery</button>
+  <button type="button" data-search-suggestion="budget">Budget</button>
+  <button type="button" data-search-suggestion="pantry">Pantry</button>
+  <button type="button" data-search-suggestion="meal cost">Meal cost</button>
+  <button type="button" data-search-suggestion="food waste">Food waste</button>
+  <button type="button" data-search-suggestion="daily expense">Daily expense</button>
+</div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="ad-placeholder" role="complementary" aria-label="Advertisement placeholder">
+        <span>Advertisement space reserved</span>
+      </div>
+    </div>
+
+    <section class="section" id="popular-tools" aria-labelledby="popular-tools-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Popular tools</p>
+          <h2 id="popular-tools-heading">Start with these household tools</h2>
+          <p>These starter links are marked as coming soon until individual tool pages are created.</p>
+        </div>
+
+        <div class="tool-grid">
+          <article class="tool-card" data-search-keywords="daily expense tracker home spending kharcha daily cost daily budget household expense">
+            <div class="tool-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" focusable="false">
+                <path d="M7 3h10a2 2 0 0 1 2 2v16l-3-2-2 2-2-2-2 2-2-2-3 2V5a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+                <path d="M9 8h6M9 12h6M9 16h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              </svg>
+            </div>
+            <h3>Daily Expense Tracker</h3>
+            <p>Record everyday home spending and review daily totals.</p>
+            <a href="./tools/daily-expense-tracker/">Open tool</a>
+          </article>
+
+          <article class="tool-card" data-search-keywords="grocery expense tracker groceries market ration kitchen spending vegetable food shopping sabzi">
+            <div class="tool-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" focusable="false">
+                <path d="M6 7h15l-2 9H8L6 7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+                <path d="M6 7 5 4H2M9 20h.01M18 20h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              </svg>
+            </div>
+            <h3>Grocery Expense Tracker</h3>
+            <p>Track grocery purchases, kitchen costs, and market spending.</p>
+            <a href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">Coming soon</a>
+          </article>
+
+          <article class="tool-card" data-search-keywords="monthly budget planner home budget savings income expense monthly kharcha household budget">
+            <div class="tool-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" focusable="false">
+                <rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"></rect>
+                <path d="M8 3v4M16 3v4M4 10h16M8 15h3M13 15h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              </svg>
+            </div>
+            <h3>Monthly Budget Planner</h3>
+            <p>Plan monthly income, expenses, savings, and household limits.</p>
+            <a href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">Coming soon</a>
+          </article>
+
+          <article class="tool-card" data-search-keywords="food waste calculator unused food leftover kitchen loss food cost wasted food">
+            <div class="tool-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" focusable="false">
+                <path d="M12 21c4-4 7-8 7-12a7 7 0 0 0-14 0c0 4 3 8 7 12Z" fill="none" stroke="currentColor" stroke-width="2"></path>
+                <path d="M9 10c2 0 4-1 6-4M13 14c-1.5-1-3-1-5 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              </svg>
+            </div>
+            <h3>Food Waste Calculator</h3>
+            <p>Estimate the value of unused or wasted food at home.</p>
+            <a href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">Coming soon</a>
+          </article>
+
+          <article class="tool-card" data-search-keywords="pantry inventory tracker stock kitchen items storage groceries ration stock household items">
+            <div class="tool-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" focusable="false">
+                <path d="M4 8h16v12H4V8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+                <path d="M7 8V5h10v3M8 12h8M8 16h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              </svg>
+            </div>
+            <h3>Pantry Inventory Tracker</h3>
+            <p>Organize pantry items, quantities, and basic stock reminders.</p>
+            <a href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">Coming soon</a>
+          </article>
+
+          <article class="tool-card" data-search-keywords="cost per meal calculator meal cost recipe cost ingredients servings food cost cooking cost">
+            <div class="tool-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" focusable="false">
+                <path d="M5 4h14v16H5V4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+                <path d="M8 8h8M8 12h3M13 12h3M8 16h3M13 16h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              </svg>
+            </div>
+            <h3>Cost Per Meal Calculator</h3>
+            <p>Calculate estimated meal cost from ingredients and servings.</p>
+            <a href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">Coming soon</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="categories" aria-labelledby="categories-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Categories</p>
+          <h2 id="categories-heading">Browse by household need</h2>
+          <p>Category pages are reserved for future expansion and marked safely as coming soon.</p>
+        </div>
+
+        <div class="category-grid">
+          <a class="category-card" href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">
+            <span>Expense Tracking</span>
+            <small>Daily, weekly, and home spending tools</small>
+          </a>
+
+          <a class="category-card" href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">
+            <span>Grocery &amp; Kitchen</span>
+            <small>Market costs, pantry, meals, and food waste</small>
+          </a>
+
+          <a class="category-card" href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">
+            <span>Budget &amp; Savings</span>
+            <small>Monthly planning and simple savings calculators</small>
+          </a>
+
+          <a class="category-card" href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">
+            <span>Reports &amp; Analytics</span>
+            <small>Summaries, exports, and spending reviews</small>
+          </a>
+
+          <a class="category-card" href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">
+            <span>Utilities</span>
+            <small>Helpful everyday household calculators</small>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="ad-placeholder ad-placeholder-large" role="complementary" aria-label="Advertisement placeholder">
+        <span>Advertisement space reserved</span>
+      </div>
+    </div>
+
+    <section class="section" id="why-use" aria-labelledby="why-use-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Why use this site</p>
+          <h2 id="why-use-heading">Lightweight tools for practical household money decisions</h2>
+          <p>Designed for simple daily use, clear calculations, and fast loading on mobile devices.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>No login required</h3>
+            <p>Use the tools without creating an account or sharing personal details.</p>
+          </article>
+
+          <article class="feature-card">
+            <h3>Privacy-friendly structure</h3>
+            <p>The site is planned around local browser storage for future tools where possible.</p>
+          </article>
+
+          <article class="feature-card">
+            <h3>Fast static pages</h3>
+            <p>Built with plain HTML, CSS, and JavaScript for GitHub Pages compatibility.</p>
+          </article>
+
+          <article class="feature-card">
+            <h3>Household-first design</h3>
+            <p>Focused on real home expenses such as groceries, meals, pantry items, and budgets.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="faq-preview" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-heading">Common questions</h2>
+        </div>
+
+        <div class="faq-list">
+          <details>
+            <summary>Do I need to create an account?</summary>
+            <p>No. The starter website is designed as a no-login tool website.</p>
+          </details>
+
+          <details>
+            <summary>Are the tools free?</summary>
+            <p>Yes. The planned household tools are intended to be free to use.</p>
+          </details>
+
+          <details>
+            <summary>Will the website track personal expenses online?</summary>
+            <p>The starter version does not include tracking, login, analytics, or third-party scripts. Future tools can be built with privacy-friendly local storage.</p>
+          </details>
+
+          <details>
+            <summary>Why are some links marked coming soon?</summary>
+            <p>Only the homepage is included in this starter version. Tool pages and category pages will be added later to avoid broken SEO pages.</p>
+          </details>
+        </div>
+
+        <div class="section-link">
+          <a href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">Full FAQ coming soon</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-grid">
+      <div>
+        <a class="footer-brand" href="./">Household Expense Tools</a>
+        <p>Simple, fast, privacy-friendly tools for home expenses, groceries, budgets, and kitchen planning.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">About</a>
+        <a href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">Privacy</a>
+        <a href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">Terms</a>
+        <a href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">Contact</a>
+        <a href="javascript:void(0)" data-coming-soon="true" aria-disabled="true">Changelog</a>
+      </nav>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="current-year">2026</span> Household Expense Tools. All rights reserved.</p>
+    </div>
+  </footer>
+
+<script src="./assets/js/app.js?v=5" defer></script>
+</body>
+</html>
