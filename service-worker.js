@@ -1,11 +1,26 @@
 "use strict";
 
-var CACHE_NAME = "household-expense-tools-v5";
+var CACHE_NAME = "household-expense-tools-v6";
 
 var STARTER_FILES = [
   "./",
   "./index.html",
   "./manifest.json",
+
+  "./about/",
+  "./about/index.html",
+  "./privacy/",
+  "./privacy/index.html",
+  "./terms/",
+  "./terms/index.html",
+  "./contact/",
+  "./contact/index.html",
+  "./faq/",
+  "./faq/index.html",
+
+  "./tools/daily-expense-tracker/",
+  "./tools/daily-expense-tracker/index.html",
+
   "./assets/css/reset.css",
   "./assets/css/variables.css",
   "./assets/css/typography.css",
@@ -13,7 +28,9 @@ var STARTER_FILES = [
   "./assets/css/components.css",
   "./assets/css/utilities.css",
   "./assets/css/responsive.css",
-  "./assets/js/app.js"
+
+  "./assets/js/app.js",
+  "./assets/js/daily-expense-tracker.js"
 ];
 
 var STARTER_FILE_URLS = STARTER_FILES.map(function (path) {
