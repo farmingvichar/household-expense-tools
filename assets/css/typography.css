@@ -1,1 +1,152 @@
+html {
+  font-family: var(--font-family-base);
+  font-size: 100%;
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+}
 
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+}
+
+::selection {
+  color: var(--color-text-strong);
+  background: var(--color-selection);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-strong);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-tight);
+}
+
+h2 {
+  font-size: clamp(1.625rem, 5vw, 2.75rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+}
+
+h4 {
+  font-size: clamp(1.0625rem, 2.5vw, 1.25rem);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+h5,
+h6 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-strong);
+}
+
+p {
+  font-size: clamp(1rem, 2.5vw, 1.0625rem);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+}
+
+small {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-base);
+}
+
+strong,
+b {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-strong);
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+a {
+  color: var(--color-primary);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 0.08em;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+a:focus-visible {
+  outline: var(--border-width-strong) solid var(--color-focus);
+  outline-offset: 0.2em;
+}
+
+ul,
+ol {
+  line-height: var(--line-height-base);
+}
+
+li {
+  line-height: var(--line-height-base);
+}
+
+blockquote {
+  font-size: clamp(1.0625rem, 3vw, 1.25rem);
+  line-height: var(--line-height-loose);
+  color: var(--color-text);
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-family-mono);
+  font-size: 0.95em;
+}
+
+pre {
+  line-height: var(--line-height-base);
+  white-space: pre-wrap;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+label,
+legend {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-strong);
+}
+
+summary {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-strong);
+}
+
+@media (min-width: 48rem) {
+  body {
+    font-size: var(--font-size-md);
+  }
+
+  p {
+    line-height: var(--line-height-loose);
+  }
+}
