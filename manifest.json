@@ -1,1 +1,14 @@
-
+{
+  "name": "Household Expense Tools",
+  "short_name": "Expense Tools",
+  "description": "Free household expense, grocery, budget, pantry, and kitchen planning tools with no login required.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f766e",
+  "categories": ["finance", "productivity", "utilities"],
+  "lang": "en",
+  "dir": "ltr",
+  "orientation": "portrait-primary"
+}
