@@ -87,14 +87,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (
-      daysLeftValue === "" ||
-      !Number.isFinite(daysLeft) ||
-      daysLeft <= 0 ||
-      !Number.isInteger(daysLeft)
-    ) {
-      clearResultsForError("Please enter the number of days left as a whole number greater than 0.");
-      return;
-    }
+  daysLeftValue === "" ||
+  !Number.isFinite(daysLeft) ||
+  daysLeft < 1 ||
+  daysLeft > 31 ||
+  !Number.isInteger(daysLeft)
+) {
+  clearResultsForError("Please enter days left as a whole number between 1 and 31.");
+  return;
+}
 
     const remainingBudget = monthlyBudget - alreadySpent;
     const dailySpendingLimit = remainingBudget / daysLeft;
