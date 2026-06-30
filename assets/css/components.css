@@ -533,3 +533,37 @@ a[data-coming-soon="true"] {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
 }
+
+/* Grocery Budget Calculator results */
+.calculator-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: static;
+  overflow: visible;
+  clear: both;
+}
+
+.calculator-results-grid .summary-card {
+  display: block;
+  position: static;
+  height: auto;
+  min-height: 0;
+  padding: 1rem;
+  overflow: visible;
+}
+
+.calculator-results-grid .summary-label {
+  margin: 0 0 0.35rem;
+}
+
+.calculator-results-grid .summary-card p:last-child {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.calculator-results-grid + * {
+  clear: both;
+}
