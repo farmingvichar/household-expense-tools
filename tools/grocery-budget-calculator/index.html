@@ -58,8 +58,8 @@
           <div class="section-heading">
             <h2 id="calculator-heading">Calculate your grocery budget</h2>
             <p>
-              Choose a currency symbol, then enter your grocery budget, the amount already spent,
-              and the number of days left in your planning period. This calculator does not convert currencies.
+              Choose a currency symbol, then enter your monthly grocery budget, the amount already spent,
+and the number of days left in the month. This calculator does not convert currencies.
             </p>
           </div>
 
@@ -118,19 +118,20 @@
               </div>
 
               <div class="form-field">
-                <label for="daysLeft">Number of days left</label>
+                <label for="daysLeft">Days left in this month</label>
                 <input
                   type="number"
                   id="daysLeft"
                   name="daysLeft"
                   inputmode="numeric"
                   min="1"
+                  max="31"
                   step="1"
                   placeholder="Example: 18"
                   required
                   aria-describedby="daysLeftHelp"
                 />
-                <small id="daysLeftHelp">Enter how many days are left for this budget period.</small>
+                <small id="daysLeftHelp">Enter a whole number from 1 to 31.</small>
               </div>
             </div>
 
