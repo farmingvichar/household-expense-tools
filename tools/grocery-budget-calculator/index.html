@@ -1,1 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Grocery Budget Calculator | Household Expense Tools</title>
+  <meta name="description" content="Use this simple grocery budget calculator to estimate your remaining grocery budget, daily spending limit, and budget used percentage for personal planning." />
+  <link rel="canonical" href="https://farmingvichar.github.io/household-expense-tools/tools/grocery-budget-calculator/" />
+
+  <link rel="stylesheet" href="../../assets/css/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/variables.css" />
+  <link rel="stylesheet" href="../../assets/css/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/layout.css" />
+  <link rel="stylesheet" href="../../assets/css/components.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
+  <link rel="manifest" href="../../manifest.json" />
+  <meta name="theme-color" content="#0f172a" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="../../" aria-label="Household Expense Tools home">
+        Household Expense Tools
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="../../">Home</a>
+        <a href="../../tools/daily-expense-tracker/">Daily Expense Tracker</a>
+        <a href="../../about/">About</a>
+        <a href="../../faq/">FAQ</a>
+        <a href="../../contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="container">
+        <p class="eyebrow">Simple grocery planning tool</p>
+
+        <div class="hero-text">
+          <h1>Grocery Budget Calculator</h1>
+          <p>
+            Estimate how much grocery budget you have left, how much you can spend per day,
+            and what percentage of your monthly grocery budget has already been used.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-section" aria-labelledby="calculator-heading">
+      <div class="container">
+        <article class="tool-card">
+          <div class="section-heading">
+            <h2 id="calculator-heading">Calculate your grocery budget</h2>
+            <p>
+              Enter your monthly grocery budget, the amount already spent, and the number of
+              days left in your planning period. This is a simple personal planning calculator.
+            </p>
+          </div>
+
+          <form class="tool-form" id="groceryBudgetForm" novalidate>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="monthlyBudget">Monthly grocery budget</label>
+                <input
+                  type="number"
+                  id="monthlyBudget"
+                  name="monthlyBudget"
+                  inputmode="decimal"
+                  min="0"
+                  step="0.01"
+                  placeholder="Example: 8000"
+                  required
+                  aria-describedby="monthlyBudgetHelp"
+                />
+                <small id="monthlyBudgetHelp">Enter your full grocery budget for the month.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="alreadySpent">Already spent amount</label>
+                <input
+                  type="number"
+                  id="alreadySpent"
+                  name="alreadySpent"
+                  inputmode="decimal"
+                  min="0"
+                  step="0.01"
+                  placeholder="Example: 3200"
+                  required
+                  aria-describedby="alreadySpentHelp"
+                />
+                <small id="alreadySpentHelp">Enter the grocery amount you have already spent.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="daysLeft">Number of days left</label>
+                <input
+                  type="number"
+                  id="daysLeft"
+                  name="daysLeft"
+                  inputmode="numeric"
+                  min="1"
+                  step="1"
+                  placeholder="Example: 18"
+                  required
+                  aria-describedby="daysLeftHelp"
+                />
+                <small id="daysLeftHelp">Enter how many days are left for this budget period.</small>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="button-primary" type="submit">Calculate budget</button>
+              <button class="button-secondary" type="reset">Reset</button>
+            </div>
+
+            <p class="privacy-note">
+              Your values are used only in your browser for this calculation. They are not saved,
+              not sent to a server, and no login is used.
+            </p>
+
+            <div
+              class="status-message"
+              id="groceryBudgetStatus"
+              role="status"
+              aria-live="polite"
+            >
+              Enter your grocery details and calculate your budget.
+            </div>
+          </form>
+
+          <section class="summary-grid" aria-label="Grocery budget results">
+            <div class="summary-card">
+              <p class="summary-label">Remaining budget</p>
+              <p id="remainingBudget">₹0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Suggested daily limit</p>
+              <p id="dailyLimit">₹0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Budget used</p>
+              <p id="budgetUsedPercentage">0%</p>
+            </div>
+          </section>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="narrow-container">
+        <h2>How this calculator helps</h2>
+        <p>
+          This calculator gives a quick estimate based on the numbers you enter. It can help you
+          check whether your grocery spending is still within your monthly plan.
+        </p>
+
+        <h2>Important note</h2>
+        <p>
+          The result is only a basic estimate for personal planning. It does not provide financial,
+          tax, legal, investment, or accounting advice.
+        </p>
+
+        <h2>Related tool</h2>
+        <p>
+          To record daily household purchases in your browser, use the
+          <a href="../../tools/daily-expense-tracker/">Daily Expense Tracker</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Household Expense Tools. All rights reserved.</p>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../../about/">About</a>
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../terms/">Terms</a>
+        <a href="../../contact/">Contact</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/app.js" defer></script>
+  <script src="../../assets/js/grocery-budget-calculator.js" defer></script>
+</body>
+</html>
