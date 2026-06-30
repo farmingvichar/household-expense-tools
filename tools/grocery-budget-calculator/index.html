@@ -57,67 +57,88 @@
           <div class="section-heading">
             <h2 id="calculator-heading">Calculate your grocery budget</h2>
             <p>
-              Enter your monthly grocery budget, the amount already spent, and the number of
-              days left in your planning period. This is a simple personal planning calculator.
-            </p>
+  Choose a currency symbol, then enter your grocery budget, the amount already spent,
+  and the number of days left in your planning period. This calculator does not convert currencies.
+</p>
           </div>
 
           <form class="tool-form" id="groceryBudgetForm" novalidate>
-            <div class="form-grid">
-              <div class="form-field">
-                <label for="monthlyBudget">Monthly grocery budget</label>
-                <input
-                  type="number"
-                  id="monthlyBudget"
-                  name="monthlyBudget"
-                  inputmode="decimal"
-                  min="0"
-                  step="0.01"
-                  placeholder="Example: 8000"
-                  required
-                  aria-describedby="monthlyBudgetHelp"
-                />
-                <small id="monthlyBudgetHelp">Enter your full grocery budget for the month.</small>
-              </div>
-
-              <div class="form-field">
-                <label for="alreadySpent">Already spent amount</label>
-                <input
-                  type="number"
-                  id="alreadySpent"
-                  name="alreadySpent"
-                  inputmode="decimal"
-                  min="0"
-                  step="0.01"
-                  placeholder="Example: 3200"
-                  required
-                  aria-describedby="alreadySpentHelp"
-                />
-                <small id="alreadySpentHelp">Enter the grocery amount you have already spent.</small>
-              </div>
-
-              <div class="form-field">
-                <label for="daysLeft">Number of days left</label>
-                <input
-                  type="number"
-                  id="daysLeft"
-                  name="daysLeft"
-                  inputmode="numeric"
-                  min="1"
-                  step="1"
-                  placeholder="Example: 18"
-                  required
-                  aria-describedby="daysLeftHelp"
-                />
-                <small id="daysLeftHelp">Enter how many days are left for this budget period.</small>
-              </div>
             </div>
+<form class="tool-form" id="groceryBudgetForm" novalidate>
+  <div class="form-grid">
+    <div class="form-field">
+      <label for="currencySymbol">Currency symbol</label>
+      <select
+        id="currencySymbol"
+        name="currencySymbol"
+        required
+        aria-describedby="currencySymbolHelp"
+      >
+        <option value="">Select currency</option>
+        <option value="$">$ USD</option>
+        <option value="₹">₹ INR</option>
+        <option value="€">€ EUR</option>
+        <option value="£">£ GBP</option>
+        <option value="C$">C$ CAD</option>
+        <option value="A$">A$ AUD</option>
+        <option value="¥">¥ JPY</option>
+      </select>
+      <small id="currencySymbolHelp">This only changes the display symbol. It does not convert money.</small>
+    </div>
 
-            <div class="form-actions">
-              <button class="button-primary" type="submit">Calculate budget</button>
-              <button class="button-secondary" type="reset">Reset</button>
-            </div>
+    <div class="form-field">
+      <label for="monthlyBudget">Monthly grocery budget</label>
+      <input
+        type="number"
+        id="monthlyBudget"
+        name="monthlyBudget"
+        inputmode="decimal"
+        min="0"
+        step="0.01"
+        placeholder="Example: 8000"
+        required
+        aria-describedby="monthlyBudgetHelp"
+      />
+      <small id="monthlyBudgetHelp">Enter your full grocery budget in your selected currency.</small>
+    </div>
 
+    <div class="form-field">
+      <label for="alreadySpent">Already spent amount</label>
+      <input
+        type="number"
+        id="alreadySpent"
+        name="alreadySpent"
+        inputmode="decimal"
+        min="0"
+        step="0.01"
+        placeholder="Example: 3200"
+        required
+        aria-describedby="alreadySpentHelp"
+      />
+      <small id="alreadySpentHelp">Enter the grocery amount you have already spent.</small>
+    </div>
+
+    <div class="form-field">
+      <label for="daysLeft">Number of days left</label>
+      <input
+        type="number"
+        id="daysLeft"
+        name="daysLeft"
+        inputmode="numeric"
+        min="1"
+        step="1"
+        placeholder="Example: 18"
+        required
+        aria-describedby="daysLeftHelp"
+      />
+      <small id="daysLeftHelp">Enter how many days are left for this budget period.</small>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button class="button-primary" type="submit">Calculate budget</button>
+    <button class="button-secondary" type="reset">Reset</button>
+  </div>
             <p class="privacy-note">
               Your values are used only in your browser for this calculation. They are not saved,
               not sent to a server, and no login is used.
@@ -136,12 +157,12 @@
           <section class="summary-grid" aria-label="Grocery budget results">
             <div class="summary-card">
               <p class="summary-label">Remaining budget</p>
-              <p id="remainingBudget">₹0.00</p>
+              <p id="remainingBudget">0.00</p>
             </div>
 
             <div class="summary-card">
               <p class="summary-label">Suggested daily limit</p>
-              <p id="dailyLimit">₹0.00</p>
+              <p id="dailyLimit">0.00</p>
             </div>
 
             <div class="summary-card">
@@ -156,10 +177,10 @@
     <section class="content-section">
       <div class="narrow-container">
         <h2>How this calculator helps</h2>
-        <p>
-          This calculator gives a quick estimate based on the numbers you enter. It can help you
-          check whether your grocery spending is still within your monthly plan.
-        </p>
+        <<p>
+  This calculator gives a quick estimate based on the numbers you enter. You can use it with
+  your own currency, but it does not exchange or convert currencies.
+</p>
 
         <h2>Important note</h2>
         <p>
