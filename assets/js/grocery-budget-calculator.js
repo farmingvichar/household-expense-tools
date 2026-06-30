@@ -106,8 +106,8 @@ document.addEventListener("DOMContentLoaded", function () {
     budgetUsedPercentageOutput.textContent = formatPercentage(budgetUsedPercentage);
 
     if (alreadySpent > monthlyBudget) {
-      statusMessage.textContent = "You are over your grocery budget. The remaining budget is negative.";
-      return;
+  statusMessage.textContent = "You are over your grocery budget. Budget used can go above 100% when spending is higher than the budget.";
+  return;
     }
 
     if (alreadySpent === monthlyBudget) {
