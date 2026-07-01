@@ -1,1 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Grocery Price Compare Calculator | Household Expense Tools</title>
+  <meta name="description" content="Compare two grocery items or package sizes by price per selected unit to estimate which option gives the better value. Browser-only, no-login calculator." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="canonical" href="https://farmingvichar.github.io/household-expense-tools/tools/grocery-price-compare-calculator/" />
+  <link rel="manifest" href="../../manifest.json" />
+
+  <link rel="stylesheet" href="../../assets/css/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/variables.css" />
+  <link rel="stylesheet" href="../../assets/css/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/layout.css" />
+  <link rel="stylesheet" href="../../assets/css/components.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="../../" aria-label="Household Expense Tools home">
+        Household Expense Tools
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="../../">Home</a>
+        <a href="../../tools/daily-expense-tracker/">Daily Expense Tracker</a>
+        <a href="../../tools/grocery-budget-calculator/">Grocery Budget Calculator</a>
+        <a href="../../tools/food-waste-cost-calculator/">Food Waste Cost Calculator</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="container">
+        <p class="eyebrow">Simple grocery comparison tool</p>
+
+        <div class="hero-text">
+          <h1>Grocery Price Compare Calculator</h1>
+          <p>
+            Compare two grocery items, pack sizes, or market options by price per selected unit.
+            Use the same unit for both quantities to see which option has the lower unit price.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-section" aria-labelledby="calculator-heading">
+      <div class="container">
+        <article class="tool-card">
+          <div class="section-heading">
+            <h2 id="calculator-heading">Compare two grocery prices</h2>
+            <p>
+              Enter each item’s total price and quantity. This calculator does not convert units
+              or currencies. For example, to compare 500g and 1kg, choose g and enter 500 and 1000.
+            </p>
+          </div>
+
+          <form class="tool-form" id="groceryPriceCompareForm" novalidate>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="currencySymbol">Currency symbol</label>
+                <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
+                  <option value="">Select currency</option>
+                  <option value="$">$ USD</option>
+                  <option value="₹">₹ INR</option>
+                  <option value="€">€ EUR</option>
+                  <option value="£">£ GBP</option>
+                  <option value="C$">C$ CAD</option>
+                  <option value="A$">A$ AUD</option>
+                  <option value="¥">¥ JPY</option>
+                </select>
+                <small id="currencySymbolHelp">This only changes the display symbol. It does not convert currencies.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="quantityUnit">Quantity unit</label>
+                <select id="quantityUnit" name="quantityUnit" required aria-describedby="quantityUnitHelp">
+                  <option value="">Select unit</option>
+                  <option value="items">items</option>
+                  <option value="kg">kg</option>
+                  <option value="g">g</option>
+                  <option value="lb">lb</option>
+                  <option value="oz">oz</option>
+                  <option value="liters">liters</option>
+                  <option value="ml">ml</option>
+                  <option value="packs">packs</option>
+                </select>
+                <small id="quantityUnitHelp">Use the same selected unit for both item quantities. This tool does not convert units.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="itemAName">Item A name <span aria-hidden="true">(optional)</span></label>
+                <input
+                  type="text"
+                  id="itemAName"
+                  name="itemAName"
+                  placeholder="Example: Rice bag A"
+                  autocomplete="off"
+                  aria-describedby="itemANameHelp"
+                />
+                <small id="itemANameHelp">Leave blank to use “Item A” in the result.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="itemAPrice">Item A total price</label>
+                <input
+                  type="number"
+                  id="itemAPrice"
+                  name="itemAPrice"
+                  inputmode="decimal"
+                  min="0"
+                  step="0.01"
+                  placeholder="Example: 250"
+                  required
+                  aria-describedby="itemAPriceHelp"
+                />
+                <small id="itemAPriceHelp">Enter the full price for Item A.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="itemAQuantity">Item A quantity</label>
+                <input
+                  type="number"
+                  id="itemAQuantity"
+                  name="itemAQuantity"
+                  inputmode="decimal"
+                  min="0"
+                  step="0.01"
+                  placeholder="Example: 500"
+                  required
+                  aria-describedby="itemAQuantityHelp"
+                />
+                <small id="itemAQuantityHelp">Enter Item A quantity in the selected unit.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="itemBName">Item B name <span aria-hidden="true">(optional)</span></label>
+                <input
+                  type="text"
+                  id="itemBName"
+                  name="itemBName"
+                  placeholder="Example: Rice bag B"
+                  autocomplete="off"
+                  aria-describedby="itemBNameHelp"
+                />
+                <small id="itemBNameHelp">Leave blank to use “Item B” in the result.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="itemBPrice">Item B total price</label>
+                <input
+                  type="number"
+                  id="itemBPrice"
+                  name="itemBPrice"
+                  inputmode="decimal"
+                  min="0"
+                  step="0.01"
+                  placeholder="Example: 420"
+                  required
+                  aria-describedby="itemBPriceHelp"
+                />
+                <small id="itemBPriceHelp">Enter the full price for Item B.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="itemBQuantity">Item B quantity</label>
+                <input
+                  type="number"
+                  id="itemBQuantity"
+                  name="itemBQuantity"
+                  inputmode="decimal"
+                  min="0"
+                  step="0.01"
+                  placeholder="Example: 1000"
+                  required
+                  aria-describedby="itemBQuantityHelp"
+                />
+                <small id="itemBQuantityHelp">Enter Item B quantity in the selected unit.</small>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="button-primary" type="submit">Compare prices</button>
+              <button class="button-secondary" type="reset">Reset</button>
+            </div>
+
+            <p class="privacy-note">
+              Your values are used only in your browser for this calculation. They are not saved,
+              not sent to a server, and no login is used.
+            </p>
+
+            <div
+              class="status-message"
+              id="priceCompareStatus"
+              role="status"
+              aria-live="polite"
+            >
+              Enter two item prices and quantities to compare price per unit.
+            </div>
+          </form>
+
+          <section class="summary-grid calculator-results-grid" aria-label="Grocery price comparison results">
+            <div class="summary-card">
+              <p class="summary-label">Item A price per unit</p>
+              <p id="itemAUnitPrice">0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Item B price per unit</p>
+              <p id="itemBUnitPrice">0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Better value</p>
+              <p id="betterValueResult">—</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Difference per unit</p>
+              <p id="differencePerUnit">0.00</p>
+            </div>
+          </section>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="narrow-container">
+        <h2>How it works</h2>
+        <p>
+          The calculator divides each item’s total price by its quantity to estimate price per
+          selected unit. It then compares both unit prices and shows the lower-cost option.
+        </p>
+
+        <h2>What the result means</h2>
+        <p>
+          The better value result points to the item with the lower price per selected unit.
+          The difference per unit shows how much the unit prices differ.
+        </p>
+
+        <h2>Limitations</h2>
+        <p>
+          This is a simple personal estimate only. It does not compare quality, freshness,
+          delivery fees, discounts, taxes, or store differences. It does not convert units or currencies.
+        </p>
+        <p>
+          This tool does not provide financial, tax, legal, investment, or accounting advice.
+        </p>
+
+        <h2>Related tools</h2>
+        <p>
+          Plan grocery spending with the
+          <a href="../../tools/grocery-budget-calculator/">Grocery Budget Calculator</a>,
+          estimate waste cost with the
+          <a href="../../tools/food-waste-cost-calculator/">Food Waste Cost Calculator</a>,
+          or record daily purchases with the
+          <a href="../../tools/daily-expense-tracker/">Daily Expense Tracker</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Household Expense Tools. All rights reserved.</p>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../../about/">About</a>
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../terms/">Terms</a>
+        <a href="../../contact/">Contact</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/app.js" defer></script>
+  <script src="../../assets/js/grocery-price-compare-calculator.js" defer></script>
+</body>
+</html>
