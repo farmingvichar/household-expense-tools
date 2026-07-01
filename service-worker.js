@@ -1,6 +1,6 @@
 "use strict";
 
-var CACHE_NAME = "household-expense-tools-v7";
+var CACHE_NAME = "household-expense-tools-v8";
 var STARTER_FILES = [
   "./",
   "./index.html",
@@ -18,9 +18,11 @@ var STARTER_FILES = [
   "./faq/index.html",
 
   "./tools/daily-expense-tracker/",
-"./tools/daily-expense-tracker/index.html",
-"./tools/grocery-budget-calculator/",
-"./tools/grocery-budget-calculator/index.html",
+  "./tools/daily-expense-tracker/index.html",
+  "./tools/grocery-budget-calculator/",
+  "./tools/grocery-budget-calculator/index.html",
+  "./tools/food-waste-cost-calculator/",
+  "./tools/food-waste-cost-calculator/index.html",
 
   "./assets/css/reset.css",
   "./assets/css/variables.css",
@@ -31,8 +33,9 @@ var STARTER_FILES = [
   "./assets/css/responsive.css",
 
   "./assets/js/app.js",
-"./assets/js/daily-expense-tracker.js",
-"./assets/js/grocery-budget-calculator.js"
+  "./assets/js/daily-expense-tracker.js",
+  "./assets/js/grocery-budget-calculator.js",
+  "./assets/js/food-waste-cost-calculator.js"
 ];
 
 var STARTER_FILE_URLS = STARTER_FILES.map(function (path) {
