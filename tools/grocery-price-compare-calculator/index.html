@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Grocery Price Compare Calculator | Household Expense Tools</title>
-  <meta name="description" content="Compare two grocery items or package sizes by price per selected unit to estimate which option gives the better value. Browser-only, no-login calculator." />
+  <meta name="description" content="Compare two grocery items or package sizes by normalized unit price, including g vs kg, ml vs liters, oz vs lb, items, and packs." />
   <meta name="theme-color" content="#0f172a" />
   <link rel="canonical" href="https://farmingvichar.github.io/household-expense-tools/tools/grocery-price-compare-calculator/" />
   <link rel="manifest" href="../../manifest.json" />
@@ -39,13 +39,14 @@
   <main>
     <section class="hero-section">
       <div class="container">
-        <p class="eyebrow">Simple grocery comparison tool</p>
+        <p class="eyebrow">Grocery unit price comparison</p>
 
         <div class="hero-text">
           <h1>Grocery Price Compare Calculator</h1>
           <p>
-            Compare two grocery items, pack sizes, or market options by price per selected unit.
-            Use the same unit for both quantities to see which option has the lower unit price.
+            Compare two grocery items or package sizes by normalized unit price. Enter each
+            item’s price, quantity, and unit to see which option has the lower price per kg,
+            liter, item, or pack.
           </p>
         </div>
       </div>
@@ -55,10 +56,10 @@
       <div class="container">
         <article class="tool-card">
           <div class="section-heading">
-            <h2 id="calculator-heading">Compare two grocery prices</h2>
+            <h2 id="calculator-heading">Compare two grocery options</h2>
             <p>
-              Enter each item’s total price and quantity. This calculator does not convert units
-              or currencies. For example, to compare 500g and 1kg, choose g and enter 500 and 1000.
+              Use this for rice bags, milk packs, vegetables, or grocery pack sizes. The tool can
+              compare compatible units such as g with kg, ml with liters, and oz with lb.
             </p>
           </div>
 
@@ -80,28 +81,12 @@
               </div>
 
               <div class="form-field">
-                <label for="quantityUnit">Quantity unit</label>
-                <select id="quantityUnit" name="quantityUnit" required aria-describedby="quantityUnitHelp">
-                  <option value="">Select unit</option>
-                  <option value="items">items</option>
-                  <option value="kg">kg</option>
-                  <option value="g">g</option>
-                  <option value="lb">lb</option>
-                  <option value="oz">oz</option>
-                  <option value="liters">liters</option>
-                  <option value="ml">ml</option>
-                  <option value="packs">packs</option>
-                </select>
-                <small id="quantityUnitHelp">Use the same selected unit for both item quantities. This tool does not convert units.</small>
-              </div>
-
-              <div class="form-field">
                 <label for="itemAName">Item A name <span aria-hidden="true">(optional)</span></label>
                 <input
                   type="text"
                   id="itemAName"
                   name="itemAName"
-                  placeholder="Example: Rice bag A"
+                  placeholder="Example: Small rice bag"
                   autocomplete="off"
                   aria-describedby="itemANameHelp"
                 />
@@ -117,7 +102,7 @@
                   inputmode="decimal"
                   min="0.01"
                   step="0.01"
-                  placeholder="Example: 250"
+                  placeholder="Example: 20"
                   required
                   aria-describedby="itemAPriceHelp"
                 />
@@ -137,7 +122,23 @@
                   required
                   aria-describedby="itemAQuantityHelp"
                 />
-                <small id="itemAQuantityHelp">Enter Item A quantity in the selected unit.</small>
+                <small id="itemAQuantityHelp">Enter the number only, then choose the unit below.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="itemAUnit">Item A unit</label>
+                <select id="itemAUnit" name="itemAUnit" required aria-describedby="itemAUnitHelp">
+                  <option value="">Select unit</option>
+                  <option value="g">g</option>
+                  <option value="kg">kg</option>
+                  <option value="oz">oz</option>
+                  <option value="lb">lb</option>
+                  <option value="ml">ml</option>
+                  <option value="liters">liters</option>
+                  <option value="items">items</option>
+                  <option value="packs">packs</option>
+                </select>
+                <small id="itemAUnitHelp">Choose the unit printed on Item A, such as g, kg, ml, liters, oz, lb, items, or packs.</small>
               </div>
 
               <div class="form-field">
@@ -146,7 +147,7 @@
                   type="text"
                   id="itemBName"
                   name="itemBName"
-                  placeholder="Example: Rice bag B"
+                  placeholder="Example: Large rice bag"
                   autocomplete="off"
                   aria-describedby="itemBNameHelp"
                 />
@@ -162,7 +163,7 @@
                   inputmode="decimal"
                   min="0.01"
                   step="0.01"
-                  placeholder="Example: 420"
+                  placeholder="Example: 35"
                   required
                   aria-describedby="itemBPriceHelp"
                 />
@@ -178,11 +179,27 @@
                   inputmode="decimal"
                   min="0.01"
                   step="0.01"
-                  placeholder="Example: 1000"
+                  placeholder="Example: 1"
                   required
                   aria-describedby="itemBQuantityHelp"
                 />
-                <small id="itemBQuantityHelp">Enter Item B quantity in the selected unit.</small>
+                <small id="itemBQuantityHelp">Enter the number only, then choose the unit below.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="itemBUnit">Item B unit</label>
+                <select id="itemBUnit" name="itemBUnit" required aria-describedby="itemBUnitHelp">
+                  <option value="">Select unit</option>
+                  <option value="g">g</option>
+                  <option value="kg">kg</option>
+                  <option value="oz">oz</option>
+                  <option value="lb">lb</option>
+                  <option value="ml">ml</option>
+                  <option value="liters">liters</option>
+                  <option value="items">items</option>
+                  <option value="packs">packs</option>
+                </select>
+                <small id="itemBUnitHelp">Choose the unit printed on Item B, such as g, kg, ml, liters, oz, lb, items, or packs.</small>
               </div>
             </div>
 
@@ -202,18 +219,18 @@
               role="status"
               aria-live="polite"
             >
-              Enter two item prices and quantities to compare price per unit.
+              Enter two item prices, quantities, and units to compare normalized unit price.
             </div>
           </form>
 
           <section class="summary-grid calculator-results-grid" aria-label="Grocery price comparison results">
             <div class="summary-card">
-              <p class="summary-label">Item A price per unit</p>
+              <p class="summary-label">Item A normalized unit price</p>
               <p id="itemAUnitPrice">0.00</p>
             </div>
 
             <div class="summary-card">
-              <p class="summary-label">Item B price per unit</p>
+              <p class="summary-label">Item B normalized unit price</p>
               <p id="itemBUnitPrice">0.00</p>
             </div>
 
@@ -223,7 +240,7 @@
             </div>
 
             <div class="summary-card">
-              <p class="summary-label">Difference per unit</p>
+              <p class="summary-label">Difference per normalized unit</p>
               <p id="differencePerUnit">0.00</p>
             </div>
           </section>
@@ -235,20 +252,33 @@
       <div class="narrow-container">
         <h2>How it works</h2>
         <p>
-          The calculator divides each item’s total price by its quantity to estimate price per
-          selected unit. It then compares both unit prices and shows the lower-cost option.
+          The calculator converts compatible quantities into a normalized comparison unit. Weight
+          items are compared per kg, volume items are compared per liter, and count items are
+          compared per item or per pack.
+        </p>
+
+        <h2>How to compare different package sizes</h2>
+        <p>
+          You can enter 500 with g and 1 with kg to compare both as price per kg. You can also
+          enter 500 with ml and 1 with liters to compare both as price per liter. The tool converts
+          compatible units only for comparison.
+        </p>
+        <p>
+          It does not convert currencies. It also does not compare quality, freshness, brand,
+          taxes, delivery fee, or discounts.
         </p>
 
         <h2>What the result means</h2>
         <p>
-          The better value result points to the item with the lower price per selected unit.
-          The difference per unit shows how much the unit prices differ.
+          The better value result shows the option with the lower normalized unit price. The
+          difference per unit shows how far apart the two normalized unit prices are.
         </p>
 
         <h2>Limitations</h2>
         <p>
-          This is a simple personal estimate only. It does not compare quality, freshness,
-          delivery fees, discounts, taxes, or store differences. It does not convert units or currencies.
+          This is a simple personal estimate only. Weight can be compared with weight, volume
+          with volume, items with items, and packs with packs. It does not compare weight with
+          volume or items with packs.
         </p>
         <p>
           This tool does not provide financial, tax, legal, investment, or accounting advice.
