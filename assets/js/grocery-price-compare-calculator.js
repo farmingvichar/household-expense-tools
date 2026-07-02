@@ -15,7 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const itemAUnitPriceOutput = document.getElementById("itemAUnitPrice");
   const itemBUnitPriceOutput = document.getElementById("itemBUnitPrice");
   const betterValueResultOutput = document.getElementById("betterValueResult");
-  const differencePerUnitOutput = document.getElementById("differencePerUnit");
+    const differencePerUnitOutput = document.getElementById("differencePerUnit");
+  const compareButton = form ? form.querySelector('button[type="submit"]') : null;
+  let hasCalculatedResult = false;
+  let buttonTimerId = null;
 
   if (
     !form ||
@@ -27,12 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
     !itemBNameInput ||
     !itemBPriceInput ||
     !itemBQuantityInput ||
-    !itemBUnitInput ||
+        !itemBUnitInput ||
     !statusMessage ||
     !itemAUnitPriceOutput ||
     !itemBUnitPriceOutput ||
     !betterValueResultOutput ||
-    !differencePerUnitOutput
+    !differencePerUnitOutput ||
+    !compareButton
   ) {
     return;
   }
@@ -51,7 +55,18 @@ document.addEventListener("DOMContentLoaded", function () {
     return roundedValue.toFixed(1) + "%";
   }
 
+    function setCompareButtonText(text) {
+    if (buttonTimerId) {
+      window.clearTimeout(buttonTimerId);
+      buttonTimerId = null;
+    }
+
+    compareButton.textContent = text;
+  }
+
   function resetResults() {
+    hasCalculatedResult = false;
+    setCompareButtonText("Compare prices");
     itemAUnitPriceOutput.textContent = "0.00";
     itemBUnitPriceOutput.textContent = "0.00";
     betterValueResultOutput.textContent = "—";
@@ -60,11 +75,38 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function clearResultsForError(message) {
+    hasCalculatedResult = false;
+    setCompareButtonText("Compare prices");
     itemAUnitPriceOutput.textContent = "0.00";
     itemBUnitPriceOutput.textContent = "0.00";
     betterValueResultOutput.textContent = "—";
     differencePerUnitOutput.textContent = "0.00";
     statusMessage.textContent = message;
+  }
+
+  function markCalculationComplete() {
+    hasCalculatedResult = true;
+    setCompareButtonText("Calculated ✓");
+
+    buttonTimerId = window.setTimeout(function () {
+      compareButton.textContent = "Recalculate";
+      buttonTimerId = null;
+    }, 1000);
+  }
+
+  function clearStaleResult() {
+    if (!hasCalculatedResult) {
+      return;
+    }
+
+    hasCalculatedResult = false;
+    setCompareButtonText("Compare prices");
+    itemAUnitPriceOutput.textContent = "0.00";
+    itemBUnitPriceOutput.textContent = "0.00";
+    betterValueResultOutput.textContent = "—";
+    differencePerUnitOutput.textContent = "0.00";
+    statusMessage.textContent = "Values changed. Tap Compare prices to update the result.";
+  }
   }
 
   function getDisplayName(inputValue, fallbackName) {
@@ -192,10 +234,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const higherUnitPrice = Math.max(itemAUnitPrice, itemBUnitPrice);
     const percentageDifference = higherUnitPrice > 0 ? (difference / higherUnitPrice) * 100 : 0;
 
-    itemAUnitPriceOutput.textContent = formatMoney(currencySymbol, itemAUnitPrice) + " / " + normalizedUnit;
+        itemAUnitPriceOutput.textContent = formatMoney(currencySymbol, itemAUnitPrice) + " / " + normalizedUnit;
     itemBUnitPriceOutput.textContent = formatMoney(currencySymbol, itemBUnitPrice) + " / " + normalizedUnit;
     differencePerUnitOutput.textContent = formatMoney(currencySymbol, difference) + " / " + normalizedUnit;
-
+    markCalculationComplete();
     if (difference === 0) {
       betterValueResultOutput.textContent = "Both items have the same normalized unit price.";
       statusMessage.textContent = "Both items have the same price per " + normalizedUnit + ".";
