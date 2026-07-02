@@ -1,6 +1,6 @@
 "use strict";
 
-var CACHE_NAME = "household-expense-tools-v10";
+var CACHE_NAME = "household-expense-tools-v11";
 var STARTER_FILES = [
   "./",
   "./index.html",
@@ -25,6 +25,8 @@ var STARTER_FILES = [
   "./tools/food-waste-cost-calculator/index.html",
   "./tools/grocery-price-compare-calculator/",
   "./tools/grocery-price-compare-calculator/index.html",
+  "./tools/laundry-cost-calculator/",
+"./tools/laundry-cost-calculator/index.html",
   
   "./assets/css/reset.css",
   "./assets/css/variables.css",
@@ -39,6 +41,8 @@ var STARTER_FILES = [
   "./assets/js/grocery-budget-calculator.js",
   "./assets/js/food-waste-cost-calculator.js",
   "./assets/js/grocery-price-compare-calculator.js"
+  "./assets/js/grocery-price-compare-calculator.js",
+"./assets/js/laundry-cost-calculator.js"
 ];
 
 var STARTER_FILE_URLS = STARTER_FILES.map(function (path) {
