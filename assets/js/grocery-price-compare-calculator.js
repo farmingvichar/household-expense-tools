@@ -15,10 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const itemAUnitPriceOutput = document.getElementById("itemAUnitPrice");
   const itemBUnitPriceOutput = document.getElementById("itemBUnitPrice");
   const betterValueResultOutput = document.getElementById("betterValueResult");
-    const differencePerUnitOutput = document.getElementById("differencePerUnit");
-  const compareButton = form ? form.querySelector('button[type="submit"]') : null;
-  let hasCalculatedResult = false;
-  let buttonTimerId = null;
+  const differencePerUnitOutput = document.getElementById("differencePerUnit");
 
   if (
     !form ||
@@ -30,14 +27,21 @@ document.addEventListener("DOMContentLoaded", function () {
     !itemBNameInput ||
     !itemBPriceInput ||
     !itemBQuantityInput ||
-        !itemBUnitInput ||
+    !itemBUnitInput ||
     !statusMessage ||
     !itemAUnitPriceOutput ||
     !itemBUnitPriceOutput ||
     !betterValueResultOutput ||
-    !differencePerUnitOutput ||
-    !compareButton
+    !differencePerUnitOutput
   ) {
+    return;
+  }
+
+  const compareButton = form.querySelector('button[type="submit"]');
+  let hasCalculatedResult = false;
+  let buttonTimerId = null;
+
+  if (!compareButton) {
     return;
   }
 
@@ -55,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return roundedValue.toFixed(1) + "%";
   }
 
-    function setCompareButtonText(text) {
+  function setCompareButtonText(text) {
     if (buttonTimerId) {
       window.clearTimeout(buttonTimerId);
       buttonTimerId = null;
@@ -106,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
     betterValueResultOutput.textContent = "—";
     differencePerUnitOutput.textContent = "0.00";
     statusMessage.textContent = "Values changed. Tap Compare prices to update the result.";
-  }
   }
 
   function getDisplayName(inputValue, fallbackName) {
@@ -234,11 +237,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const higherUnitPrice = Math.max(itemAUnitPrice, itemBUnitPrice);
     const percentageDifference = higherUnitPrice > 0 ? (difference / higherUnitPrice) * 100 : 0;
 
-            itemAUnitPriceOutput.textContent = formatMoney(currencySymbol, itemAUnitPrice) + " / " + normalizedUnit;
+    itemAUnitPriceOutput.textContent = formatMoney(currencySymbol, itemAUnitPrice) + " / " + normalizedUnit;
     itemBUnitPriceOutput.textContent = formatMoney(currencySymbol, itemBUnitPrice) + " / " + normalizedUnit;
     differencePerUnitOutput.textContent = formatMoney(currencySymbol, difference) + " / " + normalizedUnit;
-  
+
     markCalculationComplete();
+
     if (difference === 0) {
       betterValueResultOutput.textContent = "Both items have the same normalized unit price.";
       statusMessage.textContent = "Both items have the same price per " + normalizedUnit + ".";
@@ -255,7 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
     statusMessage.textContent = itemBName + " has the lower price per " + normalizedUnit + ".";
   });
 
-    [
+  [
     currencySymbolInput,
     itemANameInput,
     itemAPriceInput,
