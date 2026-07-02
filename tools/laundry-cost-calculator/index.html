@@ -1,1 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Laundry Cost Calculator | Household Expense Tools</title>
+  <meta name="description" content="Estimate laundry cost per load, weekly laundry cost, monthly laundry cost, and yearly laundry cost from simple manual cost inputs." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="canonical" href="https://farmingvichar.github.io/household-expense-tools/tools/laundry-cost-calculator/" />
+  <link rel="manifest" href="../../manifest.json" />
+
+  <link rel="stylesheet" href="../../assets/css/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/variables.css" />
+  <link rel="stylesheet" href="../../assets/css/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/layout.css" />
+  <link rel="stylesheet" href="../../assets/css/components.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="../../" aria-label="Household Expense Tools home">
+        Household Expense Tools
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="../../">Home</a>
+        <a href="../../tools/daily-expense-tracker/">Daily Expense Tracker</a>
+        <a href="../../tools/grocery-budget-calculator/">Grocery Budget Calculator</a>
+        <a href="../../tools/grocery-price-compare-calculator/">Grocery Price Calculator</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="container">
+        <p class="eyebrow">Laundry cost estimate</p>
+
+        <div class="hero-text">
+          <h1>Laundry Cost Calculator</h1>
+          <p>
+            Estimate your laundry cost per load, weekly laundry cost, monthly laundry cost,
+            and yearly laundry cost from simple manual cost inputs.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-section" aria-labelledby="calculator-heading">
+      <div class="container">
+        <article class="tool-card">
+          <div class="section-heading">
+            <h2 id="calculator-heading">Calculate laundry cost</h2>
+            <p>
+              Enter your estimated per-load costs for washing, drying, supplies, water, and any
+              other laundry expense. Dryer cost can be 0 if you air-dry clothes or do not use a dryer.
+            </p>
+          </div>
+
+          <form class="tool-form" id="laundryCostForm" novalidate>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="currencySymbol">Currency symbol</label>
+                <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
+                  <option value="">Select currency</option>
+                  <option value="$">$ USD</option>
+                  <option value="₹">₹ INR</option>
+                  <option value="€">€ EUR</option>
+                  <option value="£">£ GBP</option>
+                  <option value="C$">C$ CAD</option>
+                  <option value="A$">A$ AUD</option>
+                  <option value="¥">¥ JPY</option>
+                </select>
+                <small id="currencySymbolHelp">This only changes the display symbol. It does not convert currencies.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="loadsPerWeek">Loads per week</label>
+                <input
+                  type="number"
+                  id="loadsPerWeek"
+                  name="loadsPerWeek"
+                  inputmode="decimal"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="Example: 3"
+                  required
+                  aria-describedby="loadsPerWeekHelp"
+                />
+                <small id="loadsPerWeekHelp">Use your usual weekly laundry loads. Decimal values like 2.5 are allowed.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="washerCost">Washer cost per load</label>
+                <input
+                  type="number"
+                  id="washerCost"
+                  name="washerCost"
+                  inputmode="decimal"
+                  min="0"
+                  step="0.01"
+                  placeholder="Example: 2.50"
+                  required
+                  aria-describedby="washerCostHelp"
+                />
+                <small id="washerCostHelp">Enter your estimated washer cost per load.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="dryerCost">Dryer cost per load</label>
+                <input
+                  type="number"
+                  id="dryerCost"
+                  name="dryerCost"
+                  inputmode="decimal"
+                  min="0"
+                  step="0.01"
+                  placeholder="Example: 1.50"
+                  required
+                  aria-describedby="dryerCostHelp"
+                />
+                <small id="dryerCostHelp">Enter 0 if you air-dry clothes or do not use a dryer.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="suppliesCost">Detergent/supplies cost per load</label>
+                <input
+                  type="number"
+                  id="suppliesCost"
+                  name="suppliesCost"
+                  inputmode="decimal"
+                  min="0"
+                  step="0.01"
+                  placeholder="Example: 0.75"
+                  required
+                  aria-describedby="suppliesCostHelp"
+                />
+                <small id="suppliesCostHelp">Include detergent, softener, pods, or other supplies. Avoid counting the same cost twice.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="waterCost">Water cost per load <span aria-hidden="true">(optional)</span></label>
+                <input
+                  type="number"
+                  id="waterCost"
+                  name="waterCost"
+                  inputmode="decimal"
+                  min="0"
+                  step="0.01"
+                  placeholder="Example: 0.25"
+                  aria-describedby="waterCostHelp"
+                />
+                <small id="waterCostHelp">Leave blank if unknown. Blank water cost is treated as 0.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="otherCost">Other cost per load <span aria-hidden="true">(optional)</span></label>
+                <input
+                  type="number"
+                  id="otherCost"
+                  name="otherCost"
+                  inputmode="decimal"
+                  min="0"
+                  step="0.01"
+                  placeholder="Example: 0.50"
+                  aria-describedby="otherCostHelp"
+                />
+                <small id="otherCostHelp">Use this for laundry service fees or other per-load costs. Leave blank for 0.</small>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="button-primary" type="submit">Calculate laundry cost</button>
+              <button class="button-secondary" type="reset">Reset</button>
+            </div>
+
+            <p class="privacy-note">
+              Your values are used only in your browser for this calculation. They are not saved,
+              not sent to a server, and no login is used.
+            </p>
+
+            <div
+              class="status-message"
+              id="laundryCostStatus"
+              role="status"
+              aria-live="polite"
+            >
+              Enter your laundry costs to estimate total laundry spending.
+            </div>
+          </form>
+
+          <section class="summary-grid calculator-results-grid" aria-label="Laundry cost results">
+            <div class="summary-card">
+              <p class="summary-label">Cost per load</p>
+              <p id="costPerLoad">0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Weekly laundry cost</p>
+              <p id="weeklyLaundryCost">0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Monthly laundry cost</p>
+              <p id="monthlyLaundryCost">0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Yearly laundry cost</p>
+              <p id="yearlyLaundryCost">0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Largest cost part</p>
+              <p id="largestCostPart">—</p>
+            </div>
+          </section>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="narrow-container">
+        <h2>How it works</h2>
+        <p>
+          The calculator adds your manual per-load laundry costs, then multiplies that cost by
+          your weekly load count. Monthly cost uses 4.345 weeks as an average month, and yearly
+          cost uses 52 weeks.
+        </p>
+
+        <h2>What the result means</h2>
+        <p>
+          Cost per load shows the estimated cost for one laundry load. Weekly, monthly, and yearly
+          totals show how that per-load cost adds up over time. Largest cost part shows which
+          single cost input contributes the most.
+        </p>
+
+        <h2>Limitations</h2>
+        <p>
+          This is a simple manual-cost estimate. It does not calculate electricity usage from
+          wattage, machine efficiency, utility rates, taxes, or laundry product size. It also does
+          not convert currencies.
+        </p>
+        <p>
+          This tool is for personal estimation only and does not provide financial, tax, legal,
+          investment, or accounting advice.
+        </p>
+
+        <h2>Related tools</h2>
+        <p>
+          Record daily spending with the
+          <a href="../../tools/daily-expense-tracker/">Daily Expense Tracker</a>,
+          plan grocery spending with the
+          <a href="../../tools/grocery-budget-calculator/">Grocery Budget Calculator</a>,
+          or compare grocery package prices with the
+          <a href="../../tools/grocery-price-compare-calculator/">Grocery Unit Price Calculator</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Household Expense Tools. All rights reserved.</p>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../../about/">About</a>
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../terms/">Terms</a>
+        <a href="../../contact/">Contact</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/app.js" defer></script>
+  <script src="../../assets/js/laundry-cost-calculator.js" defer></script>
+</body>
+</html>
