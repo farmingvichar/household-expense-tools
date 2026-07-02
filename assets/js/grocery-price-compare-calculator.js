@@ -98,18 +98,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 1000);
   }
 
-  function clearStaleResult() {
+    function clearStaleResult() {
     if (!hasCalculatedResult) {
       return;
     }
 
     hasCalculatedResult = false;
     setCompareButtonText("Compare prices");
-    itemAUnitPriceOutput.textContent = "0.00";
-    itemBUnitPriceOutput.textContent = "0.00";
-    betterValueResultOutput.textContent = "—";
-    differencePerUnitOutput.textContent = "0.00";
     statusMessage.textContent = "Values changed. Tap Compare prices to update the result.";
+  
   }
 
   function getDisplayName(inputValue, fallbackName) {
