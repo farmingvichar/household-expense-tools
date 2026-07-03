@@ -154,16 +154,32 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (navToggle && primaryNav) {
-    navToggle.addEventListener("click", toggleNavigation);
+  primaryNav.style.display = "none";
 
-    primaryNav.addEventListener("click", function (event) {
-      var link = event.target.closest("a");
+  navToggle.addEventListener("click", function () {
+    var isOpen = navToggle.classList.toggle("is-open");
 
-      if (link) {
-        closeNavigation();
-      }
-    });
+    primaryNav.classList.toggle("is-open", isOpen);
+    primaryNav.style.display = isOpen ? "block" : "none";
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+    navToggle.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation menu" : "Open navigation menu"
+    );
+  });
 
+  primaryNav.addEventListener("click", function (event) {
+    var link = event.target.closest("a");
+
+    if (link) {
+      navToggle.classList.remove("is-open");
+      primaryNav.classList.remove("is-open");
+      primaryNav.style.display = "none";
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "Open navigation menu");
+    }
+  });
+}
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape") {
         closeNavigation();
