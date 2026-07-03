@@ -29,6 +29,31 @@
   <link rel="stylesheet" href="./assets/css/components.css">
   <link rel="stylesheet" href="./assets/css/utilities.css">
   <link rel="stylesheet" href="./assets/css/responsive.css">
+  <style>
+  @media (max-width: 47.9375rem) {
+    .site-header {
+      position: static !important;
+      overflow: visible !important;
+    }
+
+    .site-header .header-inner {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: var(--space-3) !important;
+      padding-block: var(--space-4) !important;
+    }
+
+    .nav-toggle,
+    .primary-nav {
+      display: none !important;
+    }
+
+    .hero-section {
+      padding-block-start: var(--space-8) !important;
+    }
+  }
+</style>
 </head>
 
 <body>
