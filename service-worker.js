@@ -27,6 +27,8 @@ var STARTER_FILES = [
   "./tools/grocery-price-compare-calculator/index.html",
   "./tools/laundry-cost-calculator/",
 "./tools/laundry-cost-calculator/index.html",
+  "./tools/toilet-paper-value-calculator/",
+"./tools/toilet-paper-value-calculator/index.html",
   
   "./assets/css/reset.css",
   "./assets/css/variables.css",
@@ -43,6 +45,7 @@ var STARTER_FILES = [
   "./assets/js/grocery-price-compare-calculator.js"
   "./assets/js/grocery-price-compare-calculator.js",
 "./assets/js/laundry-cost-calculator.js"
+"./assets/js/toilet-paper-value-calculator.js"
 ];
 
 var STARTER_FILE_URLS = STARTER_FILES.map(function (path) {
