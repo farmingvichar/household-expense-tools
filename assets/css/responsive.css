@@ -298,3 +298,27 @@ a {
     padding-block-start: var(--space-8);
   }
 }
+
+/* Final homepage mobile header cleanup */
+@media (max-width: 47.9375rem) {
+  .nav-toggle {
+    display: none !important;
+  }
+
+  .primary-nav {
+    display: none !important;
+  }
+
+  .site-header {
+    position: static !important;
+    overflow: visible !important;
+  }
+
+  .site-header .header-inner {
+    padding-block: var(--space-4);
+  }
+
+  .hero-section {
+    padding-block-start: var(--space-8) !important;
+  }
+}
