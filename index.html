@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="./assets/css/components.css">
   <link rel="stylesheet" href="./assets/css/utilities.css">
   <link rel="stylesheet" href="./assets/css/responsive.css">
-  <style>
+ <style>
   @media (max-width: 47.9375rem) {
     .site-header {
       position: static !important;
@@ -38,15 +38,72 @@
 
     .site-header .header-inner {
       display: flex !important;
+      flex-wrap: wrap !important;
       align-items: center !important;
-      justify-content: space-between !important;
+      justify-content: flex-start !important;
       gap: var(--space-3) !important;
       padding-block: var(--space-4) !important;
     }
 
-    .nav-toggle,
-    .primary-nav {
+    .brand {
+      flex: 1 1 100% !important;
+      min-inline-size: 0 !important;
+    }
+
+    .nav-toggle {
       display: none !important;
+    }
+
+    .primary-nav {
+      position: static !important;
+      inset: auto !important;
+      display: block !important;
+      flex: 0 0 100% !important;
+      inline-size: 100% !important;
+      max-inline-size: 100% !important;
+      max-block-size: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      scrollbar-width: none !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    .primary-nav::-webkit-scrollbar {
+      display: none !important;
+    }
+
+    .primary-nav ul {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      gap: var(--space-2) !important;
+      list-style: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      min-inline-size: max-content !important;
+    }
+
+    .primary-nav li {
+      flex: 0 0 auto !important;
+    }
+
+    .primary-nav a {
+      display: block !important;
+      inline-size: auto !important;
+      white-space: nowrap !important;
+      padding: 0.5rem 0.75rem !important;
+      border: 1px solid var(--color-border, #dbe3ea) !important;
+      border-radius: 999px !important;
+      background: var(--color-surface, #ffffff) !important;
+      color: var(--color-text, #111827) !important;
+      text-decoration: none !important;
     }
 
     .hero-section {
