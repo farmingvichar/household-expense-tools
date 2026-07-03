@@ -567,3 +567,41 @@ a[data-coming-soon="true"] {
 .calculator-results-grid + * {
   clear: both;
 }
+
+/* Homepage mobile menu open state */
+@media (max-width: 47.9375rem) {
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .primary-nav {
+    display: none;
+    inline-size: 100%;
+    margin-block-start: var(--space-3);
+  }
+
+  .primary-nav.is-open {
+    display: block;
+  }
+
+  .primary-nav ul {
+    display: grid;
+    gap: var(--space-2);
+    list-style: none;
+    margin: 0;
+    padding: var(--space-3);
+  }
+
+  .primary-nav a {
+    display: block;
+    padding: 0.75rem 0.875rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .nav-toggle {
+    display: none;
+  }
+}
