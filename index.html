@@ -32,9 +32,12 @@
  <style>
   @media (max-width: 47.9375rem) {
     .site-header {
-      position: static !important;
-      overflow: visible !important;
-    }
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  overflow: visible !important;
+  background: var(--color-surface, #ffffff) !important;
+}
 
     .site-header .header-inner {
       display: flex !important;
