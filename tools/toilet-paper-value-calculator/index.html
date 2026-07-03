@@ -1,1 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Toilet Paper Value Calculator | Compare Cost per 100 Sheets</title>
+  <meta name="description" content="Compare two toilet paper packs by final price, rolls, sheets per roll, ply, cost per 100 sheets, ply-adjusted cost, and optional cost per square foot." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="canonical" href="https://farmingvichar.github.io/household-expense-tools/tools/toilet-paper-value-calculator/" />
+  <link rel="manifest" href="../../manifest.json" />
+
+  <link rel="stylesheet" href="../../assets/css/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/variables.css" />
+  <link rel="stylesheet" href="../../assets/css/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/layout.css" />
+  <link rel="stylesheet" href="../../assets/css/components.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="../../" aria-label="Household Expense Tools home">
+        Household Expense Tools
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="../../">Home</a>
+        <a href="../../tools/daily-expense-tracker/">Daily Expense Tracker</a>
+        <a href="../../tools/grocery-budget-calculator/">Grocery Budget Calculator</a>
+        <a href="../../tools/grocery-price-compare-calculator/">Grocery Unit Price Calculator</a>
+        <a href="../../tools/laundry-cost-calculator/">Laundry Cost Calculator</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="container">
+        <p class="eyebrow">Household shopping comparison</p>
+
+        <div class="hero-text">
+          <h1>Toilet Paper Value Calculator</h1>
+          <p>
+            Compare two toilet paper packs by sheets, ply-adjusted value, and optional square-foot
+            value. Use the actual rolls, sheets per roll, ply, and final pack price instead of
+            confusing roll names.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-section" aria-labelledby="calculator-heading">
+      <div class="container">
+        <article class="tool-card">
+          <div class="section-heading">
+            <h2 id="calculator-heading">Compare two toilet paper packs</h2>
+            <p>
+              Enter the final pack price after any coupon or discount. The calculator does not add
+              tax or shipping automatically. Include tax or shipping in the final price only if you
+              want to compare delivered cost.
+            </p>
+          </div>
+
+          <form class="tool-form" id="toiletPaperValueForm" novalidate>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="currencySymbol">Currency symbol</label>
+                <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
+                  <option value="">Select currency</option>
+                  <option value="$">$ USD</option>
+                  <option value="₹">₹ INR</option>
+                  <option value="€">€ EUR</option>
+                  <option value="£">£ GBP</option>
+                  <option value="C$">C$ CAD</option>
+                  <option value="A$">A$ AUD</option>
+                  <option value="¥">¥ JPY</option>
+                </select>
+                <small id="currencySymbolHelp">Currency only changes display. It does not convert currencies.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="packAName">Pack A name <span aria-hidden="true">(optional)</span></label>
+                <input
+                  type="text"
+                  id="packAName"
+                  name="packAName"
+                  placeholder="Example: Store brand 12-roll"
+                  autocomplete="off"
+                  aria-describedby="packANameHelp"
+                />
+                <small id="packANameHelp">Leave blank to use “Pack A” in the result.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="packAPrice">Pack A final price</label>
+                <input
+                  type="number"
+                  id="packAPrice"
+                  name="packAPrice"
+                  inputmode="decimal"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="Example: 8.99"
+                  required
+                  aria-describedby="packAPriceHelp"
+                />
+                <small id="packAPriceHelp">Use the final pack price after any coupon or discount.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="packARolls">Pack A rolls</label>
+                <input
+                  type="number"
+                  id="packARolls"
+                  name="packARolls"
+                  inputmode="numeric"
+                  min="1"
+                  step="1"
+                  placeholder="Example: 12"
+                  required
+                  aria-describedby="packARollsHelp"
+                />
+                <small id="packARollsHelp">Enter the actual number of rolls in the pack.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="packASheetsPerRoll">Pack A sheets per roll</label>
+                <input
+                  type="number"
+                  id="packASheetsPerRoll"
+                  name="packASheetsPerRoll"
+                  inputmode="numeric"
+                  min="1"
+                  step="1"
+                  placeholder="Example: 220"
+                  required
+                  aria-describedby="packASheetsPerRollHelp"
+                />
+                <small id="packASheetsPerRollHelp">Ignore words like mega, double, or family roll. Use the actual sheet count.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="packAPly">Pack A ply</label>
+                <input
+                  type="number"
+                  id="packAPly"
+                  name="packAPly"
+                  inputmode="numeric"
+                  min="1"
+                  step="1"
+                  placeholder="Example: 2"
+                  required
+                  aria-describedby="packAPlyHelp"
+                />
+                <small id="packAPlyHelp">Ply means paper layers per sheet, such as 1-ply, 2-ply, or 3-ply.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="packASquareFeet">Pack A total square feet <span aria-hidden="true">(optional)</span></label>
+                <input
+                  type="number"
+                  id="packASquareFeet"
+                  name="packASquareFeet"
+                  inputmode="decimal"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="Example: 300"
+                  aria-describedby="packASquareFeetHelp"
+                />
+                <small id="packASquareFeetHelp">Use this only if the package shows total area. Leave blank if unknown.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="packBName">Pack B name <span aria-hidden="true">(optional)</span></label>
+                <input
+                  type="text"
+                  id="packBName"
+                  name="packBName"
+                  placeholder="Example: Brand pack 24-roll"
+                  autocomplete="off"
+                  aria-describedby="packBNameHelp"
+                />
+                <small id="packBNameHelp">Leave blank to use “Pack B” in the result.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="packBPrice">Pack B final price</label>
+                <input
+                  type="number"
+                  id="packBPrice"
+                  name="packBPrice"
+                  inputmode="decimal"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="Example: 15.99"
+                  required
+                  aria-describedby="packBPriceHelp"
+                />
+                <small id="packBPriceHelp">Use the final pack price after any coupon or discount.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="packBRolls">Pack B rolls</label>
+                <input
+                  type="number"
+                  id="packBRolls"
+                  name="packBRolls"
+                  inputmode="numeric"
+                  min="1"
+                  step="1"
+                  placeholder="Example: 24"
+                  required
+                  aria-describedby="packBRollsHelp"
+                />
+                <small id="packBRollsHelp">Enter the actual number of rolls in the pack.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="packBSheetsPerRoll">Pack B sheets per roll</label>
+                <input
+                  type="number"
+                  id="packBSheetsPerRoll"
+                  name="packBSheetsPerRoll"
+                  inputmode="numeric"
+                  min="1"
+                  step="1"
+                  placeholder="Example: 180"
+                  required
+                  aria-describedby="packBSheetsPerRollHelp"
+                />
+                <small id="packBSheetsPerRollHelp">Use the actual sheets per roll printed on the package.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="packBPly">Pack B ply</label>
+                <input
+                  type="number"
+                  id="packBPly"
+                  name="packBPly"
+                  inputmode="numeric"
+                  min="1"
+                  step="1"
+                  placeholder="Example: 2"
+                  required
+                  aria-describedby="packBPlyHelp"
+                />
+                <small id="packBPlyHelp">Use the ply number shown on the package.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="packBSquareFeet">Pack B total square feet <span aria-hidden="true">(optional)</span></label>
+                <input
+                  type="number"
+                  id="packBSquareFeet"
+                  name="packBSquareFeet"
+                  inputmode="decimal"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="Example: 420"
+                  aria-describedby="packBSquareFeetHelp"
+                />
+                <small id="packBSquareFeetHelp">Use this only if the package shows total area. Leave blank if unknown.</small>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="button-primary" type="submit">Compare toilet paper value</button>
+              <button class="button-secondary" type="reset">Reset</button>
+            </div>
+
+            <p class="privacy-note">
+              Your values are used only in your browser for this calculation. They are not saved,
+              not sent to a server, and no login is used.
+            </p>
+
+            <div
+              class="status-message"
+              id="toiletPaperValueStatus"
+              role="status"
+              aria-live="polite"
+            >
+              Enter two toilet paper packs to compare value.
+            </div>
+          </form>
+
+          <section class="summary-grid calculator-results-grid" aria-label="Toilet paper value results">
+            <div class="summary-card">
+              <p class="summary-label">Pack A total sheets</p>
+              <p id="packATotalSheets">0</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Pack B total sheets</p>
+              <p id="packBTotalSheets">0</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Pack A cost per 100 sheets</p>
+              <p id="packACostPer100Sheets">0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Pack B cost per 100 sheets</p>
+              <p id="packBCostPer100Sheets">0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Pack A cost per 100 ply-sheets</p>
+              <p id="packACostPer100PlySheets">0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Pack B cost per 100 ply-sheets</p>
+              <p id="packBCostPer100PlySheets">0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Better value by sheets</p>
+              <p id="betterValueBySheets">—</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Better value by ply-adjusted cost</p>
+              <p id="betterValueByPly">—</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Difference per 100 sheets</p>
+              <p id="differencePer100Sheets">0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Difference percentage</p>
+              <p id="differencePercentage">—</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Cost per square foot</p>
+              <p id="costPerSquareFoot">—</p>
+            </div>
+          </section>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="narrow-container">
+        <h2>How it works</h2>
+        <p>
+          The calculator compares final pack price against total sheets and ply-adjusted sheets.
+          It is useful when store labels show confusing roll names or different unit prices.
+        </p>
+
+        <h2>What the result means</h2>
+        <p>
+          Cost per 100 sheets shows a simple sheet-based comparison. Cost per 100 ply-sheets adjusts
+          for paper layers, so it is usually the better value check when comparing different ply counts.
+        </p>
+
+        <h2>Limitations</h2>
+        <p>
+          This is a simple household shopping estimate. It does not judge softness, strength, brand
+          quality, eco score, subscription savings, taxes, shipping, or personal usage needs. It
+          does not convert currencies.
+        </p>
+
+        <h2>Related tools</h2>
+        <p>
+          Track household purchases with the
+          <a href="../../tools/daily-expense-tracker/">Daily Expense Tracker</a>,
+          plan grocery spending with the
+          <a href="../../tools/grocery-budget-calculator/">Grocery Budget Calculator</a>,
+          compare grocery package prices with the
+          <a href="../../tools/grocery-price-compare-calculator/">Grocery Unit Price Calculator</a>,
+          or estimate laundry spending with the
+          <a href="../../tools/laundry-cost-calculator/">Laundry Cost Calculator</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Household Expense Tools. All rights reserved.</p>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../../about/">About</a>
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../terms/">Terms</a>
+        <a href="../../contact/">Contact</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/app.js" defer></script>
+  <script src="../../assets/js/toilet-paper-value-calculator.js" defer></script>
+</body>
+</html>
