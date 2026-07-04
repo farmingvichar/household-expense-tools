@@ -1,10 +1,11 @@
 "use strict";
 
-var CACHE_NAME = "household-expense-tools-v17";
+var CACHE_NAME = "household-expense-tools-v18";
 var STARTER_FILES = [
   "./",
   "./index.html",
   "./manifest.json",
+  "./favicon.svg",
 
   "./about/",
   "./about/index.html",
