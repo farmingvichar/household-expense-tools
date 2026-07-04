@@ -10,5 +10,13 @@
   "categories": ["finance", "productivity", "utilities"],
   "lang": "en",
   "dir": "ltr",
-  "orientation": "portrait-primary"
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }
