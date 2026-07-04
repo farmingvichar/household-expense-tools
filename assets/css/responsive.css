@@ -64,12 +64,12 @@ a {
 
 @media (max-width: 47.9375rem) {
   .primary-nav {
-    max-block-size: calc(100vh - var(--header-height) - var(--space-4));
-    overflow-y: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .primary-nav a {
-    inline-size: 100%;
+    inline-size: auto;
   }
 }
 
@@ -107,221 +107,72 @@ a {
     padding-block: var(--space-6);
   }
 }
-/* Tool page mobile navigation tabs */
+/* Mobile header navigation pills */
 @media (max-width: 47.9375rem) {
   .site-header .header-inner {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: var(--space-3);
   }
 
-  .site-header .site-logo {
-    flex: 0 0 100%;
+  .site-header .brand {
     max-inline-size: 100%;
   }
 
-  .site-header .site-nav {
-    display: flex;
-    gap: var(--space-2);
+  .site-header .primary-nav {
+    display: block;
     inline-size: 100%;
     max-inline-size: 100%;
     overflow-x: auto;
     overflow-y: hidden;
-    padding-block: var(--space-2);
+    padding-block-start: 0;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
 
-  .site-header .site-nav::-webkit-scrollbar {
+  .site-header .primary-nav::-webkit-scrollbar {
     display: none;
   }
 
-  .site-header .site-nav a {
-    flex: 0 0 auto;
-    white-space: nowrap;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid var(--color-border, #dbe3ea);
-    border-radius: 999px;
-    background: var(--color-surface, #ffffff);
-    text-decoration: none;
+  .site-header .primary-nav ul {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    inline-size: max-content;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
-}
 
-/* Homepage mobile menu open state */
-@media (max-width: 47.9375rem) {
-  .nav-toggle {
+  .site-header .primary-nav li {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-header .primary-nav a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .primary-nav {
-    display: none;
-    inline-size: 100%;
-    margin-block-start: var(--space-3);
-  }
-
-  .primary-nav.is-open {
-    display: block;
-  }
-
-  .primary-nav ul {
-    display: grid;
-    gap: var(--space-2);
-    list-style: none;
-    margin: 0;
-    padding: var(--space-3);
-  }
-
-  .primary-nav a {
-    display: block;
-    padding: 0.75rem 0.875rem;
-  }
-}
-
-/* Final homepage mobile navigation fallback */
-@media (max-width: 47.9375rem) {
-  .nav-toggle {
-    display: none !important;
-  }
-
-  .primary-nav {
-    display: flex !important;
-    inline-size: 100%;
-    max-inline-size: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    margin-block-start: var(--space-3);
-    padding-block: var(--space-2);
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .primary-nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  .primary-nav ul {
-    display: flex !important;
-    gap: var(--space-2);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .primary-nav li {
-    flex: 0 0 auto;
-  }
-
-  .primary-nav a {
-    display: block;
-    white-space: nowrap;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid var(--color-border, #dbe3ea);
+    min-block-size: 3rem;
+    inline-size: auto;
+    padding: 0.625rem 1.125rem;
+    border: 1px solid var(--color-border);
     border-radius: 999px;
-    background: var(--color-surface, #ffffff);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-weight: 600;
+    line-height: 1;
     text-decoration: none;
-  }
-}
-
-/* Final homepage mobile nav spacing fix */
-@media (max-width: 47.9375rem) {
-  .site-header {
-    position: static;
-    overflow: visible;
-  }
-
-  .site-header .header-inner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--space-3);
-    padding-block: var(--space-3);
-  }
-
-  .brand {
-    flex: 1 1 auto;
-    min-inline-size: 0;
-  }
-
-  .nav-toggle {
-    display: none !important;
-  }
-
-  .primary-nav {
-    position: static !important;
-    display: block !important;
-    flex: 0 0 100%;
-    inline-size: 100%;
-    max-inline-size: 100%;
-    margin: 0;
-    padding-block-start: var(--space-2);
-    overflow-x: auto;
-    overflow-y: hidden;
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .primary-nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  .primary-nav ul {
-    display: flex !important;
-    flex-wrap: nowrap;
-    gap: var(--space-2);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .primary-nav li {
-    flex: 0 0 auto;
-  }
-
-  .primary-nav a {
-    display: block;
     white-space: nowrap;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid var(--color-border, #dbe3ea);
-    border-radius: 999px;
-    background: var(--color-surface, #ffffff);
-    color: var(--color-text, #111827);
-    text-decoration: none;
-  }
-
-  .hero-section {
-    padding-block-start: var(--space-8);
   }
 }
 
-/* Final homepage mobile header cleanup */
-@media (max-width: 47.9375rem) {
-  .nav-toggle {
-    display: none !important;
-  }
 
-  .primary-nav {
-    display: none !important;
-  }
 
-  .site-header {
-    position: static !important;
-    overflow: visible !important;
-  }
 
-  .site-header .header-inner {
-    padding-block: var(--space-4);
-  }
-
-  .hero-section {
-    padding-block-start: var(--space-8) !important;
-  }
-}
 
 /* Tool page legacy header and content compatibility */
 .site-logo {
@@ -437,100 +288,5 @@ a {
 
   .narrow-container {
     width: min(100% - 1.5rem, 62rem);
-  }
-}
-
-/* Final fix: show tool page navigation pills on mobile and desktop */
-.site-header .header-inner {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 1rem !important;
-  flex-wrap: wrap !important;
-}
-
-.site-header .site-logo {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 0.625rem !important;
-  color: var(--color-text, #0f172a) !important;
-  font-weight: 800 !important;
-  text-decoration: none !important;
-  white-space: nowrap !important;
-}
-
-.site-header .site-logo::before {
-  content: "" !important;
-  inline-size: 1.75rem !important;
-  block-size: 1.75rem !important;
-  flex: 0 0 auto !important;
-  border: 2px solid var(--color-primary, #0f766e) !important;
-  border-radius: 0.5rem !important;
-  background:
-    linear-gradient(var(--color-primary, #0f766e), var(--color-primary, #0f766e)) 50% 34% / 55% 2px no-repeat,
-    linear-gradient(var(--color-primary, #0f766e), var(--color-primary, #0f766e)) 50% 50% / 55% 2px no-repeat,
-    linear-gradient(var(--color-primary, #0f766e), var(--color-primary, #0f766e)) 42% 66% / 38% 2px no-repeat !important;
-}
-
-.site-header .site-nav {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-end !important;
-  gap: 0.5rem !important;
-  flex-wrap: wrap !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  max-height: none !important;
-  overflow: visible !important;
-}
-
-.site-header .site-nav a {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-block-size: 2.75rem !important;
-  padding: 0.625rem 1rem !important;
-  border: 1px solid var(--color-border, #dbe4e2) !important;
-  border-radius: 999px !important;
-  background: var(--color-surface, #ffffff) !important;
-  color: var(--color-text, #0f172a) !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  text-decoration: none !important;
-  white-space: nowrap !important;
-}
-
-.site-header .site-nav a:hover,
-.site-header .site-nav a:focus-visible {
-  color: var(--color-primary, #0f766e) !important;
-  border-color: var(--color-primary, #0f766e) !important;
-}
-
-@media (max-width: 47.9375rem) {
-  .site-header .header-inner {
-    align-items: flex-start !important;
-    flex-direction: column !important;
-  }
-
-  .site-header .site-nav {
-    inline-size: 100% !important;
-    display: flex !important;
-    justify-content: flex-start !important;
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    padding-block-start: 0.75rem !important;
-    padding-block-end: 0.125rem !important;
-    scrollbar-width: none !important;
-  }
-
-  .site-header .site-nav::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  .site-header .site-nav a {
-    flex: 0 0 auto !important;
-    min-block-size: 3rem !important;
-    padding-inline: 1.125rem !important;
   }
 }
