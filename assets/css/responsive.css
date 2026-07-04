@@ -196,9 +196,18 @@ a {
 }
 
 @media (max-width: 47.9375rem) {
-  .site-header {
+  .site-header,
+  .site-header .header-inner,
+  .site-header .primary-nav,
+  .site-header .site-nav {
     position: static !important;
+    inset: auto !important;
     top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    z-index: auto !important;
   }
 
   .site-header .header-inner {
@@ -217,13 +226,17 @@ a {
   .site-header .primary-nav,
   .site-header .site-nav {
     inline-size: 100%;
-    display: flex;
+    max-inline-size: 100%;
+    display: flex !important;
+    align-items: center;
     justify-content: flex-start;
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
     padding-block-start: 0;
     scrollbar-width: none;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   .site-header .primary-nav::-webkit-scrollbar,
