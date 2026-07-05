@@ -1,1 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Electricity Cost Calculator | Estimate Appliance Energy Cost</title>
+  <meta name="description" content="Estimate daily, monthly, and yearly electricity cost from appliance watts, hours used, electricity rate, and days per month. Free browser-based calculator with no login.">
+  <link rel="canonical" href="https://farmingvichar.github.io/household-expense-tools/tools/electricity-cost-calculator/">
+
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../../manifest.json">
+
+  <link rel="stylesheet" href="../../assets/css/reset.css">
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/typography.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/utilities.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="../../" aria-label="Household Expense Tools home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
+          <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+      </span>
+      <span class="brand-text">Household Expense Tools</span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../">Tools</a></li>
+        <li><a href="../../#why-use">Why Use Us</a></li>
+        <li><a href="../../faq/">FAQ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <main id="main-content">
+    <section class="section hero-section">
+      <div class="container">
+        <p class="eyebrow">Free household calculator</p>
+        <h1>Electricity Cost Calculator</h1>
+        <p class="hero-text">
+          Estimate appliance electricity cost in the browser using watts, daily use time, electricity rate, and monthly usage days.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-soft" aria-labelledby="calculator-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="calculator-heading">Calculate electricity cost</h2>
+          <p>Enter one appliance at a time. The result shows estimated energy use and cost based on your inputs.</p>
+        </div>
+
+        <form id="electricity-cost-form" class="tool-form" novalidate>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="appliance-name">Appliance name optional</label>
+              <input id="appliance-name" name="appliance-name" type="text" autocomplete="off" placeholder="Appliance">
+            </div>
+
+            <div class="form-field">
+              <label for="appliance-watts">Power in watts</label>
+              <input id="appliance-watts" name="appliance-watts" type="number" inputmode="decimal" min="0" step="0.01" placeholder="1000">
+            </div>
+
+            <div class="form-field">
+              <label for="hours-per-day">Hours used per day</label>
+              <input id="hours-per-day" name="hours-per-day" type="number" inputmode="decimal" min="0" max="24" step="0.01" placeholder="2">
+            </div>
+
+            <div class="form-field">
+              <label for="electricity-rate">Electricity rate per kWh</label>
+              <input id="electricity-rate" name="electricity-rate" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.20">
+            </div>
+
+            <div class="form-field">
+              <label for="days-per-month">Days used per month</label>
+              <input id="days-per-month" name="days-per-month" type="number" inputmode="numeric" min="1" max="31" step="1" placeholder="Enter days">
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button id="calculate-electricity-cost" class="button button-primary" type="submit">Calculate electricity cost</button>
+            <button id="reset-calculator" class="button button-secondary" type="button">Reset</button>
+          </div>
+
+          <p class="privacy-note">
+            This calculator does not save your entries or send them to a server.
+          </p>
+        </form>
+
+        <div id="electricity-cost-result" class="summary-card status-message" aria-live="polite">
+          Enter appliance details, then calculate to see estimated energy use and cost.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="how-to-use-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="how-to-use-heading">How to use</h2>
+        </div>
+
+        <ol class="content-list">
+          <li>Enter the appliance name if you want it shown in the result.</li>
+          <li>Add the appliance power in watts from its label or manual.</li>
+          <li>Enter how many hours the appliance is used per day.</li>
+          <li>Enter the electricity rate per kWh and the number of days used per month.</li>
+          <li>Select calculate to view estimated daily, monthly, and yearly cost.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section-soft" aria-labelledby="includes-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="includes-heading">What this calculator includes</h2>
+          <p>
+            Watts means the appliance power rating. Hours per day is the average daily use time. Rate per kWh is the cost of one unit of electricity. Days per month is how many days the appliance is used in that month.
+          </p>
+        </div>
+
+        <p>
+          Fixed charges, taxes, slab rates, meter fees, subsidies, and other bill fees are not included. Real electricity bills can be different because utilities may apply extra charges or changing rates.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="related-tools-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="related-tools-heading">Related tools</h2>
+        </div>
+
+        <div class="tool-grid">
+          <a class="tool-card" href="../monthly-expense-calculator/">
+            <h3>Monthly Expense Calculator</h3>
+            <p>Estimate monthly household expenses and remaining money.</p>
+          </a>
+
+          <a class="tool-card" href="../laundry-cost-calculator/">
+            <h3>Laundry Cost Calculator</h3>
+            <p>Estimate laundry cost by load and usage.</p>
+          </a>
+
+          <a class="tool-card" href="../daily-expense-tracker/">
+            <h3>Daily Expense Tracker</h3>
+            <p>Track everyday household spending in your browser.</p>
+          </a>
+
+          <a class="tool-card" href="../grocery-budget-calculator/">
+            <h3>Grocery Budget Calculator</h3>
+            <p>Estimate grocery spending before shopping.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="faq-heading">FAQ</h2>
+        </div>
+
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>Does this calculator show my exact electricity bill?</h3>
+            <p>No. It estimates appliance energy cost only. Real bills may include fixed charges, taxes, slab rates, meter fees, and rate changes.</p>
+          </article>
+
+          <article class="faq-item">
+            <h3>What is kWh?</h3>
+            <p>kWh means kilowatt-hour. It is a common unit used to measure electricity consumption.</p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Can I use this for any appliance?</h3>
+            <p>Yes. You can use it for an appliance if you know its watts, daily usage time, electricity rate, and monthly usage days.</p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Does this calculator save my data?</h3>
+            <p>No. It does not use localStorage, cookies, accounts, or server submission.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="section site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div>
+      <p class="footer-brand">Household Expense Tools</p>
+      <p class="footer-text">
+        Simple, fast, privacy-friendly tools for home expenses, groceries, budgets, and kitchen planning.
+      </p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="../../about/">About</a>
+      <a href="../">Tools</a>
+      <a href="../../privacy/">Privacy</a>
+      <a href="../../terms/">Terms</a>
+      <a href="../../contact/">Contact</a>
+      <a href="../../faq/">FAQ</a>
+    </nav>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>&copy; <span id="current-year">2026</span> Household Expense Tools. All rights reserved.</p>
+  </div>
+</footer>
+
+  <script src="../../assets/js/app.js"></script>
+  <script src="../../assets/js/electricity-cost-calculator.js"></script>
+</body>
+</html>
