@@ -1,1 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monthly Expense Calculator | Free Household Budget Tool</title>
+  <meta name="description" content="Calculate total monthly household expenses, remaining money, and expense percentage with a simple browser-based monthly expense calculator. No login required.">
+  <link rel="canonical" href="https://farmingvichar.github.io/household-expense-tools/tools/monthly-expense-calculator/">
 
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../../manifest.json">
+
+  <link rel="stylesheet" href="../../assets/css/reset.css">
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/typography.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/utilities.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="../../" aria-label="Household Expense Tools home">
+        <svg class="site-logo-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="4" y="4" width="24" height="24" rx="7"></rect>
+          <path d="M10 11h12M10 16h12M10 21h7"></path>
+        </svg>
+        <span>Household Expense Tools</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="../../">Home</a>
+        <a href="../">Tools</a>
+        <a href="../../#why-use">Why Use Us</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="section hero-section">
+      <div class="container">
+        <p class="eyebrow">Free household calculator</p>
+        <h1>Monthly Expense Calculator</h1>
+        <p class="hero-text">
+          Estimate your monthly household expenses, remaining money, and expense percentage directly in your browser. Enter only the categories you need and calculate when ready.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-soft" aria-labelledby="calculator-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="calculator-heading">Calculate monthly expenses</h2>
+          <p>Add monthly income and common household costs. Blank expense fields are treated as 0.</p>
+        </div>
+
+        <form id="monthly-expense-form" class="tool-form" novalidate>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="monthly-income">Monthly income</label>
+              <input id="monthly-income" name="monthly-income" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
+            </div>
+
+            <div class="form-field">
+              <label for="rent-housing">Rent or housing</label>
+              <input id="rent-housing" name="rent-housing" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
+            </div>
+
+            <div class="form-field">
+              <label for="groceries">Groceries</label>
+              <input id="groceries" name="groceries" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
+            </div>
+
+            <div class="form-field">
+              <label for="utilities">Utilities</label>
+              <input id="utilities" name="utilities" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
+            </div>
+
+            <div class="form-field">
+              <label for="transport">Transport</label>
+              <input id="transport" name="transport" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
+            </div>
+
+            <div class="form-field">
+              <label for="phone-internet">Phone and internet</label>
+              <input id="phone-internet" name="phone-internet" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
+            </div>
+
+            <div class="form-field">
+              <label for="debt-emi">Debt or EMI payments</label>
+              <input id="debt-emi" name="debt-emi" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
+            </div>
+
+            <div class="form-field">
+              <label for="insurance-health">Insurance or health</label>
+              <input id="insurance-health" name="insurance-health" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
+            </div>
+
+            <div class="form-field">
+              <label for="other-expenses">Other expenses</label>
+              <input id="other-expenses" name="other-expenses" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button id="calculate-expenses" class="button button-primary" type="submit">Calculate monthly expenses</button>
+            <button id="reset-calculator" class="button button-secondary" type="button">Reset</button>
+          </div>
+
+          <p class="privacy-note">
+            This calculator runs in your browser only. It does not save your entries.
+          </p>
+        </form>
+
+        <div id="monthly-expense-result" class="summary-card status-message" aria-live="polite">
+          Enter monthly income or expenses, then calculate to see the summary.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="how-to-use-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="how-to-use-heading">How to use</h2>
+        </div>
+
+        <ol class="content-list">
+          <li>Enter your monthly income if you want to calculate remaining money and expense percentage.</li>
+          <li>Add the household expense categories that apply to your month.</li>
+          <li>Leave unused expense fields blank. They will count as 0.</li>
+          <li>Select calculate to view the total expenses, remaining money, expense percentage, and biggest expense category.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section-soft" aria-labelledby="includes-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="includes-heading">What this calculator includes</h2>
+          <p>
+            The form covers common monthly household costs such as housing, groceries, utilities, transport, phone and internet, debt or EMI payments, insurance or health, and other expenses.
+          </p>
+        </div>
+
+        <p>
+          Irregular costs such as repairs, school fees, medical bills, subscriptions, childcare, or seasonal expenses can be entered under Other expenses when needed. Separate fields are not added for every cost so the calculator stays short and easy to use.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="related-tools-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="related-tools-heading">Related tools</h2>
+        </div>
+
+        <div class="tool-grid">
+          <a class="tool-card" href="../daily-expense-tracker/">
+            <h3>Daily Expense Tracker</h3>
+            <p>Track day-to-day household spending in your browser.</p>
+          </a>
+
+          <a class="tool-card" href="../grocery-budget-calculator/">
+            <h3>Grocery Budget Calculator</h3>
+            <p>Estimate grocery costs before shopping.</p>
+          </a>
+
+          <a class="tool-card" href="../laundry-cost-calculator/">
+            <h3>Laundry Cost Calculator</h3>
+            <p>Calculate laundry costs by load.</p>
+          </a>
+
+          <a class="tool-card" href="../food-waste-cost-calculator/">
+            <h3>Food Waste Cost Calculator</h3>
+            <p>Estimate the cost of unused or wasted food.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="faq-heading">FAQ</h2>
+        </div>
+
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>Does this calculator save my data?</h3>
+            <p>No. It does not auto-save entries, use localStorage, or send your numbers to a server.</p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Can I use it without monthly income?</h3>
+            <p>Yes. You can total your expenses without income, but the expense percentage needs income to be calculated.</p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Are the results financial advice?</h3>
+            <p>No. The results are basic calculations only and are not budgeting, tax, legal, accounting, or investment advice.</p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Why are my results only estimates?</h3>
+            <p>The calculator depends on the numbers you enter. Missing, rounded, or irregular costs can change the final result.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; Household Expense Tools</p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../../about/">About</a>
+        <a href="../">Tools</a>
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../terms/">Terms</a>
+        <a href="../../contact/">Contact</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/app.js"></script>
+  <script src="../../assets/js/monthly-expense-calculator.js"></script>
+</body>
+</html>
