@@ -21,6 +21,7 @@
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
   <header class="site-header" role="banner">
   <div class="container header-inner">
     <a class="brand" href="../../" aria-label="Household Expense Tools home">
@@ -44,7 +45,7 @@
   </div>
 </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero-section">
       <div class="container">
         <p class="eyebrow">Simple grocery planning tool</p>
@@ -64,7 +65,7 @@
           <div class="section-heading">
             <h2 id="calculator-heading">Calculate your grocery budget</h2>
             <p>
-  Enter your monthly grocery budget, how much you have already spent, and how many shopping days are left. The calculator estimates your remaining grocery money and average daily amount left.
+  Enter your monthly grocery budget, how much you have already spent, and how many days are left in the month.
 </p>
           </div>
 
@@ -184,8 +185,7 @@
   <div class="narrow-container">
     <h2>How this grocery budget calculator works</h2>
     <p>
-      Enter your monthly grocery budget, how much you've already spent, and how many shopping
-      days are left in the month. The calculator subtracts your spent amount from your budget to
+      Enter your monthly grocery budget, how much you've already spent, and how many days are left in the month The calculator subtracts your spent amount from your budget to
       find what's remaining, then divides that by the days left to give you a daily spending
       limit you can check before each trip to the store.
     </p>
@@ -278,9 +278,14 @@
 
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>&copy; 2026 Household Expense Tools. All rights reserved.</p>
+  <footer class="section site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Household Expense Tools</p>
+        <p class="footer-text">
+          Simple, fast, privacy-friendly tools for home expenses, groceries, budgets, and kitchen planning.
+        </p>
+      </div>
 
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="../../about/">About</a>
@@ -290,6 +295,10 @@
         <a href="../../contact/">Contact</a>
         <a href="../../faq/">FAQ</a>
       </nav>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="current-year">2026</span> Household Expense Tools. All rights reserved.</p>
     </div>
   </footer>
 
