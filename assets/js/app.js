@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
         closeNavigation();
       }
     });
-  }
+  
 
   document.addEventListener("click", function (event) {
     var comingSoonElement = event.target.closest('[data-coming-soon="true"]');
