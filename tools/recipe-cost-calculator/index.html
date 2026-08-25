@@ -1,1 +1,239 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Recipe Cost Calculator | Free Ingredient & Serving Cost Estimator</title>
+  <meta name="description" content="Calculate total recipe cost and cost per serving instantly. Free browser-based recipe costing calculator with dynamic ingredient rows and unit conversions." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="canonical" href="https://farmingvichar.github.io/household-expense-tools/tools/recipe-cost-calculator/" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="../../manifest.json" />
+
+  <link rel="stylesheet" href="../../assets/css/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/variables.css" />
+  <link rel="stylesheet" href="../../assets/css/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/layout.css" />
+  <link rel="stylesheet" href="../../assets/css/components.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
+</head>
+
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="../../" aria-label="Household Expense Tools home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
+            <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span class="brand-text">Household Expense Tools</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="../../">Home</a></li>
+          <li><a href="../">Tools</a></li>
+          <li><a href="../../#why-use">Why Use Us</a></li>
+          <li><a href="../../faq/">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="container">
+        <p class="eyebrow">Kitchen cost estimation</p>
+
+        <div class="hero-text">
+          <h1>Recipe Cost Calculator</h1>
+          <p>
+            Calculate the total cost of your homemade meals and the price per serving in USD. Add your ingredients, package prices, package quantities, and the exact amounts used in your recipe.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-section" aria-labelledby="calculator-heading">
+      <div class="container">
+        <article class="tool-card">
+          <div class="section-heading">
+            <h2 id="calculator-heading">Calculate recipe and ingredient costs</h2>
+            <p>
+              Enter your recipe name, total servings, and individual ingredients. Compatible units are automatically matched (mass to mass, volume to volume, and count to count).
+            </p>
+          </div>
+
+          <form class="tool-form" id="recipeCostForm" novalidate>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="recipeName">Recipe name <span aria-hidden="true">(optional)</span></label>
+                <input
+                  type="text"
+                  id="recipeName"
+                  name="recipeName"
+                  placeholder="Example: Homemade Vegetable Soup"
+                  autocomplete="off"
+                  aria-describedby="recipeNameHelp"
+                />
+                <small id="recipeNameHelp">Name of the meal or dish.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="servings">Servings</label>
+                <input
+                  type="number"
+                  id="servings"
+                  name="servings"
+                  inputmode="decimal"
+                  min="1"
+                  step="1"
+                  value="4"
+                  required
+                  aria-describedby="servingsHelp"
+                />
+                <small id="servingsHelp">Total number of servings this recipe yields.</small>
+              </div>
+            </div>
+
+            <div class="ingredients-section" style="margin-top: 2rem;">
+              <h3>Ingredients</h3>
+              <p style="margin-bottom: 1rem; font-size: 0.95rem; color: var(--color-text-muted);">
+                Add each ingredient with its purchased package price in USD, package size, and the amount used in your recipe.
+              </p>
+
+              <div id="ingredientsContainer" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <!-- Dynamic ingredient rows injected via JS -->
+              </div>
+
+              <div style="margin-top: 1.5rem;">
+                <button type="button" id="addIngredientBtn" class="button-secondary">+ Add Ingredient</button>
+              </div>
+            </div>
+
+            <div class="form-actions" style="margin-top: 2rem;">
+              <button class="button-primary" type="submit">Calculate recipe cost</button>
+              <button class="button-secondary" type="reset">Reset</button>
+            </div>
+
+            <p class="privacy-note">
+              Calculations are processed directly in your browser.
+            </p>
+
+            <div
+              class="status-message"
+              id="recipeStatus"
+              role="status"
+              aria-live="polite"
+            >
+              Add your ingredients and tap Calculate recipe cost to view individual costs, total cost, and cost per serving.
+            </div>
+          </form>
+
+          <section class="summary-grid calculator-results-grid" aria-label="Recipe cost calculation results" style="margin-top: 2rem;">
+            <div class="summary-card">
+              <p class="summary-label">Total Ingredient Cost</p>
+              <p id="totalRecipeCost">$0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Cost Per Serving</p>
+              <p id="costPerServing">$0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Total Ingredients</p>
+              <p id="totalIngredientsCount">0</p>
+            </div>
+          </section>
+
+          <div style="margin-top: 2rem;">
+            <h3>Ingredient Cost Breakdown</h3>
+            <div id="breakdownContainer" style="margin-top: 1rem; overflow-x: auto;">
+              <p style="color: var(--color-text-muted); font-style: italic;">No calculations performed yet.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="narrow-container">
+        <h2>What it calculates</h2>
+        <p>
+          The Recipe Cost Calculator computes the total financial cost of preparing a meal at home by breaking down bulk grocery packages into the exact amounts consumed in your recipe. It outputs the total recipe expense in USD, the cost breakdown per individual ingredient, and the precise cost per serving.
+        </p>
+
+        <h2>Ingredient cost formula</h2>
+        <p>
+          Each ingredient's cost is computed by dividing the package price by the package quantity in a compatible base unit, then multiplying by the recipe quantity used:
+        </p>
+        <p>
+          <strong>Ingredient Cost = (Package Price / Package Quantity in compatible base unit) × Recipe Quantity Used in compatible base unit</strong>
+        </p>
+
+        <h2>Cost per serving formula</h2>
+        <p>
+          <strong>Cost Per Serving = Total Recipe Cost / Servings</strong>
+        </p>
+
+        <h2>Supported units</h2>
+        <p>
+          The calculator supports standard measurement units grouped into compatible dimensions:
+        </p>
+        <ul>
+          <li><strong>Mass:</strong> g (grams), kg (kilograms), oz (ounces), lb (pounds)</li>
+          <li><strong>Volume:</strong> ml (milliliters), L (liters)</li>
+          <li><strong>Count:</strong> each (individual items or units)</li>
+        </ul>
+
+        <h2>Unit compatibility limitation &amp; why mass-to-volume conversion is not automatic</h2>
+        <p>
+          Units can only convert within their exact dimensional category. Mass units convert strictly to mass units, volume units to volume units, and count units only to count units. 
+        </p>
+        <p>
+          Automatic conversion between mass (such as grams) and volume (such as milliliters) is intentionally unsupported because ingredient densities vary drastically (for instance, a cup of flour weighs vastly different from a cup of honey or water). To avoid inaccurate approximations, you must match compatible units (e.g., measuring flour in grams for both package and recipe amounts).
+        </p>
+
+        <h2>Practical use cases</h2>
+        <p>
+          Use this calculator to budget weekly meal plans, calculate home baking expenses, compare homemade dishes against restaurant or store-bought prices, or track grocery ingredient expenditures per meal.
+        </p>
+
+        <h2>Limitations</h2>
+        <p>
+          This calculator provides direct material ingredient costing only in USD. It excludes auxiliary overheads such as food waste percentages, packaging materials, energy costs (cooking fuel/electricity), kitchen labor, or taxes.
+        </p>
+
+        <h2>Related tools</h2>
+        <p>
+          Compare grocery package pricing with the <a href="../grocery-price-compare-calculator/">Grocery Unit Price Calculator</a>, plan your overall spending using the <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a>, or estimate kitchen loss via the <a href="../food-waste-cost-calculator/">Food Waste Cost Calculator</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Household Expense Tools. All rights reserved.</p>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../../about/">About</a>
+        <a href="../">Tools</a>
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../terms/">Terms</a>
+        <a href="../../contact/">Contact</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/app.js" defer></script>
+  <script src="../../assets/js/recipe-cost-calculator.js" defer></script>
+</body>
+</html>
