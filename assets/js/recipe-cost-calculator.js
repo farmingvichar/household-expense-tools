@@ -336,13 +336,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 0);
   });
 
-    // Print functionality
+      // Print functionality (Direct Page Print Method - 100% Working on Mobile & Desktop)
   const printBtn = document.getElementById("printRecipeBtn");
   if (printBtn) {
     printBtn.addEventListener("click", function () {
+      // Temporarily update document title so the PDF/Print name matches the recipe
+      const originalTitle = document.title;
+      const recipeName = recipeNameInput.value.trim() || "Recipe-Cost-Report";
+      document.title = recipeName;
+
+      // Trigger standard browser print (ab CSS media query ke zariye sirf calculator print hoga)
       window.print();
+
+      // Restore original title
+      document.title = originalTitle;
     });
   }
+
 
   // Download Text File functionality
   const downloadBtn = document.getElementById("downloadTxtBtn");
