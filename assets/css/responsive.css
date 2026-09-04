@@ -288,29 +288,26 @@ a {
   }
 }
 @media print {
-  /* Hide everything on the page by default */
-  body * {
-    visibility: hidden !important;
+  /* Step 1: Print ke waqt header, footer aur baaki sabhi sections ko gayab kar do */
+  .site-header,
+  .site-footer,
+  .content-section > *:not(#recipeCostCalculatorContainer),
+  .hero-section,
+  nav,
+  footer {
+    display: none !important;
   }
 
-  /* Show only the recipe cost calculator section and its children */
-  #recipeCostCalculatorContainer, 
-  #recipeCostCalculatorContainer * {
-    visibility: visible !important;
-  }
-
-  /* Position the calculator at the very top of the printed sheet */
+  /* Step 2: Sirf Recipe Cost Calculator container ko dikhao */
   #recipeCostCalculatorContainer {
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
+    display: block !important;
     width: 100% !important;
-    background: #ffffff !important;
-    padding: 0 !important;
     margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
   }
 
-  /* Hide buttons inside the calculator during print */
+  /* Step 3: Print ke waqt buttons ko chhupa do taaki PDF mein print button na aaye */
   #printRecipeBtn, 
   #downloadTxtBtn, 
   .form-actions,
