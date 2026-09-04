@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function resetResults() {
+    function resetResults() {
     hasCalculatedResult = false;
     setCalculateButtonText("Calculate recipe cost");
     totalRecipeCostOutput.textContent = "$0.00";
@@ -141,7 +141,13 @@ document.addEventListener("DOMContentLoaded", function () {
     totalIngredientsCountOutput.textContent = "0";
     breakdownContainer.innerHTML = '<p style="color: var(--color-text-muted); font-style: italic;">No calculations performed yet.</p>';
     statusMessage.textContent = "Add your ingredients and tap Calculate recipe cost to view individual costs, total cost, and cost per serving.";
+    
+    const printBtn = document.getElementById("printRecipeBtn");
+    const downloadBtn = document.getElementById("downloadTxtBtn");
+    if (printBtn) printBtn.style.display = "none";
+    if (downloadBtn) downloadBtn.style.display = "none";
   }
+
 
   function clearResultsForError(message) {
     hasCalculatedResult = false;
@@ -330,8 +336,58 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 0);
   });
 
+    // Print functionality
+  const printBtn = document.getElementById("printRecipeBtn");
+  if (printBtn) {
+    printBtn.addEventListener("click", function () {
+      window.print();
+    });
+  }
+
+  // Download Text File functionality
+  const downloadBtn = document.getElementById("downloadTxtBtn");
+  if (downloadBtn) {
+    downloadBtn.addEventListener("click", function () {
+      const recipeName = recipeNameInput.value.trim() || "My Recipe";
+      const servings = servingsInput.value.trim() || "4";
+      const totalCost = totalRecipeCostOutput.textContent;
+      const perServing = costPerServingOutput.textContent;
+
+      let textContent = `=== RECIPE COST REPORT ===\n`;
+      textContent += `Recipe Name: ${recipeName}\n`;
+      textContent += `Servings: ${servings}\n`;
+      textContent += `Total Cost: ${totalCost}\n`;
+      textContent += `Cost Per Serving: ${perServing}\n\n`;
+      textContent += `--- INGREDIENT BREAKDOWN ---\n`;
+
+      const rows = ingredientsContainer.querySelectorAll(".ingredient-row");
+      rows.forEach(function (row, index) {
+        const name = row.querySelector(".ing-name").value.trim() || `Ingredient ${index + 1}`;
+        const price = row.querySelector(".ing-price").value || "0";
+        const pkgQty = row.querySelector(".ing-pkg-qty").value || "0";
+        const pkgUnit = row.querySelector(".ing-pkg-unit").value;
+        const recQty = row.querySelector(".ing-rec-qty").value || "0";
+        const recUnit = row.querySelector(".ing-rec-unit").value;
+        textContent += `${index + 1}. ${name} | Used: ${recQty} ${recUnit} | Pkg: $${price} for ${pkgQty} ${pkgUnit}\n`;
+      });
+
+      textContent += `\nGenerated via Household Expense Tools (Recipe Cost Calculator)`;
+
+      const blob = new Blob([textContent], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${recipeName.toLowerCase().replace(/[^a-z0-9]/g, "-")}-cost.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  }
+
   // Initialize with exactly ONE empty ingredient row on load
   createIngredientRow();
   resetResults();
 });
+
 
