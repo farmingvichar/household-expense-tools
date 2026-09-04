@@ -335,8 +335,7 @@ document.addEventListener("DOMContentLoaded", function () {
       resetResults();
     }, 0);
   });
-
-        // Professional Print / PDF Report Generator
+  // Safe & Reliable Print / PDF Report Generator (Mobile & Desktop Compatible)
   const printBtn = document.getElementById("printRecipeBtn");
   if (printBtn) {
     printBtn.addEventListener("click", function () {
@@ -431,15 +430,27 @@ document.addEventListener("DOMContentLoaded", function () {
         </html>
       `;
 
-      const printWindow = window.open('', '_blank', 'width=800,height=600');
-      if (printWindow) {
-        printWindow.document.write(printWindowContent);
-        printWindow.document.close();
-        printWindow.focus();
-        setTimeout(function () {
-          printWindow.print();
-          printWindow.close();
-        }, 300);
+      let iframe = document.getElementById("printIframe");
+      if (!iframe) {
+        iframe = document.createElement("iframe");
+        iframe.id = "printIframe";
+        iframe.style.position = "fixed";
+        iframe.style.right = "0";
+        iframe.style.bottom = "0";
+        iframe.style.width = "0";
+        iframe.style.height = "0";
+        iframe.style.border = "0";
+        document.body.appendChild(iframe);
       }
+
+      const doc = iframe.contentWindow.document;
+      doc.open();
+      doc.write(printWindowContent);
+      doc.close();
+
+      iframe.contentWindow.focus();
+      setTimeout(function () {
+        iframe.contentWindow.print();
+      }, 500);
     });
   }
