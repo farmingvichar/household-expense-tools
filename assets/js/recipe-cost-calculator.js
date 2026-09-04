@@ -336,39 +336,69 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 0);
   });
 
-      // Print functionality (Direct Page Print Method - 100% Working on Mobile & Desktop)
+        // Professional Print / PDF Report Generator
   const printBtn = document.getElementById("printRecipeBtn");
   if (printBtn) {
     printBtn.addEventListener("click", function () {
-      // Temporarily update document title so the PDF/Print name matches the recipe
-      const originalTitle = document.title;
-      const recipeName = recipeNameInput.value.trim() || "Recipe-Cost-Report";
-      document.title = recipeName;
-
-      // Trigger standard browser print (ab CSS media query ke zariye sirf calculator print hoga)
-      window.print();
-
-      // Restore original title
-      document.title = originalTitle;
-    });
-  }
-
-
-  // Download Text File functionality
-  const downloadBtn = document.getElementById("downloadTxtBtn");
-  if (downloadBtn) {
-    downloadBtn.addEventListener("click", function () {
-      const recipeName = recipeNameInput.value.trim() || "My Recipe";
+      const recipeName = recipeNameInput.value.trim() || "Homemade Recipe";
       const servings = servingsInput.value.trim() || "4";
       const totalCost = totalRecipeCostOutput.textContent;
       const perServing = costPerServingOutput.textContent;
 
-      let textContent = `=== RECIPE COST REPORT ===\n`;
-      textContent += `Recipe Name: ${recipeName}\n`;
-      textContent += `Servings: ${servings}\n`;
-      textContent += `Total Cost: ${totalCost}\n`;
-      textContent += `Cost Per Serving: ${perServing}\n\n`;
-      textContent += `--- INGREDIENT BREAKDOWN ---\n`;
+      let printWindowContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>${recipeName} - Cost Breakdown</title>
+          <style>
+            body { font-family: Arial, sans-serif; color: #121826; margin: 0; padding: 20px; background-color: #ffffff; }
+            .report-header { border-bottom: 2px solid #0f766e; padding-bottom: 15px; margin-bottom: 20px; }
+            .brand-title { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #0f766e; font-weight: bold; margin: 0 0 5px 0; }
+            h1 { font-size: 22px; margin: 0 0 10px 0; color: #0f172a; }
+            .summary-box { display: flex; justify-content: space-between; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; margin-bottom: 20px; }
+            .summary-item { text-align: center; flex: 1; }
+            .summary-item:not(:last-child) { border-right: 1px solid #e2e8f0; }
+            .summary-label { font-size: 12px; color: #64748b; margin-bottom: 5px; }
+            .summary-value { font-size: 18px; font-weight: bold; color: #0f766e; }
+            table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+            th, td { border: 1px solid #cbd5e1; padding: 10px 12px; text-align: left; font-size: 13px; }
+            th { background-color: #f1f5f9; color: #334155; }
+            .footer { margin-top: 40px; font-size: 11px; color: #94a3b8; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 15px; }
+          </style>
+        </head>
+        <body>
+          <div class="report-header">
+            <p class="brand-title">Household Expense Tools</p>
+            <h1>Recipe Cost Report: ${recipeName}</h1>
+          </div>
+
+          <div class="summary-box">
+            <div class="summary-item">
+              <div class="summary-label">Total Servings</div>
+              <div class="summary-value">${servings}</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">Total Recipe Cost</div>
+              <div class="summary-value">${totalCost}</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">Cost Per Serving</div>
+              <div class="summary-value">${perServing}</div>
+            </div>
+          </div>
+
+          <h3 style="font-size: 16px; color: #0f172a; margin-top: 25px;">Ingredient Breakdown</h3>
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 8%;">#</th>
+                <th style="width: 42%;">Ingredient Name</th>
+                <th style="width: 25%;">Amount Used</th>
+                <th style="width: 25%;">Package Pricing</th>
+              </tr>
+            </thead>
+            <tbody>
+      `;
 
       const rows = ingredientsContainer.querySelectorAll(".ingredient-row");
       rows.forEach(function (row, index) {
@@ -378,26 +408,38 @@ document.addEventListener("DOMContentLoaded", function () {
         const pkgUnit = row.querySelector(".ing-pkg-unit").value;
         const recQty = row.querySelector(".ing-rec-qty").value || "0";
         const recUnit = row.querySelector(".ing-rec-unit").value;
-        textContent += `${index + 1}. ${name} | Used: ${recQty} ${recUnit} | Pkg: $${price} for ${pkgQty} ${pkgUnit}\n`;
+
+        printWindowContent += `
+          <tr>
+            <td>${index + 1}</td>
+            <td><strong>${name}</strong></td>
+            <td>${recQty} ${recUnit}</td>
+            <td>$${price} / ${pkgQty} ${pkgUnit}</td>
+          </tr>
+        `;
       });
 
-      textContent += `\nGenerated via Household Expense Tools (Recipe Cost Calculator)`;
+      printWindowContent += `
+            </tbody>
+          </table>
 
-      const blob = new Blob([textContent], { type: "text/plain;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${recipeName.toLowerCase().replace(/[^a-z0-9]/g, "-")}-cost.txt`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+          <div class="footer">
+            Generated via Household Expense Tools &bull; Free browser-based utility calculators.<br>
+            https://farmingvichar.github.io/
+          </div>
+        </body>
+        </html>
+      `;
+
+      const printWindow = window.open('', '_blank', 'width=800,height=600');
+      if (printWindow) {
+        printWindow.document.write(printWindowContent);
+        printWindow.document.close();
+        printWindow.focus();
+        setTimeout(function () {
+          printWindow.print();
+          printWindow.close();
+        }, 300);
+      }
     });
   }
-
-  // Initialize with exactly ONE empty ingredient row on load
-  createIngredientRow();
-  resetResults();
-});
-
-
