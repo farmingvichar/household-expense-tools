@@ -116,10 +116,13 @@
               </div>
             </div>
 
-            <div class="form-actions" style="margin-top: 2rem;">
+                        <div class="form-actions" style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
               <button class="button-primary" type="submit">Calculate recipe cost</button>
               <button class="button-secondary" type="reset">Reset</button>
+              <button type="button" id="printRecipeBtn" class="button-secondary" style="display: none;">Print / Save PDF</button>
+              <button type="button" id="downloadTxtBtn" class="button-secondary" style="display: none;">Download Text File</button>
             </div>
+
 
             <p class="privacy-note">
               Calculations are processed directly in your browser.
