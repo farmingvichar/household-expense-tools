@@ -287,3 +287,31 @@ a {
     width: min(100% - 1.5rem, 62rem);
   }
 }
+@media print {
+  /* Hide everything on the site by default when printing */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Only show the recipe calculator container and its contents */
+  #recipeCostCalculatorContainer, 
+  #recipeCostCalculatorContainer * {
+    visibility: visible;
+  }
+
+  /* Position the calculator container at the top left of the printed page */
+  #recipeCostCalculatorContainer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: white !important;
+  }
+
+  /* Hide print and download buttons from the printed output itself */
+  #printRecipeBtn, 
+  #downloadTxtBtn,
+  .form-actions {
+    display: none !important;
+  }
+}
