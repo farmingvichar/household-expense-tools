@@ -287,6 +287,7 @@ a {
     width: min(100% - 1.5rem, 62rem);
   }
 }
+
 @media print {
   /* Step 1: Print ke waqt header, footer aur baaki sabhi sections ko gayab kar do */
   .site-header,
