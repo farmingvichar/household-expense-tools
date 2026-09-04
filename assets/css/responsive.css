@@ -288,30 +288,33 @@ a {
   }
 }
 @media print {
-  /* Hide everything on the site by default when printing */
+  /* Hide everything on the page by default */
   body * {
-    visibility: hidden;
+    visibility: hidden !important;
   }
 
-  /* Only show the recipe calculator container and its contents */
+  /* Show only the recipe cost calculator section and its children */
   #recipeCostCalculatorContainer, 
   #recipeCostCalculatorContainer * {
-    visibility: visible;
+    visibility: visible !important;
   }
 
-  /* Position the calculator container at the top left of the printed page */
+  /* Position the calculator at the very top of the printed sheet */
   #recipeCostCalculatorContainer {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    background: white !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
-  /* Hide print and download buttons from the printed output itself */
+  /* Hide buttons inside the calculator during print */
   #printRecipeBtn, 
-  #downloadTxtBtn,
-  .form-actions {
+  #downloadTxtBtn, 
+  .form-actions,
+  button {
     display: none !important;
   }
 }
