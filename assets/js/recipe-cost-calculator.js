@@ -306,9 +306,16 @@ document.addEventListener("DOMContentLoaded", function () {
     table.appendChild(tbody);
     breakdownContainer.appendChild(table);
 
-    markCalculationComplete();
+        markCalculationComplete();
     statusMessage.textContent = "Recipe cost calculated successfully.";
+
+    // Show export buttons once calculated
+    const printBtn = document.getElementById("printRecipeBtn");
+    const downloadBtn = document.getElementById("downloadTxtBtn");
+    if (printBtn) printBtn.style.display = "inline-block";
+    if (downloadBtn) downloadBtn.style.display = "inline-block";
   });
+
 
   [servingsInput, recipeNameInput].forEach(function (element) {
     element.addEventListener("input", clearStaleResult);
