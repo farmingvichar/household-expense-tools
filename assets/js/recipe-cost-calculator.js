@@ -119,7 +119,7 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
 
     ingredientsContainer.appendChild(row);
   }
-
+  createIngredientRow();
     function escapeHtml(str) {
     return String(str || "")
       .replace(/&/g, "&amp;")
@@ -180,26 +180,22 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
     }, 1000);
   }
 
-  function clearStaleResult() {
+    function clearStaleResult() {
     if (!hasCalculatedResult) {
       return;
     }
-    function clearStaleResult() {
-  if (!hasCalculatedResult) {
-    return;
+
+    hasCalculatedResult = false;
+    latestCalculation = null;
+    setCalculateButtonText("Calculate recipe cost");
+    statusMessage.textContent = "Values changed. Tap Calculate recipe cost to update results.";
+
+    const printBtn = document.getElementById("printRecipeBtn");
+    const downloadBtn = document.getElementById("downloadTxtBtn");
+
+    if (printBtn) printBtn.style.display = "none";
+    if (downloadBtn) downloadBtn.style.display = "none";
   }
-
-  hasCalculatedResult = false;
-  latestCalculation = null;
-  setCalculateButtonText("Calculate recipe cost");
-  statusMessage.textContent = "Values changed. Tap Calculate recipe cost to update results.";
-
-  const printBtn = document.getElementById("printRecipeBtn");
-  const downloadBtn = document.getElementById("downloadTxtBtn");
-
-  if (printBtn) printBtn.style.display = "none";
-  if (downloadBtn) downloadBtn.style.display = "none";
-}
   addIngredientBtn.addEventListener("click", function () {
     createIngredientRow();
     clearStaleResult();
@@ -527,27 +523,7 @@ latestCalculation = {
       `;
 
       latestCalculation.breakdownItems.forEach(function (item, index) {
-  printWindowContent += `
-          <tr>
-            <td>${index + 1}</td>
-            <td><strong>${escapeHtml(item.name)}</strong></td>
-            <td>${escapeHtml(item.recQty)} ${escapeHtml(item.recUnit)}</td>
-            <td>${escapeHtml(item.pkgQty)} ${escapeHtml(item.pkgUnit)}</td>
-            <td>${formatMoney(item.price)}</td>
-            <td><strong>${formatMoney(item.cost)}</strong></td>
-          </tr>
-        `;
-});
-          <tr>
-            <td>${index + 1}</td>
-            <td><strong>${escapeHtml(name)}</strong></td>
-            <td>${escapeHtml(recQty)} ${escapeHtml(recUnit)}</td>
-            <td>${escapeHtml(pkgQty)} ${escapeHtml(pkgUnit)}</td>
-            <td>${formatMoney(Number(price))}</td>
-            <td><strong>${formatMoney(ingredientCost)}</strong></td>
-          </tr>
-        `;
-      });
+          
 
       printWindowContent += `
               <tr>
