@@ -29,7 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const calculateButton = form.querySelector('button[type="submit"]');
   let hasCalculatedResult = false;
-  let buttonTimerId = null;
+let buttonTimerId = null;
+let latestCalculation = null;
 
   function getUnitDetails(unit) {
     const units = {
@@ -183,11 +184,22 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
     if (!hasCalculatedResult) {
       return;
     }
-    hasCalculatedResult = false;
-    setCalculateButtonText("Calculate recipe cost");
-    statusMessage.textContent = "Values changed. Tap Calculate recipe cost to update results.";
+    function clearStaleResult() {
+  if (!hasCalculatedResult) {
+    return;
   }
 
+  hasCalculatedResult = false;
+  latestCalculation = null;
+  setCalculateButtonText("Calculate recipe cost");
+  statusMessage.textContent = "Values changed. Tap Calculate recipe cost to update results.";
+
+  const printBtn = document.getElementById("printRecipeBtn");
+  const downloadBtn = document.getElementById("downloadTxtBtn");
+
+  if (printBtn) printBtn.style.display = "none";
+  if (downloadBtn) downloadBtn.style.display = "none";
+}
   addIngredientBtn.addEventListener("click", function () {
     createIngredientRow();
     clearStaleResult();
@@ -276,7 +288,24 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
     }
 
     const costPerServing = totalRecipeCost / servings;
-
+    
+latestCalculation = {
+  recipeName: recipeNameInput.value.trim() || "Homemade Recipe",
+  servings: servings,
+  totalRecipeCost: totalRecipeCost,
+  costPerServing: costPerServing,
+  breakdownItems: breakdownItems.map(function (item) {
+    return {
+      name: item.name,
+      cost: item.cost,
+      pkgQty: item.pkgQty,
+      pkgUnit: item.pkgUnit,
+      recQty: item.recQty,
+      recUnit: item.recUnit,
+      price: item.price
+    };
+  })
+};
     totalRecipeCostOutput.textContent = formatMoney(totalRecipeCost);
     costPerServingOutput.textContent = formatMoney(costPerServing);
     totalIngredientsCountOutput.textContent = breakdownItems.length.toString();
@@ -349,11 +378,15 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
   const printBtn = document.getElementById("printRecipeBtn");
   if (printBtn) {
     printBtn.addEventListener("click", function () {
-      const recipeName = recipeNameInput.value.trim() || "Homemade Recipe";
-      const servings = servingsInput.value.trim() || "4";
-      const totalCost = totalRecipeCostOutput.textContent;
-      const perServing = costPerServingOutput.textContent;
+  if (!hasCalculatedResult || !latestCalculation) {
+    statusMessage.textContent = "Please calculate the recipe cost before printing.";
+    return;
+  }
 
+  const recipeName = latestCalculation.recipeName;
+  const servings = latestCalculation.servings;
+  const totalCost = formatMoney(latestCalculation.totalRecipeCost);
+  const perServing = formatMoney(latestCalculation.costPerServing);
       let printWindowContent = `
         <!DOCTYPE html>
         <html>
@@ -493,42 +526,18 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
             <tbody>
       `;
 
-      const rows = ingredientsContainer.querySelectorAll(".ingredient-row");
-
-      rows.forEach(function (row, index) {
-        const name =
-          row.querySelector(".ing-name").value.trim() ||
-          `Ingredient ${index + 1}`;
-
-        const price = row.querySelector(".ing-price").value || "0";
-        const pkgQty = row.querySelector(".ing-pkg-qty").value || "0";
-        const pkgUnit = row.querySelector(".ing-pkg-unit").value;
-        const recQty = row.querySelector(".ing-rec-qty").value || "0";
-        const recUnit = row.querySelector(".ing-rec-unit").value;
-
-        const pkgDetails = getUnitDetails(pkgUnit);
-        const recDetails = getUnitDetails(recUnit);
-
-        let ingredientCost = 0;
-
-        if (
-          pkgDetails &&
-          recDetails &&
-          pkgDetails.category === recDetails.category
-        ) {
-          const normalizedPkgQty =
-            Number(pkgQty) * pkgDetails.factor;
-
-          const normalizedRecQty =
-            Number(recQty) * recDetails.factor;
-
-          if (normalizedPkgQty > 0) {
-            ingredientCost =
-              (Number(price) / normalizedPkgQty) * normalizedRecQty;
-          }
-        }
-
-        printWindowContent += `
+      latestCalculation.breakdownItems.forEach(function (item, index) {
+  printWindowContent += `
+          <tr>
+            <td>${index + 1}</td>
+            <td><strong>${escapeHtml(item.name)}</strong></td>
+            <td>${escapeHtml(item.recQty)} ${escapeHtml(item.recUnit)}</td>
+            <td>${escapeHtml(item.pkgQty)} ${escapeHtml(item.pkgUnit)}</td>
+            <td>${formatMoney(item.price)}</td>
+            <td><strong>${formatMoney(item.cost)}</strong></td>
+          </tr>
+        `;
+});
           <tr>
             <td>${index + 1}</td>
             <td><strong>${escapeHtml(name)}</strong></td>
