@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function createIngredientRow(data = {}) {
     const row = document.createElement("div");
     row.className = "ingredient-row";
-    row.style.cssText = "display: grid; grid-template-columns: 2fr 1fr 1.2fr 1fr 1fr 1.2fr auto; gap: 0.75rem; align-items: end; background: var(--color-surface, #f8fafc); padding: 1rem; border-radius: 8px; border: 1px solid var(--color-border, #e2e8f0);";
+row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; border-radius: 8px; border: 1px solid var(--color-border, #e2e8f0);";
 
     row.innerHTML = `
       <div class="form-field" style="margin-bottom: 0;">
@@ -117,6 +117,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     ingredientsContainer.appendChild(row);
+  }
+
+    function escapeHtml(str) {
+    return String(str || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
   }
 
   function formatMoney(amount) {
@@ -256,13 +265,14 @@ document.addEventListener("DOMContentLoaded", function () {
       totalRecipeCost += ingredientCost;
 
       breakdownItems.push({
-        name: name,
-        cost: ingredientCost,
-        pkgQty: pkgQty,
-        pkgUnit: pkgUnit,
-        recQty: recQty,
-        recUnit: recUnit
-      });
+  name: name,
+  cost: ingredientCost,
+  pkgQty: pkgQty,
+  pkgUnit: pkgUnit,
+  recQty: recQty,
+  recUnit: recUnit,
+  price: price
+});
     }
 
     const costPerServing = totalRecipeCost / servings;
@@ -335,7 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
       resetResults();
     }, 0);
   });
-  // Safe & Reliable Print / PDF Report Generator (Mobile & Desktop Compatible)
+    // Safe & Reliable Print / PDF Report Generator
   const printBtn = document.getElementById("printRecipeBtn");
   if (printBtn) {
     printBtn.addEventListener("click", function () {
@@ -348,82 +358,207 @@ document.addEventListener("DOMContentLoaded", function () {
         <!DOCTYPE html>
         <html>
         <head>
-          <title>${recipeName} - Cost Breakdown</title>
+          <meta charset="utf-8">
+          <title>${escapeHtml(recipeName)} - Cost Report</title>
           <style>
-            body { font-family: Arial, sans-serif; color: #121826; margin: 0; padding: 20px; background-color: #ffffff; }
-            .report-header { border-bottom: 2px solid #0f766e; padding-bottom: 15px; margin-bottom: 20px; }
-            .brand-title { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #0f766e; font-weight: bold; margin: 0 0 5px 0; }
-            h1 { font-size: 22px; margin: 0 0 10px 0; color: #0f172a; }
-            .summary-box { display: flex; justify-content: space-between; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; margin-bottom: 20px; }
-            .summary-item { text-align: center; flex: 1; }
-            .summary-item:not(:last-child) { border-right: 1px solid #e2e8f0; }
-            .summary-label { font-size: 12px; color: #64748b; margin-bottom: 5px; }
-            .summary-value { font-size: 18px; font-weight: bold; color: #0f766e; }
-            table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-            th, td { border: 1px solid #cbd5e1; padding: 10px 12px; text-align: left; font-size: 13px; }
-            th { background-color: #f1f5f9; color: #334155; }
-            .footer { margin-top: 40px; font-size: 11px; color: #94a3b8; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 15px; }
+            body {
+              font-family: Arial, sans-serif;
+              color: #121826;
+              margin: 0;
+              padding: 20px;
+              background: #fff;
+            }
+
+            .header {
+              border-bottom: 2px solid #0f766e;
+              padding-bottom: 12px;
+              margin-bottom: 20px;
+            }
+
+            .brand {
+              font-size: 13px;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              color: #0f766e;
+              font-weight: bold;
+              margin-bottom: 4px;
+            }
+
+            h1 {
+              font-size: 20px;
+              margin: 0;
+              color: #0f172a;
+            }
+
+            .summary-table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-bottom: 20px;
+            }
+
+            .summary-table td {
+              border: 1px solid #cbd5e1;
+              background: #f8fafc;
+              padding: 12px;
+              text-align: center;
+              width: 33.33%;
+            }
+
+            .summary-label {
+              font-size: 11px;
+              color: #64748b;
+              margin-bottom: 4px;
+              text-transform: uppercase;
+            }
+
+            .summary-value {
+              font-size: 16px;
+              font-weight: bold;
+              color: #0f766e;
+            }
+
+            table.main-table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-top: 10px;
+            }
+
+            table.main-table th,
+            table.main-table td {
+              border: 1px solid #cbd5e1;
+              padding: 8px 10px;
+              text-align: left;
+              font-size: 12px;
+              word-break: break-word;
+              overflow-wrap: break-word;
+            }
+
+            table.main-table th {
+              background-color: #f1f5f9;
+              color: #334155;
+            }
+
+            .footer {
+              margin-top: 30px;
+              font-size: 10px;
+              color: #94a3b8;
+              text-align: center;
+              border-top: 1px solid #e2e8f0;
+              padding-top: 10px;
+            }
           </style>
         </head>
+
         <body>
-          <div class="report-header">
-            <p class="brand-title">Household Expense Tools</p>
-            <h1>Recipe Cost Report: ${recipeName}</h1>
+          <div class="header">
+            <div class="brand">Household Expense Tools</div>
+            <h1>Recipe Cost Report: ${escapeHtml(recipeName)}</h1>
           </div>
 
-          <div class="summary-box">
-            <div class="summary-item">
-              <div class="summary-label">Total Servings</div>
-              <div class="summary-value">${servings}</div>
-            </div>
-            <div class="summary-item">
-              <div class="summary-label">Total Recipe Cost</div>
-              <div class="summary-value">${totalCost}</div>
-            </div>
-            <div class="summary-item">
-              <div class="summary-label">Cost Per Serving</div>
-              <div class="summary-value">${perServing}</div>
-            </div>
-          </div>
+          <table class="summary-table">
+            <tr>
+              <td>
+                <div class="summary-label">Total Servings</div>
+                <div class="summary-value">${escapeHtml(servings)}</div>
+              </td>
 
-          <h3 style="font-size: 16px; color: #0f172a; margin-top: 25px;">Ingredient Breakdown</h3>
-          <table>
+              <td>
+                <div class="summary-label">Total Recipe Cost</div>
+                <div class="summary-value">${escapeHtml(totalCost)}</div>
+              </td>
+
+              <td>
+                <div class="summary-label">Cost Per Serving</div>
+                <div class="summary-value">${escapeHtml(perServing)}</div>
+              </td>
+            </tr>
+          </table>
+
+          <h3 style="font-size: 14px; color: #0f172a; margin-top: 20px; margin-bottom: 8px;">
+            Ingredient Breakdown
+          </h3>
+
+          <table class="main-table">
             <thead>
               <tr>
-                <th style="width: 8%;">#</th>
-                <th style="width: 42%;">Ingredient Name</th>
-                <th style="width: 25%;">Amount Used</th>
-                <th style="width: 25%;">Package Pricing</th>
+                <th style="width: 5%;">#</th>
+                <th style="width: 30%;">Ingredient Name</th>
+                <th style="width: 17%;">Amount Used</th>
+                <th style="width: 18%;">Package Quantity</th>
+                <th style="width: 15%;">Package Price</th>
+                <th style="width: 15%;">Ingredient Cost</th>
               </tr>
             </thead>
+
             <tbody>
       `;
 
       const rows = ingredientsContainer.querySelectorAll(".ingredient-row");
+
       rows.forEach(function (row, index) {
-        const name = row.querySelector(".ing-name").value.trim() || `Ingredient ${index + 1}`;
+        const name =
+          row.querySelector(".ing-name").value.trim() ||
+          `Ingredient ${index + 1}`;
+
         const price = row.querySelector(".ing-price").value || "0";
         const pkgQty = row.querySelector(".ing-pkg-qty").value || "0";
         const pkgUnit = row.querySelector(".ing-pkg-unit").value;
         const recQty = row.querySelector(".ing-rec-qty").value || "0";
         const recUnit = row.querySelector(".ing-rec-unit").value;
 
+        const pkgDetails = getUnitDetails(pkgUnit);
+        const recDetails = getUnitDetails(recUnit);
+
+        let ingredientCost = 0;
+
+        if (
+          pkgDetails &&
+          recDetails &&
+          pkgDetails.category === recDetails.category
+        ) {
+          const normalizedPkgQty =
+            Number(pkgQty) * pkgDetails.factor;
+
+          const normalizedRecQty =
+            Number(recQty) * recDetails.factor;
+
+          if (normalizedPkgQty > 0) {
+            ingredientCost =
+              (Number(price) / normalizedPkgQty) * normalizedRecQty;
+          }
+        }
+
         printWindowContent += `
           <tr>
             <td>${index + 1}</td>
-            <td><strong>${name}</strong></td>
-            <td>${recQty} ${recUnit}</td>
-            <td>$${price} / ${pkgQty} ${pkgUnit}</td>
+            <td><strong>${escapeHtml(name)}</strong></td>
+            <td>${escapeHtml(recQty)} ${escapeHtml(recUnit)}</td>
+            <td>${escapeHtml(pkgQty)} ${escapeHtml(pkgUnit)}</td>
+            <td>${formatMoney(Number(price))}</td>
+            <td><strong>${formatMoney(ingredientCost)}</strong></td>
           </tr>
         `;
       });
 
       printWindowContent += `
+              <tr>
+                <td
+                  colspan="5"
+                  style="text-align: right; font-weight: bold; background: #f1f5f9;"
+                >
+                  Total Recipe Cost:
+                </td>
+
+                <td style="font-weight: bold; background: #f1f5f9;">
+                  ${escapeHtml(totalCost)}
+                </td>
+              </tr>
             </tbody>
           </table>
 
           <div class="footer">
-            Generated via Household Expense Tools &bull; Free browser-based utility calculators.<br>
+            Generated via Household Expense Tools &bull; Free browser-based utility calculators.
+            <br>
             https://farmingvichar.github.io/
           </div>
         </body>
@@ -431,6 +566,7 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
 
       let iframe = document.getElementById("printIframe");
+
       if (!iframe) {
         iframe = document.createElement("iframe");
         iframe.id = "printIframe";
@@ -444,11 +580,13 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       const doc = iframe.contentWindow.document;
+
       doc.open();
       doc.write(printWindowContent);
       doc.close();
 
       iframe.contentWindow.focus();
+
       setTimeout(function () {
         iframe.contentWindow.print();
       }, 500);
