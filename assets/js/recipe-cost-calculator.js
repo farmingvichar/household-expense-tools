@@ -522,24 +522,30 @@ latestCalculation = {
             <tbody>
       `;
 
-      latestCalculation.breakdownItems.forEach(function (item, index) {
-          
+latestCalculation.breakdownItems.forEach(function (item, index) {
+  printWindowContent += `
+    <tr>
+      <td>${index + 1}</td>
+      <td><strong>${escapeHtml(item.name)}</strong></td>
+      <td>${escapeHtml(item.recQty)} ${escapeHtml(item.recUnit)}</td>
+      <td>${escapeHtml(item.pkgQty)} ${escapeHtml(item.pkgUnit)}</td>
+      <td>${escapeHtml(formatMoney(Number(item.price)))}</td>
+      <td><strong>${escapeHtml(formatMoney(Number(item.cost)))}</strong></td>
+    </tr>
+  `;
+});
 
-      printWindowContent += `
-              <tr>
-                <td
-                  colspan="5"
-                  style="text-align: right; font-weight: bold; background: #f1f5f9;"
-                >
-                  Total Recipe Cost:
-                </td>
-
-                <td style="font-weight: bold; background: #f1f5f9;">
-                  ${escapeHtml(totalCost)}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            printWindowContent += `
+        <tr>
+          <td colspan="5" style="text-align: right; font-weight: bold; background: #f1f5f9;">
+            Total Recipe Cost:
+          </td>
+          <td style="font-weight: bold; background: #f1f5f9;">
+            ${escapeHtml(totalCost)}
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
           <div class="footer">
             Generated via Household Expense Tools &bull; Free browser-based utility calculators.
