@@ -336,3 +336,25 @@ a {
   word-break: break-word;
   overflow-wrap: break-word;
 }
+/* Recipe Cost Calculator — responsive ingredient rows */
+@media (min-width: 48rem) {
+  .ingredient-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.2fr 1fr 1fr 1.2fr auto;
+    gap: 0.75rem;
+    align-items: end;
+  }
+}
+
+@media (max-width: 47.9375rem) {
+  .ingredient-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+
+  .calculator-results-grid {
+    grid-template-columns: 1fr;
+  }
+}
