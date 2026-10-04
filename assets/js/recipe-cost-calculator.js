@@ -550,7 +550,7 @@ latestCalculation.breakdownItems.forEach(function (item, index) {
           <div class="footer">
             Generated via Household Expense Tools &bull; Free browser-based utility calculators.
             <br>
-            https://farmingvichar.github.io/
+            https://householdexpensetools.com/
           </div>
         </body>
         </html>
