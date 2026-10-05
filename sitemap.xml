@@ -1,49 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
   <url>
-    <loc>https://farmingvichar.github.io/household-expense-tools/</loc>
+    <loc>https://householdexpensetools.com/</loc>
   </url>
-    <url>
-    <loc>https://farmingvichar.github.io/household-expense-tools/tools/</loc>
 
+  <!-- Tools Hub -->
+  <url>
+    <loc>https://householdexpensetools.com/tools/</loc>
+  </url>
+
+  <!-- 9 Calculator Tools -->
+  <url>
+    <loc>https://householdexpensetools.com/tools/daily-expense-tracker/</loc>
   </url>
   <url>
-    <loc>https://farmingvichar.github.io/household-expense-tools/tools/daily-expense-tracker/</loc>
+    <loc>https://householdexpensetools.com/tools/grocery-budget-calculator/</loc>
   </url>
   <url>
-    <loc>https://farmingvichar.github.io/household-expense-tools/tools/grocery-budget-calculator/</loc>
+    <loc>https://householdexpensetools.com/tools/food-waste-cost-calculator/</loc>
   </url>
   <url>
-    <loc>https://farmingvichar.github.io/household-expense-tools/tools/food-waste-cost-calculator/</loc>
+    <loc>https://householdexpensetools.com/tools/grocery-price-compare-calculator/</loc>
   </url>
   <url>
-    <loc>https://farmingvichar.github.io/household-expense-tools/tools/grocery-price-compare-calculator/</loc>
+    <loc>https://householdexpensetools.com/tools/laundry-cost-calculator/</loc>
   </url>
   <url>
-    <loc>https://farmingvichar.github.io/household-expense-tools/tools/laundry-cost-calculator/</loc>
+    <loc>https://householdexpensetools.com/tools/toilet-paper-value-calculator/</loc>
   </url>
   <url>
-    <loc>https://farmingvichar.github.io/household-expense-tools/tools/toilet-paper-value-calculator/</loc>
+    <loc>https://householdexpensetools.com/tools/monthly-expense-calculator/</loc>
   </url>
   <url>
-  <loc>https://farmingvichar.github.io/household-expense-tools/tools/monthly-expense-calculator/</loc>
-</url>
-  <url>
-  <loc>https://farmingvichar.github.io/household-expense-tools/tools/electricity-cost-calculator/</loc>
-</url>
-  <url>
-    <loc>https://farmingvichar.github.io/household-expense-tools/about/</loc>
+    <loc>https://householdexpensetools.com/tools/electricity-cost-calculator/</loc>
   </url>
   <url>
-    <loc>https://farmingvichar.github.io/household-expense-tools/privacy/</loc>
+    <loc>https://householdexpensetools.com/tools/recipe-cost-calculator/</loc>
+  </url>
+
+  <!-- Supporting Static Pages -->
+  <url>
+    <loc>https://householdexpensetools.com/about/</loc>
   </url>
   <url>
-    <loc>https://farmingvichar.github.io/household-expense-tools/terms/</loc>
+    <loc>https://householdexpensetools.com/privacy/</loc>
   </url>
   <url>
-    <loc>https://farmingvichar.github.io/household-expense-tools/contact/</loc>
+    <loc>https://householdexpensetools.com/terms/</loc>
   </url>
   <url>
-    <loc>https://farmingvichar.github.io/household-expense-tools/faq/</loc>
+    <loc>https://householdexpensetools.com/contact/</loc>
+  </url>
+  <url>
+    <loc>https://householdexpensetools.com/faq/</loc>
   </url>
 </urlset>
