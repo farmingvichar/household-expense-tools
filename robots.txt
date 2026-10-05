@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://farmingvichar.github.io/household-expense-tools/sitemap.xml
+Sitemap: https://householdexpensetools.com/sitemap.xml
+
