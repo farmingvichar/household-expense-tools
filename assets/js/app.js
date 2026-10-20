@@ -218,5 +218,5 @@ document.addEventListener("DOMContentLoaded", function () {
       runToolSearch(query);
     });
   });
-
+});
 
