@@ -10,7 +10,69 @@
   <meta name="theme-color" content="#0f172a" />
     <link rel="canonical" href="https://householdexpensetools.com/tools/grocery-price-compare-calculator/" />
 
+  <!-- Structured Data: WebApplication + FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://householdexpensetools.com/tools/grocery-price-compare-calculator/#app",
+        "name": "Grocery Unit Price Calculator",
+        "url": "https://householdexpensetools.com/tools/grocery-price-compare-calculator/",
+        "applicationCategory": "ShoppingApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Compare grocery package prices by unit to find the best deal. Calculate price per ounce, pound, kilogram, liter, or item in your browser."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://householdexpensetools.com/tools/grocery-price-compare-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do you calculate unit price?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "To find the unit price, divide the total package price by the total number of units (such as ounces, pounds, liters, or items) inside the package: Unit Price = Total Price / Quantity. For example, if a pack of 8 paper towel rolls costs $18.16, divide $18.16 by 8 to find the unit price: $18.16 / 8 = $2.27 per roll."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I compare two different package sizes (like grams and kilograms)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The calculator automatically normalizes compatible metric or imperial units. For example, entering 500 grams for Item A and 1 kilogram for Item B will convert both into price per kilogram so you can see which size offers the lower unit cost."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I compare items sold by count, such as rolls, cans, or multi-packs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Select 'items' or 'packs' in the unit dropdown. As long as both items use the same unit type (items with items, or packs with packs), the calculator will compare their cost per piece."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does buying the larger bulk package always mean a lower unit price?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not always. While bulk packs are often cheaper per unit, manufacturers occasionally run promotional discounts on standard sizes that make smaller packs less expensive per ounce or pound. Always check the normalized unit price before buying."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+
   <link rel="manifest" href="../../manifest.json" />
 
   <link rel="stylesheet" href="../../assets/css/reset.css" />
