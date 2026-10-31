@@ -10,7 +10,70 @@
   <meta name="theme-color" content="#0f172a" />
     <link rel="canonical" href="https://householdexpensetools.com/tools/laundry-cost-calculator/" />
 
+  <!-- Structured Data: WebApplication + FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://householdexpensetools.com/tools/laundry-cost-calculator/#app",
+        "name": "Laundry Cost Calculator",
+        "url": "https://householdexpensetools.com/tools/laundry-cost-calculator/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Estimate laundry cost per load, weekly, monthly, and yearly totals from washer, dryer, detergent, and water costs."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://householdexpensetools.com/tools/laundry-cost-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I calculate my detergent cost per load?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Divide the package price by the total number of loads listed on the container. For example, a detergent bottle priced at $15.00 that yields 60 loads costs $0.25 per load ($15.00 / 60)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I enter for washer and dryer costs if I wash at home?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For home machines, washer and dryer costs represent the electricity, gas, or water consumed per cycle. You can estimate machine electricity using our Electricity Cost Calculator. If you use a laundromat or shared building laundry room, enter the exact coin or card vend price per cycle."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if I air-dry my laundry and do not use a machine dryer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Leave the Dryer cost per load field set to 0. The calculator will accurately compute your total based only on washing machine use, detergent, and water costs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the currency selector convert between currencies?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The currency selector only updates the display symbol (such as $, £, or €). Calculations are purely numerical based on the exact amounts you type in."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+
+
   <link rel="manifest" href="../../manifest.json" />
 
   <link rel="stylesheet" href="../../assets/css/reset.css" />
