@@ -8,8 +8,70 @@
     <meta name="description" content="Estimate daily, monthly, and yearly appliance electricity costs from watts, hours used, and kWh rate. Free, browser-based, and no login required.">
   <link rel="canonical" href="https://householdexpensetools.com/tools/electricity-cost-calculator/">
 
+  <!-- Structured Data: WebApplication + FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://householdexpensetools.com/tools/electricity-cost-calculator/#app",
+        "name": "Electricity Cost Calculator",
+        "url": "https://householdexpensetools.com/tools/electricity-cost-calculator/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Estimate daily, monthly, and yearly appliance electricity costs from rated wattage, daily hours, utility rate, and days per month."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://householdexpensetools.com/tools/electricity-cost-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I find my electricity rate per kWh?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Look at your latest electric utility bill under supply and delivery charges to find the rate per kilowatt-hour (kWh), or divide your total monthly electricity charge by the total kWh consumed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if my appliance only lists volts and amps?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Multiply volts by amps to calculate watts (Watts = Volts * Amps). For example, a 120V device drawing 2A consumes 240 watts."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is kWh?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "kWh means kilowatt-hour. It is a standard billing unit equal to using 1,000 watts of electrical power continuously for one hour."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this calculator show my exact electricity bill?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. It calculates appliance energy consumption cost only. Total utility bills may include fixed base charges, municipal taxes, tiered slab rates, and transmission fees."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+
+
   <link rel="manifest" href="../../manifest.json">
 
   <link rel="stylesheet" href="../../assets/css/reset.css">
