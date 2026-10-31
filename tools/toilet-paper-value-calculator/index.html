@@ -75,11 +75,10 @@
 
           <form class="tool-form" id="toiletPaperValueForm" novalidate>
             <div class="form-grid">
-              <div class="form-field">
+                            <div class="form-field">
                 <label for="currencySymbol">Currency symbol</label>
                 <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
-                  <option value="">Select currency</option>
-                  <option value="$">$ USD</option>
+                  <option value="$" selected>$ USD</option>
                   <option value="₹">₹ INR</option>
                   <option value="€">€ EUR</option>
                   <option value="£">£ GBP</option>
@@ -398,12 +397,18 @@
           Cost per 100 sheets treats every sheet equally regardless of thickness. Ply-adjusted cost multiplies total sheets by the number of plies (layers) before calculating the cost, helping compare single-ply against 2-ply or 3-ply options.
         </p>
 
-        <h3>Should I enter total square footage if it is available?</h3>
+              <h3>Should I enter total square footage if it is available?</h3>
         <p>
           Yes. If both packages list total square feet on the label, entering it allows the calculator to compare cost per square foot, which accounts for differences in sheet length and width.
         </p>
+
+        <h3>Can I use this calculator to compare paper towel packs?</h3>
+        <p>
+          Yes. Paper towel rolls follow the same roll count and sheet specifications. Enter the pack price, roll count, and sheets per roll to compare. If sheet dimensions differ between brands (such as select-a-size vs full sheets), entering total square feet provides the most accurate comparison.
+        </p>
       </div>
     </section>
+
     <!-- SEO-CONTENT-END -->
 
   </main>
