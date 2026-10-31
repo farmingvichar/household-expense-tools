@@ -74,16 +74,15 @@
 
           <form class="tool-form" id="groceryBudgetForm" novalidate>
             <div class="form-grid">
-              <div class="form-field">
+             <div class="form-field">
                 <label for="currencySymbol">Currency symbol</label>
                 <select
                   id="currencySymbol"
                   name="currencySymbol"
                   required
                   aria-describedby="currencySymbolHelp"
-                >
-                  <option value="">Select currency</option>
-                  <option value="$">$ USD</option>
+                  >
+                  <option value="$" selected>$ USD</option>
                   <option value="₹">₹ INR</option>
                   <option value="€">€ EUR</option>
                   <option value="£">£ GBP</option>
@@ -255,11 +254,21 @@
       remaining budget stays accurate.
     </p>
 
-    <h3>Does it adjust for household size?</h3>
+        <h3>Does it adjust for household size?</h3>
     <p>
       Not automatically. Enter your own total household budget as the monthly figure. A useful
       check: divide your monthly budget by the number of people in your household to see your
       per-person spending, then compare that against your own past months.
+    </p>
+
+    <h3>How do I calculate remaining grocery money if I already spent part of my budget?</h3>
+    <p>
+      Subtract your spent amount from your total grocery money (Remaining = Total Budget &minus; Amount Spent). For example, if you have $100 to spend on groceries and spend $63.50 on fruits and vegetables, you have $36.50 remaining ($100.00 &minus; $63.50 = $36.50).
+    </p>
+
+    <h3>What percentage of a monthly budget should go toward groceries?</h3>
+    <p>
+      Most financial guidelines suggest spending 10% to 15% of your household take-home income on groceries. For example, if a family spends $600 per month on groceries and that represents 15% of their total monthly budget, their overall monthly budget is $4,000 ($600 &divide; 0.15 = $4,000).
     </p>
 
     <h3>Are the results exact?</h3>
