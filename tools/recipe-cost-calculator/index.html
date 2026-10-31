@@ -9,7 +9,78 @@
   <meta name="description" content="Calculate total recipe cost and cost per serving from package prices and ingredient amounts. Free browser-based USD tool with unit conversions. No login." />
   <meta name="theme-color" content="#0f172a" />
   <link rel="canonical" href="https://householdexpensetools.com/tools/recipe-cost-calculator/" />
+
+  <!-- Structured Data: WebApplication + FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://householdexpensetools.com/tools/recipe-cost-calculator/#app",
+        "name": "Recipe Cost Calculator",
+        "url": "https://householdexpensetools.com/tools/recipe-cost-calculator/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Calculate total recipe cost and cost per serving from grocery package prices and recipe ingredient quantities with compatible unit conversions in your browser."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://householdexpensetools.com/tools/recipe-cost-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does this calculator determine recipe cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The calculator divides your purchased package price by the total package size to find the unit cost, then multiplies that rate by the exact amount used in your recipe. It adds all ingredient costs together to give you the total batch cost."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I find the cost per serving?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Enter the number of portions or servings your recipe yields in the Servings field. The tool divides the total recipe cost by that number to display your precise cost per serving."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the calculation include electricity, labor, or packaging?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. This tool calculates direct raw ingredient costs only. It does not account for kitchen utility costs, labor time, take-out containers, or sales tax."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I convert between mass and volume units?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Units only convert within the same measurement category (ounces to pounds, grams to kilograms, or milliliters to liters). It does not convert mass to volume (such as grams to cups) because ingredient densities differ significantly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use this recipe cost estimator for weekly meal prep or baking?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. This recipe cost estimator is designed for meal preppers, home bakers, and family cooks to calculate the exact ingredient expense of batch meals and find the true cost per portion before cooking."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+
   <link rel="manifest" href="../../manifest.json" />
 
   <link rel="stylesheet" href="../../assets/css/reset.css" />
