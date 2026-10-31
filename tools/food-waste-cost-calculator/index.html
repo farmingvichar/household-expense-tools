@@ -9,8 +9,69 @@
 
   <meta name="theme-color" content="#0f172a" />
     <link rel="canonical" href="https://householdexpensetools.com/tools/food-waste-cost-calculator/" />
+  <!-- Structured Data: WebApplication + FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://householdexpensetools.com/tools/food-waste-cost-calculator/#app",
+        "name": "Food Waste Cost Calculator",
+        "url": "https://householdexpensetools.com/tools/food-waste-cost-calculator/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Estimate the financial cost of wasted food at home from item purchase price, total quantity bought, and wasted portion directly in your browser."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://householdexpensetools.com/tools/food-waste-cost-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I calculate the cost of wasted food?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Divide the amount of food thrown away by the total amount purchased, then multiply that fraction by the original price paid. For example, if half of an $8.00 salad mix goes bad, your wasted food cost is $4.00 ($8.00 * 0.50)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I enter if an entire unopened item or package spoils?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Enter 1 for total quantity bought, 1 for wasted quantity, and choose 'items' or 'packs' as the unit. The wasted value will equal the full purchase price (100% waste)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I calculate wasted food cost for restaurant takeout or meal leftovers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Enter the total meal price and use 'items' or 'packs' with an estimated fraction (for example, enter 1 for total quantity and 0.25 if approximately one-fourth of the dish was discarded)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this calculator convert units automatically?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. You must enter both total quantity and wasted quantity in the same measurement unit (such as ounces with ounces, or pounds with pounds)."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+
   <link rel="manifest" href="../../manifest.json" />
 
   <link rel="stylesheet" href="../../assets/css/reset.css" />
