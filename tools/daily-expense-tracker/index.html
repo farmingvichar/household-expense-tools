@@ -23,63 +23,79 @@
 
 <script src="../../assets/js/daily-expense-tracker.js?v=7" defer></script>
 
+    <!-- Structured Data: WebApplication + FAQPage Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Daily Expense Tracker",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Any",
-    "description": "A free browser-based household expense tracker for adding expenses, viewing daily and monthly totals, and saving entries locally on the user's device.",
-    "isAccessibleForFree": true,
-    "featureList": [
-      "Add household expenses",
-      "Track today total",
-      "Track this month total",
-      "View total entries",
-      "Delete individual expenses",
-      "Clear all saved expenses",
-      "Save entries locally in the browser"
-    ]
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    "@graph": [
       {
-        "@type": "Question",
-        "name": "Is this daily expense tracker free to use?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. The Daily Expense Tracker is free to use in your browser and does not require login or account registration."
-        }
+        "@type": "WebApplication",
+        "@id": "https://householdexpensetools.com/tools/daily-expense-tracker/#app",
+        "name": "Daily Expense Tracker",
+        "url": "https://householdexpensetools.com/tools/daily-expense-tracker/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "A free browser-based household expense tracker for logging daily purchases, viewing monthly totals, and storing data privately in local storage without an account.",
+        "featureList": [
+          "Add household expenses",
+          "Track today total",
+          "Track this month total",
+          "View total entries",
+          "Delete individual expenses",
+          "Clear all saved expenses",
+          "Save entries locally in the browser"
+        ]
       },
       {
-        "@type": "Question",
-        "name": "Where are my expense entries saved?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Your entries are saved only in localStorage in the browser on your current device. They are not sent to a server."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I delete saved expenses?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. You can delete a single expense from the list or clear all saved expenses after confirmation."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does this tool give financial advice?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. This tool is only a simple household expense tracking utility and should not be treated as financial, tax, or legal advice."
-        }
+        "@type": "FAQPage",
+        "@id": "https://householdexpensetools.com/tools/daily-expense-tracker/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this daily expense tracker free to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The Daily Expense Tracker is free to use in your browser and does not require login or account registration."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where are my expense entries saved?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Your entries are saved only in localStorage in the browser on your current device. They are not sent to a server."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I delete saved expenses?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can delete a single expense from the list or clear all saved expenses after confirmation."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this tool give financial advice?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. This tool is only a simple household expense tracking utility and should not be treated as financial, tax, or legal advice."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens to my entries if I clear browser cache or history?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Because entries are saved in your browser's localStorage, clearing your browser cache, cookies, or website storage will delete your saved expenses. If you regularly clear browsing data, keep a separate record of important totals."
+            }
+          }
+        ]
       }
     ]
   }
