@@ -84,31 +84,33 @@ body {
 }
 
 .section {
-  padding-block: var(--section-padding);
+  padding-block: clamp(2rem, 5vw, var(--section-padding));
 }
 
 .section-soft {
-  padding-block: var(--section-padding);
+  padding-block: clamp(2rem, 5vw, var(--section-padding));
 }
 
 .section-header {
   max-inline-size: 44rem;
-  margin-block-end: var(--space-8);
+  margin-block-end: var(--space-5);
 }
+
 
 .section-header > * + * {
   margin-block-start: var(--space-3);
 }
 
 .hero {
-  padding-block: clamp(var(--space-12), 10vw, var(--space-20));
+  padding-block: clamp(var(--space-6), 6vw, var(--space-12));
 }
 
 .hero-grid {
   display: grid;
-  gap: var(--space-8);
+  gap: var(--space-5);
   align-items: center;
 }
+
 
 .hero-content {
   max-inline-size: 46rem;
