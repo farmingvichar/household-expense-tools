@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
         firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
       }, 50);
 
-      showNotice(matchCount + " matching planned tool found.");
+      showNotice(matchCount + (matchCount === 1 ? " matching tool found." : " matching tools found."));
       return;
     }
 
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }, 50);
 
-    showNotice("No exact match found. Showing all planned tools.");
+    showNotice("No matching tool found. Showing all available tools.");
   }
 
   if (currentYear) {
