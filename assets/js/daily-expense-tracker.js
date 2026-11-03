@@ -72,7 +72,7 @@
     return number.toFixed(2);
   }
 
-  function formatDateLabel(dateString) {
+    function formatDateLabel(dateString) {
     var parts = String(dateString).split("-");
 
     if (parts.length !== 3) {
@@ -92,8 +92,9 @@
       return dateString;
     }
 
-    return day + " " + monthNames[month] + " " + year;
+    return monthNames[month] + " " + day + ", " + year;
   }
+
 
   function setStatus(message) {
     statusArea.textContent = message;
@@ -176,8 +177,8 @@
     var title = document.createElement("strong");
     title.textContent = expense.name;
 
-    var meta = document.createElement("p");
-    meta.textContent = expense.category + " | " + expense.date;
+        var meta = document.createElement("p");
+    meta.textContent = expense.category + " | " + formatDateLabel(expense.date);
 
     var amount = document.createElement("p");
     amount.className = "expense-item-amount";
