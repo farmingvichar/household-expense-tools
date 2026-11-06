@@ -1,1 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Paper Towel Value Calculator | Cost Per Roll &amp; Sheet</title>
+  <meta name="description" content="Calculate paper towel cost per roll, cost per 100 sheets, and price per square foot. Free browser-based calculator to find the real best supermarket deal." />
+  <meta name="theme-color" content="#0f766e" />
+  <link rel="canonical" href="https://householdexpensetools.com/tools/paper-towel-value-calculator/" />
+
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="../../manifest.json" />
+
+  <link rel="stylesheet" href="../../assets/css/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/variables.css" />
+  <link rel="stylesheet" href="../../assets/css/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/layout.css" />
+  <link rel="stylesheet" href="../../assets/css/components.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
+
+  <!-- Structured Data: WebApplication + FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://householdexpensetools.com/tools/paper-towel-value-calculator/#app",
+        "name": "Paper Towel Value Calculator",
+        "url": "https://householdexpensetools.com/tools/paper-towel-value-calculator/",
+        "applicationCategory": "ShoppingApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Calculate paper towel unit prices including cost per roll, cost per 100 sheets, and price per square foot directly in your browser."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://householdexpensetools.com/tools/paper-towel-value-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "A pack of 8 paper towel rolls costs $18.16. What is the unit price?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Divide the package price ($18.16) by the number of rolls (8). The unit price is exactly $2.27 per roll ($18.16 / 8 = $2.27)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you calculate cost per 100 paper towel sheets?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Multiply rolls by sheets per roll to find total sheets, divide total price by total sheets, then multiply by 100: Cost per 100 sheets = (Total Price / Total Sheets) * 100."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is cost per square foot more accurate for paper towels?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Brands frequently change sheet dimensions between standard sheets and select-a-size half sheets. Comparing price per total square foot normalizes these dimensional differences."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this tool save or upload my shopping data?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. All calculations run strictly in your local browser session. No input data is stored in cookies, local storage, or sent to external servers."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="../../" aria-label="Household Expense Tools home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
+            <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span class="brand-text">Household Expense Tools</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="../../">Home</a></li>
+          <li><a href="../">Tools</a></li>
+          <li><a href="../../#why-use">Why Use Us</a></li>
+          <li><a href="../../faq/">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero-section">
+      <div class="container">
+        <p class="eyebrow">Grocery &amp; household supply value</p>
+        <div class="hero-text">
+          <h1>Paper Towel Value Calculator</h1>
+          <p>
+            Compare paper towel multipacks by unit price per roll, cost per 100 sheets, and price per square foot to see past brand marketing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-section" aria-labelledby="calculator-heading">
+      <div class="container">
+        <article class="tool-card">
+          <div class="section-heading">
+            <h2 id="calculator-heading">Calculate paper towel unit costs</h2>
+            <p>
+              Enter the package retail price and roll specifications from the packaging. Total square feet is optional but recommended when comparing pick-a-size against full-sheet packs.
+            </p>
+          </div>
+
+          <form class="tool-form" id="paperTowelForm" novalidate>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="currencySymbol">Currency symbol</label>
+                <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
+                  <option value="$" selected>$ USD</option>
+                  <option value="₹">₹ INR</option>
+                  <option value="€">€ EUR</option>
+                  <option value="£">£ GBP</option>
+                  <option value="C$">C$ CAD</option>
+                  <option value="A$">A$ AUD</option>
+                  <option value="¥">¥ JPY</option>
+                </select>
+                <small id="currencySymbolHelp">Changes display symbol only. Does not convert currencies.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="packagePrice">Total package price</label>
+                <input
+                  type="number"
+                  id="packagePrice"
+                  name="packagePrice"
+                  inputmode="decimal"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="Example: 18.16"
+                  required
+                  aria-describedby="packagePriceHelp"
+                />
+                <small id="packagePriceHelp">Total checkout or shelf price for the multipack.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="totalRolls">Rolls in package</label>
+                <input
+                  type="number"
+                  id="totalRolls"
+                  name="totalRolls"
+                  inputmode="numeric"
+                  min="1"
+                  step="1"
+                  placeholder="Example: 8"
+                  required
+                  aria-describedby="totalRollsHelp"
+                />
+                <small id="totalRollsHelp">Actual physical roll count inside the package.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="sheetsPerRoll">Sheets per roll</label>
+                <input
+                  type="number"
+                  id="sheetsPerRoll"
+                  name="sheetsPerRoll"
+                  inputmode="numeric"
+                  min="1"
+                  step="1"
+                  placeholder="Example: 110"
+                  required
+                  aria-describedby="sheetsPerRollHelp"
+                />
+                <small id="sheetsPerRollHelp">Printed sheet count per single roll.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="totalSqFt">Total square feet <span aria-hidden="true">(optional)</span></label>
+                <input
+                  type="number"
+                  id="totalSqFt"
+                  name="totalSqFt"
+                  inputmode="decimal"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="Example: 450.5"
+                  aria-describedby="totalSqFtHelp"
+                />
+                <small id="totalSqFtHelp">Found on the bottom corner of the pack. Leave blank to skip.</small>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="button-primary" type="submit">Calculate paper towel value</button>
+              <button class="button-secondary" type="reset">Reset</button>
+            </div>
+
+            <p class="privacy-note">
+              Your values are used only in your browser for this calculation. They are not saved, not sent to a server, and no login is required.
+            </p>
+
+            <div class="status-message" id="paperTowelStatus" role="status" aria-live="polite">
+              Enter package price and roll counts to view unit costs.
+            </div>
+          </form>
+
+          <section class="summary-grid calculator-results-grid" aria-label="Paper towel calculation results">
+            <div class="summary-card">
+              <p class="summary-label">Cost per roll</p>
+              <p id="costPerRoll">$0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Cost per 100 sheets</p>
+              <p id="costPer100Sheets">$0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Cost per square foot</p>
+              <p id="costPerSqFt">—</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Total sheets in pack</p>
+              <p id="totalSheetsCount">0</p>
+            </div>
+          </section>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="narrow-container">
+        <h2>How it works</h2>
+        <p>
+          Paper towel packaging terms like "Double Plus Roll" or "Mega Roll" are non-standardized brand marketing labels. This calculator normalizes any package into clear, comparable metrics:
+        </p>
+        <p>
+          <strong>Cost Per Roll = Package Price &divide; Rolls in Package</strong><br />
+          <strong>Total Sheets = Rolls in Package &times; Sheets Per Roll</strong><br />
+          <strong>Cost Per 100 Sheets = (Package Price &divide; Total Sheets) &times; 100</strong><br />
+          <strong>Cost Per Square Foot = Package Price &divide; Total Square Feet</strong>
+        </p>
+
+        <h2>Calculation example</h2>
+        <p>
+          Suppose a pack of 8 paper towel rolls costs $18.16, with 110 sheets per roll and 450.5 total square feet:
+        </p>
+        <ul>
+          <li><strong>Unit Price Per Roll:</strong> $18.16 &divide; 8 = $2.27 per roll.</li>
+          <li><strong>Total Sheets:</strong> 8 &times; 110 = 880 total sheets.</li>
+          <li><strong>Cost Per 100 Sheets:</strong> ($18.16 &divide; 880) &times; 100 = $2.06 per 100 sheets.</li>
+          <li><strong>Cost Per Square Foot:</strong> $18.16 &divide; 450.5 = $0.040 per square foot.</li>
+        </ul>
+
+        <h2>What the result means</h2>
+        <p>
+          Cost per roll gives you a general benchmark, but cost per 100 sheets and cost per square foot reveal the true value when comparing brands that cut roll thickness or sheet dimensions to simulate value.
+        </p>
+
+        <h2>Limitations</h2>
+        <p>
+          This calculator measures financial unit cost only. It does not measure sheet absorbency, ply thickness (1-ply vs 2-ply), paper tensile strength, or brand durability.
+        </p>
+        <p>
+          This tool is for personal shopping estimation only and does not provide financial, tax, or legal advice.
+        </p>
+
+        <h2>Related tools</h2>
+        <p>
+          Compare bathroom tissue packs with the <a href="../toilet-paper-value-calculator/">Toilet Paper Value Calculator</a>, evaluate bulk grocery items using the <a href="../grocery-price-compare-calculator/">Grocery Unit Price Calculator</a>, or plan your grocery spending with the <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a>.
+        </p>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>A pack of 8 paper towel rolls costs $18.16. What is the unit price?</h3>
+        <p>
+          Divide the total pack price ($18.16) by the number of rolls (8). The unit price is $2.27 per roll ($18.16 &divide; 8 = $2.27).
+        </p>
+
+        <h3>How do you calculate cost per 100 paper towel sheets?</h3>
+        <p>
+          Multiply the number of rolls by the sheets per roll to find total sheets in the pack. Then divide the total package price by total sheets and multiply by 100: Cost per 100 sheets = (Total Price &divide; Total Sheets) &times; 100.
+        </p>
+
+        <h3>Why is cost per square foot more accurate for paper towels?</h3>
+        <p>
+          Brands frequently adjust sheet cut sizes between full-sheet cuts and "select-a-size" perforated cuts. Comparing price per total square foot normalizes these dimensions, ensuring an apples-to-apples comparison.
+        </p>
+
+        <h3>Does this tool save or upload my shopping data?</h3>
+        <p>
+          No. All calculations run strictly in your local browser session. No input data is stored in cookies, local storage, or sent to external servers.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Household Expense Tools. All rights reserved.</p>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../../about/">About</a>
+        <a href="../">Tools</a>
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../terms/">Terms</a>
+        <a href="../../contact/">Contact</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/app.js" defer></script>
+  <script src="../../assets/js/paper-towel-value-calculator.js" defer></script>
+</body>
+</html>
 
