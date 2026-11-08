@@ -593,6 +593,13 @@ a {
     border-radius: 10px !important;
     background: #ffffff !important;
     border: 1px solid var(--color-border, #dbe4e2) !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: background-color 0.12s ease, border-color 0.12s ease !important;
+  }
+
+  section[aria-labelledby="related-tools-heading"] .tool-grid .tool-card:active {
+    background: #f0fdfa !important;
+    border-color: var(--color-primary, #0f766e) !important;
   }
 
   section[aria-labelledby="related-tools-heading"] .tool-grid .tool-card h3 {
@@ -606,14 +613,13 @@ a {
     display: none !important;
   }
 
-    section[aria-labelledby="related-tools-heading"] p a,
+  section[aria-labelledby="related-tools-heading"] p a,
   .content-section a[href*="/tools/"],
   .content-section a[href^="../"] {
-
     display: inline-flex !important;
     align-items: center !important;
-    padding: 0.25rem 0.65rem !important;
-    margin: 0.15rem 0.2rem !important;
+    padding: 0.28rem 0.7rem !important;
+    margin: 0.2rem 0.15rem !important;
     border: 1px solid #ccfbf1 !important;
     border-radius: 999px !important;
     background: #f0fdfa !important;
@@ -628,10 +634,30 @@ a {
   }
 
   section[aria-labelledby="related-tools-heading"] p a:active,
-  .content-section a[href*="/tools/"]:active {
+  .content-section a[href*="/tools/"]:active,
+  .content-section a[href^="../"]:active {
     background: #ccfbf1 !important;
     border-color: var(--color-primary, #0f766e) !important;
   }
+
+  /* Scoped Math Formula Callout Box (Zero edge risk, locked strictly to includes section) */
+  section[aria-labelledby="includes-heading"] p:has(> strong:first-child) {
+    padding: 0.85rem 1rem !important;
+    margin-block: 0.75rem !important;
+    border-radius: 10px !important;
+    background: #ffffff !important;
+    border: 1px solid var(--color-border, #dbe4e2) !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+    font-size: 0.85rem !important;
+    line-height: 1.55 !important;
+  }
+
+  section[aria-labelledby="includes-heading"] p:has(> strong:first-child) strong {
+    color: var(--color-primary, #0f766e) !important;
+    display: inline-block !important;
+    margin-block-end: 0.25rem !important;
+  }
+
 
   /* 8. Editorial Content Polish */
   .content-section {
