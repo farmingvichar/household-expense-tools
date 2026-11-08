@@ -184,16 +184,19 @@
   border-radius: var(--radius-xl);
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
+  -webkit-tap-highlight-color: transparent;
   transition:
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    transform var(--transition-fast);
+    background-color 0.12s ease,
+    border-color 0.12s ease,
+    box-shadow 0.12s ease;
 }
 
 .tool-card:active {
-  transform: scale(0.985);
-  background: var(--color-bg-soft);
+  background-color: #f1f5f9;
+  border-color: var(--color-primary);
+  box-shadow: none;
 }
+
 
 .tool-icon {
   grid-column: 1;
