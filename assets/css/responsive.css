@@ -331,7 +331,7 @@ a {
 }
 
 /* ==========================================================================
-   Mobile Optimization Engine (@media max-width: 47.9375rem)
+   Universal Mobile Optimization Engine (@media max-width: 47.9375rem)
    ========================================================================== */
 
 @media (max-width: 47.9375rem) {
@@ -343,13 +343,13 @@ a {
     align-items: stretch;
   }
 
-  /* 1. Mobile Input Anti-Zoom (Locks 16px to prevent accidental screen zooming) */
+  /* 1. Universal Input Anti-Zoom */
   .form-field input,
   .form-field select {
     font-size: 1rem !important;
   }
 
-    /* 2. Compact 2x2 Results Dashboard & Daily Expense Tracker Fix */
+  /* 2. Universal 2x2 Results Dashboard (Covers all 10 tools & Daily Expense Tracker) */
   .calculator-results-grid,
   section[aria-labelledby="summary-heading"] .feature-grid {
     display: grid !important;
@@ -367,17 +367,19 @@ a {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
   }
 
-  /* Sleek Horizontal Banner for 11th odd card (Cost per square foot / Highlight) */
+    /* Sleek Horizontal Banner for odd 5th/11th card (Toilet Paper, Laundry, etc.) */
   .calculator-results-grid .summary-card:last-child:nth-child(odd) {
     grid-column: 1 / -1 !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
+    gap: 0.75rem !important; /* Extremely small screens safe spacing */
     padding: 0.75rem 1rem !important;
     background: #f0fdfa !important;
     border-color: #ccfbf1 !important;
   }
+
 
   .calculator-results-grid .summary-card:last-child:nth-child(odd) h3,
   .calculator-results-grid .summary-card:last-child:nth-child(odd) .summary-label {
@@ -417,8 +419,7 @@ a {
     line-height: 1.2 !important;
   }
 
-
-  /* 3. Form Action Buttons Mobile Sizing */
+  /* 3. Universal Form Actions */
   .form-actions {
     gap: 0.625rem !important;
   }
@@ -430,57 +431,57 @@ a {
     font-size: 0.95rem !important;
   }
 
-  /* 4. Compact Mobile App-Tile Layout for Directory (.tool-grid) */
-  .tool-grid {
+  /* 4. Tools Directory Hub Cards (.tool-grid on /tools/) */
+  main > .section .tool-grid {
     gap: 0.75rem !important;
     margin-block-start: var(--space-3) !important;
   }
 
-  .tool-grid .tool-card {
+  main > .section .tool-grid .tool-card {
     padding: 1rem 1.125rem !important;
     border-radius: 12px !important;
     -webkit-tap-highlight-color: transparent !important;
     transition: background-color 0.12s ease, border-color 0.12s ease !important;
   }
 
-  .tool-grid .tool-card:active {
+  main > .section .tool-grid .tool-card:active {
     transform: none !important;
     background-color: #f1f5f9 !important;
     border-color: var(--color-primary, #0f766e) !important;
   }
 
-  .tool-grid .tool-card .tool-icon {
+  main > .section .tool-grid .tool-card .tool-icon {
     inline-size: 2.25rem !important;
     block-size: 2.25rem !important;
     margin-block-end: 0.5rem !important;
     border-radius: 8px !important;
   }
 
-  .tool-grid .tool-card .tool-icon svg {
+  main > .section .tool-grid .tool-card .tool-icon svg {
     inline-size: 1.25rem !important;
     block-size: 1.25rem !important;
   }
 
-  .tool-grid .tool-card h3 {
+  main > .section .tool-grid .tool-card h3 {
     margin-block-end: 0.25rem !important;
     font-size: 1rem !important;
     font-weight: 700 !important;
     line-height: 1.25 !important;
   }
 
-  .tool-grid .tool-card p {
+  main > .section .tool-grid .tool-card p {
     margin-block-end: 0.65rem !important;
     font-size: 0.85rem !important;
     line-height: 1.4 !important;
     color: var(--color-text-muted) !important;
   }
 
-  .tool-grid .tool-card a {
+  main > .section .tool-grid .tool-card a {
     font-size: 0.85rem !important;
     color: var(--color-primary) !important;
   }
 
-  /* 5. Tools Hub Above-Fold Tight Spacing */
+  /* 5. Tools Hub Above-Fold Spacing & Jump Chips */
   .hero-section {
     padding-block: var(--space-4) var(--space-4) !important;
   }
@@ -504,7 +505,6 @@ a {
     margin-block-end: 0.75rem !important;
   }
 
-  /* 6. Tools Hub Quick-Jump Navigation Chips */
   .category-jump-nav {
     display: flex !important;
     gap: 0.5rem !important;
@@ -540,7 +540,7 @@ a {
     border-color: var(--color-primary, #0f766e) !important;
   }
 
-  /* 7. Section Headers & Category Indicator Pill Badges */
+  /* 6. Section Headers & Category Indicator Pill Badges */
   .section {
     padding-block: var(--space-4) !important;
   }
@@ -580,7 +580,7 @@ a {
     margin-top: 1.75rem !important;
   }
 
-    /* 8. Related Tools: 2x2 Mini-Grid for Card Tools + Pill Chips for Paragraphs */
+  /* 7. Universal Related Tools: 2x2 Mini-Grid for Card Tools + Pill Chips for Paragraphs */
   section[aria-labelledby="related-tools-heading"] .tool-grid {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -603,10 +603,9 @@ a {
   }
 
   section[aria-labelledby="related-tools-heading"] .tool-grid .tool-card p {
-    display: none !important; /* Hides verbose text on mobile for instant tap launcher */
+    display: none !important;
   }
 
-  /* Paragraph-style Related Tools into clickable chips */
   section[aria-labelledby="related-tools-heading"] p a,
   .content-section a[href*="/tools/"] {
     display: inline-flex !important;
@@ -632,8 +631,7 @@ a {
     border-color: var(--color-primary, #0f766e) !important;
   }
 
-
-  /* 9. Editorial Content Section Mobile Polish */
+  /* 8. Editorial Content Polish */
   .content-section {
     padding-block: 2rem !important;
   }
@@ -649,7 +647,7 @@ a {
     margin-block-end: 0.75rem !important;
   }
 
-  /* 10. Compact 2-Column Mobile Footer Navigation */
+  /* 9. Universal 2-Column Mobile Footer */
   .footer-nav {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
