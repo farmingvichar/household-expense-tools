@@ -88,6 +88,7 @@ a {
     gap: var(--space-16);
   }
 }
+
 @media (min-width: 48rem) {
   .ingredient-row {
     display: grid;
@@ -96,6 +97,7 @@ a {
     align-items: end;
   }
 }
+
 @media print {
   .site-header,
   .nav-toggle,
@@ -114,15 +116,8 @@ a {
     padding-block: var(--space-6);
   }
 }
-/* Recipe Cost Calculator — ingredient grid */
-@media (min-width: 48rem) {
-  .ingredient-row {
-    grid-template-columns: 2fr 1fr 1.2fr 1fr 1fr 1.2fr auto;
-    gap: 0.75rem;
-    align-items: end;
-  }
-}
-/* Mobile header and tool page navigation fix */
+
+/* Mobile header and tool page navigation */
 .site-logo {
   display: inline-flex;
   align-items: center;
@@ -304,7 +299,6 @@ a {
 }
 
 @media print {
-  /* Step 1: Print ke waqt header, footer aur baaki sabhi sections ko gayab kar do */
   .site-header,
   .site-footer,
   .content-section > *:not(#recipeCostCalculatorContainer),
@@ -314,7 +308,6 @@ a {
     display: none !important;
   }
 
-  /* Step 2: Sirf Recipe Cost Calculator container ko dikhao */
   #recipeCostCalculatorContainer {
     display: block !important;
     width: 100% !important;
@@ -323,7 +316,6 @@ a {
     background: #ffffff !important;
   }
 
-  /* Step 3: Print ke waqt buttons ko chhupa do taaki PDF mein print button na aaye */
   #printRecipeBtn, 
   #downloadTxtBtn, 
   .form-actions,
@@ -331,22 +323,19 @@ a {
     display: none !important;
   }
 }
+
 /* Recipe Cost Calculator — breakdown table wrapping */
 #breakdownContainer table {
   word-break: break-word;
   overflow-wrap: break-word;
 }
-/* Recipe Cost Calculator — responsive ingredient rows */
-@media (min-width: 48rem) {
-  .ingredient-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1.2fr 1fr 1fr 1.2fr auto;
-    gap: 0.75rem;
-    align-items: end;
-  }
-}
+
+/* ==========================================================================
+   Mobile Optimization Engine (@media max-width: 47.9375rem)
+   ========================================================================== */
 
 @media (max-width: 47.9375rem) {
+  /* Ingredient rows mobile stacking */
   .ingredient-row {
     display: grid;
     grid-template-columns: 1fr;
@@ -354,11 +343,64 @@ a {
     align-items: stretch;
   }
 
-  .calculator-results-grid {
-    grid-template-columns: 1fr;
+  /* 1. Mobile Input Anti-Zoom (Locks 16px to prevent accidental screen zooming) */
+  .form-field input,
+  .form-field select {
+    font-size: 1rem !important;
   }
 
-  /* Compact mobile app-tile layout (Scoped strictly to .tool-grid, never touches tool pages) */
+  /* 2. Compact 2x2 Results Dashboard (Eliminates excessive vertical scrolling) */
+  .calculator-results-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+    margin-block: 1.125rem !important;
+  }
+
+  .calculator-results-grid .summary-card {
+    padding: 0.85rem 0.75rem !important;
+    border-radius: 12px !important;
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+  }
+
+  /* Highlight full-width for odd 5th result item (e.g., Largest cost part / Better value) */
+  .calculator-results-grid .summary-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1 !important;
+    background: #f0fdfa !important;
+    border-color: #ccfbf1 !important;
+  }
+
+  .calculator-results-grid .summary-label,
+  .calculator-results-grid .summary-card h3 {
+    font-size: 0.785rem !important;
+    color: #64748b !important;
+    margin-block-end: 0.25rem !important;
+    font-weight: 600 !important;
+    line-height: 1.3 !important;
+  }
+
+  .calculator-results-grid .summary-card p {
+    font-size: 1.2rem !important;
+    font-weight: 800 !important;
+    color: var(--color-primary, #0f766e) !important;
+    line-height: 1.2 !important;
+  }
+
+  /* 3. Form Action Buttons Mobile Sizing */
+  .form-actions {
+    gap: 0.625rem !important;
+  }
+
+  .form-actions button,
+  .form-actions .button {
+    min-block-size: 3rem !important;
+    padding-inline: 1.35rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* 4. Compact Mobile App-Tile Layout for Directory (.tool-grid) */
   .tool-grid {
     gap: 0.75rem !important;
     margin-block-start: var(--space-3) !important;
@@ -403,29 +445,12 @@ a {
     color: var(--color-text-muted) !important;
   }
 
-    .tool-grid .tool-card a {
+  .tool-grid .tool-card a {
     font-size: 0.85rem !important;
     color: var(--color-primary) !important;
   }
 
-  /* Form actions mobile touch sizing */
-  .form-actions {
-    gap: 0.625rem !important;
-  }
-
-  .form-actions button,
-  .form-actions .button {
-    min-block-size: 3rem !important;
-    padding-inline: 1.25rem !important;
-    font-size: 0.95rem !important;
-  }
-
-
-  /* ==========================================================================
-     Tools Hub Mobile Optimization (Compact, Fast & App-like)
-     ========================================================================== */
-
-  /* Tighten Hero section on mobile so first tool is visible above fold */
+  /* 5. Tools Hub Above-Fold Tight Spacing */
   .hero-section {
     padding-block: var(--space-4) var(--space-4) !important;
   }
@@ -449,7 +474,7 @@ a {
     margin-block-end: 0.75rem !important;
   }
 
-  /* Quick Category Jump Chips */
+  /* 6. Tools Hub Quick-Jump Navigation Chips */
   .category-jump-nav {
     display: flex !important;
     gap: 0.5rem !important;
@@ -485,7 +510,7 @@ a {
     border-color: var(--color-primary, #0f766e) !important;
   }
 
-  /* Compact section & headers */
+  /* 7. Section Headers & Category Indicator Pill Badges */
   .section {
     padding-block: var(--space-4) !important;
   }
@@ -494,7 +519,9 @@ a {
     margin-block-end: var(--space-3) !important;
   }
 
-  .section-header .eyebrow {
+  .section-header .eyebrow,
+  .section-header span,
+  .section-header small {
     display: inline-flex !important;
     align-items: center !important;
     padding: 0.2rem 0.6rem !important;
@@ -519,30 +546,51 @@ a {
     line-height: 1.4 !important;
   }
 
-  /* Compact spacing for Category 2 */
   .section-header[style*="margin-top"] {
     margin-top: 1.75rem !important;
   }
-}
 
-
-  /* Category indicator pill badge for high-speed scanning */
-  .section-header span,
-  .section-header small {
+  /* 8. Related Tools Clickable Pill Chips */
+  .content-section a[href*="/tools/"] {
     display: inline-flex !important;
     align-items: center !important;
     padding: 0.25rem 0.65rem !important;
-    margin-block-end: 0.35rem !important;
+    margin: 0.15rem 0.2rem !important;
+    border: 1px solid #ccfbf1 !important;
     border-radius: 999px !important;
-    background: #e6f4f1 !important;
-    color: #0f766e !important;
-    font-size: 0.75rem !important;
+    background: #f0fdfa !important;
+    color: var(--color-primary, #0f766e) !important;
+    font-size: 0.85rem !important;
     font-weight: 700 !important;
-    letter-spacing: 0.02em !important;
-    text-transform: uppercase !important;
+    line-height: 1.25 !important;
+    text-decoration: none !important;
+    vertical-align: middle !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+    -webkit-tap-highlight-color: transparent !important;
   }
 
-  /* Compact 2-column mobile footer links */
+  .content-section a[href*="/tools/"]:active {
+    background: #ccfbf1 !important;
+    border-color: var(--color-primary, #0f766e) !important;
+  }
+
+  /* 9. Editorial Content Section Mobile Polish */
+  .content-section {
+    padding-block: 2rem !important;
+  }
+
+  .content-section h2 {
+    font-size: 1.3rem !important;
+    margin-block: 1.25rem 0.4rem !important;
+  }
+
+  .content-section p {
+    font-size: 0.885rem !important;
+    line-height: 1.55 !important;
+    margin-block-end: 0.75rem !important;
+  }
+
+  /* 10. Compact 2-Column Mobile Footer Navigation */
   .footer-nav {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
