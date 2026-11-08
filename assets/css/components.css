@@ -236,11 +236,15 @@
 .tool-grid .tool-card a {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
   margin-block-start: auto;
+  padding-inline-end: 1.25rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230f766e' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M12 5l7 7-7 7'/%3E%3C/svg%3E") right center / 0.875rem no-repeat;
   color: var(--color-primary);
-  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
   text-decoration: none;
+  transition: padding-inline-end 0.15s ease;
 }
 
 .tool-grid .tool-card a::after {
@@ -476,11 +480,59 @@ a[data-coming-soon="true"] {
   flex-wrap: wrap;
   gap: var(--space-3);
   align-items: center;
-  margin-block-start: var(--space-3);
+  margin-block-start: var(--space-4);
 }
 
+/* Universal modern button styling for all calculator pages */
+.form-actions button,
 .form-actions .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-block-size: 3rem;
+  padding: 0.75rem 1.625rem;
+  border-radius: var(--radius-full);
+  font: inherit;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+/* Primary Action Button (Compare prices / Calculate) */
+.form-actions button[type="submit"],
+.form-actions .button-primary {
+  border: var(--border-width) solid transparent;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow-xs);
+}
+
+.form-actions button[type="submit"]:active,
+.form-actions .button-primary:active {
+  background: var(--color-primary-dark);
+}
+
+/* Secondary Button (Reset) */
+.form-actions button[type="reset"],
+.form-actions button[type="button"],
+.form-actions .button-secondary {
+  border: var(--border-width) solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-strong);
+}
+
+.form-actions button[type="reset"]:active,
+.form-actions button[type="button"]:active,
+.form-actions .button-secondary:active {
+  background: var(--color-bg-muted);
 }
 
 .privacy-note {
