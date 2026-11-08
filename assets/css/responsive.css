@@ -370,6 +370,15 @@ a {
     row-gap: 0.25rem !important;
     padding: 0.875rem 1rem !important;
     border-radius: 12px !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: background-color 0.12s ease, border-color 0.12s ease !important;
+  }
+
+  /* मोबाइल पर हिलना (Shake/Scale) 100% बंद, सिर्फ़ स्मूथ कलर फ़ीडबैक */
+  .tool-card:active {
+    transform: none !important;
+    background-color: #f1f5f9 !important;
+    border-color: var(--color-primary, #0f766e) !important;
   }
 
   .tool-card .tool-icon {
