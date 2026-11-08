@@ -349,15 +349,17 @@ a {
     font-size: 1rem !important;
   }
 
-  /* 2. Compact 2x2 Results Dashboard (Eliminates excessive vertical scrolling) */
-  .calculator-results-grid {
+    /* 2. Compact 2x2 Results Dashboard & Daily Expense Tracker Fix */
+  .calculator-results-grid,
+  section[aria-labelledby="summary-heading"] .feature-grid {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 0.65rem !important;
-    margin-block: 1.125rem !important;
+    margin-block: 1rem !important;
   }
 
-  .calculator-results-grid .summary-card {
+  .calculator-results-grid .summary-card,
+  section[aria-labelledby="summary-heading"] .summary-card {
     padding: 0.85rem 0.75rem !important;
     border-radius: 12px !important;
     background: #f8fafc !important;
@@ -365,15 +367,34 @@ a {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
   }
 
-  /* Highlight full-width for odd 5th result item (e.g., Largest cost part / Better value) */
+  /* Sleek Horizontal Banner for 11th odd card (Cost per square foot / Highlight) */
   .calculator-results-grid .summary-card:last-child:nth-child(odd) {
     grid-column: 1 / -1 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0.75rem 1rem !important;
     background: #f0fdfa !important;
     border-color: #ccfbf1 !important;
   }
 
+  .calculator-results-grid .summary-card:last-child:nth-child(odd) h3,
+  .calculator-results-grid .summary-card:last-child:nth-child(odd) .summary-label {
+    margin-block-end: 0 !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    color: #0f766e !important;
+  }
+
+  .calculator-results-grid .summary-card:last-child:nth-child(odd) p {
+    margin: 0 !important;
+    font-size: 1.15rem !important;
+  }
+
   .calculator-results-grid .summary-label,
-  .calculator-results-grid .summary-card h3 {
+  .calculator-results-grid .summary-card h3,
+  section[aria-labelledby="summary-heading"] .summary-card h3 {
     font-size: 0.785rem !important;
     color: #64748b !important;
     margin-block-end: 0.25rem !important;
@@ -381,12 +402,21 @@ a {
     line-height: 1.3 !important;
   }
 
-  .calculator-results-grid .summary-card p {
+  .calculator-results-grid .summary-card p,
+  section[aria-labelledby="summary-heading"] .summary-card p {
     font-size: 1.2rem !important;
     font-weight: 800 !important;
     color: var(--color-primary, #0f766e) !important;
     line-height: 1.2 !important;
+    margin-block-end: 0.15rem !important;
   }
+
+  section[aria-labelledby="summary-heading"] .summary-card small {
+    font-size: 0.72rem !important;
+    color: #64748b !important;
+    line-height: 1.2 !important;
+  }
+
 
   /* 3. Form Action Buttons Mobile Sizing */
   .form-actions {
@@ -550,7 +580,34 @@ a {
     margin-top: 1.75rem !important;
   }
 
-  /* 8. Related Tools Clickable Pill Chips */
+    /* 8. Related Tools: 2x2 Mini-Grid for Card Tools + Pill Chips for Paragraphs */
+  section[aria-labelledby="related-tools-heading"] .tool-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+    margin-block-start: var(--space-2) !important;
+  }
+
+  section[aria-labelledby="related-tools-heading"] .tool-grid .tool-card {
+    padding: 0.75rem 0.65rem !important;
+    border-radius: 10px !important;
+    background: #ffffff !important;
+    border: 1px solid var(--color-border, #dbe4e2) !important;
+  }
+
+  section[aria-labelledby="related-tools-heading"] .tool-grid .tool-card h3 {
+    font-size: 0.85rem !important;
+    line-height: 1.25 !important;
+    margin-block-end: 0 !important;
+    color: var(--color-primary, #0f766e) !important;
+  }
+
+  section[aria-labelledby="related-tools-heading"] .tool-grid .tool-card p {
+    display: none !important; /* Hides verbose text on mobile for instant tap launcher */
+  }
+
+  /* Paragraph-style Related Tools into clickable chips */
+  section[aria-labelledby="related-tools-heading"] p a,
   .content-section a[href*="/tools/"] {
     display: inline-flex !important;
     align-items: center !important;
@@ -569,10 +626,12 @@ a {
     -webkit-tap-highlight-color: transparent !important;
   }
 
+  section[aria-labelledby="related-tools-heading"] p a:active,
   .content-section a[href*="/tools/"]:active {
     background: #ccfbf1 !important;
     border-color: var(--color-primary, #0f766e) !important;
   }
+
 
   /* 9. Editorial Content Section Mobile Polish */
   .content-section {
