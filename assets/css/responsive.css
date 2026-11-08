@@ -606,8 +606,10 @@ a {
     display: none !important;
   }
 
-  section[aria-labelledby="related-tools-heading"] p a,
-  .content-section a[href*="/tools/"] {
+    section[aria-labelledby="related-tools-heading"] p a,
+  .content-section a[href*="/tools/"],
+  .content-section a[href^="../"] {
+
     display: inline-flex !important;
     align-items: center !important;
     padding: 0.25rem 0.65rem !important;
