@@ -543,17 +543,17 @@ a {
   }
 
   /* Compact 2-column mobile footer links */
-  .footer-nav ul {
+  .footer-nav {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.65rem 1rem !important;
-    padding: 0 !important;
-    list-style: none !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.5rem 1.25rem !important;
+    margin-block-start: var(--space-3) !important;
   }
 
   .footer-nav a {
-    display: block !important;
-    font-size: 0.9rem !important;
-    padding-block: 0.25rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    font-size: 0.875rem !important;
+    padding-block: 0.35rem !important;
   }
 }
