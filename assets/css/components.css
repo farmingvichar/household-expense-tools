@@ -173,6 +173,9 @@
 }
 
 .tool-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   padding: var(--space-5);
   transition:
     border-color var(--transition-fast),
@@ -180,7 +183,17 @@
     transform var(--transition-fast);
 }
 
+.tool-card:active {
+  transform: scale(0.985);
+}
+
 .tool-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  margin-block-end: var(--space-3);
   border-radius: var(--radius-lg);
   background: var(--color-primary-soft);
   color: var(--color-primary);
@@ -196,12 +209,29 @@
   color: var(--color-text-muted);
 }
 
-.tool-card a,
+.tool-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-block-start: auto;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+.tool-card a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
 .section-link a,
 .footer-nav a[data-coming-soon="true"],
 .category-card[data-coming-soon="true"] {
   color: var(--color-text-soft);
 }
+
 
 .tool-card a[data-coming-soon="true"],
 .section-link a[data-coming-soon="true"],
