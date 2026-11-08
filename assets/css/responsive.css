@@ -403,10 +403,23 @@ a {
     color: var(--color-text-muted) !important;
   }
 
-  .tool-grid .tool-card a {
+    .tool-grid .tool-card a {
     font-size: 0.85rem !important;
     color: var(--color-primary) !important;
   }
+
+  /* Form actions mobile touch sizing */
+  .form-actions {
+    gap: 0.625rem !important;
+  }
+
+  .form-actions button,
+  .form-actions .button {
+    min-block-size: 3rem !important;
+    padding-inline: 1.25rem !important;
+    font-size: 0.95rem !important;
+  }
+
 
   /* Section header compact spacing for mobile */
   .section-header h2 {
