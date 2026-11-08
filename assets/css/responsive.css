@@ -421,18 +421,110 @@ a {
   }
 
 
-  /* Section header compact spacing for mobile */
-  .section-header h2 {
-    font-size: 1.35rem !important;
-    line-height: 1.2 !important;
+  /* ==========================================================================
+     Tools Hub Mobile Optimization (Compact, Fast & App-like)
+     ========================================================================== */
+
+  /* Tighten Hero section on mobile so first tool is visible above fold */
+  .hero-section {
+    padding-block: var(--space-4) var(--space-4) !important;
+  }
+
+  .hero-text .eyebrow {
+    font-size: 0.75rem !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    margin-block-end: 0.25rem !important;
+  }
+
+  .hero-text h1 {
+    font-size: 1.55rem !important;
+    line-height: 1.15 !important;
     margin-block-end: 0.35rem !important;
   }
 
-  .section-header p {
+  .hero-text p:not(.eyebrow) {
     font-size: 0.875rem !important;
-    line-height: 1.45 !important;
+    line-height: 1.4 !important;
     margin-block-end: 0.75rem !important;
   }
+
+  /* Quick Category Jump Chips */
+  .category-jump-nav {
+    display: flex !important;
+    gap: 0.5rem !important;
+    margin-block-start: 0.75rem !important;
+    overflow-x: auto !important;
+    padding-block-end: 0.25rem !important;
+    scrollbar-width: none !important;
+  }
+
+  .category-jump-nav::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .jump-chip {
+    flex: 0 0 auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    padding: 0.5rem 0.875rem !important;
+    border: 1px solid var(--color-border, #dbe4e2) !important;
+    border-radius: 999px !important;
+    background: var(--color-surface, #ffffff) !important;
+    color: var(--color-primary, #0f766e) !important;
+    font-size: 0.8rem !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .jump-chip:active {
+    background: #e6f4f1 !important;
+    border-color: var(--color-primary, #0f766e) !important;
+  }
+
+  /* Compact section & headers */
+  .section {
+    padding-block: var(--space-4) !important;
+  }
+
+  .section-header {
+    margin-block-end: var(--space-3) !important;
+  }
+
+  .section-header .eyebrow {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 0.2rem 0.6rem !important;
+    margin-block-end: 0.35rem !important;
+    border-radius: 999px !important;
+    background: #e6f4f1 !important;
+    color: #0f766e !important;
+    font-size: 0.725rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.03em !important;
+    text-transform: uppercase !important;
+  }
+
+  .section-header h2 {
+    font-size: 1.25rem !important;
+    line-height: 1.2 !important;
+    margin-block-end: 0.25rem !important;
+  }
+
+  .section-header p:not(.eyebrow) {
+    font-size: 0.825rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Compact spacing for Category 2 */
+  .section-header[style*="margin-top"] {
+    margin-top: 1.75rem !important;
+  }
+}
+
 
   /* Category indicator pill badge for high-speed scanning */
   .section-header span,
