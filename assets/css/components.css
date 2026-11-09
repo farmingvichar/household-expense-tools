@@ -710,3 +710,41 @@ a[data-coming-soon="true"] {
     display: none;
   }
 }
+/* ==========================================================================
+   Eye-Catching & Compact Mobile Header Optimization (Brand Safe)
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: var(--border-width) solid var(--color-border-soft);
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
+}
+
+.site-header .header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
+/* हीरो सेक्शन को मोबाइल पर अधिक आकर्षक और संतुलित बनाना */
+.hero.section {
+  padding-block: clamp(2rem, 5vw, 4rem);
+}
+
+.hero-content h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: var(--line-height-tight);
+}
+
+/* स्टिकी हेडर के कारण कंटेंट ऊपर छुप न जाए */
+body {
+  scroll-padding-top: 4.5rem;
+}
+
