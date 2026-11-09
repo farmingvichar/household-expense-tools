@@ -30,16 +30,16 @@
         },
         "description": "Calculate remaining grocery budget, average daily spending limit, and budget percentage directly in your browser without login."
       },
-      {
+            {
         "@type": "FAQPage",
         "@id": "https://householdexpensetools.com/tools/grocery-budget-calculator/#faq",
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "How often should I recalculate?",
+            "name": "How often should I recalculate my grocery budget?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Update it every time you shop, or at least once a week. Since the calculator uses days remaining, recalculating regularly keeps your daily limit accurate as the month progresses."
+              "text": "Update it after every grocery trip, or at least once a week. Because the calculator divides your remaining balance by the days left in the month, recalculating regularly keeps your daily spending target accurate."
             }
           },
           {
@@ -47,15 +47,31 @@
             "name": "What if I go over budget one week?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Recalculate with your new spent total. The tool lowers your daily limit for the remaining days automatically, so you can adjust instead of abandoning the budget entirely."
+              "text": "Enter your new cumulative spent amount and recalculate. The tool automatically adjusts your daily spending limit across the remaining days of the month so you can pace future trips without abandoning your budget."
             }
           },
           {
             "@type": "Question",
-            "name": "How do I calculate remaining grocery money if I already spent part of my budget?",
+            "name": "Does this grocery calculator include sales tax?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Subtract your spent amount from your total grocery money (Remaining = Total Budget - Amount Spent). For example, if you have $100 to spend on groceries and spend $63.50 on fruits and vegetables, you have $36.50 remaining ($100.00 - $63.50 = $36.50)."
+              "text": "No. Enter the final receipt total you actually paid at the register (including any state or local grocery tax) in the already-spent field so your remaining balance stays accurate."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the calculator adjust automatically for household size?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not automatically. Enter your total household grocery budget for the month. To check per-person spending, divide your monthly total by the number of household members and compare that against previous months."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I calculate remaining grocery money after spending part of my budget?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Subtract the amount already spent from your total monthly grocery budget (Remaining = Total Budget - Amount Spent). For example, if your budget is $100 and you spend $63.50 on produce, you have $36.50 remaining ($100.00 - $63.50 = $36.50)."
             }
           },
           {
@@ -63,7 +79,15 @@
             "name": "What percentage of a monthly budget should go toward groceries?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Most financial guidelines suggest spending 10% to 15% of your household take-home income on groceries. For example, if a family spends $600 per month on groceries and that represents 15% of their total monthly budget, their overall monthly budget is $4,000 ($600 / 0.15 = $4,000)."
+              "text": "Standard household budgeting guidelines suggest allocating 10% to 15% of net take-home pay to groceries. For example, if a household spends $600 per month on groceries and that equals 15% of their monthly budget, their total monthly budget is $4,000 ($600 / 0.15 = $4,000)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are the grocery budget results exact?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The results are mathematical estimates based on your inputs. Actual food spending varies by store pricing, seasonal produce costs, bulk purchases, sales tax, and delivery fees."
             }
           }
         ]
@@ -296,48 +320,62 @@
       or estimate wasted food cost with the <a href="../food-waste-cost-calculator/">Food Waste Cost Calculator</a>.
     </p>
 
-    <h2>FAQ</h2>
+        <div class="section-header">
+      <span class="eyebrow">Frequently Asked Questions</span>
+      <h2 id="faq-heading">Grocery Budget &amp; Daily Spending Limit FAQs</h2>
+      <p>Practical answers on tracking food receipts, adjusting for mid-month overspending, and setting realistic household grocery targets.</p>
+    </div>
 
-    <h3>How often should I recalculate?</h3>
-    <p>
-      Update it every time you shop, or at least once a week. Since the calculator uses "days
-      remaining," recalculating regularly keeps your daily limit accurate as the month progresses.
-    </p>
+    <div class="faq-list feature-grid">
+      <article class="faq-item feature-card">
+        <details>
+          <summary>How often should I recalculate my grocery budget?</summary>
+          <p>Update it after every grocery trip, or at least once a week. Because the calculator divides your remaining balance by the days left in the month, recalculating regularly keeps your daily spending target accurate.</p>
+        </details>
+      </article>
 
-    <h3>What if I go over budget one week?</h3>
-    <p>
-      Recalculate with your new spent total. The tool lowers your daily limit for the remaining
-      days automatically, so you can adjust instead of abandoning the budget entirely.
-    </p>
+      <article class="faq-item feature-card">
+        <details>
+          <summary>What if I go over budget one week?</summary>
+          <p>Enter your new cumulative spent amount and recalculate. The tool automatically adjusts your daily spending limit across the remaining days of the month so you can pace future trips without abandoning your budget.</p>
+        </details>
+      </article>
 
-    <h3>Does this include sales tax?</h3>
-    <p>
-      No. Enter your already-spent amount as the actual total you paid, including any tax, so the
-      remaining budget stays accurate.
-    </p>
+      <article class="faq-item feature-card">
+        <details>
+          <summary>Does this grocery calculator include sales tax?</summary>
+          <p>No. Enter the final receipt total you actually paid at the register (including any state or local grocery tax) in the already-spent field so your remaining balance stays accurate.</p>
+        </details>
+      </article>
 
-        <h3>Does it adjust for household size?</h3>
-    <p>
-      Not automatically. Enter your own total household budget as the monthly figure. A useful
-      check: divide your monthly budget by the number of people in your household to see your
-      per-person spending, then compare that against your own past months.
-    </p>
+      <article class="faq-item feature-card">
+        <details>
+          <summary>Does the calculator adjust automatically for household size?</summary>
+          <p>Not automatically. Enter your total household grocery budget for the month. To check per-person spending, divide your monthly total by the number of household members and compare that against previous months.</p>
+        </details>
+      </article>
 
-    <h3>How do I calculate remaining grocery money if I already spent part of my budget?</h3>
-    <p>
-      Subtract your spent amount from your total grocery money (Remaining = Total Budget &minus; Amount Spent). For example, if you have $100 to spend on groceries and spend $63.50 on fruits and vegetables, you have $36.50 remaining ($100.00 &minus; $63.50 = $36.50).
-    </p>
+      <article class="faq-item feature-card">
+        <details>
+          <summary>How do I calculate remaining grocery money after spending part of my budget?</summary>
+          <p>Subtract the amount already spent from your total monthly grocery budget (Remaining = Total Budget &minus; Amount Spent). For example, if your budget is $100 and you spend $63.50 on produce, you have $36.50 remaining ($100.00 &minus; $63.50 = $36.50).</p>
+        </details>
+      </article>
 
-    <h3>What percentage of a monthly budget should go toward groceries?</h3>
-    <p>
-      Most financial guidelines suggest spending 10% to 15% of your household take-home income on groceries. For example, if a family spends $600 per month on groceries and that represents 15% of their total monthly budget, their overall monthly budget is $4,000 ($600 &divide; 0.15 = $4,000).
-    </p>
+      <article class="faq-item feature-card">
+        <details>
+          <summary>What percentage of a monthly budget should go toward groceries?</summary>
+          <p>Standard household budgeting guidelines suggest allocating 10% to 15% of net take-home pay to groceries. For example, if a household spends $600 per month on groceries and that equals 15% of their monthly budget, their total monthly budget is $4,000 ($600 &divide; 0.15 = $4,000).</p>
+        </details>
+      </article>
 
-    <h3>Are the results exact?</h3>
-    <p>
-      No. The result is an estimate based only on the values you enter. Real grocery spending can
-      change because of prices, store choice, discounts, taxes, delivery fees, and household needs.
-    </p>
+      <article class="faq-item feature-card">
+        <details>
+          <summary>Are the grocery budget results exact?</summary>
+          <p>The results are mathematical estimates based on your inputs. Actual food spending varies by store pricing, seasonal produce costs, bulk purchases, sales tax, and delivery fees.</p>
+        </details>
+      </article>
+    </div>
   </div>
 </section>
 <!-- SEO-CONTENT-END -->
