@@ -388,3 +388,15 @@ body {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+/* ==========================================================================
+   Header Overlap Prevention Fix
+   ========================================================================== */
+main {
+  scroll-margin-top: calc(var(--header-height, 4rem) + 1rem);
+}
+
+/* मोबाइल और डेस्कटॉप दोनों पर हीरो सेक्शन या पहली हेडिंग को नीचे खिसकाने के लिए */
+main > section:first-of-type {
+  padding-top: clamp(1.5rem, 3vw, 3rem);
+}
