@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const calculateButton = form.querySelector('button[type="submit"]');
   let hasCalculatedResult = false;
-let buttonTimerId = null;
-let latestCalculation = null;
+  let buttonTimerId = null;
+  let latestCalculation = null;
 
   function getUnitDetails(unit) {
     const units = {
@@ -48,20 +48,20 @@ let latestCalculation = null;
   function createIngredientRow(data = {}) {
     const row = document.createElement("div");
     row.className = "ingredient-row";
-row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; border-radius: 8px; border: 1px solid var(--color-border, #e2e8f0);";
+    row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; border-radius: 8px; border: 1px solid var(--color-border, #e2e8f0);";
 
     row.innerHTML = `
       <div class="form-field" style="margin-bottom: 0;">
         <label>Ingredient name</label>
-        <input type="text" class="ing-name" placeholder="e.g. Flour" value="" required />
+        <input type="text" class="ing-name" placeholder="e.g. Flour" value="" required autocomplete="off" />
       </div>
       <div class="form-field" style="margin-bottom: 0;">
         <label>Package price ($)</label>
-        <input type="number" class="ing-price" placeholder="0.00" min="0" step="0.01" inputmode="decimal" value="${data.price !== undefined ? data.price : ""}" required />
+        <input type="number" class="ing-price" placeholder="e.g. 3.49" min="0" step="0.01" inputmode="decimal" value="${data.price !== undefined ? data.price : ""}" required />
       </div>
       <div class="form-field" style="margin-bottom: 0;">
         <label>Package qty</label>
-        <input type="number" class="ing-pkg-qty" placeholder="0" min="0.0001" step="any" inputmode="decimal" value="${data.pkgQty !== undefined ? data.pkgQty : ""}" required />
+        <input type="number" class="ing-pkg-qty" placeholder="e.g. 1000" min="0.0001" step="any" inputmode="decimal" value="${data.pkgQty !== undefined ? data.pkgQty : ""}" required />
       </div>
       <div class="form-field" style="margin-bottom: 0;">
         <label>Package unit</label>
@@ -77,7 +77,7 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
       </div>
       <div class="form-field" style="margin-bottom: 0;">
         <label>Recipe qty</label>
-        <input type="number" class="ing-rec-qty" placeholder="0" min="0.0001" step="any" inputmode="decimal" value="${data.recQty !== undefined ? data.recQty : ""}" required />
+        <input type="number" class="ing-rec-qty" placeholder="e.g. 250" min="0.0001" step="any" inputmode="decimal" value="${data.recQty !== undefined ? data.recQty : ""}" required />
       </div>
       <div class="form-field" style="margin-bottom: 0;">
         <label>Recipe unit</label>
@@ -96,7 +96,6 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
       </div>
     `;
 
-    // Safely assign text content for ingredient name to prevent any innerHTML risks
     const nameInput = row.querySelector(".ing-name");
     if (data.name) {
       nameInput.value = data.name;
@@ -106,21 +105,27 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
     removeBtn.addEventListener("click", function () {
       if (ingredientsContainer.querySelectorAll(".ingredient-row").length > 1) {
         row.remove();
-        clearStaleResult();
+        calculateRecipe(false); // पंक्ति हटाने पर तुरंत री-कैलकुलेट करें
       } else {
         statusMessage.textContent = "A recipe must have at least one ingredient.";
       }
     });
 
     row.querySelectorAll("input, select").forEach(function (input) {
-      input.addEventListener("input", clearStaleResult);
-      input.addEventListener("change", clearStaleResult);
+      input.addEventListener("input", function () {
+        calculateRecipe(false);
+      });
+      input.addEventListener("change", function () {
+        calculateRecipe(false);
+      });
     });
 
     ingredientsContainer.appendChild(row);
   }
+
   createIngredientRow();
-    function escapeHtml(str) {
+
+  function escapeHtml(str) {
     return String(str || "")
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
@@ -130,27 +135,20 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
   }
 
   function formatMoney(amount) {
-    return "$" + amount.toFixed(2);
+    const cleanAmount = Math.abs(amount).toLocaleString('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+    return (amount < 0 ? "-$" : "$") + cleanAmount;
   }
 
-  function setCalculateButtonText(text) {
-    if (buttonTimerId) {
-      window.clearTimeout(buttonTimerId);
-      buttonTimerId = null;
-    }
-    if (calculateButton) {
-      calculateButton.textContent = text;
-    }
-  }
-
-    function resetResults() {
+  function resetResults() {
     hasCalculatedResult = false;
-    setCalculateButtonText("Calculate recipe cost");
     totalRecipeCostOutput.textContent = "$0.00";
     costPerServingOutput.textContent = "$0.00";
     totalIngredientsCountOutput.textContent = "0";
     breakdownContainer.innerHTML = '<p style="color: var(--color-text-muted); font-style: italic;">No calculations performed yet.</p>';
-    statusMessage.textContent = "Add your ingredients and tap Calculate recipe cost to view individual costs, total cost, and cost per serving.";
+    statusMessage.textContent = "Start typing ingredients to see your recipe cost calculate automatically.";
     
     const printBtn = document.getElementById("printRecipeBtn");
     const downloadBtn = document.getElementById("downloadTxtBtn");
@@ -158,63 +156,35 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
     if (downloadBtn) downloadBtn.style.display = "none";
   }
 
-
   function clearResultsForError(message) {
     hasCalculatedResult = false;
-    setCalculateButtonText("Calculate recipe cost");
     totalRecipeCostOutput.textContent = "$0.00";
     costPerServingOutput.textContent = "$0.00";
     totalIngredientsCountOutput.textContent = "0";
-    breakdownContainer.innerHTML = '<p style="color: var(--color-text-muted); font-style: italic;">Calculation error.</p>';
+    breakdownContainer.innerHTML = '<p style="color: var(--color-text-muted); font-style: italic;">Please check input values.</p>';
     statusMessage.textContent = message;
-  }
-
-  function markCalculationComplete() {
-    hasCalculatedResult = true;
-    setCalculateButtonText("Calculated ✓");
-    buttonTimerId = window.setTimeout(function () {
-      if (calculateButton) {
-        calculateButton.textContent = "Recalculate";
-      }
-      buttonTimerId = null;
-    }, 1000);
-  }
-
-    function clearStaleResult() {
-    if (!hasCalculatedResult) {
-      return;
-    }
-
-    hasCalculatedResult = false;
-    latestCalculation = null;
-    setCalculateButtonText("Calculate recipe cost");
-    statusMessage.textContent = "Values changed. Tap Calculate recipe cost to update results.";
-
+    
     const printBtn = document.getElementById("printRecipeBtn");
     const downloadBtn = document.getElementById("downloadTxtBtn");
-
     if (printBtn) printBtn.style.display = "none";
     if (downloadBtn) downloadBtn.style.display = "none";
   }
-  addIngredientBtn.addEventListener("click", function () {
-    createIngredientRow();
-    clearStaleResult();
-  });
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
+  // कोर कैलकुलेशन इंजन (जो लाइव टाइपिंग और सबमिट दोनों पर काम करेगा)
+  function calculateRecipe(isExplicitSubmit = false) {
     const servingsValue = servingsInput.value.trim();
     const servings = Number(servingsValue);
 
     if (servingsValue === "" || !Number.isFinite(servings) || servings <= 0) {
-      clearResultsForError("Servings must be a number greater than zero.");
+      if (isExplicitSubmit) {
+        clearResultsForError("Servings must be a number greater than zero.");
+      }
       return;
     }
 
     const rows = ingredientsContainer.querySelectorAll(".ingredient-row");
     if (rows.length === 0) {
-      clearResultsForError("Please add at least one ingredient.");
+      resetResults();
       return;
     }
 
@@ -236,6 +206,11 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
       const pkgQtyVal = pkgQtyInput.value.trim();
       const recQtyVal = recQtyInput.value.trim();
 
+      // यदि मुख्य फ़ील्ड्स खाली हैं, तो लाइव मोड में शांत रहें (एरर न दिखाएँ जब तक सबमिट न हो)
+      if (priceVal === "" && pkgQtyVal === "" && recQtyVal === "" && !isExplicitSubmit) {
+        continue;
+      }
+
       const price = Number(priceVal);
       const pkgQty = Number(pkgQtyVal);
       const recQty = Number(recQtyVal);
@@ -244,17 +219,17 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
       const recUnit = recUnitSelect.value;
 
       if (priceVal === "" || !Number.isFinite(price) || price < 0) {
-        clearResultsForError(`Ingredient "${name}": Package price must be zero or greater.`);
+        if (isExplicitSubmit) clearResultsForError(`Ingredient "${name}": Package price must be zero or greater.`);
         return;
       }
 
       if (pkgQtyVal === "" || !Number.isFinite(pkgQty) || pkgQty <= 0) {
-        clearResultsForError(`Ingredient "${name}": Package quantity must be greater than zero.`);
+        if (isExplicitSubmit) clearResultsForError(`Ingredient "${name}": Package quantity must be greater than zero.`);
         return;
       }
 
       if (recQtyVal === "" || !Number.isFinite(recQty) || recQty <= 0) {
-        clearResultsForError(`Ingredient "${name}": Recipe quantity used must be greater than zero.`);
+        if (isExplicitSubmit) clearResultsForError(`Ingredient "${name}": Recipe quantity used must be greater than zero.`);
         return;
       }
 
@@ -262,7 +237,9 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
       const recDetails = getUnitDetails(recUnit);
 
       if (!pkgDetails || !recDetails || pkgDetails.category !== recDetails.category) {
-        clearResultsForError(`Ingredient "${name}": Unit mismatch. Cannot convert between ${pkgUnit} and ${recUnit}. Mass, volume, and count units cannot be mixed.`);
+        if (isExplicitSubmit) {
+          clearResultsForError(`Ingredient "${name}": Unit mismatch. Cannot convert between ${pkgUnit} and ${recUnit}.`);
+        }
         return;
       }
 
@@ -273,40 +250,36 @@ row.style.cssText = "background: var(--color-surface, #f8fafc); padding: 1rem; b
       totalRecipeCost += ingredientCost;
 
       breakdownItems.push({
-  name: name,
-  cost: ingredientCost,
-  pkgQty: pkgQty,
-  pkgUnit: pkgUnit,
-  recQty: recQty,
-  recUnit: recUnit,
-  price: price
-});
+        name: name,
+        cost: ingredientCost,
+        pkgQty: pkgQty,
+        pkgUnit: pkgUnit,
+        recQty: recQty,
+        recUnit: recUnit,
+        price: price
+      });
+    }
+
+    if (breakdownItems.length === 0) {
+      resetResults();
+      return;
     }
 
     const costPerServing = totalRecipeCost / servings;
     
-latestCalculation = {
-  recipeName: recipeNameInput.value.trim() || "Homemade Recipe",
-  servings: servings,
-  totalRecipeCost: totalRecipeCost,
-  costPerServing: costPerServing,
-  breakdownItems: breakdownItems.map(function (item) {
-    return {
-      name: item.name,
-      cost: item.cost,
-      pkgQty: item.pkgQty,
-      pkgUnit: item.pkgUnit,
-      recQty: item.recQty,
-      recUnit: item.recUnit,
-      price: item.price
+    latestCalculation = {
+      recipeName: recipeNameInput.value.trim() || "Homemade Recipe",
+      servings: servings,
+      totalRecipeCost: totalRecipeCost,
+      costPerServing: costPerServing,
+      breakdownItems: breakdownItems
     };
-  })
-};
+
     totalRecipeCostOutput.textContent = formatMoney(totalRecipeCost);
     costPerServingOutput.textContent = formatMoney(costPerServing);
     totalIngredientsCountOutput.textContent = breakdownItems.length.toString();
 
-    // Clear and build breakdown safely using textContent for user input values
+    // टेबल ब्रेकडाउन अपडेट करें
     breakdownContainer.innerHTML = "";
     const table = document.createElement("table");
     table.style.cssText = "width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;";
@@ -347,42 +320,55 @@ latestCalculation = {
     table.appendChild(tbody);
     breakdownContainer.appendChild(table);
 
-        markCalculationComplete();
+    hasCalculatedResult = true;
     statusMessage.textContent = "Recipe cost calculated successfully.";
 
-    // Show export buttons once calculated
     const printBtn = document.getElementById("printRecipeBtn");
     const downloadBtn = document.getElementById("downloadTxtBtn");
     if (printBtn) printBtn.style.display = "inline-block";
     if (downloadBtn) downloadBtn.style.display = "inline-block";
+  }
+
+  addIngredientBtn.addEventListener("click", function () {
+    createIngredientRow();
   });
 
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    calculateRecipe(true);
+  });
 
   [servingsInput, recipeNameInput].forEach(function (element) {
-    element.addEventListener("input", clearStaleResult);
-    element.addEventListener("change", clearStaleResult);
+    element.addEventListener("input", function () {
+      calculateRecipe(false);
+    });
+    element.addEventListener("change", function () {
+      calculateRecipe(false);
+    });
   });
 
   form.addEventListener("reset", function () {
     window.setTimeout(function () {
       ingredientsContainer.innerHTML = "";
-      createIngredientRow(); // Exactly ONE empty row on reset
+      createIngredientRow();
       resetResults();
     }, 0);
   });
-    // Safe & Reliable Print / PDF Report Generator
+
+  // प्रिंट/PDF रिपोर्ट जनरेटर (पहले की तरह सुरक्षित)
   const printBtn = document.getElementById("printRecipeBtn");
   if (printBtn) {
     printBtn.addEventListener("click", function () {
-  if (!hasCalculatedResult || !latestCalculation) {
-    statusMessage.textContent = "Please calculate the recipe cost before printing.";
-    return;
-  }
+      if (!hasCalculatedResult || !latestCalculation) {
+        statusMessage.textContent = "Please calculate the recipe cost before printing.";
+        return;
+      }
 
-  const recipeName = latestCalculation.recipeName;
-  const servings = latestCalculation.servings;
-  const totalCost = formatMoney(latestCalculation.totalRecipeCost);
-  const perServing = formatMoney(latestCalculation.costPerServing);
+      const recipeName = latestCalculation.recipeName;
+      const servings = latestCalculation.servings;
+      const totalCost = formatMoney(latestCalculation.totalRecipeCost);
+      const perServing = formatMoney(latestCalculation.costPerServing);
+      
       let printWindowContent = `
         <!DOCTYPE html>
         <html>
@@ -390,123 +376,42 @@ latestCalculation = {
           <meta charset="utf-8">
           <title>${escapeHtml(recipeName)} - Cost Report</title>
           <style>
-            body {
-              font-family: Arial, sans-serif;
-              color: #121826;
-              margin: 0;
-              padding: 20px;
-              background: #fff;
-            }
-
-            .header {
-              border-bottom: 2px solid #0f766e;
-              padding-bottom: 12px;
-              margin-bottom: 20px;
-            }
-
-            .brand {
-              font-size: 13px;
-              text-transform: uppercase;
-              letter-spacing: 1px;
-              color: #0f766e;
-              font-weight: bold;
-              margin-bottom: 4px;
-            }
-
-            h1 {
-              font-size: 20px;
-              margin: 0;
-              color: #0f172a;
-            }
-
-            .summary-table {
-              width: 100%;
-              border-collapse: collapse;
-              margin-bottom: 20px;
-            }
-
-            .summary-table td {
-              border: 1px solid #cbd5e1;
-              background: #f8fafc;
-              padding: 12px;
-              text-align: center;
-              width: 33.33%;
-            }
-
-            .summary-label {
-              font-size: 11px;
-              color: #64748b;
-              margin-bottom: 4px;
-              text-transform: uppercase;
-            }
-
-            .summary-value {
-              font-size: 16px;
-              font-weight: bold;
-              color: #0f766e;
-            }
-
-            table.main-table {
-              width: 100%;
-              border-collapse: collapse;
-              margin-top: 10px;
-            }
-
-            table.main-table th,
-            table.main-table td {
-              border: 1px solid #cbd5e1;
-              padding: 8px 10px;
-              text-align: left;
-              font-size: 12px;
-              word-break: break-word;
-              overflow-wrap: break-word;
-            }
-
-            table.main-table th {
-              background-color: #f1f5f9;
-              color: #334155;
-            }
-
-            .footer {
-              margin-top: 30px;
-              font-size: 10px;
-              color: #94a3b8;
-              text-align: center;
-              border-top: 1px solid #e2e8f0;
-              padding-top: 10px;
-            }
+            body { font-family: Arial, sans-serif; color: #121826; margin: 0; padding: 20px; background: #fff; }
+            .header { border-bottom: 2px solid #0f766e; padding-bottom: 12px; margin-bottom: 20px; }
+            .brand { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #0f766e; font-weight: bold; margin-bottom: 4px; }
+            h1 { font-size: 20px; margin: 0; color: #0f172a; }
+            .summary-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+            .summary-table td { border: 1px solid #cbd5e1; background: #f8fafc; padding: 12px; text-align: center; width: 33.33%; }
+            .summary-label { font-size: 11px; color: #64748b; margin-bottom: 4px; text-transform: uppercase; }
+            .summary-value { font-size: 16px; font-weight: bold; color: #0f766e; }
+            table.main-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+            table.main-table th, table.main-table td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: left; font-size: 12px; }
+            table.main-table th { background-color: #f1f5f9; color: #334155; }
+            .footer { margin-top: 30px; font-size: 10px; color: #94a3b8; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 10px; }
           </style>
         </head>
-
         <body>
           <div class="header">
             <div class="brand">Household Expense Tools</div>
             <h1>Recipe Cost Report: ${escapeHtml(recipeName)}</h1>
           </div>
-
           <table class="summary-table">
             <tr>
               <td>
                 <div class="summary-label">Total Servings</div>
                 <div class="summary-value">${escapeHtml(servings)}</div>
               </td>
-
               <td>
                 <div class="summary-label">Total Recipe Cost</div>
                 <div class="summary-value">${escapeHtml(totalCost)}</div>
               </td>
-
               <td>
                 <div class="summary-label">Cost Per Serving</div>
                 <div class="summary-value">${escapeHtml(perServing)}</div>
               </td>
             </tr>
           </table>
-
-          <h3 style="font-size: 14px; color: #0f172a; margin-top: 20px; margin-bottom: 8px;">
-            Ingredient Breakdown
-          </h3>
-
+          <h3 style="font-size: 14px; color: #0f172a; margin-top: 20px; margin-bottom: 8px;">Ingredient Breakdown</h3>
           <table class="main-table">
             <thead>
               <tr>
@@ -518,38 +423,31 @@ latestCalculation = {
                 <th style="width: 15%;">Ingredient Cost</th>
               </tr>
             </thead>
-
             <tbody>
       `;
 
-latestCalculation.breakdownItems.forEach(function (item, index) {
-  printWindowContent += `
-    <tr>
-      <td>${index + 1}</td>
-      <td><strong>${escapeHtml(item.name)}</strong></td>
-      <td>${escapeHtml(item.recQty)} ${escapeHtml(item.recUnit)}</td>
-      <td>${escapeHtml(item.pkgQty)} ${escapeHtml(item.pkgUnit)}</td>
-      <td>${escapeHtml(formatMoney(Number(item.price)))}</td>
-      <td><strong>${escapeHtml(formatMoney(Number(item.cost)))}</strong></td>
-    </tr>
-  `;
-});
+      latestCalculation.breakdownItems.forEach(function (item, index) {
+        printWindowContent += `
+          <tr>
+            <td>${index + 1}</td>
+            <td><strong>${escapeHtml(item.name)}</strong></td>
+            <td>${escapeHtml(item.recQty)} ${escapeHtml(item.recUnit)}</td>
+            <td>${escapeHtml(item.pkgQty)} ${escapeHtml(item.pkgUnit)}</td>
+            <td>${escapeHtml(formatMoney(Number(item.price)))}</td>
+            <td><strong>${escapeHtml(formatMoney(Number(item.cost)))}</strong></td>
+          </tr>
+        `;
+      });
 
-            printWindowContent += `
-        <tr>
-          <td colspan="5" style="text-align: right; font-weight: bold; background: #f1f5f9;">
-            Total Recipe Cost:
-          </td>
-          <td style="font-weight: bold; background: #f1f5f9;">
-            ${escapeHtml(totalCost)}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
+      printWindowContent += `
+            <tr>
+              <td colspan="5" style="text-align: right; font-weight: bold; background: #f1f5f9;">Total Recipe Cost:</td>
+              <td style="font-weight: bold; background: #f1f5f9;">${escapeHtml(totalCost)}</td>
+            </tr>
+          </tbody>
+        </table>
           <div class="footer">
-            Generated via Household Expense Tools &bull; Free browser-based utility calculators.
-            <br>
+            Generated via Household Expense Tools &bull; Free browser-based utility calculators.<br>
             https://householdexpensetools.com/
           </div>
         </body>
@@ -557,7 +455,6 @@ latestCalculation.breakdownItems.forEach(function (item, index) {
       `;
 
       let iframe = document.getElementById("printIframe");
-
       if (!iframe) {
         iframe = document.createElement("iframe");
         iframe.id = "printIframe";
@@ -571,16 +468,13 @@ latestCalculation.breakdownItems.forEach(function (item, index) {
       }
 
       const doc = iframe.contentWindow.document;
-
       doc.open();
       doc.write(printWindowContent);
       doc.close();
-
       iframe.contentWindow.focus();
-
       setTimeout(function () {
         iframe.contentWindow.print();
       }, 500);
     });
   }
-}); 
+});
