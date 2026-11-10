@@ -15,6 +15,7 @@ body {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(15, 118, 110, 0.15); /* यह आपके ब्रांड कलर का हल्का सा बॉर्डर है */
 }
 
 .container {
