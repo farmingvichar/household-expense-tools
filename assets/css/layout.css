@@ -1,11 +1,13 @@
 body {
   min-inline-size: 20rem;
-  overflow-x: hidden;
+  overflow-x: clip;
   background: var(--color-bg);
 }
 
 .site-header {
+  position: -webkit-sticky;
   position: sticky;
+  top: 0;
   inset-block-start: 0;
   z-index: var(--z-header);
   min-block-size: var(--header-height);
