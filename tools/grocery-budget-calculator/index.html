@@ -158,16 +158,11 @@
 </p>
           </div>
 
-          <form class="tool-form" id="groceryBudgetForm" novalidate>
+                    <form class="tool-form" id="groceryBudgetForm" novalidate>
             <div class="form-grid">
              <div class="form-field">
                 <label for="currencySymbol">Currency symbol</label>
-                <select
-                  id="currencySymbol"
-                  name="currencySymbol"
-                  required
-                  aria-describedby="currencySymbolHelp"
-                  >
+                <select id="currencySymbol" name="currencySymbol" aria-describedby="currencySymbolHelp">
                   <option value="$" selected>$ USD</option>
                   <option value="₹">₹ INR</option>
                   <option value="€">€ EUR</option>
@@ -176,7 +171,7 @@
                   <option value="A$">A$ AUD</option>
                   <option value="¥">¥ JPY</option>
                 </select>
-                <small id="currencySymbolHelp">This only changes the display symbol. It does not convert money.</small>
+                <small id="currencySymbolHelp">Display symbol only. No conversion.</small>
               </div>
 
               <div class="form-field">
@@ -188,11 +183,11 @@
                   inputmode="decimal"
                   min="0"
                   step="0.01"
-                  placeholder="Example: 8000"
+                  placeholder="e.g. 600"
                   required
                   aria-describedby="monthlyBudgetHelp"
                 />
-                <small id="monthlyBudgetHelp">Enter your total planned grocery budget for this month.</small>
+                <small id="monthlyBudgetHelp">Total planned grocery spending for the month.</small>
               </div>
 
               <div class="form-field">
@@ -204,11 +199,11 @@
                   inputmode="decimal"
                   min="0"
                   step="0.01"
-                  placeholder="Example: 3200"
+                  placeholder="e.g. 215.50"
                   required
                   aria-describedby="alreadySpentHelp"
                 />
-                <small id="alreadySpentHelp">Enter how much of this same grocery budget you have already spent this month.</small>
+                <small id="alreadySpentHelp">Amount spent so far this month.</small>
               </div>
 
               <div class="form-field">
@@ -221,22 +216,21 @@
                   min="1"
                   max="31"
                   step="1"
-                  placeholder="Example: 18"
+                  placeholder="e.g. 14"
                   required
                   aria-describedby="daysLeftHelp"
                 />
-                <small id="daysLeftHelp">Enter remaining days in this month, including today if you still plan to buy groceries today. Use 1 to 31.</small>
+                <small id="daysLeftHelp">Include today if you plan to shop today (1-31).</small>
               </div>
             </div>
 
             <div class="form-actions">
               <button class="button-primary" type="submit">Calculate budget</button>
-              <button class="button-secondary" type="reset">Reset</button>
+              <button class="button-secondary" type="reset">Clear numbers</button>
             </div>
 
             <p class="privacy-note">
-              Your values are used only in your browser for this calculation. They are not saved,
-              not sent to a server, and no login is used.
+              🔒 <strong>Privacy First:</strong> Calculated locally in your browser. No data is saved or sent to any server.
             </p>
 
             <div
@@ -245,9 +239,10 @@
               role="status"
               aria-live="polite"
             >
-              Enter your grocery details and calculate your budget.
+              Start typing to see your budget calculate automatically.
             </div>
           </form>
+
 
           <section class="summary-grid calculator-results-grid" aria-label="Grocery budget results">
             <div class="summary-card">
