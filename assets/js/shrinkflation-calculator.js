@@ -270,30 +270,19 @@
       }
     }
 
-            form.addEventListener("input", updateCalculation);
+    form.addEventListener("input", updateCalculation);
     
-    // 1. Page reload rokne ke liye patch
+    // 1. Page reload रोकने और बटन का डार्क कलर (Focus) हटाने का पैच
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       updateCalculation();
+      if (document.activeElement) {
+        document.activeElement.blur(); 
+      }
     });
 
     if (currencySel) currencySel.addEventListener("change", updateCalculation);
     if (unitSel) unitSel.addEventListener("change", updateCalculation);
-
-    // [Yahan aapka purana presets, coffee, soap, aur copy button wala code rahega jo pehle se tha]
-
-    // 2. Clear numbers par warning (confirm popup) laane ke liye patch
-    if (resetBtn) {
-      resetBtn.addEventListener("click", function () {
-        if (confirm("Clear all package numbers?")) {
-          form.reset();
-          window.setTimeout(function () {
-            setRestingState("Cleared all numbers. Enter new package details to compare.");
-          }, 10);
-        }
-      });
-    }
 
     const btnChips = document.getElementById("presetChips");
     const btnCoffee = document.getElementById("presetCoffee");
@@ -368,11 +357,16 @@
       });
     }
 
+    // 2. Clear numbers पर Cancel दबाने से रीसेट रोकने का फाइनल पैच
     if (resetBtn) {
-      resetBtn.addEventListener("click", function () {
-        window.setTimeout(function () {
-          setRestingState("Cleared all numbers. Enter new package details to compare.");
-        }, 10);
+      resetBtn.addEventListener("click", function (e) {
+        e.preventDefault(); 
+        if (confirm("Clear all package numbers?")) {
+          form.reset();
+          window.setTimeout(function () {
+            setRestingState("Cleared all numbers. Enter new package details to compare.");
+          }, 10);
+        }
       });
     }
 
