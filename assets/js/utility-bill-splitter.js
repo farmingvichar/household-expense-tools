@@ -15,7 +15,7 @@
     ["days", "By days / shares"]
   ];
   
-  const nf = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+    let currencySym = "$";
   let uid = 1, state, lastText = "";
 
   // Helpers
@@ -26,7 +26,10 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; 
     }); 
   }
-  function fmt(c) { return nf.format(c / 100); }
+  function fmt(c) { 
+    return (c < 0 ? "-" : "") + currencySym + Math.abs(c / 100).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); 
+  }
+
   function toCents(s) { 
     const n = Number(String(s).replace(/[$,\s]/g, "")); 
     return isFinite(n) ? Math.round(n * 100) : NaN; 
@@ -68,12 +71,18 @@
       return true;
     } catch (e) { return false; }
   }
-  function save() {
+    function save() {
     if (!$("#persist").checked) return;
-    try { localStorage.setItem(KEY, JSON.stringify({ people: state.people, bills: state.bills, uid: uid })); } catch (e) {}
+    try { 
+      localStorage.setItem(KEY, JSON.stringify({ people: state.people, bills: state.bills, uid: uid })); 
+      localStorage.setItem(KEY + "-curr", currencySym);
+    } catch (e) {}
   }
   function unsave() { 
-    try { localStorage.removeItem(KEY); } catch (e) {} 
+    try { 
+      localStorage.removeItem(KEY); 
+      localStorage.removeItem(KEY + "-curr");
+    } catch (e) {} 
   }
 
   // Math Engine: Cents-safe allocation with rotating remainders
@@ -204,9 +213,9 @@
           <button type="button" class="x" data-rmb="${b.id}" aria-label="Remove bill"${state.bills.length <= 1 ? " disabled" : ""}>&times;</button>
         </div>
         <label>Amount</label>
-        <div class="money">
-          <span aria-hidden="true">$</span>
-          <input type="text" inputmode="decimal" data-f="amount" value="${esc(b.amount)}" placeholder="0.00" aria-label="Bill amount in dollars" autocomplete="off">
+                <div class="money">
+          <span aria-hidden="true">${esc(currencySym)}</span>
+          <input type="text" inputmode="decimal" data-f="amount" value="${esc(b.amount)}" placeholder="0.00" aria-label="Bill amount" autocomplete="off">
         </div>
         <label>Paid by</label>
         <select data-f="payer">${optList(b.payer)}</select>
@@ -372,7 +381,25 @@
   // Init
   const restored = load();
   if (!restored) state = defaults();
+  
+  // Set up currency dropdown
+  const currSel = $("#global-currency");
+  if (currSel) {
+    try { 
+      const savedCurr = localStorage.getItem(KEY + "-curr");
+      if (savedCurr) { currSel.value = savedCurr; currencySym = savedCurr; }
+    } catch(e) {}
+    
+    currSel.addEventListener("change", function() {
+      currencySym = this.value;
+      renderBills(); 
+      compute();     
+      save();
+    });
+  }
+
   $("#persist").checked = restored;
   renderPeople(); renderBills(); compute();
 
 })();
+
