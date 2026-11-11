@@ -270,7 +270,11 @@
       }
     }
 
-    form.addEventListener("input", updateCalculation);
+        form.addEventListener("input", updateCalculation);
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      updateCalculation();
+    });
     if (currencySel) currencySel.addEventListener("change", updateCalculation);
     if (unitSel) unitSel.addEventListener("change", updateCalculation);
 
