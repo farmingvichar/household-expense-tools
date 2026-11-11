@@ -118,11 +118,25 @@
 
           <hr style="margin: 2.5rem 0; border: 0; border-top: 1px solid var(--border-color, #d9e0e8);">
 
-          <!-- 2. Bills -->
+                    <!-- 2. Bills -->
           <div class="section-heading">
             <h2 id="h-bills">2. Bills</h2>
             <p>Add each bill with who paid it and how to split it. Leave the amount empty to skip a bill.</p>
           </div>
+
+          <!-- Currency Selector added here -->
+          <div style="margin-bottom: 1.5rem;">
+            <label for="global-currency" style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text-main, #14213d);">Currency symbol</label>
+            <select id="global-currency" style="width: 100%; min-height: 44px; padding: 8px 12px; border: 1px solid var(--border-color, #d9e0e8); border-radius: 10px; font: inherit; background-color: var(--bg-color, #ffffff);">
+              <option value="$">$ USD</option>
+              <option value="€">€ EUR</option>
+              <option value="£">£ GBP</option>
+              <option value="₹">₹ INR</option>
+              <option value="C$">C$ CAD</option>
+              <option value="A$">A$ AUD</option>
+            </select>
+          </div>
+
           <div id="bills"></div>
           <button type="button" id="add-bill" class="button-secondary">Add bill</button>
 
