@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Grocery Shrinkflation Calculator &amp; X-Ray Unit Price Tool</title>
+  <meta name="description" content="Calculate hidden grocery inflation and unit price hikes. Compare old and new package sizes with our visual shrinkflation X-Ray tool. 100% free and private." />
+  <meta name="theme-color" content="#0f766e" />
+  <link rel="canonical" href="https://householdexpensetools.com/tools/shrinkflation-calculator/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Grocery Shrinkflation Calculator &amp; X-Ray Unit Price Tool" />
+  <meta property="og:description" content="Spot stealth package downsizing and calculate true unit price hikes with our interactive X-Ray comparison tool." />
+  <meta property="og:url" content="https://householdexpensetools.com/tools/shrinkflation-calculator/" />
+  <meta property="og:site_name" content="Household Expense Tools" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Grocery Shrinkflation Calculator &amp; X-Ray Unit Price Tool" />
+  <meta name="twitter:description" content="Calculate hidden grocery inflation and unit price hikes directly in your browser with zero login." />
+
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="../../manifest.json" />
+
+  <link rel="stylesheet" href="../../assets/css/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/variables.css" />
+  <link rel="stylesheet" href="../../assets/css/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/layout.css" />
+  <link rel="stylesheet" href="../../assets/css/components.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
+
+  <!-- Structured Data: WebApplication + FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://householdexpensetools.com/tools/shrinkflation-calculator/#app",
+        "name": "Grocery Shrinkflation Calculator",
+        "url": "https://householdexpensetools.com/tools/shrinkflation-calculator/",
+        "applicationCategory": "ShoppingApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Calculate hidden price increases when grocery products downsize. Visually compare unit prices and missing product volume locally in your browser."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://householdexpensetools.com/tools/shrinkflation-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is shrinkflation in grocery shopping?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Shrinkflation occurs when a manufacturer downsizes a product's weight, volume, or sheet count while keeping the sticker price the same, resulting in a higher cost per unit."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I calculate the true percentage price increase?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Calculate the unit price for both packages (Price / Weight). Subtract the old unit price from the new unit price, divide by the old unit price, and multiply by 100."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is a 10% weight drop higher than a 10% price hike?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You pay the full price for only 90% of the goods. Dividing the original cost by the smaller volume yields an 11.1% effective increase per unit (100 / 90 = 1.111)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if both the price and package size dropped?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Calculate both unit rates. If the new price per ounce is higher than the previous price per ounce, the product still underwent shrinkflation despite a lower register total."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How can I spot downsized products while shopping?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Check the bottom shelf label for the unit price (cost per ounce or 100g) rather than the package price, and watch for \"new look\" or tapered packaging."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this calculator save or transmit my shopping data?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Calculations run locally in your web browser. No product names, prices, or personal data are stored or sent to any server."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="../../" aria-label="Household Expense Tools home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
+            <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span class="brand-text">Household Expense Tools</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="../../">Home</a></li>
+          <li><a href="../">Tools</a></li>
+          <li><a href="../../#why-use">Why Use Us</a></li>
+          <li><a href="../../faq/">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero-section">
+      <div class="container">
+        <p class="eyebrow">Grocery &amp; unit price comparison</p>
+        <div class="hero-text">
+          <h1>Grocery Shrinkflation Calculator</h1>
+          <p>
+            Compare old and new package sizes to expose hidden grocery inflation, missing weight, and real unit price hikes directly in your browser.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-section" aria-labelledby="calculator-heading">
+      <div class="container">
+        <article class="tool-card">
+          <div class="section-heading">
+            <h2 id="calculator-heading">Compare original vs. downsized packaging</h2>
+            <p>
+              Enter the price and net weight or volume of the original package alongside the current version. Use the same measurement unit for both packages.
+            </p>
+          </div>
+
+          <form class="tool-form" id="shrinkForm" novalidate>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="currencySymbol">Currency symbol</label>
+                <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
+                  <option value="$" selected>$ USD</option>
+                  <option value="₹">₹ INR</option>
+                  <option value="€">€ EUR</option>
+                  <option value="£">£ GBP</option>
+                  <option value="C$">C$ CAD</option>
+                  <option value="A$">A$ AUD</option>
+                  <option value="¥">¥ JPY</option>
+                </select>
+                <small id="currencySymbolHelp">Display symbol only. Does not convert currencies.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="quantityUnit">Measurement unit</label>
+                <select id="quantityUnit" name="quantityUnit" required aria-describedby="quantityUnitHelp">
+                  <option value="oz" selected>oz</option>
+                  <option value="fl oz">fl oz</option>
+                  <option value="g">g</option>
+                  <option value="ml">ml</option>
+                  <option value="lb">lb</option>
+                  <option value="kg">kg</option>
+                  <option value="sheets">sheets</option>
+                  <option value="items">items</option>
+                </select>
+                <small id="quantityUnitHelp">Use the same unit for both original and current packages.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="oldPrice">Old package price</label>
+                <input
+                  type="number"
+                  id="oldPrice"
+                  name="oldPrice"
+                  inputmode="decimal"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="Example: 4.29"
+                  required
+                  aria-describedby="oldPriceHelp"
+                />
+                <small id="oldPriceHelp">Original price paid before the package changed.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="oldSize">Old net weight or size</label>
+                <input
+                  type="number"
+                  id="oldSize"
+                  name="oldSize"
+                  inputmode="decimal"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="Example: 16"
+                  required
+                  aria-describedby="oldSizeHelp"
+                />
+                <small id="oldSizeHelp">Original weight, volume, or count printed on the pack.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="newPrice">New package price</label>
+                <input
+                  type="number"
+                  id="newPrice"
+                  name="newPrice"
+                  inputmode="decimal"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="Example: 4.29"
+                  required
+                  aria-describedby="newPriceHelp"
+                />
+                <small id="newPriceHelp">Current shelf price of the product.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="newSize">New net weight or size</label>
+                <input
+                  type="number"
+                  id="newSize"
+                  name="newSize"
+                  inputmode="decimal"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="Example: 13.5"
+                  required
+                  aria-describedby="newSizeHelp"
+                />
+                <small id="newSizeHelp">Current weight, volume, or count in the same unit.</small>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="button-secondary" type="button" id="presetChips">Example: Chips (16oz &rarr; 13.5oz)</button>
+              <button class="button-secondary" type="button" id="presetCoffee">Example: Coffee (12oz &rarr; 10.5oz)</button>
+              <button class="button-secondary" type="button" id="presetSoap">Example: Dish Soap (24oz &rarr; 21.6oz)</button>
+            </div>
+
+            <div class="form-actions">
+              <button class="button-primary" type="submit">Calculate shrinkflation</button>
+              <button class="button-secondary" type="button" id="copyBtn">Copy result summary</button>
+              <button class="button-secondary" type="reset" id="resetBtn">Clear numbers</button>
+            </div>
+
+            <p class="privacy-note">
+              🔒 <strong>Privacy First:</strong> Calculated locally in your browser. No data is saved or sent to any server.
+            </p>
+
+            <div class="status-message" id="shrinkStatus" role="status" aria-live="polite">
+              Enter package prices and sizes or tap an example button above to run the X-Ray comparison.
+            </div>
+          </form>
+
+          <section aria-label="Package X-Ray visual comparison">
+            <svg viewBox="0 0 320 265" width="100%" height="265" role="img" aria-labelledby="xraySvgTitle xraySvgDesc">
+              <title id="xraySvgTitle">Side-by-Side Package Shrinkflation X-Ray Visualizer</title>
+              <desc id="xraySvgDesc">Visual comparison between the original 100% full package on the left and the current package on the right highlighting missing weight as an empty air gap.</desc>
+              <defs>
+                <pattern id="airStripes" width="10" height="10" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+                  <rect width="10" height="10" fill="#fef2f2" />
+                  <line x1="0" y1="0" x2="0" y2="10" stroke="#ef4444" stroke-width="4" opacity="0.35" />
+                </pattern>
+                <pattern id="bonusStripes" width="10" height="10" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+                  <rect width="10" height="10" fill="#ecfdf5" />
+                  <line x1="0" y1="0" x2="0" y2="10" stroke="#10b981" stroke-width="4" opacity="0.4" />
+                </pattern>
+              </defs>
+
+              <!-- Left Box: Original Package -->
+              <text x="80" y="15" font-size="11" font-weight="700" fill="#475569" text-anchor="middle">BEFORE (100% FULL)</text>
+              <rect x="20" y="25" width="120" height="200" rx="8" fill="#0f766e" fill-opacity="0.1" stroke="#0f766e" stroke-width="2" />
+              <rect x="20" y="25" width="120" height="200" rx="6" fill="#0f766e" fill-opacity="0.88" />
+              <text id="svgOldSizeLabel" x="80" y="112" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Original Pack</text>
+              <text id="svgOldUnit" x="80" y="134" font-size="12" font-weight="600" fill="#e2e8f0" text-anchor="middle">---</text>
+              <text x="80" y="245" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">Original Package</text>
+
+              <!-- Right Box: Current Package -->
+              <text id="svgRightTopHeader" x="240" y="15" font-size="11" font-weight="700" fill="#475569" text-anchor="middle">AFTER (X-RAY VIEW)</text>
+              <rect x="180" y="25" width="120" height="200" rx="8" fill="#0f766e" fill-opacity="0.08" stroke="#0f766e" stroke-width="2" />
+              <rect id="svgAirZone" x="180" y="25" width="120" height="0" rx="6" fill="url(#airStripes)" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4 3" opacity="0" />
+              <rect id="svgFillZone" x="180" y="25" width="120" height="200" rx="6" fill="#0f766e" fill-opacity="0.88" />
+              <text id="svgAirText" x="240" y="50" font-size="12" font-weight="700" fill="#b91c1c" text-anchor="middle" dominant-baseline="central" opacity="0"></text>
+              <text id="svgNewSizeLabel" x="240" y="112" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Current Pack</text>
+              <text id="svgNewUnit" x="240" y="134" font-size="12" font-weight="600" fill="#e2e8f0" text-anchor="middle">---</text>
+              <text x="240" y="245" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">Current Package</text>
+            </svg>
+          </section>
+
+          <section class="summary-grid calculator-results-grid" aria-label="Shrinkflation calculation results">
+            <div class="summary-card">
+              <p class="summary-label">Old unit price</p>
+              <p id="oldUnitOutput">$0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">New unit price</p>
+              <p id="newUnitOutput">$0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Size / weight change</p>
+              <p id="weightLossOutput">0%</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">True hidden inflation</p>
+              <p id="trueInflationOutput">0%</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">12-month impact (2 packs/mo)</p>
+              <p id="annualLossOutput">$0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label" id="verdictTitle">Consumer verdict</p>
+              <p id="verdictText">Awaiting package numbers.</p>
+            </div>
+          </section>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="narrow-container">
+        <h2>How to Spot Shrinkflation on Grocery Shelves</h2>
+        <p>
+          Shrinkflation happens when brands reduce package net weight or volume while keeping the retail price unchanged. Because shoppers notice a price hike immediately but rarely check the fine-print ounce or gram count, these stealth increases quietly raise your household grocery bill.
+        </p>
+        <p>
+          A smaller package forces you to restock pantry staples more frequently. This shrinkflation calculator acts as a direct hidden inflation checker and grocery unit price comparison tool, comparing true unit prices so you can see past packaging redesigns and slack-fill marketing.
+        </p>
+
+        <h2>The Math: Why a 10% Size Drop Means an 11.1% Price Increase</h2>
+        <p>
+          When a package loses weight, the percentage increase in cost per unit is always higher than the percentage of lost food. You pay the full original price for less product. Running both numbers through our product weight loss calculator reveals the exact gap:
+        </p>
+        <p>
+          <strong>Old Unit Price = Old Price &divide; Old Weight or Volume</strong><br />
+          <strong>New Unit Price = New Price &divide; New Weight or Volume</strong><br />
+          <strong>Weight / Volume Loss % = ((Old Weight &minus; New Weight) &divide; Old Weight) &times; 100</strong><br />
+          <strong>True Hidden Inflation % = ((New Unit Price &minus; Old Unit Price) &divide; Old Unit Price) &times; 100</strong>
+        </p>
+
+        <h2>Real-World Shrinkflation Examples</h2>
+        <p>
+          Documented grocery audits across snack, pantry, and cleaning aisles reveal how subtle volume cuts add up:
+        </p>
+        <ul>
+          <li><strong>Party-Size Potato Chips:</strong> A bag previously weighing 16 oz at $4.29 reduced to 13.5 oz at the same price. The package shrank by 15.6%, but the unit cost jumped from $0.268/oz to $0.318/oz—a true price increase of 18.5%.</li>
+          <li><strong>Ground Coffee:</strong> A standard 12 oz bag downsized to 10.5 oz while maintaining an $8.99 sticker price. That 1.5 oz drop creates a 14.3% increase in your cost per morning cup.</li>
+          <li><strong>Liquid Dish Soap:</strong> A 24 fl oz bottle redesigned into a contoured 21.6 fl oz container at an unchanged $3.49 price tag represents an immediate 11.1% stealth rate hike.</li>
+        </ul>
+
+        <h2>Three Practical Ways to Protect Your Grocery Budget</h2>
+        <ol>
+          <li><strong>Check the Shelf Unit Tag:</strong> Always compare shelf tags displaying price per ounce, pound, or 100 grams rather than relying on the large printed sticker price.</li>
+          <li><strong>Watch for "New Look" Banners:</strong> Packaging redesigns, tapered bottles, and deeper box indentations frequently accompany net weight reductions.</li>
+          <li><strong>Compare Store Brands:</strong> When a name-brand product downsizes, private-label generic options often maintain standard legacy sizes at a significantly lower unit rate.</li>
+        </ol>
+
+        <h2>Limitations &amp; 100% Client-Side Privacy</h2>
+        <p>
+          Your shopping list and household budget details stay on your device. All unit calculations and X-Ray comparisons run entirely inside your browser. No numbers are sent to a server, saved in cookies, or collected for advertising profiles.
+        </p>
+        <p>
+          This tool is for personal consumer estimation only and does not provide certified financial, tax, or legal advice.
+        </p>
+
+        <h2>Related tools</h2>
+        <p>
+          Compare side-by-side supermarket packages with the <a href="../grocery-price-compare-calculator/">Grocery Unit Price Calculator</a>, plan monthly food spending with the <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a>, check multipack tissue deals with the <a href="../paper-towel-value-calculator/">Paper Towel Value Calculator</a>, or estimate spoiled food losses with the <a href="../food-waste-cost-calculator/">Food Waste Cost Calculator</a>.
+        </p>
+
+        <div class="section-header">
+          <span class="eyebrow">Frequently Asked Questions</span>
+          <h2 id="faq-heading">Grocery Shrinkflation FAQs</h2>
+          <p>Practical answers on detecting downsized packaging, unit price math, and grocery savings.</p>
+        </div>
+
+        <div class="faq-list feature-grid">
+          <article class="faq-item feature-card">
+            <details>
+              <summary>What is shrinkflation in grocery shopping?</summary>
+              <p>Shrinkflation occurs when a manufacturer downsizes a product's weight, volume, or sheet count while keeping the sticker price the same, resulting in a higher cost per unit.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>How do I calculate the true percentage price increase?</summary>
+              <p>Calculate the unit price for both packages (Price / Weight). Subtract the old unit price from the new unit price, divide by the old unit price, and multiply by 100.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Why is a 10% weight drop higher than a 10% price hike?</summary>
+              <p>You pay the full price for only 90% of the goods. Dividing the original cost by the smaller volume yields an 11.1% effective increase per unit (100 / 90 = 1.111).</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>What if both the price and package size dropped?</summary>
+              <p>Calculate both unit rates. If the new price per ounce is higher than the previous price per ounce, the product still underwent shrinkflation despite a lower register total.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>How can I spot downsized products while shopping?</summary>
+              <p>Check the bottom shelf label for the unit price (cost per ounce or 100g) rather than the package price, and watch for "new look" or tapered packaging.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Does this calculator save or transmit my shopping data?</summary>
+              <p>No. Calculations run locally in your web browser. No product names, prices, or personal data are stored or sent to any server.</p>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="section site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Household Expense Tools</p>
+        <p class="footer-text">
+          Simple, fast, privacy-friendly tools for home expenses, groceries, budgets, and kitchen planning.
+        </p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../../about/">About</a>
+        <a href="../">Tools</a>
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../terms/">Terms</a>
+        <a href="../../contact/">Contact</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="current-year">2026</span> Household Expense Tools. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/app.js" defer></script>
+  <script src="../../assets/js/shrinkflation-calculator.js" defer></script>
+</body>
+</html>
