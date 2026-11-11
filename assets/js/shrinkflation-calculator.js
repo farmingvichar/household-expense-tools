@@ -270,13 +270,30 @@
       }
     }
 
-        form.addEventListener("input", updateCalculation);
+            form.addEventListener("input", updateCalculation);
+    
+    // 1. Page reload rokne ke liye patch
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       updateCalculation();
     });
+
     if (currencySel) currencySel.addEventListener("change", updateCalculation);
     if (unitSel) unitSel.addEventListener("change", updateCalculation);
+
+    // [Yahan aapka purana presets, coffee, soap, aur copy button wala code rahega jo pehle se tha]
+
+    // 2. Clear numbers par warning (confirm popup) laane ke liye patch
+    if (resetBtn) {
+      resetBtn.addEventListener("click", function () {
+        if (confirm("Clear all package numbers?")) {
+          form.reset();
+          window.setTimeout(function () {
+            setRestingState("Cleared all numbers. Enter new package details to compare.");
+          }, 10);
+        }
+      });
+    }
 
     const btnChips = document.getElementById("presetChips");
     const btnCoffee = document.getElementById("presetCoffee");
