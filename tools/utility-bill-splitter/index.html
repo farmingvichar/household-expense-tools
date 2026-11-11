@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roommate Utility Bill Splitter – Free Shared Expense Calculator</title>
+  <meta name="description" content="Split electricity, water, Wi-Fi and groceries with roommates. Equal, percentage, fixed-amount or days-based splits, with a clear who-pays-whom summary. Free, no login.">
+  <link rel="canonical" href="https://householdexpensetools.com/tools/utility-bill-splitter/">
+  
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"How do I split utilities when a roommate moves in or out mid-month?","acceptedAnswer":{"@type":"Answer","text":"Use the days method. Enter how many days each person lived there. Each person pays their share of the bill in proportion to those days."}},
+      {"@type":"Question","name":"Should Wi-Fi be split equally?","acceptedAnswer":{"@type":"Answer","text":"Usually yes. Everyone benefits from the connection, and usage is hard to measure. If someone works from home and needs a premium plan, you can agree on a custom percentage instead."}},
+      {"@type":"Question","name":"What if one roommate pays late?","acceptedAnswer":{"@type":"Answer","text":"Agree on a due date up front, send the summary the day the bill arrives, and settle within a few days. Whoever put the bill on their card should not carry the cost for weeks."}},
+      {"@type":"Question","name":"Why do the shares sometimes differ by one cent?","acceptedAnswer":{"@type":"Answer","text":"A bill like $100.00 cannot be divided evenly by three. The calculator gives the extra cent to one person and rotates it between bills, so the shares always add up to the exact total."}},
+      {"@type":"Question","name":"Does this tool store my bills?","acceptedAnswer":{"@type":"Answer","text":"Calculations run in your browser and your bill data is not sent to our servers. If you tick Save on this device, the data is kept only in your own browser storage."}}
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #f5f7f9; --card: #ffffff; --ink: #14213d; --muted: #5b6678; --line: #d9e0e8;
+      --accent: #0f766e; --accent-ink: #ffffff; --soft: #e3f2f0; --warn: #b42318; --warn-bg: #fdecea;
+      --radius: 12px; color-scheme: light dark;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1722; --card: #17212f; --ink: #e8edf4; --muted: #9aa6b8; --line: #2a374a;
+        --accent: #2dd4bf; --accent-ink: #06201c; --soft: #12352f; --warn: #ff8a7a; --warn-bg: #3a1f1c;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    main { max-width: 720px; margin: 0 auto; padding: 20px 16px 56px; }
+    h1 { font-size: 1.65rem; line-height: 1.2; margin: 8px 0 8px; }
+    h2 { font-size: 1.25rem; line-height: 1.3; margin: 0 0 10px; }
+    h3 { font-size: 1.05rem; margin: 22px 0 6px; }
+    p { margin: 0 0 12px; }
+    .lead { color: var(--muted); max-width: 60ch; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; margin: 16px 0; }
+    label { display: block; font-size: .9rem; font-weight: 600; margin: 12px 0 4px; }
+    input, select, button { font: inherit; color: inherit; min-height: 44px; border-radius: 10px; }
+    input[type=text], input[type=number], input[type=search], select { width: 100%; padding: 8px 12px; background: var(--bg); border: 1px solid var(--line); }
+    input:focus-visible, select:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    button { cursor: pointer; border: 1px solid var(--line); background: var(--card); padding: 8px 14px; font-weight: 600; }
+    button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+    button:disabled { opacity: .45; cursor: not-allowed; }
+
+    /* UI FIX: Improved row layout for roommates and custom splits */
+    .row { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; }
+    .row input { flex: 1; min-width: 0; }
+    .x { flex: 0 0 44px; width: 44px; padding: 0; font-size: 1.3rem; line-height: 1; display: flex; align-items: center; justify-content: center; background: var(--bg); }
+    .money { display: flex; align-items: center; gap: 0; }
+    .money span { display: flex; align-items: center; justify-content: center; min-height: 44px; width: 40px; border: 1px solid var(--line); border-right: 0; border-radius: 10px 0 0 10px; background: var(--soft); font-weight: 700; }
+    .money input { border-radius: 0 10px 10px 0; }
+    .bill { border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; margin-bottom: 12px; background: var(--bg); }
+    .bill .top { display: flex; gap: 8px; }
+    .bill .top select { flex: 1; }
+
+    /* UI FIX: Clean alignment for custom split rows */
+    .vals { margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--line); }
+    .vals .vrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 8px; }
+    .vals .vrow span { flex: 1; min-width: 0; overflow-wrap: anywhere; font-weight: 500; }
+    .vals .vrow input { flex: 0 0 130px; width: 130px; text-align: right; }
+
+    .err { color: var(--warn); background: var(--warn-bg); border-radius: 8px; padding: 8px 10px; margin: 10px 0 0; font-size: .92rem; }
+    .err:empty { display: none; }
+    .note { color: var(--muted); font-size: .9rem; }
+    .cards { display: grid; grid-template-columns: 1fr; gap: 8px; margin: 10px 0; }
+    @media (min-width: 480px) { .cards { grid-template-columns: 1fr 1fr; } }
+    .pc { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+    .pc b { display: block; }
+    .pc.get { background: var(--soft); }
+    .pc .amt { font-size: 1.15rem; font-weight: 700; }
+    .pay { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .pay:last-child { border-bottom: 0; }
+    .pay strong { white-space: nowrap; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .check { display: flex; gap: 10px; align-items: center; margin-top: 14px; font-weight: 400; }
+    .check input { width: 22px; height: 22px; min-height: 0; }
+    details { border-top: 1px solid var(--line); padding: 6px 0; }
+    summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; align-items: center; }
+    article ul { padding-left: 20px; margin: 0 0 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: .95rem; margin: 8px 0 12px; }
+    th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+    footer { margin-top: 28px; color: var(--muted); font-size: .88rem; }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  </style>
+</head>
+
+<body>
+  <!-- Standard Site Header -->
+  <header style="max-width:720px;margin:0 auto;padding:12px 16px 0;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem;font-weight:600;">
+    <a href="../../" style="color:var(--accent);text-decoration:none;">← Household Expense Tools</a>
+    <a href="../" style="color:var(--muted);text-decoration:none;">All Tools</a>
+  </header>
+
+  <main>
+    <h1>Roommate Utility Bill Splitter</h1>
+    <p class="lead">Add your roommates and your bills. See exactly who owes whom, in the fewest payments. No account needed.</p>
+
+    <section class="card" aria-labelledby="h-people">
+      <h2 id="h-people">1. Roommates</h2>
+      <div id="people"></div>
+      <p class="err" id="people-err" role="alert"></p>
+      <button type="button" id="add-person">Add roommate</button>
+    </section>
+
+    <section class="card" aria-labelledby="h-bills">
+      <h2 id="h-bills">2. Bills</h2>
+      <p class="note">Add each bill with who paid it and how to split it. Leave the amount empty to skip a bill.</p>
+      <div id="bills"></div>
+      <button type="button" id="add-bill">Add bill</button>
+    </section>
+
+    <section class="card" aria-labelledby="h-res" aria-live="polite">
+      <h2 id="h-res">3. Who pays whom</h2>
+      <div id="results"><p class="note">Enter a bill amount to see the summary.</p></div>
+      <div class="actions">
+        <button type="button" class="primary" id="copy" disabled>Copy summary</button>
+        <button type="button" id="reset">Reset all</button>
+        <span class="note" id="copy-status" role="status"></span>
+      </div>
+      <label class="check"><input type="checkbox" id="persist"> Save on this device so it is here when I come back</label>
+      <p class="note">Saved data stays in this browser only. Untick to delete it.</p>
+    </section>
+
+    <section class="card" aria-labelledby="h-how">
+      <h2 id="h-how">How we calculate</h2>
+      <p>All math uses whole cents, so shares always add up to the exact bill. When a bill cannot divide evenly, the extra cents go to different people on different bills.</p>
+      <ul>
+        <li><b>Equal:</b> everyone pays the same share.</li>
+        <li><b>Percent:</b> percentages must add up to 100%.</li>
+        <li><b>Fixed amounts:</b> amounts must add up to the bill total.</li>
+        <li><b>Days / shares:</b> share = bill × (your days ÷ everyone's days). Enter 0 to leave someone out.</li>
+      </ul>
+      <p><b>Balance</b> = what you paid − what you owe. A positive balance means you get money back. A negative balance means you pay. Then the person who owes the most pays the person owed the most, and so on until everyone is settled. That takes at most one payment fewer than the number of roommates.</p>
+      <p><b>Example:</b> Alex pays a $150.00 electric bill for 3 roommates, split equally. Each owes $50.00. Alex paid $150.00, so Alex gets back $100.00. Sam and Jordan each pay Alex $50.00.</p>
+      <p class="note">Calculations run in your browser. We do not receive your bill data.</p>
+    </section>
+
+    <article class="card" aria-labelledby="h-guide">
+      <h2 id="h-guide">How to split household bills fairly</h2>
+      <p>Most roommate fights are not about money. They are about surprises. Agree on the rules before the first bill arrives, write them down, and run the numbers in one place everyone can see.</p>
+
+      <h3>Equal split vs. usage-based split</h3>
+      <table>
+        <tr><th>Expense</th><th>Usually fair</th></tr>
+        <tr><td>Wi-Fi</td><td>Equal</td></tr>
+        <tr><td>Electricity, gas, water</td><td>Equal, or by days if someone moves in or out</td></tr>
+        <tr><td>Shared groceries</td><td>Equal, or fixed amounts for what each person actually uses</td></tr>
+        <tr><td>Streaming and subscriptions</td><td>Only people who use it</td></tr>
+      </table>
+      <p>Equal splits are simplest and cause the fewest arguments. Switch to a custom split only when the difference is large and easy to prove, such as one person working from home with a space heater running all day.</p>
+
+      <h3>When someone moves in or out mid-month</h3>
+      <p>Use the days method. A roommate who lived there 10 of 30 days pays one third of what a full-month roommate pays. Count the actual days both sides agree on and keep the number in your group chat.</p>
+
+      <h3>When rooms are different sizes</h3>
+      <p>For rent, a common approach is to split by room size or features, for example 40/30/30. Use the percent method for that. Utilities are usually still split equally, since everyone shares the kitchen, heat and Wi-Fi.</p>
+
+      <h3>How to ask for money without the awkwardness</h3>
+      <p>Send the summary the day the bill arrives. Keep it factual: the bill, the share, the due date. The copy button produces a plain message you can paste straight into your group chat. Many roommates then settle by Venmo, Zelle or Cash App; those are separate apps, and this tool does not connect to them.</p>
+
+      <h3>Frequently asked questions</h3>
+      <details><summary>How do I split utilities when a roommate moves in or out mid-month?</summary><p>Use the days method. Enter how many days each person lived there. Each person pays their share of the bill in proportion to those days.</p></details>
+      <details><summary>Should Wi-Fi be split equally?</summary><p>Usually yes. Everyone benefits from the connection, and usage is hard to measure. If someone works from home and needs a premium plan, you can agree on a custom percentage instead.</p></details>
+      <details><summary>What if one roommate pays late?</summary><p>Agree on a due date up front, send the summary the day the bill arrives, and settle within a few days. Whoever put the bill on their card should not carry the cost for weeks.</p></details>
+      <details><summary>Why do the shares sometimes differ by one cent?</summary><p>A bill like $100.00 cannot be divided evenly by three. The calculator gives the extra cent to one person and rotates it between bills, so the shares always add up to the exact total.</p></details>
+      <details><summary>Does this tool store my bills?</summary><p>Calculations run in your browser and your bill data is not sent to our servers. If you tick Save on this device, the data is kept only in your own browser storage.</p></details>
+    </article>
+
+    <footer>
+      <p>For informational purposes only. This is not legal or financial advice. Utility billing rules vary by state, utility company and lease; check your lease and local rules.</p>
+      <p>Last updated: November 11, 2026</p>
+    </footer>
+  </main>
+
+  <!-- External JS file link (ready for when you create the JS file) -->
+  <script src="../../assets/js/utility-bill-splitter.js" defer></script>
+</body>
+</html>
