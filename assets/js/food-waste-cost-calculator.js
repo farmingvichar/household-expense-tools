@@ -28,17 +28,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function formatMoney(symbol, amount) {
-    return symbol + amount.toFixed(2);
+    const cleanAmount = Math.abs(amount).toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+    return (amount < 0 ? "-" : "") + symbol + cleanAmount;
   }
 
   function formatPercentage(value) {
     const roundedValue = Math.round(value * 10) / 10;
-
-    if (Number.isInteger(roundedValue)) {
-      return roundedValue.toString() + "%";
-    }
-
-    return roundedValue.toFixed(1) + "%";
+    return (Number.isInteger(roundedValue) ? roundedValue : roundedValue.toFixed(1)) + "%";
   }
 
   function resetResults() {
@@ -55,56 +54,58 @@ document.addEventListener("DOMContentLoaded", function () {
     statusMessage.textContent = message;
   }
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
+  function calculateFoodWaste(isExplicitSubmit = false) {
     const currencySymbol = currencySymbolInput.value.trim();
     const quantityUnit = quantityUnitInput.value.trim();
     const totalCostValue = totalCostInput.value.trim();
     const totalQuantityValue = totalQuantityInput.value.trim();
     const wastedQuantityValue = wastedQuantityInput.value.trim();
 
+    // जब तक अनिवार्य फील्ड न भरे हों, टाइप करते समय शांत रहें
+    if (!totalCostValue || !totalQuantityValue || !wastedQuantityValue) {
+      if (isExplicitSubmit) {
+        if (!currencySymbol) {
+          clearResultsForError("Please select a currency symbol.");
+          return;
+        }
+        if (!quantityUnit) {
+          clearResultsForError("Please select a quantity unit.");
+          return;
+        }
+        if (!totalCostValue) {
+          clearResultsForError("Please enter the total food or item cost.");
+          return;
+        }
+        if (!totalQuantityValue) {
+          clearResultsForError("Please enter the total quantity bought.");
+          return;
+        }
+        if (!wastedQuantityValue) {
+          clearResultsForError("Please enter the wasted quantity.");
+          return;
+        }
+      } else {
+        resetResults();
+      }
+      return;
+    }
+
     const totalCost = Number(totalCostValue);
     const totalQuantity = Number(totalQuantityValue);
     const wastedQuantity = Number(wastedQuantityValue);
 
-    if (currencySymbol === "") {
-      clearResultsForError("Please select a currency symbol.");
-      return;
-    }
-
-    if (quantityUnit === "") {
-      clearResultsForError("Please select a quantity unit.");
-      return;
-    }
-
-    if (totalCostValue === "") {
-      clearResultsForError("Please enter the total food or item cost.");
-      return;
-    }
-
     if (!Number.isFinite(totalCost) || totalCost <= 0) {
-      clearResultsForError("Total food or item cost must be greater than 0.");
-      return;
-    }
-
-    if (totalQuantityValue === "") {
-      clearResultsForError("Please enter the total quantity bought.");
+      if (isExplicitSubmit) clearResultsForError("Total food or item cost must be greater than 0.");
       return;
     }
 
     if (!Number.isFinite(totalQuantity) || totalQuantity <= 0) {
-      clearResultsForError("Total quantity bought must be greater than 0.");
-      return;
-    }
-
-    if (wastedQuantityValue === "") {
-      clearResultsForError("Please enter the wasted quantity.");
+      if (isExplicitSubmit) clearResultsForError("Total quantity bought must be greater than 0.");
       return;
     }
 
     if (!Number.isFinite(wastedQuantity) || wastedQuantity < 0) {
-      clearResultsForError("Wasted quantity must be 0 or greater.");
+      if (isExplicitSubmit) clearResultsForError("Wasted quantity must be 0 or greater.");
       return;
     }
 
@@ -123,15 +124,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (wastedQuantity === 0) {
       statusMessage.textContent = "No wasted quantity entered. Estimated wasted value is zero.";
-      return;
-    }
-
-    if (wastedQuantity === totalQuantity) {
+    } else if (wastedQuantity === totalQuantity) {
       statusMessage.textContent = "All entered quantity is marked as wasted.";
-      return;
+    } else {
+      statusMessage.textContent = "Food waste cost calculated successfully.";
     }
+  }
 
-    statusMessage.textContent = "Food waste cost calculated successfully.";
+  // लाइव कैलकुलेशन: टाइप करते ही रिजल्ट अपडेट
+  form.addEventListener("input", function () {
+    calculateFoodWaste(false);
+  });
+
+  // सेलेक्ट बॉक्स बदलने पर अपडेट
+  currencySymbolInput.addEventListener("change", function () {
+    calculateFoodWaste(false);
+  });
+  quantityUnitInput.addEventListener("change", function () {
+    calculateFoodWaste(false);
+  });
+
+  // फॉर्म सबमिट (बटन क्लिक या कीबोर्ड एंटर)
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    calculateFoodWaste(true);
   });
 
   form.addEventListener("reset", function () {
