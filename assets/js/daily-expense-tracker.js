@@ -62,14 +62,17 @@
     ].join("-");
   }
 
-  function formatAmount(value) {
+    function formatAmount(value) {
     var number = Number(value);
 
     if (!Number.isFinite(number)) {
       return "0.00";
     }
 
-    return number.toFixed(2);
+    return number.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
   }
 
     function formatDateLabel(dateString) {
