@@ -140,16 +140,16 @@
 </p>
           </div>
 
-          <div class="hero-card" aria-labelledby="tracker-heading">
+                    <div class="hero-card" aria-labelledby="tracker-heading">
             <div class="section-header">
-              <h2 id="tracker-heading">Track an expense</h2>
+              <h2 id="tracker-heading">Log an Expense</h2>
               <p>
-                Enter a name, amount, category, and date. Amounts are shown as clean numbers so the tracker can be used with any currency.
+                Record your daily household purchases. Everything is organized automatically by date and category.
               </p>
             </div>
 
             <p class="privacy-note">
-              Privacy note: your expense entries are saved only in this browser on this device using localStorage. No login, backend, analytics, or tracking is used.
+              🔒 <strong>100% Private &amp; Offline:</strong> Your entries are stored locally on your device in your browser. No account required, no server sync, and no tracking.
             </p>
 
             <form id="expense-form" class="tool-form" novalidate>
@@ -162,12 +162,12 @@
                     name="expenseName"
                     autocomplete="off"
                     maxlength="80"
-                    placeholder="Example: Weekly groceries"
+                    placeholder="e.g., Trader Joe's groceries"
                     required
                   >
                 </div>
 
-                   <div class="form-field">
+                <div class="form-field">
                   <label for="expense-amount">Amount</label>
                   <input
                     type="number"
@@ -176,7 +176,7 @@
                     inputmode="decimal"
                     min="0.01"
                     step="0.01"
-                    placeholder="Example: 25.00"
+                    placeholder="e.g., 42.50"
                     required
                   >
                 </div>
@@ -289,135 +289,130 @@
     <section class="section section-soft" aria-labelledby="how-to-use-heading">
       <div class="container">
         <div class="section-header">
-          <h2 id="how-to-use-heading">How to use the Daily Expense Tracker</h2>
-          <p>Use the tracker for simple daily household expense logging in your browser.</p>
+          <span class="eyebrow">Practical Spending Control</span>
+          <h2 id="how-to-use-heading">How to Keep Daily Spending on Track</h2>
+          <p>A quick 10-second habit to catch household budget leaks before the month ends.</p>
         </div>
 
         <div class="feature-grid">
           <article class="feature-card">
-            <h3>1. Add the expense details</h3>
+            <h3>1. Log as you spend</h3>
             <p>
-              Enter a short expense name, add the amount as a number without any currency symbol, choose a category, and select the date.
+              Record supermarket runs, utility top-ups, fuel, or quick takeout meals right from your phone.
             </p>
           </article>
 
           <article class="feature-card">
-            <h3>2. Save the entry</h3>
+            <h3>2. Review running totals</h3>
             <p>
-              Select Add expense to save the entry locally in this browser on this device.
+              Instantly see today's burn rate alongside your cumulative monthly total without setting up spreadsheets.
             </p>
           </article>
 
           <article class="feature-card">
-            <h3>3. Review and manage</h3>
+            <h3>3. Stay in control</h3>
             <p>
-              Review today’s total, this month’s total, and your saved entries. Delete single entries or clear all expenses when needed.
+              Spot minor spending spikes early in the month so you can adjust before your next grocery run.
             </p>
           </article>
         </div>
       </div>
     </section>
 
-        <section class="section" aria-labelledby="calculates-heading">
+    <section class="section" aria-labelledby="calculates-heading">
       <div class="container">
         <div class="section-header">
-          <h2 id="calculates-heading">What this tracker calculates</h2>
+          <h2 id="calculates-heading">How Totals Are Calculated</h2>
           <p>
-            This tool calculates the total amount added for the current browser date, the total amount added for the current month, the cumulative all-time saved total, and the total number of recorded entries.
+            This tracker automatically tallies your entries across three distinct timeframes:
           </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Today Total</h3>
+            <p>Sums all transactions stamped with today's calendar date to monitor day-to-day spending limits.</p>
+          </article>
+          <article class="feature-card">
+            <h3>This Month Total</h3>
+            <p>Aggregates spending from the 1st of the current month to today, making it easy to pace monthly bills.</p>
+          </article>
+          <article class="feature-card">
+            <h3>All-Time History</h3>
+            <p>Keeps a running balance of your active log until you choose to remove individual rows or clear history.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" aria-labelledby="related-tools-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="related-tools-heading">Related Budgeting Tools</h2>
           <p>
-            It is designed for simple household tracking only. It does not provide budgeting advice, financial advice, tax advice, legal advice, or account-level reporting.
+            Compare grocery shelf prices with the <a href="../grocery-price-compare-calculator/">Grocery Unit Price Calculator</a>,
+            calculate fixed overhead with the <a href="../monthly-expense-calculator/">Monthly Expense Calculator</a>,
+            estimate home power usage with the <a href="../electricity-cost-calculator/">Electricity Cost Calculator</a>,
+            or budget food shops with the <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a>.
           </p>
         </div>
       </div>
     </section>
 
-
-    <section class="section section-soft" aria-labelledby="privacy-heading">
-      <div class="container">
-        <div class="section-header">
-          <h2 id="privacy-heading">Privacy and localStorage note</h2>
-          <p>
-            The tracker uses your browser’s localStorage to remember the expenses you enter. This means your data stays on the current device and browser unless you clear it.
-          </p>
-          <p>
-            Because there is no account system or backend, your saved entries will not automatically sync across devices or browsers.
-          </p>
-        </div>
-      </div>
-    </section>
-    
-<section class="section" aria-labelledby="related-tools-heading">
-  <div class="container">
-    <div class="section-header">
-      <h2 id="related-tools-heading">Related tools</h2>
-      <p>
-  Calculate monthly totals with the <a href="../monthly-expense-calculator/">Monthly Expense Calculator</a>,
-  estimate appliance electricity cost with the <a href="../electricity-cost-calculator/">Electricity Cost Calculator</a>,
-  plan grocery spending with the <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a>,
-  or estimate laundry spending with the <a href="../laundry-cost-calculator/">Laundry Cost Calculator</a>.
-</p>
-    </div>
-  </div>
-</section>
-    
     <section class="section" aria-labelledby="faq-heading">
       <div class="container">
         <div class="section-header">
-          <h2 id="faq-heading">FAQ</h2>
-          <p>Common questions about this browser-based expense tracker.</p>
+          <span class="eyebrow">Frequently Asked Questions</span>
+          <h2 id="faq-heading">Daily Expense Tracker FAQs</h2>
+          <p>Clear details on offline storage, privacy, and tracking household expenses.</p>
         </div>
 
         <div class="feature-grid">
           <article class="feature-card">
             <details>
-              <summary>Is this daily expense tracker free to use?</summary>
+              <summary>Is this expense tracker free and private to use?</summary>
               <p>
-                Yes. The Daily Expense Tracker is free to use in your browser and does not require login or account registration.
+                Yes. The tool is 100% free with no account setup or sign-in. Your entries are saved locally in your browser's private storage, meaning your personal financial numbers never leave your phone or computer.
               </p>
             </details>
           </article>
 
           <article class="feature-card">
             <details>
-              <summary>Where are my expense entries saved?</summary>
+              <summary>Will my expenses disappear if I close the browser tab?</summary>
               <p>
-                Your entries are saved only in localStorage in the browser on your current device. They are not sent to a server.
+                No. Entries are saved in your browser's localStorage. You can close the tab or turn off your device, and your numbers will still be here when you return.
               </p>
             </details>
           </article>
 
           <article class="feature-card">
             <details>
-              <summary>Can I delete saved expenses?</summary>
+              <summary>What happens if I clear my browser cookies or browsing history?</summary>
               <p>
-                Yes. You can delete a single expense from the list or clear all saved expenses after confirmation.
+                Because localStorage is tied to your browser, clearing website storage or private browsing history will erase saved entries. For long-term records, jot down monthly totals before doing a full browser cleanup.
               </p>
             </details>
           </article>
 
-                  <article class="feature-card">
+          <article class="feature-card">
             <details>
-              <summary>Does this tool give financial advice?</summary>
+              <summary>Can I remove an accidental or incorrect entry?</summary>
               <p>
-                No. This tool is only a simple household expense tracking utility and should not be treated as financial, tax, or legal advice.
+                Yes. Each recorded item has its own delete button so you can remove mistakes instantly without resetting your entire log.
               </p>
             </details>
           </article>
 
-                    <article class="feature-card">
+          <article class="feature-card">
             <details>
-              <summary>What happens to my entries if I clear browser cache or history?</summary>
+              <summary>Does this tracker convert different currencies?</summary>
               <p>
-                Because entries are saved in your browser's localStorage, clearing your browser cache, cookies, or website storage will delete your saved expenses. If you regularly clear browsing data, keep a separate record of important totals.
+                No currency conversions are performed. The tracker logs plain numbers so you can track in USD ($), EUR (€), GBP (£), INR (₹), or any currency you use at home.
               </p>
             </details>
           </article>
         </div>
       </div>
-      <div class="container">
-  <p><a href="../../faq/">Read all FAQs</a></p>
-</div>
     </section>
 
   </main>
