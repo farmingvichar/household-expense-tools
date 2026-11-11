@@ -180,11 +180,15 @@
           svgFillZone.setAttribute("y", String(fillY));
           svgFillZone.setAttribute("height", String(fillHeight));
 
-          svgAirText.textContent = "−" + sizeLossPct.toFixed(1) + "% MISSING";
-          svgAirText.setAttribute("y", String(25 + Math.max(airHeight / 2, 12)));
-          svgAirText.setAttribute("fill", "#b91c1c");
-          svgAirText.setAttribute("opacity", airHeight >= 22 ? "1" : "0");
-
+                      // Fix 3: Show air percentage label safely ONLY when air gap height is >= 24px
+            if (airHeight >= 24) {
+              svgAirText.textContent = "−" + sizeLossPct.toFixed(1) + "%";
+              svgAirText.setAttribute("y", String(25 + (airHeight / 2)));
+              svgAirText.setAttribute("fill", "#b91c1c");
+              svgAirText.setAttribute("opacity", "1");
+            } else {
+              svgAirText.setAttribute("opacity", "0");
+            }
           if (fillHeight >= 55) {
             const centerFillY = fillY + (fillHeight / 2);
             svgNewSizeLabel.setAttribute("y", String(centerFillY - 8));
