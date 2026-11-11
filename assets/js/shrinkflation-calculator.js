@@ -1,378 +1,360 @@
 /**
- * Household Expense Tools - Roommate Utility Bill Splitter
- * Cents-safe mathematical engine, debt settlement algorithm, and UI state manager.
+ * Household Expense Tools - Grocery Shrinkflation Calculator Script
+ * Client-side calculation engine for shrinkflation X-Ray comparison.
  */
 
 (function () {
   "use strict";
 
-  const KEY = "hxt-utility-bill-splitter";
-  const CATS = ["Electricity", "Water", "Wi-Fi / Internet", "Gas", "Shared groceries", "Other"];
-  const SPLITS = [
-    ["equal", "Equal split"],
-    ["percent", "By percent"],
-    ["amount", "Fixed amounts"],
-    ["days", "By days / shares"]
-  ];
-  
-  const nf = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
-  let uid = 1, state, lastText = "";
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("shrinkForm");
+    if (!form) return;
 
-  // Helpers
-  function nid() { return "i" + (uid++); }
-  function $(s) { return document.querySelector(s); }
-  function esc(s) { 
-    return String(s).replace(/[&<>"']/g, function (c) { 
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; 
-    }); 
-  }
-  function fmt(c) { return nf.format(c / 100); }
-  function toCents(s) { 
-    const n = Number(String(s).replace(/[$,\s]/g, "")); 
-    return isFinite(n) ? Math.round(n * 100) : NaN; 
-  }
-  function num(v) { 
-    if (v === undefined || v === "") return 0; 
-    const n = Number(v); 
-    return isFinite(n) ? n : NaN; 
-  }
+    const currencySel = document.getElementById("currencySymbol");
+    const unitSel = document.getElementById("quantityUnit");
 
-  // Default State
-  function defaults() {
-    const a = nid(), b = nid(), c = nid();
-    return { 
-      people: [
-        { id: a, name: "Alex" }, 
-        { id: b, name: "Sam" }, 
-        { id: c, name: "Jordan" }
-      ], 
-      bills: [newBill(a, "Electricity")] 
-    };
-  }
-  function newBill(payer, cat) { 
-    return { id: nid(), cat: cat || "Electricity", amount: "", payer: payer, split: "equal", vals: {} }; 
-  }
-  function pname(p, i) { 
-    return p.name.trim() || ("Roommate " + (i + 1)); 
-  }
+    const oldPriceIn = document.getElementById("oldPrice");
+    const oldSizeIn = document.getElementById("oldSize");
+    const newPriceIn = document.getElementById("newPrice");
+    const newSizeIn = document.getElementById("newSize");
 
-  // Local Storage Management
-  function load() {
-    try {
-      const raw = localStorage.getItem(KEY);
-      if (!raw) return false;
-      const d = JSON.parse(raw);
-      if (!d || !Array.isArray(d.people) || !Array.isArray(d.bills) || d.people.length < 2) return false;
-      state = { people: d.people, bills: d.bills };
-      uid = Number(d.uid) || 100;
-      return true;
-    } catch (e) { return false; }
-  }
-  function save() {
-    if (!$("#persist").checked) return;
-    try { localStorage.setItem(KEY, JSON.stringify({ people: state.people, bills: state.bills, uid: uid })); } catch (e) {}
-  }
-  function unsave() { 
-    try { localStorage.removeItem(KEY); } catch (e) {} 
-  }
+    const svgOldSizeLabel = document.getElementById("svgOldSizeLabel");
+    const svgOldUnit = document.getElementById("svgOldUnit");
+    const svgNewSizeLabel = document.getElementById("svgNewSizeLabel");
+    const svgNewUnit = document.getElementById("svgNewUnit");
+    const svgAirZone = document.getElementById("svgAirZone");
+    const svgAirText = document.getElementById("svgAirText");
+    const svgFillZone = document.getElementById("svgFillZone");
 
-  // Math Engine: Cents-safe allocation with rotating remainders
-  function allocate(total, w, offset) {
-    const n = w.length;
-    let sum = 0, i;
-    for (i = 0; i < n; i++) sum += w[i];
-    
-    const exact = w.map(x => total * x / sum);
-    const base = exact.map(Math.floor);
-    
-    let used = 0;
-    for (i = 0; i < n; i++) used += base[i];
-    
-    const rem = total - used;
-    const order = [];
-    for (i = 0; i < n; i++) order.push(i);
-    
-    order.sort((a, b) => {
-      const fa = exact[a] - base[a], fb = exact[b] - base[b];
-      if (Math.abs(fa - fb) > 1e-9) return fb - fa;
-      return ((a - offset + n) % n) - ((b - offset + n) % n);
-    });
-    
-    for (i = 0; i < rem; i++) base[order[i % n]]++;
-    return base;
-  }
+    const verdictTitle = document.getElementById("verdictTitle");
+    const verdictText = document.getElementById("verdictText");
+    const statusMessage = document.getElementById("shrinkStatus");
 
-  function billShares(b, idx) {
-    if (String(b.amount).trim() === "") return { skip: true };
-    const total = toCents(b.amount);
-    const n = state.people.length;
-    let i, w = [];
+    const oldUnitOutput = document.getElementById("oldUnitOutput");
+    const newUnitOutput = document.getElementById("newUnitOutput");
+    const weightLossOutput = document.getElementById("weightLossOutput");
+    const trueInflationOutput = document.getElementById("trueInflationOutput");
+    const annualLossOutput = document.getElementById("annualLossOutput");
 
-    if (!(total > 0)) return { err: "Bill amount must be greater than zero." };
-    if (total > 100000000) return { err: "Bill amount is too large." };
+    const copyBtn = document.getElementById("copyBtn");
+    const resetBtn = document.getElementById("resetBtn");
 
-    if (b.split === "equal") { 
-      for (i = 0; i < n; i++) w.push(1); 
-      return { total: total, shares: allocate(total, w, idx) }; 
+    function formatUnitMoney(symbol, amount) {
+      const absVal = Math.abs(amount);
+      const decimals = absVal > 0 && absVal < 0.1 ? 4 : 3;
+      return (amount < 0 ? "-" : "") + symbol + absVal.toLocaleString("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
     }
 
-    if (b.split === "amount") {
-      let cs = [], s = 0;
-      for (i = 0; i < n; i++) { 
-        let c = b.vals[state.people[i].id] === undefined || b.vals[state.people[i].id] === "" ? 0 : toCents(b.vals[state.people[i].id]);
-        if (!(c >= 0)) return { err: "Enter amounts of $0 or more." }; 
-        cs.push(c); s += c; 
-      }
-      if (s !== total) return { err: "Amounts add up to " + fmt(s) + ". " + (s < total ? "Remaining: " : "Over by: ") + fmt(Math.abs(total - s)) + "." };
-      return { total: total, shares: cs };
+    function formatStandardMoney(symbol, amount) {
+      const absVal = Math.abs(amount);
+      return (amount < 0 ? "-" : "") + symbol + absVal.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
     }
 
-    let sum = 0;
-    for (i = 0; i < n; i++) { 
-      let v = num(b.vals[state.people[i].id]);
-      if (!(v >= 0)) return { err: b.split === "percent" ? "Enter percentages of 0 or more." : "Enter days or shares of 0 or more." };
-      w.push(v); sum += v; 
-    }
-
-    if (b.split === "percent") {
-      if (Math.abs(sum - 100) > 0.001) { 
-        let d = Math.round(Math.abs(100 - sum) * 100) / 100;
-        return { err: "Percentages add up to " + (Math.round(sum * 100) / 100) + "%. " + (sum < 100 ? "Remaining: " : "Over by: ") + d + "%." };
-      }
-    } else if (!(sum > 0)) {
-      return { err: "Enter at least one day or share above 0." };
-    }
-    
-    return { total: total, shares: allocate(total, w, idx) };
-  }
-
-  // Minimum Transaction Settlement Engine
-  function settle(nets) {
-    const cr = [], db = [], out = [];
-    nets.forEach(x => { 
-      if (x.net > 0) cr.push({ i: x.i, a: x.net }); 
-      else if (x.net < 0) db.push({ i: x.i, a: -x.net }); 
-    });
-    cr.sort((a, b) => b.a - a.a); 
-    db.sort((a, b) => b.a - a.a);
-    
-    let i = 0, j = 0;
-    while (i < db.length && j < cr.length) {
-      const m = Math.min(db[i].a, cr[j].a);
-      out.push({ from: db[i].i, to: cr[j].i, a: m });
-      db[i].a -= m; cr[j].a -= m;
-      if (db[i].a === 0) i++;
-      if (cr[j].a === 0) j++;
-    }
-    return out;
-  }
-
-  // Rendering Functions
-  function optList(sel) {
-    return state.people.map((p, i) => `<option data-pid="${p.id}" value="${p.id}"${sel === p.id ? " selected" : ""}>${esc(pname(p, i))}</option>`).join("");
-  }
-
-  function renderPeople() {
-    $("#people").innerHTML = state.people.map((p, i) => `
-      <div class="row">
-        <input type="text" maxlength="24" data-name="${p.id}" value="${esc(p.name)}" aria-label="Roommate ${i + 1} name" placeholder="Roommate ${i + 1}" autocomplete="off">
-        <button type="button" class="x" data-rmp="${p.id}" aria-label="Remove ${esc(pname(p, i))}"${state.people.length <= 2 ? " disabled" : ""}>&times;</button>
-      </div>`).join("");
-    $("#add-person").disabled = state.people.length >= 10;
-  }
-
-  function valsHtml(b) {
-    if (b.split === "equal") return "";
-    const unit = b.split === "percent" ? "%" : b.split === "amount" ? "$" : "days";
-    const label = b.split === "percent" ? "Percent" : b.split === "amount" ? "Amount" : "Days or shares";
-    return `
-      <div class="vals">
-        <label>${label} for each person</label>
-        ${state.people.map((p, i) => `
-          <div class="vrow">
-            <span data-lbl="${p.id}">${esc(pname(p, i))}</span>
-            <input type="text" inputmode="decimal" data-val="${p.id}" value="${esc(b.vals[p.id] === undefined ? "" : b.vals[p.id])}" placeholder="${unit}" aria-label="${esc(label)} for ${esc(pname(p, i))}">
-          </div>`).join("")}
-      </div>`;
-  }
-
-  function renderBills() {
-    $("#bills").innerHTML = state.bills.map((b) => `
-      <div class="bill" data-bid="${b.id}">
-        <div class="top">
-          <select data-f="cat" aria-label="Bill type">${CATS.map(c => `<option${c === b.cat ? " selected" : ""}>${c}</option>`).join("")}</select>
-          <button type="button" class="x" data-rmb="${b.id}" aria-label="Remove bill"${state.bills.length <= 1 ? " disabled" : ""}>&times;</button>
-        </div>
-        <label>Amount</label>
-        <div class="money">
-          <span aria-hidden="true">$</span>
-          <input type="text" inputmode="decimal" data-f="amount" value="${esc(b.amount)}" placeholder="0.00" aria-label="Bill amount in dollars" autocomplete="off">
-        </div>
-        <label>Paid by</label>
-        <select data-f="payer">${optList(b.payer)}</select>
-        <label>Split method</label>
-        <select data-f="split">${SPLITS.map(s => `<option value="${s[0]}"${s[0] === b.split ? " selected" : ""}>${s[1]}</option>`).join("")}</select>
-        ${valsHtml(b)}
-        <p class="err" role="alert"></p>
-      </div>`).join("");
-  }
-
-  function compute() {
-    const n = state.people.length;
-    let i, paid = Array(n).fill(0), owed = Array(n).fill(0), used = 0, total = 0, bad = 0;
-    
-    const names = state.people.map(pname);
-    let seen = {}, dup = false, empty = false;
-    
-    state.people.forEach(p => { 
-      const key = p.name.trim().toLowerCase(); 
-      if (!key) empty = true; else if (seen[key]) dup = true; seen[key] = 1; 
-    });
-    
-    $("#people-err").textContent = dup ? "Two roommates have the same name. Give each a different name." : empty ? "Some names are empty. We will show them as Roommate 1, 2, and so on." : "";
-    
-    state.bills.forEach((b, idx) => {
-      const r = billShares(b, idx);
-      const el = document.querySelector(`[data-bid="${b.id}"] .err`);
-      if (r.skip) { if (el) el.textContent = ""; return; }
-      if (r.err) { bad++; if (el) el.textContent = r.err; return; }
-      if (el) el.textContent = "";
+    function setRestingState(message) {
+      const sym = currencySel ? currencySel.value : "$";
       
-      let pi = state.people.findIndex(p => p.id === b.payer);
-      if (pi < 0) pi = 0;
-      
-      paid[pi] += r.total; total += r.total; used++;
-      for (i = 0; i < n; i++) owed[i] += r.shares[i];
-    });
+      if (svgAirZone) {
+        svgAirZone.setAttribute("height", "0");
+        svgAirZone.setAttribute("opacity", "0");
+      }
+      if (svgFillZone) {
+        svgFillZone.setAttribute("y", "25");
+        svgFillZone.setAttribute("height", "200");
+      }
+      if (svgAirText) svgAirText.setAttribute("opacity", "0");
 
-    const box = $("#results");
-    if (!used) {
-      box.innerHTML = `<p class="note">${bad ? "Fix the highlighted bill to see the summary." : "Enter a bill amount to see the summary."}</p>`;
-      lastText = ""; $("#copy").disabled = true; save(); return;
+      if (svgOldSizeLabel) svgOldSizeLabel.textContent = "Original Pack";
+      if (svgOldUnit) svgOldUnit.textContent = "---";
+      if (svgNewSizeLabel) {
+        svgNewSizeLabel.textContent = "Current Pack";
+        svgNewSizeLabel.setAttribute("y", "112");
+        svgNewSizeLabel.setAttribute("fill", "#ffffff");
+      }
+      if (svgNewUnit) {
+        svgNewUnit.textContent = "---";
+        svgNewUnit.setAttribute("y", "134");
+        svgNewUnit.setAttribute("fill", "#e2e8f0");
+      }
+
+      if (oldUnitOutput) oldUnitOutput.textContent = sym + "0.00";
+      if (newUnitOutput) newUnitOutput.textContent = sym + "0.00";
+      if (weightLossOutput) weightLossOutput.textContent = "0%";
+      if (trueInflationOutput) trueInflationOutput.textContent = "0%";
+      if (annualLossOutput) annualLossOutput.textContent = sym + "0.00";
+
+      if (verdictTitle) verdictTitle.textContent = "Consumer verdict";
+      if (verdictText) verdictText.textContent = "Awaiting package numbers.";
+      if (statusMessage) {
+        statusMessage.textContent = message || "Enter package prices and sizes or tap an example button above to run the X-Ray comparison.";
+      }
+      if (copyBtn) copyBtn.dataset.clipboard = "";
     }
 
-    const nets = [];
-    let sumNet = 0;
-    for (i = 0; i < n; i++) { 
-      const nt = paid[i] - owed[i]; 
-      nets.push({ i: i, net: nt }); 
-      sumNet += nt; 
+    function updateCalculation() {
+      const sym = currencySel ? currencySel.value : "$";
+      const unit = unitSel ? unitSel.value : "oz";
+
+      const oldPRaw = oldPriceIn.value.trim();
+      const oldSRaw = oldSizeIn.value.trim();
+      const newPRaw = newPriceIn.value.trim();
+      const newSRaw = newSizeIn.value.trim();
+
+      if (!oldPRaw || !oldSRaw || !newPRaw || !newSRaw) {
+        setRestingState("Enter all four price and size numbers to see the live X-Ray breakdown.");
+        return;
+      }
+
+      const oldP = Number(oldPRaw);
+      const oldS = Number(oldSRaw);
+      const newP = Number(newPRaw);
+      const newS = Number(newSRaw);
+
+      if (!Number.isFinite(oldP) || !Number.isFinite(oldS) || !Number.isFinite(newP) || !Number.isFinite(newS) || oldP <= 0 || oldS <= 0 || newP <= 0 || newS <= 0) {
+        setRestingState("All package prices and quantities must be positive numbers greater than zero.");
+        return;
+      }
+
+      const oldUnitRate = oldP / oldS;
+      const newUnitRate = newP / newS;
+      const sizeLossPct = ((oldS - newS) / oldS) * 100;
+      const inflationPct = ((newUnitRate - oldUnitRate) / oldUnitRate) * 100;
+      const annualImpact = (newUnitRate - oldUnitRate) * oldS * 24;
+
+      if (oldUnitOutput) oldUnitOutput.textContent = formatUnitMoney(sym, oldUnitRate) + " / " + unit;
+      if (newUnitOutput) newUnitOutput.textContent = formatUnitMoney(sym, newUnitRate) + " / " + unit;
+
+      if (weightLossOutput) {
+        if (Math.abs(sizeLossPct) < 0.05) {
+          weightLossOutput.textContent = "0% (Same size)";
+        } else if (sizeLossPct > 0) {
+          weightLossOutput.textContent = "-" + sizeLossPct.toFixed(1) + "% (" + (oldS - newS).toFixed(2).replace(/\.00$/, "") + " " + unit + " lost)";
+        } else {
+          weightLossOutput.textContent = "+" + Math.abs(sizeLossPct).toFixed(1) + "% bonus size";
+        }
+      }
+
+      if (trueInflationOutput) {
+        if (Math.abs(inflationPct) < 0.05) {
+          trueInflationOutput.textContent = "0%";
+        } else if (inflationPct > 0) {
+          trueInflationOutput.textContent = "+" + inflationPct.toFixed(1) + "%";
+        } else {
+          trueInflationOutput.textContent = inflationPct.toFixed(1) + "% (Cheaper)";
+        }
+      }
+
+      if (annualLossOutput) {
+        annualLossOutput.textContent = annualImpact > 0
+          ? "+" + formatStandardMoney(sym, annualImpact) + " / yr"
+          : formatStandardMoney(sym, annualImpact) + " / yr";
+      }
+
+      if (svgOldSizeLabel) svgOldSizeLabel.textContent = oldS + " " + unit + " (" + sym + oldP.toFixed(2) + ")";
+      if (svgOldUnit) svgOldUnit.textContent = formatUnitMoney(sym, oldUnitRate) + " / " + unit;
+      if (svgNewSizeLabel) svgNewSizeLabel.textContent = newS + " " + unit + " (" + sym + newP.toFixed(2) + ")";
+      if (svgNewUnit) svgNewUnit.textContent = formatUnitMoney(sym, newUnitRate) + " / " + unit;
+
+      if (svgAirZone && svgFillZone && svgAirText) {
+        if (sizeLossPct > 0.05) {
+          const ratio = Math.min(Math.max(newS / oldS, 0.06), 1);
+          const fillHeight = Math.round(200 * ratio);
+          const airHeight = 200 - fillHeight;
+          const fillY = 25 + airHeight;
+
+          svgAirZone.setAttribute("y", "25");
+          svgAirZone.setAttribute("height", String(airHeight));
+          svgAirZone.setAttribute("fill", "url(#airStripes)");
+          svgAirZone.setAttribute("stroke", "#ef4444");
+          svgAirZone.setAttribute("opacity", "1");
+
+          svgFillZone.setAttribute("y", String(fillY));
+          svgFillZone.setAttribute("height", String(fillHeight));
+
+          // Fix 3: Show air percentage label safely ONLY when air gap height is >= 24px
+          if (airHeight >= 24) {
+            svgAirText.textContent = "−" + sizeLossPct.toFixed(1) + "%";
+            svgAirText.setAttribute("y", String(25 + (airHeight / 2)));
+            svgAirText.setAttribute("fill", "#b91c1c");
+            svgAirText.setAttribute("opacity", "1");
+          } else {
+            svgAirText.setAttribute("opacity", "0");
+          }
+
+          if (fillHeight >= 55) {
+            const centerFillY = fillY + (fillHeight / 2);
+            svgNewSizeLabel.setAttribute("y", String(centerFillY - 8));
+            svgNewSizeLabel.setAttribute("fill", "#ffffff");
+            svgNewUnit.setAttribute("y", String(centerFillY + 12));
+            svgNewUnit.setAttribute("fill", "#e2e8f0");
+          } else {
+            svgNewSizeLabel.setAttribute("y", "125");
+            svgNewSizeLabel.setAttribute("fill", "#1e293b");
+            svgNewUnit.setAttribute("y", "145");
+            svgNewUnit.setAttribute("fill", "#1e293b");
+          }
+        } else if (sizeLossPct < -0.05) {
+          const bonusPct = Math.abs(sizeLossPct);
+          const bonusHeight = Math.min(Math.max(Math.round(200 * (bonusPct / (100 + bonusPct))), 26), 95);
+          const baseHeight = 200 - bonusHeight;
+          const baseY = 25 + bonusHeight;
+
+          svgAirZone.setAttribute("y", "25");
+          svgAirZone.setAttribute("height", String(bonusHeight));
+          svgAirZone.setAttribute("fill", "url(#bonusStripes)");
+          svgAirZone.setAttribute("stroke", "#10b981");
+          svgAirZone.setAttribute("opacity", "1");
+
+          svgFillZone.setAttribute("y", String(baseY));
+          svgFillZone.setAttribute("height", String(baseHeight));
+
+          svgAirText.textContent = "+" + bonusPct.toFixed(1) + "% BONUS";
+          svgAirText.setAttribute("y", String(25 + (bonusHeight / 2)));
+          svgAirText.setAttribute("fill", "#047857");
+          svgAirText.setAttribute("opacity", "1");
+
+          const centerFillY = baseY + (baseHeight / 2);
+          svgNewSizeLabel.setAttribute("y", String(centerFillY - 8));
+          svgNewSizeLabel.setAttribute("fill", "#ffffff");
+          svgNewUnit.setAttribute("y", String(centerFillY + 12));
+          svgNewUnit.setAttribute("fill", "#e2e8f0");
+        } else {
+          svgAirZone.setAttribute("height", "0");
+          svgAirZone.setAttribute("opacity", "0");
+          svgFillZone.setAttribute("y", "25");
+          svgFillZone.setAttribute("height", "200");
+          svgAirText.setAttribute("opacity", "0");
+
+          svgNewSizeLabel.setAttribute("y", "112");
+          svgNewSizeLabel.setAttribute("fill", "#ffffff");
+          svgNewUnit.setAttribute("y", "134");
+          svgNewUnit.setAttribute("fill", "#e2e8f0");
+        }
+      }
+
+      if (verdictTitle && verdictText) {
+        if (inflationPct > 20) {
+          verdictTitle.textContent = "Extreme Shrinkflation Alert (+" + inflationPct.toFixed(1) + "% True Hike)";
+          verdictText.textContent = "This package underwent aggressive volume reduction. The real cost per " + unit + " surged by " + inflationPct.toFixed(1) + "%. Buying 2 packs a month costs an extra " + formatStandardMoney(sym, annualImpact) + " over 12 months. Consider store brands or bulk alternatives.";
+        } else if (inflationPct >= 5) {
+          verdictTitle.textContent = "Sneaky Shrinkflation Detected (+" + inflationPct.toFixed(1) + "% Unit Hike)";
+          verdictText.textContent = "The shelf price looks familiar, but you pay " + inflationPct.toFixed(1) + "% more per " + unit + ". Buying 2 packs monthly drains an extra " + formatStandardMoney(sym, annualImpact) + " annually from your budget for empty air space.";
+        } else if (inflationPct > 0.05) {
+          verdictTitle.textContent = "Fair / Minimal Change (+" + inflationPct.toFixed(1) + "% Variation)";
+          verdictText.textContent = "The unit price shifted by under 5%, aligning with normal seasonal retail adjustments or packaging redesigns.";
+        } else if (inflationPct < -0.05) {
+          verdictTitle.textContent = "Bonus Value Detected (" + inflationPct.toFixed(1) + "% Lower Unit Cost)";
+          verdictText.textContent = "Good news! Your cost per " + unit + " dropped by " + Math.abs(inflationPct).toFixed(1) + "%. You get more usable product per dollar spent.";
+        } else {
+          verdictTitle.textContent = "Identical Unit Value (0% Change)";
+          verdictText.textContent = "Both packages deliver the exact same unit cost of " + formatUnitMoney(sym, newUnitRate) + " per " + unit + ".";
+        }
+      }
+
+      if (statusMessage) {
+        statusMessage.textContent = "X-Ray comparison updated successfully.";
+      }
+
+      if (copyBtn) {
+        copyBtn.dataset.clipboard =
+          "Shrinkflation X-Ray Alert: " +
+          (sizeLossPct > 0 ? sizeLossPct.toFixed(1) + "% less product = " : "") +
+          (inflationPct > 0 ? "+" : "") + inflationPct.toFixed(1) + "% hidden price hike! " +
+          "(Old: " + oldS + " " + unit + " @ " + sym + oldP.toFixed(2) + " vs. New: " + newS + " " + unit + " @ " + sym + newP.toFixed(2) + "). " +
+          "Checked on https://householdexpensetools.com/tools/shrinkflation-calculator/";
+      }
     }
 
-    if (sumNet !== 0) { 
-      box.innerHTML = '<p class="err">Internal check failed: balances do not add up. Please reset and try again.</p>'; 
-      lastText = ""; $("#copy").disabled = true; return; 
+    form.addEventListener("input", updateCalculation);
+    if (currencySel) currencySel.addEventListener("change", updateCalculation);
+    if (unitSel) unitSel.addEventListener("change", updateCalculation);
+
+    const btnChips = document.getElementById("presetChips");
+    const btnCoffee = document.getElementById("presetCoffee");
+    const btnSoap = document.getElementById("presetSoap");
+
+    if (btnChips) {
+      btnChips.addEventListener("click", function () {
+        currencySel.value = "$";
+        unitSel.value = "oz";
+        oldPriceIn.value = "4.29";
+        oldSizeIn.value = "16";
+        newPriceIn.value = "4.29";
+        newSizeIn.value = "13.5";
+        updateCalculation();
+      });
     }
 
-    const pays = settle(nets);
-    
-    let html = (bad ? '<p class="err">Some bills have errors and are left out of this summary.</p>' : "") +
-      `<p class="note">${used} ${used === 1 ? "bill" : "bills"}, total ${fmt(total)}</p><div class="cards">` +
-      nets.map(x => {
-        const cls = x.net > 0 ? "pc get" : "pc";
-        const msg = x.net > 0 ? "Gets back" : x.net < 0 ? "Owes" : "All settled";
-        return `<div class="${cls}"><b>${esc(names[x.i])}</b><span class="amt">${x.net === 0 ? "$0.00" : fmt(Math.abs(x.net))}</span> <span class="note">${msg}</span></div>`;
-      }).join("") + '</div>';
-
-    if (pays.length) {
-      html += '<h3>Payments to settle up</h3>' + pays.map(p => `<div class="pay"><span>${esc(names[p.from])} pays ${esc(names[p.to])}</span><strong>${fmt(p.a)}</strong></div>`).join("");
-    } else {
-      html += '<p>Everyone is even. No payments needed.</p>';
+    if (btnCoffee) {
+      btnCoffee.addEventListener("click", function () {
+        currencySel.value = "$";
+        unitSel.value = "oz";
+        oldPriceIn.value = "8.99";
+        oldSizeIn.value = "12";
+        newPriceIn.value = "8.99";
+        newSizeIn.value = "10.5";
+        updateCalculation();
+      });
     }
-    box.innerHTML = html;
 
-    // Generate Copy Text
-    const lines = [`Roommate bill summary (${used} ${used === 1 ? "bill" : "bills"}, total ${fmt(total)})`, ""];
-    if (pays.length) pays.forEach(p => lines.push(`${names[p.from]} pays ${names[p.to]}: ${fmt(p.a)}`));
-    else lines.push("Everyone is even.");
-    lines.push("", "Calculated at householdexpensetools.com");
-    lastText = lines.join("\n");
-    $("#copy").disabled = false;
-    save();
-  }
-
-  // Event Listeners
-  function bill(el) { 
-    const w = el.closest(".bill"); 
-    if (!w) return null; 
-    return state.bills.find(b => b.id === w.dataset.bid); 
-  }
-
-  document.addEventListener("input", e => {
-    const t = e.target;
-    if (t.dataset.name) {
-      const k = state.people.findIndex(p => p.id === t.dataset.name);
-      state.people[k].name = t.value;
-      const nm = pname(state.people[k], k);
-      document.querySelectorAll(`option[data-pid="${t.dataset.name}"]`).forEach(o => o.textContent = nm);
-      document.querySelectorAll(`[data-lbl="${t.dataset.name}"]`).forEach(o => o.textContent = nm);
-      compute(); return;
+    if (btnSoap) {
+      btnSoap.addEventListener("click", function () {
+        currencySel.value = "$";
+        unitSel.value = "fl oz";
+        oldPriceIn.value = "3.49";
+        oldSizeIn.value = "24";
+        newPriceIn.value = "3.49";
+        newSizeIn.value = "21.6";
+        updateCalculation();
+      });
     }
-    const b = bill(t);
-    if (!b) return;
-    if (t.dataset.f === "amount") { b.amount = t.value; compute(); }
-    else if (t.dataset.val) { b.vals[t.dataset.val] = t.value; compute(); }
+
+    if (copyBtn) {
+      copyBtn.addEventListener("click", function () {
+        const textToCopy = copyBtn.dataset.clipboard;
+        if (!textToCopy) {
+          if (statusMessage) statusMessage.textContent = "Please enter package numbers or choose a preset before copying.";
+          return;
+        }
+
+        function showCopiedState() {
+          const originalLabel = copyBtn.textContent;
+          copyBtn.textContent = "Copied! ✓";
+          if (statusMessage) statusMessage.textContent = "Summary copied to your clipboard.";
+          window.setTimeout(function () {
+            copyBtn.textContent = originalLabel;
+          }, 2000);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(textToCopy).then(showCopiedState).catch(function () {
+            if (statusMessage) statusMessage.textContent = textToCopy;
+          });
+        } else {
+          const tempInput = document.createElement("textarea");
+          tempInput.value = textToCopy;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand("copy");
+          document.body.removeChild(tempInput);
+          showCopiedState();
+        }
+      });
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener("click", function () {
+        window.setTimeout(function () {
+          setRestingState("Cleared all numbers. Enter new package details to compare.");
+        }, 10);
+      });
+    }
+
+    setRestingState();
   });
-
-  document.addEventListener("change", e => {
-    const t = e.target, b = bill(t);
-    if (!b || !t.dataset.f) return;
-    if (t.dataset.f === "cat") b.cat = t.value;
-    else if (t.dataset.f === "payer") b.payer = t.value;
-    else if (t.dataset.f === "split") { b.split = t.value; b.vals = {}; renderBills(); }
-    compute();
-  });
-
-  document.addEventListener("click", e => {
-    const t = e.target.closest("button");
-    if (!t) return;
-    
-    if (t.id === "add-person" && state.people.length < 10) { 
-      state.people.push({ id: nid(), name: "" }); 
-      renderPeople(); renderBills(); compute(); 
-      const ins = document.querySelectorAll("[data-name]"); ins[ins.length - 1].focus(); 
-    }
-    else if (t.dataset.rmp && state.people.length > 2) {
-      const id = t.dataset.rmp; 
-      state.people = state.people.filter(p => p.id !== id);
-      state.bills.forEach(b => { if (b.payer === id) b.payer = state.people[0].id; delete b.vals[id]; });
-      renderPeople(); renderBills(); compute();
-    }
-    else if (t.id === "add-bill") { 
-      state.bills.push(newBill(state.people[0].id, "Water")); 
-      renderBills(); compute(); 
-      const a = document.querySelectorAll('[data-f="amount"]'); a[a.length - 1].focus(); 
-    }
-    else if (t.dataset.rmb && state.bills.length > 1) { 
-      const bid = t.dataset.rmb; 
-      state.bills = state.bills.filter(b => b.id !== bid); 
-      renderBills(); compute(); 
-    }
-    else if (t.id === "reset") { 
-      if (confirm("Clear all roommates and bills?")) { state = defaults(); renderPeople(); renderBills(); compute(); $("#copy-status").textContent = ""; } 
-    }
-    else if (t.id === "copy" && lastText) { 
-      copyText(lastText); 
-    }
-  });
-
-  function copyText(txt) {
-    const ok = () => { $("#copy-status").textContent = "Copied ✓"; setTimeout(() => $("#copy-status").textContent = "", 2500); };
-    const fb = () => {
-      const ta = document.createElement("textarea"); ta.value = txt; ta.style.position = "fixed"; ta.style.opacity = "0";
-      document.body.appendChild(ta); ta.select();
-      try { document.execCommand("copy"); ok(); } catch (e) { $("#copy-status").textContent = "Copy failed. Select text manually."; }
-      document.body.removeChild(ta);
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, fb); else fb();
-  }
-
-  $("#persist").addEventListener("change", function () { if (this.checked) save(); else unsave(); });
-
-  // Init
-  const restored = load();
-  if (!restored) state = defaults();
-  $("#persist").checked = restored;
-  renderPeople(); renderBills(); compute();
-
 })();
