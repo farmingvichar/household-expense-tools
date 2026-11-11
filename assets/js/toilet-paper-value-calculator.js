@@ -70,8 +70,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const calculateButton = form.querySelector('button[type="submit"]');
   let hasCalculated = false;
 
-  function formatMoney(symbol, amount) {
-    return symbol + amount.toFixed(2);
+    function formatMoney(symbol, amount) {
+    const cleanAmount = Math.abs(amount).toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+    return (amount < 0 ? "-" : "") + symbol + cleanAmount;
   }
 
   function formatSheets(value) {
@@ -451,9 +455,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  form.addEventListener("input", markResultAsChanged);
-  form.addEventListener("change", markResultAsChanged);
-
+    form.addEventListener("input", function () {
+    form.requestSubmit();
+  });
+  form.addEventListener("change", function () {
+    form.requestSubmit();
+  });
   form.addEventListener("reset", function () {
     window.setTimeout(resetResults, 0);
   });
