@@ -137,18 +137,18 @@
 
           <form class="tool-form" id="toiletPaperValueForm" novalidate>
             <div class="form-grid">
-           <div class="form-field">
+                      <div class="form-field">
                 <label for="currencySymbol">Currency symbol</label>
                 <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
                   <option value="$" selected>$ USD</option>
-                  <option value="₹">₹ INR<divR</option>
+                  <option value="₹">₹ INR</option>
                   <option value="€">€ EUR</option>
                   <option value="£">£ GBP</option>
                   <option value="C$">C$ CAD</option>
                   <option value="A$">A$ AUD</option>
                   <option value="¥">¥ JPY</option>
                 </select>
-                <small id="currencySymbolHelp">Currency only changes display. It does not convert currencies.</small>
+                <small id="currencySymbolHelp">Display symbol only. No currency conversion.</small>
               </div>
 
               <div class="form-field">
@@ -447,27 +447,42 @@
           or track purchases with the <a href="../daily-expense-tracker/">Daily Expense Tracker</a>.
         </p>
 
-        <h2>Frequently Asked Questions</h2>
+           <div class="section-header" style="margin-top: 3rem;">
+          <span class="eyebrow">Frequently Asked Questions</span>
+          <h2 id="faq-heading">Toilet Paper Value FAQs</h2>
+          <p>Practical shopping tips on decoding mega rolls, calculating ply value, and comparing unit pricing.</p>
+        </div>
 
-        <h3>Why is comparing cost per roll misleading?</h3>
-        <p>
-          Roll sizes are not standardized across manufacturers. A 12-roll pack of "Mega Rolls" may contain significantly more sheets than a 12-roll pack of standard rolls. Comparing total sheets or total square footage gives an accurate unit price.
-        </p>
+        <div class="faq-list feature-grid" style="margin-top: 1.5rem;">
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Why is comparing cost per roll misleading?</summary>
+              <p>Roll sizes are not standardized across manufacturers. A 12-roll pack of Mega Rolls often contains 2x to 3x more paper than standard rolls. Comparing cost per 100 sheets or total square feet reveals the true unit price.</p>
+            </details>
+          </article>
 
-        <h3>What is the difference between cost per 100 sheets and ply-adjusted cost?</h3>
-        <p>
-          Cost per 100 sheets treats every sheet equally regardless of thickness. Ply-adjusted cost multiplies total sheets by the number of plies (layers) before calculating the cost, helping compare single-ply against 2-ply or 3-ply options.
-        </p>
+          <article class="faq-item feature-card">
+            <details>
+              <summary>What is the difference between cost per 100 sheets and ply-adjusted cost?</summary>
+              <p>Cost per 100 sheets treats every sheet identically regardless of thickness. Ply-adjusted cost accounts for paper layers, allowing fair value comparisons between 1-ply, 2-ply, and 3-ply brands.</p>
+            </details>
+          </article>
 
-              <h3>Should I enter total square footage if it is available?</h3>
-        <p>
-          Yes. If both packages list total square feet on the label, entering it allows the calculator to compare cost per square foot, which accounts for differences in sheet length and width.
-        </p>
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Should I enter total square footage if it is available?</summary>
+              <p>Yes. When listed on the packaging, entering square footage calculates cost per square foot, accounting for sheet width differences and custom sheet perforations.</p>
+            </details>
+          </article>
 
-        <h3>Can I use this calculator to compare paper towel packs?</h3>
-        <p>
-          Yes. Paper towel rolls follow the same roll count and sheet specifications. Enter the pack price, roll count, and sheets per roll to compare. If sheet dimensions differ between brands (such as select-a-size vs full sheets), entering total square feet provides the most accurate comparison.
-        </p>
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Can I use this calculator to compare paper towel packs?</summary>
+              <p>Yes. Paper towels share identical specifications. Enter pack prices, roll counts, and sheets per roll to find true cost per sheet, or compare square footage for select-a-size formats.</p>
+            </details>
+          </article>
+        </div>
+        
       </div>
     </section>
 
@@ -475,9 +490,14 @@
 
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>&copy; 2026 Household Expense Tools. All rights reserved.</p>
+    <footer class="section site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Household Expense Tools</p>
+        <p class="footer-text">
+          Simple, fast, privacy-friendly tools for home expenses, groceries, budgets, and kitchen planning.
+        </p>
+      </div>
 
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="../../about/">About</a>
@@ -487,6 +507,10 @@
         <a href="../../contact/">Contact</a>
         <a href="../../faq/">FAQ</a>
       </nav>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="current-year">2026</span> Household Expense Tools. All rights reserved.</p>
     </div>
   </footer>
 
