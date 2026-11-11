@@ -710,7 +710,13 @@ a[data-coming-soon="true"] {
     display: none;
   }
 }
-/* Fix for sticky hover/focus states on mobile touch devices */
+/* Ultimate Mobile Fix: Remove 300ms tap delay & fix sticky hover */
+button, 
+.button, 
+.form-actions button {
+  touch-action: manipulation !important; /* यह लाइन 300ms के डिले को तुरंत खत्म कर देगी */
+}
+
 @media (hover: none) {
   .button-primary:hover,
   .button-primary:focus {
@@ -719,8 +725,10 @@ a[data-coming-soon="true"] {
     transform: none;
   }
   
-  .button-primary:active {
+  .button-primary:active,
+  .form-actions button:active {
     background: var(--color-primary-dark);
+    transition: none !important; /* यह उंगली रखते ही बिना एनीमेशन के तुरंत रंग बदलेगा */
   }
 }
 
