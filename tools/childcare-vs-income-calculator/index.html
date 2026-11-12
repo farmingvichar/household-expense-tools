@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Childcare vs. Take-Home Pay Calculator | Household Expense Tools</title>
+  <meta name="description" content="Find out how much of your paycheck you actually keep after daycare, taxes, and commuting costs. Free, private US childcare vs. working calculator.">
+  <link rel="canonical" href="https://householdexpensetools.com/tools/childcare-vs-income-calculator/">
+
+  <!-- Structured Data: WebApplication + FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://householdexpensetools.com/tools/childcare-vs-income-calculator/#app",
+        "name": "Childcare vs. Take-Home Pay Calculator",
+        "url": "https://householdexpensetools.com/tools/childcare-vs-income-calculator/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Calculate your true net financial gain, effective hourly wage, and break-even salary after accounting for daycare, payroll taxes, and work expenses."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://householdexpensetools.com/tools/childcare-vs-income-calculator/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much does full-time childcare cost in the US right now?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Full-time center-based childcare in the United States now exceeds $2,000 per month ($24,000+ per year) in many metro areas. In high-cost states, annual infant daycare routinely tops $22,000 to $28,000, making it larger than the average mortgage or rent payment."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I find my combined tax rate for this calculator?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Look at a recent paystub and divide your total taxes withheld (Federal Income Tax + Social Security + Medicare + State/Local Tax) by your Gross Pay for that period. For most middle-income US households, this combined rate falls between 18% and 25%."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does using a Dependent Care FSA really save money on daycare?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. A Dependent Care FSA lets you pay for eligible childcare using pre-tax payroll deductions. If you shelter $7,500 in a DCFSA and sit in a 22% tax bracket, you save $1,650 in taxes—effectively lowering your net childcare cost by $137.50 per month."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is my True Effective Hourly Wage so much lower than my hourly pay?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Your stated hourly wage is calculated before taxes and assumes zero cost to show up to work. Because childcare and commuting must be paid out of your after-tax paycheck, subtracting $2,000+ a month often reduces a $25–$30/hour job to $5–$10/hour in actual spendable cash."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- STRICT RULE #1: PDF Print Optimization -->
+  <style media="print">
+    header, footer, nav, .educational-content, .related-tools, .faq-section, .action-bar, .privacy-note {
+      display: none !important;
+    }
+    .tool-form, .summary-card {
+      display: block !important;
+      page-break-inside: avoid;
+    }
+    input, select {
+      border: none !important;
+      background: transparent !important;
+      pointer-events: none;
+      -webkit-appearance: none;
+      appearance: none;
+      color: #14213d !important;
+      font-weight: 600;
+      padding: 0 !important;
+    }
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+  </style>
+
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../../manifest.json">
+
+  <link rel="stylesheet" href="../../assets/css/reset.css">
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/typography.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/utilities.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- BASE HTML STRUCTURE MATCHING YOUR TEMPLATE -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="../../" aria-label="Household Expense Tools home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
+            <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span class="brand-text">Household Expense Tools</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="../../">Home</a></li>
+          <li><a href="../">Tools</a></li>
+          <li><a href="../../#why-use">Why Use Us</a></li>
+          <li><a href="../../faq/">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="section hero-section">
+      <div class="container">
+        <p class="eyebrow">Free US Childcare Calculator</p>
+        <h1>Childcare vs. Take-Home Pay Calculator</h1>
+        <p class="hero-text">
+          See what your job truly pays after daycare, payroll taxes, and daily commuting costs—and find the exact salary you need to break even.
+        </p>
+      </div>
+    </section>
+
+    <!-- CALCULATOR TOOL SECTION -->
+    <section class="section section-soft" aria-labelledby="calculator-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="calculator-heading">Calculate Your True Net Gain</h2>
+          <p>Enter your pay, estimated taxes, and childcare costs to reveal your actual take-home pay.</p>
+        </div>
+
+        <form id="childcare-form" class="tool-form" novalidate>
+          <div class="form-grid">
+            
+            <div class="form-field">
+              <label for="income-type">Income Type</label>
+              <select id="income-type" name="income-type">
+                <option value="annual">Annual Salary ($/year)</option>
+                <option value="hourly">Hourly Wage ($/hour)</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="gross-income">Gross Pay Before Taxes ($)</label>
+              <input id="gross-income" name="gross-income" type="number" inputmode="decimal" min="0" step="0.01" placeholder="60000" required>
+            </div>
+
+            <div class="form-field" id="hours-group" style="display: none;">
+              <label for="hours-per-week">Hours Worked per Week</label>
+              <input id="hours-per-week" name="hours-per-week" type="number" inputmode="decimal" min="1" max="168" value="40">
+            </div>
+
+            <div class="form-field">
+              <label for="tax-rate">Estimated Tax Rate (%) <span style="font-size: 0.85em; font-weight: normal;">(Fed+FICA+State)</span></label>
+              <input id="tax-rate" name="tax-rate" type="number" inputmode="decimal" min="0" max="100" step="0.1" value="22" required>
+              <div style="display: flex; gap: 8px; margin-top: 8px;">
+                <button type="button" class="button button-secondary tax-preset" data-rate="15" style="padding: 4px 10px; font-size: 0.8rem; min-height: 32px;">15%</button>
+                <button type="button" class="button button-secondary tax-preset" data-rate="22" style="padding: 4px 10px; font-size: 0.8rem; min-height: 32px;">22%</button>
+                <button type="button" class="button button-secondary tax-preset" data-rate="28" style="padding: 4px 10px; font-size: 0.8rem; min-height: 32px;">28%</button>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="childcare-cost">Childcare / Daycare Cost ($)</label>
+              <div style="display: flex; gap: 8px;">
+                <input id="childcare-cost" name="childcare-cost" type="number" inputmode="decimal" min="0" step="0.01" placeholder="2000" required style="flex: 1;">
+                <select id="childcare-frequency" name="childcare-frequency" style="width: auto;">
+                  <option value="monthly">per Month</option>
+                  <option value="weekly">per Week</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="fsa-contribution">Dependent Care FSA ($/year)</label>
+              <input id="fsa-contribution" name="fsa-contribution" type="number" inputmode="decimal" min="0" max="7500" placeholder="0">
+            </div>
+
+            <div class="form-field">
+              <label for="work-expenses">Monthly Work Expenses ($)</label>
+              <input id="work-expenses" name="work-expenses" type="number" inputmode="decimal" min="0" step="0.01" placeholder="250">
+            </div>
+          </div>
+
+          <!-- STRICT RULE #2: ONLY Primary Button inside the form -->
+          <div class="form-actions">
+            <button id="calculate-btn" class="button button-primary" type="submit" style="width: 100%; touch-action: manipulation;">Calculate Net Income</button>
+          </div>
+        </form>
+
+        <!-- RESULTS SECTION -->
+        <div id="results-section" class="summary-card" style="display: none; margin-top: 2rem;" aria-live="polite">
+          <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Your Real Take-Home Reality</h3>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="padding: 1rem; border: 1px solid var(--color-border); border-radius: 8px;">
+              <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">True Net Monthly Gain</p>
+              <h4 id="res-net-monthly" style="color: var(--color-primary); font-size: 2rem; margin: 0;">$0.00</h4>
+              <p id="res-net-yearly" style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.5rem;">$0.00 / year</p>
+            </div>
+            <div style="padding: 1rem; border: 1px solid var(--color-border); border-radius: 8px;">
+              <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">Effective Hourly Wage</p>
+              <h4 id="res-effective-hourly" style="color: var(--color-text-main); font-size: 2rem; margin: 0;">$0.00</h4>
+              <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.5rem;">After childcare & taxes</p>
+            </div>
+          </div>
+
+          <div style="padding: 1rem; background-color: var(--color-bg-alt, #f8f9fa); border: 1px solid var(--color-border); border-radius: 8px; margin-bottom: 1.5rem;">
+            <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 0.25rem;">Break-Even Gross Salary</p>
+            <h5 id="res-breakeven" style="font-size: 1.25rem; color: var(--color-text-main); margin: 0;">$0.00 / year</h5>
+            <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.25rem;">The minimum salary required just to cover taxes, childcare, and commute.</p>
+          </div>
+
+          <!-- Print-Friendly Visual Breakdown Bar -->
+          <div>
+            <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 8px;">Where your Gross Pay goes:</p>
+            <div style="display: flex; height: 24px; border-radius: 12px; overflow: hidden; background: #e2e8f0;">
+              <div id="bar-tax" style="background: #e11d48; height: 100%; transition: width 0.3s;" title="Taxes"></div>
+              <div id="bar-childcare" style="background: #f59e0b; height: 100%; transition: width 0.3s;" title="Childcare & Work Costs"></div>
+              <div id="bar-net" style="background: #10b981; height: 100%; transition: width 0.3s;" title="Net Gain"></div>
+            </div>
+            <div style="display: flex; gap: 15px; font-size: 0.85rem; margin-top: 8px; flex-wrap: wrap;">
+              <span style="display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; background: #e11d48; border-radius: 2px;"></span> Taxes</span>
+              <span style="display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; background: #f59e0b; border-radius: 2px;"></span> Childcare/Work</span>
+              <span style="display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; background: #10b981; border-radius: 2px;"></span> Net Savings</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- STRICT RULE #3: 4-Button Action Bar BELOW Results -->
+        <div class="action-bar" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1.5rem;">
+          <button type="button" class="button button-secondary" id="btn-save" style="touch-action: manipulation;">Save</button>
+          <button type="button" class="button button-secondary" id="btn-copy" style="touch-action: manipulation;">Copy</button>
+          <button type="button" class="button button-secondary" id="btn-pdf" style="touch-action: manipulation;">PDF</button>
+          <button type="button" class="button button-secondary" id="btn-clear" style="touch-action: manipulation; color: #e11d48;">Clear All</button>
+        </div>
+        
+        <!-- STRICT RULE #4: Privacy note with 40px safe bottom margin -->
+        <p class="privacy-note" style="margin-top: 12px; margin-bottom: 40px; font-size: 0.85rem; color: var(--color-text-muted);">
+          Calculations run in your browser. We do not receive your data.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- SEO-CONTENT-START -->
+    <section class="section educational-content" aria-labelledby="how-it-works-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="how-it-works-heading">How the Childcare vs. Take-Home Pay Calculator Works</h2>
+        </div>
+        <p>Deciding whether both parents should remain in the workforce comes down to more than comparing a gross salary against a daycare invoice. When you work, every dollar you earn is taxed first, while daycare and commuting expenses are paid with after-tax dollars.</p>
+        <p>This calculator strips away headline salary figures to reveal your <strong>True Net Financial Gain</strong> using four steps:</p>
+        <ol class="content-list">
+          <li><strong>Gross-to-Net Paycheck Conversion:</strong> Whether you enter an annual salary or an hourly wage, the tool subtracts your combined federal, FICA, and state tax withholding.</li>
+          <li><strong>Dependent Care FSA Tax Credit:</strong> If you contribute pre-tax dollars to an employer-sponsored Dependent Care FSA, the calculator adds back the federal and FICA taxes you save on those sheltered funds.</li>
+          <li><strong>Childcare & Hidden Work Expenses:</strong> Weekly daycare rates are normalized to exact monthly averages, combined with out-of-pocket work costs such as gas, transit passes, parking, and lunches.</li>
+          <li><strong>Effective Hourly Rate & Break-Even Math:</strong> Your remaining monthly net gain is divided by your actual monthly working hours to show what you truly earn per hour—alongside the minimum gross salary required just to break even.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section related-tools" aria-labelledby="related-tools-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="related-tools-heading">Related Household Budget Tools</h2>
+        </div>
+        <ul style="display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0;">
+          <li><a href="../monthly-expense-calculator/" class="button button-secondary" style="text-decoration: none; border-radius: 20px;">Monthly Expense Calculator</a></li>
+          <li><a href="../daily-expense-tracker/" class="button button-secondary" style="text-decoration: none; border-radius: 20px;">Daily Expense Tracker</a></li>
+          <li><a href="../grocery-budget-calculator/" class="button button-secondary" style="text-decoration: none; border-radius: 20px;">Grocery Budget Calculator</a></li>
+          <li><a href="../dining-out-vs-cooking-calculator/" class="button button-secondary" style="text-decoration: none; border-radius: 20px;">Dining Out vs. Cooking</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section-soft faq-section" style="margin-top: 4rem;" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Frequently Asked Questions</span>
+          <h2 id="faq-heading">Childcare Cost & Budgeting FAQs</h2>
+        </div>
+
+        <div class="faq-list feature-grid">
+          <article class="faq-item feature-card">
+            <details>
+              <summary>How much does full-time childcare cost in the US right now?</summary>
+              <p>Full-time center-based childcare in the United States now exceeds $2,000 per month ($24,000+ per year) in many metro areas. In high-cost states, annual infant daycare routinely tops $22,000 to $28,000, making it larger than the average mortgage or rent payment.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>How do I find my combined tax rate for this calculator?</summary>
+              <p>Look at a recent paystub and divide your total taxes withheld (Federal Income Tax + Social Security + Medicare + State/Local Tax) by your Gross Pay for that period. For most middle-income US households, this combined rate falls between 18% and 25%.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Does using a Dependent Care FSA really save money on daycare?</summary>
+              <p>Yes. A Dependent Care FSA lets you pay for eligible childcare using pre-tax payroll deductions. If you shelter $7,500 in a DCFSA and sit in a 22% tax bracket, you save $1,650 in taxes—effectively lowering your net childcare cost by $137.50 per month.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Why is my "True Effective Hourly Wage" so much lower than my hourly pay?</summary>
+              <p>Your stated hourly wage is calculated before taxes and assumes zero cost to show up to work. Because childcare and commuting must be paid out of your after-tax paycheck, subtracting $2,000+ a month often reduces a $25–$30/hour job to $5–$10/hour in actual spendable cash.</p>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- SEO-CONTENT-END -->
+  </main>
+
+  <footer class="section site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Household Expense Tools</p>
+        <p class="footer-text">
+          Simple, fast, privacy-friendly tools for home expenses, groceries, budgets, and kitchen planning.
+        </p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../../about/">About</a>
+        <a href="../">Tools</a>
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../terms/">Terms</a>
+        <a href="../../contact/">Contact</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; <span id="current-year">2026</span> Household Expense Tools. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/app.js"></script>
+  
+  <!-- CALCULATOR JS ENGINE (Strict Cents-Safe Math & LocalStorage) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById("childcare-form");
+      const resultsSection = document.getElementById("results-section");
+      
+      // Dynamic path-based localStorage key
+      const storageKey = 'saved_tool_' + window.location.pathname;
+
+      // Inputs
+      const incomeTypeEl = document.getElementById("income-type");
+      const grossIncomeEl = document.getElementById("gross-income");
+      const hoursGroup = document.getElementById("hours-group");
+      const hoursPerWeekEl = document.getElementById("hours-per-week");
+      const taxRateEl = document.getElementById("tax-rate");
+      const fsaEl = document.getElementById("fsa-contribution");
+      const childcareCostEl = document.getElementById("childcare-cost");
+      const childcareFreqEl = document.getElementById("childcare-frequency");
+      const workExpensesEl = document.getElementById("work-expenses");
+
+      // Outputs
+      const resNetMonthly = document.getElementById("res-net-monthly");
+      const resNetYearly = document.getElementById("res-net-yearly");
+      const resEffectiveHourly = document.getElementById("res-effective-hourly");
+      const resBreakeven = document.getElementById("res-breakeven");
+      const barTax = document.getElementById("bar-tax");
+      const barChildcare = document.getElementById("bar-childcare");
+      const barNet = document.getElementById("bar-net");
+
+      // UI Toggles
+      incomeTypeEl.addEventListener("change", function() {
+        hoursGroup.style.display = this.value === "hourly" ? "block" : "none";
+      });
+
+      document.querySelectorAll(".tax-preset").forEach(btn => {
+        btn.addEventListener("click", function() {
+          taxRateEl.value = this.getAttribute("data-rate");
+          this.blur();
+        });
+      });
+
+      // Restore Saved Data
+      const savedData = localStorage.getItem(storageKey);
+      if (savedData) {
+        try {
+          const parsed = JSON.parse(savedData);
+          incomeTypeEl.value = parsed.incomeType || "annual";
+          grossIncomeEl.value = parsed.gross || "";
+          hoursPerWeekEl.value = parsed.hours || "40";
+          taxRateEl.value = parsed.tax || "22";
+          fsaEl.value = parsed.fsa || "0";
+          childcareCostEl.value = parsed.childcare || "";
+          childcareFreqEl.value = parsed.childcareFreq || "monthly";
+          workExpensesEl.value = parsed.workExpenses || "";
+          incomeTypeEl.dispatchEvent(new Event('change'));
+          calculateEngine();
+        } catch(e) { console.error("Restore failed", e); }
+      }
+
+      // Core Math (Cents to avoid floating point bugs)
+      function calculateEngine() {
+        const isHourly = incomeTypeEl.value === "hourly";
+        let rawIncome = parseFloat(grossIncomeEl.value) || 0;
+        const hours = parseFloat(hoursPerWeekEl.value) || 40;
+        const taxRate = parseFloat(taxRateEl.value) || 0;
+        const fsa = Math.min(parseFloat(fsaEl.value) || 0, 7500); 
+        const childcareRaw = parseFloat(childcareCostEl.value) || 0;
+        const isChildcareWeekly = childcareFreqEl.value === "weekly";
+        const workExpensesMonthly = parseFloat(workExpensesEl.value) || 0;
+
+        let annualGross = isHourly ? (rawIncome * hours * 52) : rawIncome;
+        let annualGrossCents = Math.round(annualGross * 100);
+        
+        if (annualGrossCents <= 0) return;
+
+        let taxRateDecimal = taxRate / 100;
+        let annualTaxCents = Math.round(annualGrossCents * taxRateDecimal);
+        let fsaSavingsCents = Math.round((fsa * 100) * taxRateDecimal);
+        
+        let annualNetSalaryCents = annualGrossCents - annualTaxCents + fsaSavingsCents;
+
+        let annualChildcareCents = isChildcareWeekly ? Math.round(childcareRaw * 100 * 52) : Math.round(childcareRaw * 100 * 12);
+        let annualWorkExpensesCents = Math.round(workExpensesMonthly * 100 * 12);
+
+        let annualNetGainCents = annualNetSalaryCents - annualChildcareCents - annualWorkExpensesCents;
+        let monthlyNetGainCents = Math.round(annualNetGainCents / 12);
+
+        let requiredNetCents = annualChildcareCents + annualWorkExpensesCents - fsaSavingsCents;
+        let breakEvenGrossCents = taxRateDecimal < 1 ? Math.round(requiredNetCents / (1 - taxRateDecimal)) : 0;
+
+        let monthlyHours = (hours * 52) / 12;
+        let effectiveHourly = (monthlyNetGainCents / 100) / monthlyHours;
+
+        const formatCurr = (cents) => '$' + (cents / 100).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        
+        resNetMonthly.textContent = formatCurr(monthlyNetGainCents);
+        resNetYearly.textContent = formatCurr(annualNetGainCents) + ' / year';
+        
+        if(monthlyNetGainCents < 0) {
+          resNetMonthly.style.color = '#e11d48'; // Red warning
+          resEffectiveHourly.textContent = 'Losing Money';
+          resEffectiveHourly.style.color = '#e11d48';
+        } else {
+          resNetMonthly.style.color = 'var(--color-primary)';
+          resEffectiveHourly.textContent = '$' + effectiveHourly.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' / hr';
+          resEffectiveHourly.style.color = 'var(--color-text-main)';
+        }
+
+        resBreakeven.textContent = formatCurr(breakEvenGrossCents) + ' / year';
+
+        // Bar Chart Logic
+        let taxPct = (annualTaxCents / annualGrossCents) * 100;
+        let expensePct = ((annualChildcareCents + annualWorkExpensesCents) / annualGrossCents) * 100;
+        let netPct = (annualNetGainCents / annualGrossCents) * 100;
+        
+        if (netPct < 0) netPct = 0; 
+        
+        barTax.style.width = taxPct + "%";
+        barChildcare.style.width = expensePct + "%";
+        barNet.style.width = netPct + "%";
+
+        resultsSection.style.display = "block";
+      }
+
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        calculateEngine();
+        if(document.activeElement) document.activeElement.blur();
+      });
+
+      // 4-Button Action Bar Logic
+      document.getElementById("btn-save").addEventListener("click", function() {
+        const data = {
+          incomeType: incomeTypeEl.value,
+          gross: grossIncomeEl.value,
+          hours: hoursPerWeekEl.value,
+          tax: taxRateEl.value,
+          fsa: fsaEl.value,
+          childcare: childcareCostEl.value,
+          childcareFreq: childcareFreqEl.value,
+          workExpenses: workExpensesEl.value
+        };
+        localStorage.setItem(storageKey, JSON.stringify(data));
+        const btn = this;
+        btn.textContent = "Saved!";
+        setTimeout(() => btn.textContent = "Save", 2000);
+        btn.blur();
+      });
+
+      document.getElementById("btn-copy").addEventListener("click", function() {
+        const text = `Childcare vs Pay Reality:\nGross Income: $${grossIncomeEl.value}\nNet Monthly Gain: ${resNetMonthly.textContent}\nEffective Hourly: ${resEffectiveHourly.textContent}\nCalculated via HouseholdExpenseTools.com`;
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = this;
+          btn.textContent = "Copied!";
+          setTimeout(() => btn.textContent = "Copy", 2000);
+          btn.blur();
+        });
+      });
+
+      document.getElementById("btn-pdf").addEventListener("click", function() {
+        this.blur();
+        window.print();
+      });
+
+      document.getElementById("btn-clear").addEventListener("click", function() {
+        if(confirm("Are you sure you want to clear all data?")) {
+          form.reset();
+          localStorage.removeItem(storageKey);
+          resultsSection.style.display = "none";
+          incomeTypeEl.dispatchEvent(new Event('change'));
+        }
+        this.blur();
+      });
+    });
+  </script>
+</body>
+</html>
