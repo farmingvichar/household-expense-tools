@@ -16,6 +16,20 @@
   <link rel="stylesheet" href="../../assets/css/utilities.css">
   <link rel="stylesheet" href="../../assets/css/responsive.css">
 
+  <!-- PDF Print Optimization CSS (Fast, No External Libraries) -->
+  <style media="print">
+    @page { margin: 1cm; }
+    body { background: #fff !important; color: #000 !important; }
+    /* Hide Navigation, Footer, Content, Forms and Action Buttons */
+    .site-header, .site-footer, .hero-section, .content-section, .form-actions, .result-actions-bar, .tool-form, .ad-slot, .faq-list, .section-header, .privacy-note { display: none !important; }
+    .tool-card { box-shadow: none !important; border: 2px solid #ccc !important; }
+    /* Add a custom print footer via CSS */
+    body::after {
+      content: "Report generated privately at householdexpensetools.com/tools/dining-out-vs-cooking-calculator/";
+      display: block; margin-top: 30px; font-size: 12px; color: #555; text-align: center;
+    }
+  </style>
+
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
@@ -175,16 +189,11 @@
 
             </div>
 
+            <!-- Fix: Only Calculate button remains here to prevent duplicate UI -->
             <div class="form-actions">
-              <button class="button-primary" type="submit" id="calcBtn">Calculate Savings</button>
-              <button class="button-secondary" type="button" id="copyBtn">Copy Summary</button>
-              <button class="button-secondary" type="button" id="resetBtn">Reset</button>
+              <button class="button-primary" type="submit" id="calcBtn" style="width: 100%;">Calculate Savings</button>
             </div>
           </form>
-
-          <p class="privacy-note">
-            Calculations run in your browser. We do not receive your data. Your values are not saved, not sent to a server, and no login is used.
-          </p>
 
           <div class="status-message" id="calcStatus" role="status" aria-live="polite">
             Enter your details to estimate the result.
@@ -208,6 +217,19 @@
               <p id="annualSavings">$0.00</p>
             </div>
           </section>
+
+          <!-- NEW 4-BUTTON ACTION BAR (Directly below output) -->
+          <div class="result-actions-bar" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1.5rem; justify-content: center;">
+            <button class="button-secondary" type="button" id="saveBtn" style="flex: 1 1 calc(25% - 8px); min-width: 110px;">Save</button>
+            <button class="button-secondary" type="button" id="copyBtn" style="flex: 1 1 calc(25% - 8px); min-width: 110px;">Copy</button>
+            <button class="button-secondary" type="button" id="pdfBtn" style="flex: 1 1 calc(25% - 8px); min-width: 110px;">PDF</button>
+            <button class="button-secondary" type="button" id="resetBtn" style="flex: 1 1 calc(25% - 8px); min-width: 110px; border-color: #fca5a5; color: #b91c1c;">Clear All</button>
+          </div>
+          
+          <!-- NEW TRUST & PRIVACY NOTE (With 40px safe bottom margin) -->
+          <p class="privacy-note" style="margin-top: 1rem; margin-bottom: 40px; text-align: center; font-size: 0.85rem; color: var(--text-muted);">
+            <strong>100% Private:</strong> No login required. All data stays locally in your browser and is never sent to any server.
+          </p>
 
         </article>
       </div>
