@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dining Out vs. Cooking at Home Calculator | Household Expense Tools</title>
+  <meta name="description" content="Compare the true monthly and annual cost of restaurant meals, takeout fees, and tips against cooking at home. Free, private browser-based calculator.">
+  <link rel="canonical" href="https://householdexpensetools.com/tools/dining-out-vs-cooking-calculator/">
+  
+  <!-- Shared CSS Architecture -->
+  <link rel="stylesheet" href="../../assets/css/reset.css">
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/typography.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/utilities.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Dining Out vs. Cooking at Home Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Compare the true monthly and annual cost of restaurant meals, takeout fees, and tips against cooking at home."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does a home-cooked meal cost on average in the U.S.?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Based on the USDA Cost of Food Reports, cooking at home costs between $2.75 and $6.30 per person per meal. Most two-to-four-person households land right around $4.25 to $5.00 per serving when mixing pantry staples, fresh produce, and standard proteins."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What percentage should I enter for tax, tip, and delivery fees?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For casual counter pickup or dine-in meals, 22% to 28% is realistic in most U.S. states. If you frequently order through delivery apps, enter 35% to 50% to account for higher in-app menu prices, service fees, delivery charges, and driver tips."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the calculator use 4.333 weeks per month instead of 4?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A 52-week year divided by 12 months equals 4.333 weeks per month. Multiplying weekly meal habits by 4 undercounts your true annual restaurant spending by an entire month (48 weeks instead of 52)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does cooking at home still save money if I live alone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, though single-person households pay roughly 20% more per serving than a family of four due to smaller package sizes. Cooking recipes that freeze well keeps solo meal costs near $4.50–$5.50 per serving compared to $16+ for takeout."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my meal numbers or grocery budgets stored anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Every calculation executes locally inside your browser using JavaScript. We do not collect, transmit, or store your financial inputs on any server."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="../../" class="brand">
+        <svg class="brand-mark" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+          <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/>
+        </svg>
+        <span class="brand-text">Household Expense Tools</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary Navigation">
+        <a href="../../">Home</a>
+        <a href="../../#why-use">Why Use Our Tools</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="container">
+        <p class="eyebrow">Food & Grocery Planning</p>
+        <div class="hero-text">
+          <h1>Dining Out vs. Cooking at Home Calculator</h1>
+          <p>See how much restaurant meals, tips, and delivery fees actually cost your household each month compared to cooking the same meals from groceries.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-section" aria-labelledby="calculator-heading">
+      <div class="container">
+        <article class="tool-card">
+          <div class="section-heading">
+            <h2 id="calculator-heading">Calculate Your Savings</h2>
+            <p>Enter your typical habits to see your true food costs.</p>
+          </div>
+
+          <form class="tool-form" id="diningCalcForm" novalidate>
+            <div class="form-grid">
+              
+              <div class="form-field">
+                <label for="currencySelect">Currency</label>
+                <select id="currencySelect" aria-describedby="currencyHelp">
+                  <option value="$">$ USD</option>
+                  <option value="€">€ EUR</option>
+                  <option value="£">£ GBP</option>
+                  <option value="C$">C$ CAD</option>
+                  <option value="A$">A$ AUD</option>
+                  <option value="₹">₹ INR</option>
+                  <option value="¥">¥ JPY</option>
+                </select>
+                <small id="currencyHelp">Display symbol only.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="diners">Household Size (Diners)</label>
+                <input type="number" id="diners" inputmode="numeric" value="2" min="1" step="1" aria-describedby="dinersHelp">
+                <small id="dinersHelp">Number of people eating per meal.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="mealsOut">Restaurant / Takeout Meals per Week</label>
+                <input type="number" id="mealsOut" inputmode="decimal" value="4" min="0" step="0.5" aria-describedby="mealsOutHelp">
+                <small id="mealsOutHelp">Includes weekday lunches and coffee runs.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="costOut">Avg. Menu Cost per Person</label>
+                <input type="number" id="costOut" inputmode="decimal" value="16.50" min="0" step="0.01" aria-describedby="costOutHelp">
+                <small id="costOutHelp">Pre-tax menu price per diner.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="markup">Tax, Tip & Delivery Fee (%)</label>
+                <input type="number" id="markup" inputmode="decimal" value="25" min="0" step="1" aria-describedby="markupHelp">
+                <small id="markupHelp">Usually 20-30% for dine-in, 35-50% for apps.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="costHome">Avg. Home-Cooked Cost per Serving</label>
+                <input type="number" id="costHome" inputmode="decimal" value="4.50" min="0" step="0.01" aria-describedby="costHomeHelp">
+                <small id="costHomeHelp">USDA average is ~$4.50 to $5.00.</small>
+              </div>
+
+            </div>
+
+            <div class="form-actions">
+              <button class="button-primary" type="submit" id="calcBtn">Calculate Savings</button>
+              <button class="button-secondary" type="button" id="copyBtn">Copy Summary</button>
+              <button class="button-secondary" type="button" id="resetBtn">Reset</button>
+            </div>
+          </form>
+
+          <p class="privacy-note">
+            Calculations run in your browser. We do not receive your data. Your values are not saved, not sent to a server, and no login is used.
+          </p>
+
+          <div class="status-message" id="calcStatus" role="status" aria-live="polite">
+            Enter your details to estimate the result.
+          </div>
+
+          <section class="summary-grid calculator-results-grid" aria-label="Calculator results">
+            <div class="summary-card">
+              <p class="summary-label">Monthly Dining Out</p>
+              <p id="outMonthlyTotal">$0.00</p>
+            </div>
+            <div class="summary-card">
+              <p class="summary-label">Monthly Home Cooking</p>
+              <p id="homeMonthlyTotal">$0.00</p>
+            </div>
+            <div class="summary-card">
+              <p class="summary-label">Net Monthly Savings</p>
+              <p id="monthlySavings">$0.00</p>
+            </div>
+            <div class="summary-card">
+              <p class="summary-label">Annual Savings Potential</p>
+              <p id="annualSavings">$0.00</p>
+            </div>
+          </section>
+
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="narrow-container">
+        <h2>How It Works</h2>
+        <p>This calculator measures the real cash difference between buying prepared restaurant meals and cooking equivalent portions at home. First, it multiplies your weekly restaurant meals by the number of people eating and your average pre-tax menu price. Next, it applies your combined tax, tip, and delivery fee percentage—because a $16 entrée rarely leaves your bank account at $16 once local sales tax, an 18%–20% tip, or third-party app service charges are added.</p>
+        <p>To convert weekly habits into an accurate monthly figure, the math uses <strong>4.333 weeks per month</strong> (the same standard used by the U.S. Department of Agriculture in its monthly food reports) rather than assuming every month has exactly four weeks. Finally, it subtracts your estimated per-serving home grocery cost from your total restaurant spend to show your exact monthly and annual savings. All arithmetic runs in integer cents inside your browser so your numbers stay private and never leave your device.</p>
+
+        <h2>What the Result Means</h2>
+        <p><strong>Monthly & Annual Savings:</strong> This is the net cash remaining in your household budget if you replace those specific restaurant or takeout meals with home-cooked dishes. Even swapping just three $18 lunches a week for $4.50 homemade meals frees up roughly $2,100 over twelve months.</p>
+        <p><strong>The "Convenience Multiplier":</strong> Across U.S. households, dining out typically costs <strong>2.5x to 3.5x more per plate</strong> than cooking from scratch. When delivery app markups and service fees are included, that multiplier often crosses 4x.</p>
+        <p><strong>Compounding Opportunity:</strong> If you redirect $250 per month in saved takeout spending into a 4.25% High-Yield Savings Account (HYSA) or broad index fund, that single habit change equals more than $16,500 in five years.</p>
+
+        <h2>Practical Ways to Lower Your Food Bill Without Giving Up Convenience</h2>
+        <p>You do not need to cook every single meal from scratch to capture most of these savings:</p>
+        <ol>
+          <li><strong>Cut the highest-fee meals first:</strong> Delivery orders carry layered costs—menu markups (often 15%–30% higher than dine-in prices), service fees, delivery fees, and driver tips. Picking up takeout yourself or reserving delivery for rare occasions immediately eliminates 20%–35% in friction costs.</li>
+          <li><strong>Batch-cook lunches, keep dinners flexible:</strong> Weekday lunches are usually eaten at a desk out of habit rather than social enjoyment. Doubling a Sunday dinner recipe to pack three weekday lunches routinely saves $45–$60 per person every week.</li>
+          <li><strong>Audit grocery food waste:</strong> According to USDA estimates, the average American household discards roughly 30% of the food it buys. Buying ingredients for two to three planned meals instead of an aspirational week-long haul prevents spoiled produce from eroding your home-cooking savings.</li>
+        </ol>
+
+        <h2>Limitations</h2>
+        <p>This tool compares direct ingredient and menu outlays and does not assign a dollar value to your grocery shopping, prep, or cleanup time. It also assumes you already own basic kitchen cookware and pantry staples (oil, salt, spices), and it does not adjust for household food waste if unused groceries spoil before being cooked.</p>
+        <p><em>This tool does not provide financial, tax, legal, investment, or accounting advice.</em></p>
+
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+          <details>
+            <summary>How much does a home-cooked meal cost on average in the U.S.?</summary>
+            <p>Based on the USDA Cost of Food Reports, cooking at home costs between <strong>$2.75 and $6.30 per person per meal</strong>, depending on whether your household shops on a Thrifty, Low-Cost, Moderate, or Liberal grocery plan. Most two-to-four-person households land right around <strong>$4.25 to $5.00 per serving</strong> when mixing pantry staples, fresh produce, and standard proteins like chicken, eggs, or beans.</p>
+          </details>
+          <details>
+            <summary>What percentage should I enter for tax, tip, and delivery fees?</summary>
+            <p>For casual counter pickup or dine-in meals, <strong>22% to 28%</strong> is realistic in most U.S. states (combining 6%–9% sales tax with a 15%–20% tip). If you frequently order through DoorDash, Uber Eats, or Grubhub, enter <strong>35% to 50%</strong> to account for higher in-app menu prices, service fees, delivery charges, and driver tips.</p>
+          </details>
+          <details>
+            <summary>Why does the calculator use 4.333 weeks per month instead of 4?</summary>
+            <p>A 52-week year divided by 12 months equals <strong>4.333 weeks per month</strong>. Multiplying weekly meal habits by 4 undercounts your true annual restaurant spending by an entire month (48 weeks instead of 52).</p>
+          </details>
+          <details>
+            <summary>Does cooking at home still save money if I live alone?</summary>
+            <p>Yes, though single-person households pay roughly 20% more per serving than a family of four due to smaller package sizes and higher spoilage risk. Cooking recipes that freeze well—such as chili, stir-fries, or grain bowls—keeps solo meal costs near $4.50–$5.50 per serving compared to $16+ for takeout.</p>
+          </details>
+          <details>
+            <summary>Are my meal numbers or grocery budgets stored anywhere?</summary>
+            <p>No. Every calculation executes locally inside your browser using JavaScript. We do not collect, transmit, or store your financial inputs on any server.</p>
+          </details>
+        </div>
+
+        <h2>Related tools</h2>
+        <p>
+          <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a> | 
+          <a href="../unit-price-calculator/">Grocery Unit Price Comparator</a> | 
+          <a href="../monthly-bill-split-calculator/">Monthly Household Bill Split Calculator</a> | 
+          <a href="../subscription-cost-calculator/">Recurring Subscription Cost Tracker</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Household Expense Tools. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../../assets/js/app.js" defer></script>
+  <script src="../../assets/js/dining-out-vs-cooking-calculator.js" defer></script>
+</body>
+</html>
