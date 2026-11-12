@@ -85,19 +85,27 @@
 
   <header class="site-header" role="banner">
     <div class="container header-inner">
-      <a href="../../" class="brand">
-        <svg class="brand-mark" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
-          <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/>
-        </svg>
+      <a class="brand" href="../../" aria-label="Household Expense Tools home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
+            <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </span>
         <span class="brand-text">Household Expense Tools</span>
       </a>
-      <nav class="primary-nav" aria-label="Primary Navigation">
-        <a href="../../">Home</a>
-        <a href="../../#why-use">Why Use Our Tools</a>
-        <a href="../../faq/">FAQ</a>
+
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="../../">Home</a></li>
+          <li><a href="../">Tools</a></li>
+          <li><a href="../../#why-use">Why Use Us</a></li>
+          <li><a href="../../faq/">FAQ</a></li>
+        </ul>
       </nav>
     </div>
   </header>
+
 
   <main>
     <section class="hero-section">
@@ -228,46 +236,85 @@
         <p>This tool compares direct ingredient and menu outlays and does not assign a dollar value to your grocery shopping, prep, or cleanup time. It also assumes you already own basic kitchen cookware and pantry staples (oil, salt, spices), and it does not adjust for household food waste if unused groceries spoil before being cooked.</p>
         <p><em>This tool does not provide financial, tax, legal, investment, or accounting advice.</em></p>
 
-        <h2>Frequently Asked Questions</h2>
-        <div class="faq-accordion">
-          <details>
-            <summary>How much does a home-cooked meal cost on average in the U.S.?</summary>
-            <p>Based on the USDA Cost of Food Reports, cooking at home costs between <strong>$2.75 and $6.30 per person per meal</strong>, depending on whether your household shops on a Thrifty, Low-Cost, Moderate, or Liberal grocery plan. Most two-to-four-person households land right around <strong>$4.25 to $5.00 per serving</strong> when mixing pantry staples, fresh produce, and standard proteins like chicken, eggs, or beans.</p>
-          </details>
-          <details>
-            <summary>What percentage should I enter for tax, tip, and delivery fees?</summary>
-            <p>For casual counter pickup or dine-in meals, <strong>22% to 28%</strong> is realistic in most U.S. states (combining 6%–9% sales tax with a 15%–20% tip). If you frequently order through DoorDash, Uber Eats, or Grubhub, enter <strong>35% to 50%</strong> to account for higher in-app menu prices, service fees, delivery charges, and driver tips.</p>
-          </details>
-          <details>
-            <summary>Why does the calculator use 4.333 weeks per month instead of 4?</summary>
-            <p>A 52-week year divided by 12 months equals <strong>4.333 weeks per month</strong>. Multiplying weekly meal habits by 4 undercounts your true annual restaurant spending by an entire month (48 weeks instead of 52).</p>
-          </details>
-          <details>
-            <summary>Does cooking at home still save money if I live alone?</summary>
-            <p>Yes, though single-person households pay roughly 20% more per serving than a family of four due to smaller package sizes and higher spoilage risk. Cooking recipes that freeze well—such as chili, stir-fries, or grain bowls—keeps solo meal costs near $4.50–$5.50 per serving compared to $16+ for takeout.</p>
-          </details>
-          <details>
-            <summary>Are my meal numbers or grocery budgets stored anywhere?</summary>
-            <p>No. Every calculation executes locally inside your browser using JavaScript. We do not collect, transmit, or store your financial inputs on any server.</p>
-          </details>
+                <div class="section-header">
+          <span class="eyebrow">Frequently Asked Questions</span>
+          <h2 id="faq-heading">Dining Out vs. Cooking FAQs</h2>
         </div>
 
-        <h2>Related tools</h2>
-        <p>
-          <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a> | 
-          <a href="../unit-price-calculator/">Grocery Unit Price Comparator</a> | 
-          <a href="../monthly-bill-split-calculator/">Monthly Household Bill Split Calculator</a> | 
-          <a href="../subscription-cost-calculator/">Recurring Subscription Cost Tracker</a>
-        </p>
-      </div>
-    </section>
+        <div class="faq-list feature-grid">
+          <article class="faq-item feature-card">
+            <details>
+              <summary>How much does a home-cooked meal cost on average in the U.S.?</summary>
+              <p>According to the USDA, a moderate-cost home-cooked meal averages around $4.50 to $5.00 per person, depending on your ingredients and location.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>What percentage should I enter for tax, tip, and delivery fees?</summary>
+              <p>For dine-in, enter around 25% (8% tax + 17% tip). For delivery apps, fees, tips, and hidden menu markups often total 35% to 45% above the base food cost.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Why does the calculator use 4.333 weeks per month instead of 4?</summary>
+              <p>Because there are 52 weeks in a year. 52 divided by 12 months equals exactly 4.333 weeks per month. This provides a mathematically accurate monthly average.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Does cooking at home still save money if I live alone?</summary>
+              <p>Yes. While buying ingredients for one can seem expensive, batch-cooking and freezing portions keeps the per-meal cost significantly lower than a single restaurant order.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Are my meal numbers or grocery budgets stored anywhere?</summary>
+              <p>No. All calculations run locally in your web browser. We do not save, track, or transmit your financial data to any server.</p>
+            </details>
+          </article>
+        </div>
+
+                <div class="section-header">
+          <h2 id="related-heading">Related tools</h2>
+        </div>
+        
+        <ul class="related-tools-list" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem;">
+          <li><a href="../grocery-budget-calculator/" class="button-secondary" style="padding: 6px 12px; font-size: 0.9rem;">Grocery Budget Calculator</a></li>
+          <li><a href="../unit-price-calculator/" class="button-secondary" style="padding: 6px 12px; font-size: 0.9rem;">Grocery Unit Price Comparator</a></li>
+          <li><a href="../monthly-bill-split-calculator/" class="button-secondary" style="padding: 6px 12px; font-size: 0.9rem;">Monthly Household Bill Split Calculator</a></li>
+          <li><a href="../subscription-cost-calculator/" class="button-secondary" style="padding: 6px 12px; font-size: 0.9rem;">Recurring Subscription Cost Tracker</a></li>
+        </ul>
+
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2026 Household Expense Tools. All rights reserved.</p>
+    <footer class="section site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Household Expense Tools</p>
+        <p class="footer-text">
+          Simple, fast, privacy-friendly tools for home expenses, groceries, budgets, and kitchen planning.
+        </p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../../about/">About</a>
+        <a href="../">Tools</a>
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../terms/">Terms</a>
+        <a href="../../contact/">Contact</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="current-year">2026</span> Household Expense Tools. All rights reserved.</p>
     </div>
   </footer>
+
 
   <!-- Scripts -->
   <script src="../../assets/js/app.js" defer></script>
