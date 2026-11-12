@@ -17,18 +17,22 @@
   <link rel="stylesheet" href="../../assets/css/responsive.css">
 
   <!-- PDF Print Optimization CSS (Fast, No External Libraries) -->
-  <style media="print">
+    <style media="print">
     @page { margin: 1cm; }
-    body { background: #fff !important; color: #000 !important; }
-    /* Hide Navigation, Footer, Content, Forms and Action Buttons */
-    .site-header, .site-footer, .hero-section, .content-section, .form-actions, .result-actions-bar, .tool-form, .ad-slot, .faq-list, .section-header, .privacy-note { display: none !important; }
-    .tool-card { box-shadow: none !important; border: 2px solid #ccc !important; }
-    /* Add a custom print footer via CSS */
+    body { background: #fff !important; color: #000 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    
+    .site-header, .site-footer, .hero-section, .content-section, .form-actions, .result-actions-bar, .ad-slot, .faq-list, .section-header, .privacy-note { display: none !important; }
+    
+    .tool-card { box-shadow: none !important; border: 2px solid #ccc !important; padding: 20px !important; }
+    
+    input[type="number"], select { border: none !important; background: transparent !important; box-shadow: none !important; font-weight: 700 !important; pointer-events: none; margin: 0; padding: 0;}
+    
     body::after {
       content: "Report generated privately at householdexpensetools.com/tools/dining-out-vs-cooking-calculator/";
       display: block; margin-top: 30px; font-size: 12px; color: #555; text-align: center;
     }
   </style>
+
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
