@@ -273,31 +273,44 @@
         <p>When you slide the "Estimated Usage" bar to 70%, the calculator mathematically discards the remaining 30% of the bulk item's weight. It then divides the <em>full purchase price</em> by only the <em>usable weight</em>. Often, the resulting "True Unit Price" is higher than simply buying the smaller, standard-sized item from a regular grocery store.</p>
         <p><strong>The Breakeven Point:</strong> The tool will output a specific breakeven threshold. This is the exact percentage of the bulk item you must consume just to match the unit price of the standard grocery store size. If you eat less than that threshold, the bulk deal was a financial loss.</p>
 
-        <h2>Perishability Guidelines: What to watch out for</h2>
-        <ul>
-          <li><strong>High Risk (Use 40-60% estimate):</strong> Fresh berries, leafy greens, bread, dairy products, and bulk deli meats. These frequently spoil within 5-10 days.</li>
-          <li><strong>Medium Risk (Use 60-80% estimate):</strong> Nuts, cooking oils, and whole-wheat flours. These can go rancid in 3-6 months once exposed to air and light.</li>
-          <li><strong>Low Risk (Use 95-100% estimate):</strong> Toilet paper, paper towels, rice, dried beans, and canned goods. Bulk buying is almost always a mathematical win for non-perishables.</li>
+                <!-- Perishability Guidelines End Here -->
         </ul>
 
-        <!-- FIXED FAQ SECTION -->
-        <div class="section-header">
+        <!-- 1. FIXED RELATED TOOLS SECTION (Aayega Upar) -->
+        <div class="section-header" style="margin-top: 3rem;">
+          <h2 id="related-heading">Related tools</h2>
+        </div>
+        
+        <!-- Added display: flex and flex-wrap inline styles to fix the vertical stacking issue -->
+        <ul class="related-tools-list" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.5rem;">
+          <li><a href="../grocery-budget-calculator/" class="button-secondary" style="padding: 8px 16px; font-size: 0.9rem; text-decoration: none;">Grocery Budget Calculator</a></li>
+          <li><a href="../recipe-cost-calculator/" class="button-secondary" style="padding: 8px 16px; font-size: 0.9rem; text-decoration: none;">Recipe Cost Calculator</a></li>
+          <li><a href="../food-waste-cost-calculator/" class="button-secondary" style="padding: 8px 16px; font-size: 0.9rem; text-decoration: none;">Food Waste Cost Calculator</a></li>
+          <li><a href="../grocery-price-compare-calculator/" class="button-secondary" style="padding: 8px 16px; font-size: 0.9rem; text-decoration: none;">Grocery Unit Price Calculator</a></li>
+        </ul>
+
+        <!-- 2. FIXED FAQ SECTION (Aayega Niche, Footer se pehle) -->
+        <div class="section-header" style="margin-top: 4rem;">
           <span class="eyebrow">Frequently Asked Questions</span>
           <h2 id="faq-heading">Bulk Shopping FAQs</h2>
+          <p>Practical answers on tracking spoiled groceries, evaluating bulk deals, and preventing kitchen budget leaks.</p>
         </div>
-        <div class="faq-list feature-grid">
+        
+        <div class="faq-list feature-grid" style="margin-top: 1.5rem;">
           <article class="faq-item feature-card">
             <details>
               <summary>How much food does the average household waste?</summary>
               <p>According to the USDA, the average American household wastes between 30% and 40% of its food supply, largely due to spoilage, over-purchasing, and bulk-buying traps.</p>
             </details>
           </article>
+          
           <article class="faq-item feature-card">
             <details>
               <summary>Can freezing bulk items save the unit price?</summary>
               <p>Yes. If you immediately portion and freeze a bulk purchase, you can push your usage estimate to 95%-100%, securing the bulk discount.</p>
             </details>
           </article>
+          
           <article class="faq-item feature-card">
             <details>
               <summary>Why does the calculator use my local browser storage?</summary>
@@ -305,17 +318,6 @@
             </details>
           </article>
         </div>
-
-        <!-- FIXED RELATED TOOLS SECTION -->
-        <div class="section-header">
-          <h2 id="related-heading">Related tools</h2>
-        </div>
-        <ul class="related-tools-list" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem;">
-          <li><a href="../grocery-budget-calculator/" class="button-secondary" style="padding: 6px 12px; font-size: 0.9rem;">Grocery Budget Calculator</a></li>
-          <li><a href="../recipe-cost-calculator/" class="button-secondary" style="padding: 6px 12px; font-size: 0.9rem;">Recipe Cost Calculator</a></li>
-          <li><a href="../food-waste-cost-calculator/" class="button-secondary" style="padding: 6px 12px; font-size: 0.9rem;">Food Waste Cost Calculator</a></li>
-          <li><a href="../grocery-price-compare-calculator/" class="button-secondary" style="padding: 6px 12px; font-size: 0.9rem;">Grocery Unit Price Calculator</a></li>
-        </ul>
 
       </div>
     </section>
