@@ -562,14 +562,16 @@
         });
       });
 
-            document.getElementById("btn-pdf").addEventListener("click", function() {
+                  document.getElementById("btn-pdf").addEventListener("click", function() {
         this.blur();
         if (resultsSection.style.display === "none") {
           form.reportValidity();
           return;
         }
+        document.title = "Childcare vs. Take-Home Pay Calculator | Household Expense Tools";
         window.print();
       });
+
 
 
             let clearFeedbackTimer = null;
