@@ -971,14 +971,26 @@ body {
    Global Second Income vs Childcare Calculator (Scoped Styles)
    ========================================================================== */
 
-/* --- Desktop & Universal Structure --- */
+/* --- Desktop & Universal Structure Enhancements --- */
 .tool-header-flex {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end; /* Aligns text bottom with pill */
   gap: 1rem;
   flex-wrap: wrap;
+  margin-bottom: 1.5rem;
 }
+
+.tool-header-flex > div {
+  flex: 1 1 min-width; /* Allows header text to take space */
+}
+
+/* Ensure result numbers break gracefully on narrow screens */
+.result-tile-value, .result-tile-value--sm {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
 
 .currency-selector-wrapper {
   flex: 0 0 auto;
@@ -1055,8 +1067,25 @@ body {
 
 /* --- Mobile App-Like Compact UI (< 768px) --- */
 @media (max-width: 47.9375rem) {
+  /* Header & Currency Pill Fix */
+  .tool-header-flex {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .currency-selector-wrapper {
+    align-self: flex-start; /* Keeps pill neat on left */
+    width: auto;
+  }
+  .currency-pill {
+    padding: 0.5rem 1.75rem 0.5rem 1rem !important; /* Better touch area */
+    font-size: 0.9rem !important;
+  }
+
+  /* Form Layout */
   #second-income-form .form-grid { gap: 0.6rem !important; }
   #second-income-form .form-field { gap: 0.25rem !important; margin-bottom: 0 !important; }
+
   #second-income-form .form-field label { font-size: 0.85rem !important; line-height: 1.25 !important; }
   #second-income-form .field-help { font-size: 0.72rem !important; line-height: 1.1 !important; color: #64748b !important; margin-top: 2px !important; display: block; }
   
@@ -1084,17 +1113,34 @@ body {
   #second-income-form .split-input-row { display: flex !important; gap: 0.45rem !important; }
   #second-income-form .split-input-row select { max-width: 46% !important; font-size: 0.82rem !important; padding-left: 0.4rem !important; padding-right: 1.2rem !important; }
 
-  /* 2x2 Results Grid Mobile */
+  /* 2x2 Results Grid Mobile Fixes */
   #second-income-results { margin-top: 1rem !important; padding: 0.85rem 0.75rem !important; }
   #second-income-results > h3 { font-size: 1.15rem !important; margin-bottom: 0.65rem !important; }
   #second-income-results .calculator-results-grid { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 0.5rem !important; }
   
-  #second-income-results .result-tile { padding: 0.65rem 0.55rem !important; border-radius: 10px !important; }
+  #second-income-results .result-tile { padding: 0.65rem 0.55rem !important; border-radius: 10px !important; min-width: 0; }
   #second-income-results .result-tile-label { font-size: 0.74rem !important; line-height: 1.2 !important; margin-bottom: 0.25rem !important; }
-  #second-income-results .result-tile-value { font-size: clamp(1.02rem, 4.4vw, 1.3rem) !important; line-height: 1.15 !important; overflow-wrap: anywhere; word-break: break-word; }
-  #second-income-results .result-tile-value--sm { font-size: clamp(0.95rem, 4vw, 1.15rem) !important; line-height: 1.2 !important; overflow-wrap: anywhere; }
-  #second-income-results .result-tile-sub { font-size: 0.7rem !important; line-height: 1.25 !important; margin-top: 0.25rem !important; }
+  
+  /* Text Wrapping Fixes for Large Numbers (INR/AED) */
+  #second-income-results .result-tile-value { 
+    font-size: clamp(0.95rem, 4vw, 1.2rem) !important; 
+    line-height: 1.15 !important; 
+    word-break: break-all !important; 
+  }
+  #second-income-results .result-tile-value--sm { 
+    font-size: clamp(0.85rem, 3.8vw, 1.05rem) !important; 
+    line-height: 1.2 !important; 
+    word-break: break-all !important; 
+  }
+  #second-income-results .result-tile-sub { 
+    font-size: 0.7rem !important; 
+    line-height: 1.25 !important; 
+    margin-top: 0.25rem !important; 
+    word-break: normal !important; 
+  }
+  
   #second-income-results .breakdown-legend { gap: 0.35rem 0.6rem !important; font-size: 0.7rem !important; margin-top: 0.4rem !important; }
+
 
   /* 4-Button Action Bar (Touch Targets) */
   #second-income-results ~ .action-bar { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 0.375rem !important; margin-top: 0.75rem !important; }
