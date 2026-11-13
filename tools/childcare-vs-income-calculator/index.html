@@ -68,17 +68,18 @@
   }
   </script>
 
-    <!-- STRICT RULE #1: PDF Print Optimization -->
+      <!-- STRICT RULE #1: PDF Print Optimization -->
   <style media="print">
     @page {
       margin: 10mm;
     }
     html, body {
       height: auto !important;
+      min-height: 0 !important;
       margin: 0 !important;
       padding: 0 !important;
     }
-    header, footer, nav, .hero-section, .educational-content, .related-tools, .faq-section, .action-bar, .privacy-note, .form-actions {
+    header, footer, nav, .hero-section, .educational-content, .related-tools, .faq-section, .action-bar, #results-section ~ .action-bar, .privacy-note, #results-section ~ .privacy-note, .form-actions, .tax-preset-group {
       display: none !important;
     }
     .section {
