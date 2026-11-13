@@ -68,14 +68,28 @@
   }
   </script>
 
-  <!-- STRICT RULE #1: PDF Print Optimization -->
+    <!-- STRICT RULE #1: PDF Print Optimization -->
   <style media="print">
-    header, footer, nav, .educational-content, .related-tools, .faq-section, .action-bar, .privacy-note {
+    @page {
+      margin: 10mm;
+    }
+    html, body {
+      height: auto !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    header, footer, nav, .hero-section, .educational-content, .related-tools, .faq-section, .action-bar, .privacy-note, .form-actions {
       display: none !important;
+    }
+    .section {
+      padding: 0 !important;
+      margin: 0 !important;
     }
     .tool-form, .summary-card {
       display: block !important;
+      margin-top: 0.75rem !important;
       page-break-inside: avoid;
+      break-inside: avoid;
     }
     input, select {
       border: none !important;
@@ -242,7 +256,7 @@
                 <div id="bar-childcare" style="background: #f59e0b; height: 100%; transition: width 0.3s;" title="Childcare & Work Costs"></div>
                 <div id="bar-net" style="background: #10b981; height: 100%; transition: width 0.3s;" title="Net Gain"></div>
               </div>
-              <div class="breakdown-legend" style="display: flex; gap: 10px; font-size: 0.8rem; margin-top: 8px; flex-wrap: wrap;">
+                            <div class="breakdown-legend" style="display: flex; gap: 10px; font-size: 0.8rem; margin-top: 8px; flex-wrap: wrap;">
                 <span style="display: flex; align-items: center; gap: 4px;"><span style="display: inline-block; width: 10px; height: 10px; background: #e11d48; border-radius: 2px;"></span> Taxes</span>
                 <span style="display: flex; align-items: center; gap: 4px;"><span style="display: inline-block; width: 10px; height: 10px; background: #f59e0b; border-radius: 2px;"></span> Childcare/Work</span>
                 <span style="display: flex; align-items: center; gap: 4px;"><span style="display: inline-block; width: 10px; height: 10px; background: #10b981; border-radius: 2px;"></span> Net Savings</span>
@@ -250,28 +264,7 @@
             </div>
           </div>
         </div>
-            
-            
-            <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 0.25rem;">Break-Even Gross Salary</p>
-            <h5 id="res-breakeven" style="font-size: 1.25rem; color: var(--color-text-main); margin: 0;">$0.00 / year</h5>
-            <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.25rem;">The minimum salary required just to cover taxes, childcare, and commute.</p>
-          </div>
 
-          <!-- Print-Friendly Visual Breakdown Bar -->
-          <div>
-            <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 8px;">Where your Gross Pay goes:</p>
-            <div style="display: flex; height: 24px; border-radius: 12px; overflow: hidden; background: #e2e8f0;">
-              <div id="bar-tax" style="background: #e11d48; height: 100%; transition: width 0.3s;" title="Taxes"></div>
-              <div id="bar-childcare" style="background: #f59e0b; height: 100%; transition: width 0.3s;" title="Childcare & Work Costs"></div>
-              <div id="bar-net" style="background: #10b981; height: 100%; transition: width 0.3s;" title="Net Gain"></div>
-            </div>
-            <div style="display: flex; gap: 15px; font-size: 0.85rem; margin-top: 8px; flex-wrap: wrap;">
-              <span style="display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; background: #e11d48; border-radius: 2px;"></span> Taxes</span>
-              <span style="display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; background: #f59e0b; border-radius: 2px;"></span> Childcare/Work</span>
-              <span style="display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 12px; height: 12px; background: #10b981; border-radius: 2px;"></span> Net Savings</span>
-            </div>
-          </div>
-        </div>
 
         <!-- STRICT RULE #3: 4-Button Action Bar BELOW Results -->
         <div class="action-bar" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1.5rem;">
