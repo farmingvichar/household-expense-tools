@@ -68,7 +68,7 @@
   }
   </script>
 
-        <!-- STRICT RULE #1: PDF Print Optimization -->
+          <!-- STRICT RULE #1: PDF Print Optimization -->
   <style media="print">
     @page {
       margin: 10mm;
@@ -100,7 +100,7 @@
       padding: 0 !important;
       margin: 0 !important;
     }
-    .tool-form, .summary-card {
+    .tool-form, #results-section[style*="display: block"] {
       display: block !important;
       margin-top: 0.65rem !important;
       page-break-inside: avoid;
@@ -116,7 +116,21 @@
       color: #64748b;
       text-align: right;
     }
-
+    input, select {
+      border: none !important;
+      background: transparent !important;
+      pointer-events: none;
+      -webkit-appearance: none;
+      appearance: none;
+      color: #14213d !important;
+      font-weight: 600;
+      padding: 0 !important;
+    }
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+  </style>
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="../../manifest.json">
@@ -548,10 +562,15 @@
         });
       });
 
-      document.getElementById("btn-pdf").addEventListener("click", function() {
+            document.getElementById("btn-pdf").addEventListener("click", function() {
         this.blur();
+        if (resultsSection.style.display === "none") {
+          form.reportValidity();
+          return;
+        }
         window.print();
       });
+
 
       document.getElementById("btn-clear").addEventListener("click", function() {
         if(confirm("Are you sure you want to clear all data?")) {
