@@ -692,25 +692,13 @@ a {
 }
 
 /* ==========================================================================
-   Childcare vs. Take-Home Pay Calculator — App-Like Compact Mobile UI (Safe)
+   Childcare vs. Take-Home Pay Calculator — Desktop Original + Mobile Compact
    ========================================================================== */
-@media (min-width: 48rem) {
-  .form-pair-row {
-    display: contents;
-  }
-}
-
-.childcare-results-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-
 .result-tile {
   min-width: 0;
   padding: 1rem;
   border: 1px solid var(--color-border);
-  border-radius: 10px;
+  border-radius: 8px;
   background: #ffffff;
 }
 
@@ -721,11 +709,11 @@ a {
 .result-tile-label {
   font-size: 0.9rem;
   color: var(--color-text-muted);
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.5rem;
 }
 
 .result-tile-value {
-  font-size: 1.85rem;
+  font-size: 2rem;
   line-height: 1.15;
   margin: 0;
   font-variant-numeric: tabular-nums;
@@ -741,12 +729,49 @@ a {
 .result-tile-sub {
   font-size: 0.85rem;
   color: var(--color-text-muted);
-  margin: 0.4rem 0 0;
+  margin: 0.5rem 0 0;
   font-variant-numeric: tabular-nums;
 }
 
+/* Preserve 100% Original Desktop Layout (>= 768px) */
+@media (min-width: 48rem) {
+  #childcare-form .form-pair-row {
+    display: contents;
+  }
+
+  #childcare-form .tax-preset-group {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  #childcare-form .tax-preset-group .tax-preset {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    min-height: 32px;
+  }
+
+  #results-section .childcare-results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  #results-section .childcare-results-grid > .result-tile:nth-child(n+3) {
+    grid-column: 1 / -1;
+    margin-top: 0.5rem;
+  }
+
+  #results-section .childcare-results-grid > .result-tile:nth-child(4) {
+    border: none;
+    padding: 0;
+    background: transparent;
+  }
+}
+
+/* App-Like Compact Mobile UI (< 768px) */
 @media (max-width: 47.9375rem) {
-  /* 1. Compact Form Spacing & Side-by-Side Pairs (Scoped to #childcare-form) */
+  /* 1. Compact Form Spacing & Side-by-Side Pairs */
   #childcare-form .form-grid {
     gap: 0.6rem !important;
   }
@@ -826,7 +851,7 @@ a {
     margin-top: 0.75rem !important;
   }
 
-  /* 2. Compact 2x2 Results Grid & Overflow Protection (Scoped to #results-section) */
+  /* 2. Compact 2x2 Results Grid & Overflow Protection */
   #results-section {
     margin-top: 1rem !important;
     padding: 0.85rem 0.75rem !important;
@@ -838,6 +863,7 @@ a {
   }
 
   #results-section .childcare-results-grid {
+    display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 0.5rem !important;
   }
