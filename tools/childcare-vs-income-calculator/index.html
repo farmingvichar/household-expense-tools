@@ -572,8 +572,32 @@
       });
 
 
+            let clearFeedbackTimer = null;
       document.getElementById("btn-clear").addEventListener("click", function() {
-        if(confirm("Are you sure you want to clear all data?")) {
+        const hasCalculated = resultsSection.style.display !== "none";
+        const hasSaved = localStorage.getItem(storageKey) !== null;
+        const hasCustomInputs =
+          grossIncomeEl.value.trim() !== "" ||
+          childcareCostEl.value.trim() !== "" ||
+          fsaEl.value.trim() !== "" ||
+          workExpensesEl.value.trim() !== "" ||
+          incomeTypeEl.value !== "annual" ||
+          taxRateEl.value.trim() !== "22" ||
+          childcareFreqEl.value !== "monthly" ||
+          hoursPerWeekEl.value.trim() !== "40";
+
+        if (!hasCalculated && !hasSaved && !hasCustomInputs) {
+          const btn = this;
+          clearTimeout(clearFeedbackTimer);
+          btn.textContent = "No Data";
+          clearFeedbackTimer = setTimeout(() => { btn.textContent = "Clear All"; }, 1500);
+          btn.blur();
+          return;
+        }
+
+        if (confirm("Are you sure you want to clear all data?")) {
+          clearTimeout(clearFeedbackTimer);
+          this.textContent = "Clear All";
           form.reset();
           localStorage.removeItem(storageKey);
           resultsSection.style.display = "none";
