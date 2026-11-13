@@ -432,10 +432,13 @@
       const barChildcare = document.getElementById("bar-childcare");
       const barNet = document.getElementById("bar-net");
 
-      // UI Toggles
+            // UI Toggles
       incomeTypeEl.addEventListener("change", function() {
-        hoursGroup.style.display = this.value === "hourly" ? "block" : "none";
+        const isHourly = this.value === "hourly";
+        hoursGroup.style.display = isHourly ? "block" : "none";
+        grossIncomeEl.placeholder = isHourly ? "28" : "60000";
       });
+
 
       document.querySelectorAll(".tax-preset").forEach(btn => {
         btn.addEventListener("click", function() {
@@ -552,15 +555,23 @@
         btn.blur();
       });
 
+            let copyFeedbackTimer = null;
       document.getElementById("btn-copy").addEventListener("click", function() {
-        const text = `Childcare vs Pay Reality:\nGross Income: $${grossIncomeEl.value}\nNet Monthly Gain: ${resNetMonthly.textContent}\nEffective Hourly: ${resEffectiveHourly.textContent}\nCalculated via HouseholdExpenseTools.com`;
+        const isHourly = incomeTypeEl.value === "hourly";
+        const rawGross = parseFloat(grossIncomeEl.value) || 0;
+        const formattedGross = "$" + rawGross.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        const hours = parseFloat(hoursPerWeekEl.value) || 40;
+        const grossLabel = isHourly ? `${formattedGross} / hr (${hours} hrs/wk)` : `${formattedGross} / year`;
+        const text = `Childcare vs Pay Reality:\nGross Income: ${grossLabel}\nNet Monthly Gain: ${resNetMonthly.textContent} (${resNetYearly.textContent})\nEffective Hourly: ${resEffectiveHourly.textContent}\nBreak-Even Salary: ${resBreakeven.textContent}\nCalculated via HouseholdExpenseTools.com`;
         navigator.clipboard.writeText(text).then(() => {
           const btn = this;
+          clearTimeout(copyFeedbackTimer);
           btn.textContent = "Copied!";
-          setTimeout(() => btn.textContent = "Copy", 2000);
+          copyFeedbackTimer = setTimeout(() => { btn.textContent = "Copy"; }, 2000);
           btn.blur();
         });
       });
+
 
                   document.getElementById("btn-pdf").addEventListener("click", function() {
         this.blur();
