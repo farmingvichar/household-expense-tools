@@ -68,7 +68,7 @@
   }
   </script>
 
-      <!-- STRICT RULE #1: PDF Print Optimization -->
+        <!-- STRICT RULE #1: PDF Print Optimization -->
   <style media="print">
     @page {
       margin: 10mm;
@@ -79,7 +79,21 @@
       margin: 0 !important;
       padding: 0 !important;
     }
-    header, footer, nav, .hero-section, .educational-content, .related-tools, .faq-section, .action-bar, #results-section ~ .action-bar, .privacy-note, #results-section ~ .privacy-note, .form-actions, .tax-preset-group {
+    body .site-header {
+      display: block !important;
+      position: static !important;
+      box-shadow: none !important;
+      border-bottom: 1px solid #dbe4e2 !important;
+      padding: 0 0 0.5rem 0 !important;
+      margin-bottom: 0.75rem !important;
+      background: transparent !important;
+    }
+    body .site-header .header-inner {
+      flex-direction: row !important;
+      justify-content: flex-start !important;
+      padding: 0 !important;
+    }
+    footer, nav, body .site-header .primary-nav, .hero-section, .educational-content, .related-tools, .faq-section, body .action-bar, body #results-section ~ .action-bar, body .privacy-note, body #results-section ~ .privacy-note, .form-actions, .tax-preset-group {
       display: none !important;
     }
     .section {
@@ -88,25 +102,21 @@
     }
     .tool-form, .summary-card {
       display: block !important;
-      margin-top: 0.75rem !important;
+      margin-top: 0.65rem !important;
       page-break-inside: avoid;
       break-inside: avoid;
     }
-    input, select {
-      border: none !important;
-      background: transparent !important;
-      pointer-events: none;
-      -webkit-appearance: none;
-      appearance: none;
-      color: #14213d !important;
-      font-weight: 600;
-      padding: 0 !important;
+    #results-section::after {
+      content: "householdexpensetools.com";
+      display: block;
+      margin-top: 0.65rem;
+      padding-top: 0.45rem;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.75rem;
+      color: #64748b;
+      text-align: right;
     }
-    * {
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-    }
-  </style>
+
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="../../manifest.json">
