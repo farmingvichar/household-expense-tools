@@ -683,7 +683,7 @@ a {
     margin-block-start: var(--space-3) !important;
   }
 
-  .footer-nav a {
+    .footer-nav a {
     display: inline-flex !important;
     align-items: center !important;
     font-size: 0.875rem !important;
@@ -692,8 +692,32 @@ a {
 }
 
 /* ==========================================================================
+   Mobile Sticky Header Fix (Guaranteed for Phone Viewports)
+   ========================================================================== */
+html,
+body {
+  overflow-x: clip !important;
+}
+
+@media (max-width: 47.9375rem) {
+  .site-header {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    inset-block-start: 0 !important;
+    z-index: 9999 !important;
+    inline-size: 100% !important;
+    background-color: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06) !important;
+  }
+}
+
+/* ==========================================================================
    Childcare vs. Take-Home Pay Calculator — Desktop Original + Mobile Compact
    ========================================================================== */
+
 .result-tile {
   min-width: 0;
   padding: 1rem;
@@ -797,6 +821,15 @@ a {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.5rem;
     align-items: end;
+  }
+
+  #childcare-form .form-pair-row:first-child {
+    grid-template-columns: 1.28fr 0.72fr;
+  }
+
+  #childcare-form .form-pair-row:first-child select {
+    font-size: 0.875rem !important;
+    padding-left: 0.55rem !important;
   }
 
   #childcare-form .form-pair-row .form-field {
