@@ -149,20 +149,22 @@
           <p>Enter your pay, estimated taxes, and childcare costs to reveal your actual take-home pay.</p>
         </div>
 
-        <form id="childcare-form" class="tool-form" novalidate>
+                <form id="childcare-form" class="tool-form" novalidate>
           <div class="form-grid">
             
-            <div class="form-field">
-              <label for="income-type">Income Type</label>
-              <select id="income-type" name="income-type">
-                <option value="annual">Annual Salary ($/year)</option>
-                <option value="hourly">Hourly Wage ($/hour)</option>
-              </select>
-            </div>
+            <div class="form-pair-row">
+              <div class="form-field">
+                <label for="income-type">Income Type</label>
+                <select id="income-type" name="income-type">
+                  <option value="annual">Annual Salary ($/year)</option>
+                  <option value="hourly">Hourly Wage ($/hour)</option>
+                </select>
+              </div>
 
-            <div class="form-field">
-              <label for="gross-income">Gross Pay Before Taxes ($)</label>
-              <input id="gross-income" name="gross-income" type="number" inputmode="decimal" min="0" step="0.01" placeholder="60000" required>
+              <div class="form-field">
+                <label for="gross-income">Gross Pay Before Taxes ($)</label>
+                <input id="gross-income" name="gross-income" type="number" inputmode="decimal" min="0" step="0.01" placeholder="60000" required>
+              </div>
             </div>
 
             <div class="form-field" id="hours-group" style="display: none;">
@@ -172,17 +174,19 @@
 
             <div class="form-field">
               <label for="tax-rate">Estimated Tax Rate (%) <span style="font-size: 0.85em; font-weight: normal;">(Fed+FICA+State)</span></label>
-              <input id="tax-rate" name="tax-rate" type="number" inputmode="decimal" min="0" max="100" step="0.1" value="22" required>
-              <div style="display: flex; gap: 8px; margin-top: 8px;">
-                <button type="button" class="button button-secondary tax-preset" data-rate="15" style="padding: 4px 10px; font-size: 0.8rem; min-height: 32px;">15%</button>
-                <button type="button" class="button button-secondary tax-preset" data-rate="22" style="padding: 4px 10px; font-size: 0.8rem; min-height: 32px;">22%</button>
-                <button type="button" class="button button-secondary tax-preset" data-rate="28" style="padding: 4px 10px; font-size: 0.8rem; min-height: 32px;">28%</button>
+              <div class="tax-input-row">
+                <input id="tax-rate" name="tax-rate" type="number" inputmode="decimal" min="0" max="100" step="0.1" value="22" required>
+                <div class="tax-preset-group">
+                  <button type="button" class="button button-secondary tax-preset" data-rate="15">15%</button>
+                  <button type="button" class="button button-secondary tax-preset" data-rate="22">22%</button>
+                  <button type="button" class="button button-secondary tax-preset" data-rate="28">28%</button>
+                </div>
               </div>
             </div>
 
             <div class="form-field">
               <label for="childcare-cost">Childcare / Daycare Cost ($)</label>
-              <div style="display: flex; gap: 8px;">
+              <div class="childcare-cost-row" style="display: flex; gap: 8px;">
                 <input id="childcare-cost" name="childcare-cost" type="number" inputmode="decimal" min="0" step="0.01" placeholder="2000" required style="flex: 1;">
                 <select id="childcare-frequency" name="childcare-frequency" style="width: auto;">
                   <option value="monthly">per Month</option>
@@ -191,14 +195,16 @@
               </div>
             </div>
 
-            <div class="form-field">
-              <label for="fsa-contribution">Dependent Care FSA ($/year)</label>
-              <input id="fsa-contribution" name="fsa-contribution" type="number" inputmode="decimal" min="0" max="7500" placeholder="0">
-            </div>
+            <div class="form-pair-row">
+              <div class="form-field">
+                <label for="fsa-contribution">Dependent Care FSA ($/year)</label>
+                <input id="fsa-contribution" name="fsa-contribution" type="number" inputmode="decimal" min="0" max="7500" placeholder="0">
+              </div>
 
-            <div class="form-field">
-              <label for="work-expenses">Monthly Work Expenses ($)</label>
-              <input id="work-expenses" name="work-expenses" type="number" inputmode="decimal" min="0" step="0.01" placeholder="250">
+              <div class="form-field">
+                <label for="work-expenses">Monthly Work Expenses ($)</label>
+                <input id="work-expenses" name="work-expenses" type="number" inputmode="decimal" min="0" step="0.01" placeholder="250">
+              </div>
             </div>
           </div>
 
@@ -212,20 +218,40 @@
         <div id="results-section" class="summary-card" style="display: none; margin-top: 2rem;" aria-live="polite">
           <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Your Real Take-Home Reality</h3>
           
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-            <div style="padding: 1rem; border: 1px solid var(--color-border); border-radius: 8px;">
-              <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">True Net Monthly Gain</p>
-              <h4 id="res-net-monthly" style="color: var(--color-primary); font-size: 2rem; margin: 0;">$0.00</h4>
-              <p id="res-net-yearly" style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.5rem;">$0.00 / year</p>
+          <div class="childcare-results-grid">
+            <div class="result-tile">
+              <p class="result-tile-label">True Net Monthly Gain</p>
+              <h4 id="res-net-monthly" class="result-tile-value" style="color: var(--color-primary);">$0.00</h4>
+              <p id="res-net-yearly" class="result-tile-sub">$0.00 / year</p>
             </div>
-            <div style="padding: 1rem; border: 1px solid var(--color-border); border-radius: 8px;">
-              <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">Effective Hourly Wage</p>
-              <h4 id="res-effective-hourly" style="color: var(--color-text-main); font-size: 2rem; margin: 0;">$0.00</h4>
-              <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.5rem;">After childcare & taxes</p>
+            <div class="result-tile">
+              <p class="result-tile-label">Effective Hourly Wage</p>
+              <h4 id="res-effective-hourly" class="result-tile-value" style="color: var(--color-text-main);">$0.00</h4>
+              <p class="result-tile-sub">After childcare & taxes</p>
+            </div>
+            <div class="result-tile result-tile--alt">
+              <p class="result-tile-label">Break-Even Gross Salary</p>
+              <h5 id="res-breakeven" class="result-tile-value--sm" style="color: var(--color-text-main);">$0.00 / year</h5>
+              <p class="result-tile-sub">The minimum salary required just to cover taxes, childcare, and commute.</p>
+            </div>
+            <!-- Print-Friendly Visual Breakdown Bar -->
+            <div class="result-tile">
+              <p class="result-tile-label" style="font-weight: 600; color: var(--color-text-main);">Where your Gross Pay goes:</p>
+              <div style="display: flex; height: 18px; border-radius: 9px; overflow: hidden; background: #e2e8f0; margin-top: 0.35rem;">
+                <div id="bar-tax" style="background: #e11d48; height: 100%; transition: width 0.3s;" title="Taxes"></div>
+                <div id="bar-childcare" style="background: #f59e0b; height: 100%; transition: width 0.3s;" title="Childcare & Work Costs"></div>
+                <div id="bar-net" style="background: #10b981; height: 100%; transition: width 0.3s;" title="Net Gain"></div>
+              </div>
+              <div class="breakdown-legend" style="display: flex; gap: 10px; font-size: 0.8rem; margin-top: 8px; flex-wrap: wrap;">
+                <span style="display: flex; align-items: center; gap: 4px;"><span style="display: inline-block; width: 10px; height: 10px; background: #e11d48; border-radius: 2px;"></span> Taxes</span>
+                <span style="display: flex; align-items: center; gap: 4px;"><span style="display: inline-block; width: 10px; height: 10px; background: #f59e0b; border-radius: 2px;"></span> Childcare/Work</span>
+                <span style="display: flex; align-items: center; gap: 4px;"><span style="display: inline-block; width: 10px; height: 10px; background: #10b981; border-radius: 2px;"></span> Net Savings</span>
+              </div>
             </div>
           </div>
-
-          <div style="padding: 1rem; background-color: var(--color-bg-alt, #f8f9fa); border: 1px solid var(--color-border); border-radius: 8px; margin-bottom: 1.5rem;">
+        </div>
+            
+            
             <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 0.25rem;">Break-Even Gross Salary</p>
             <h5 id="res-breakeven" style="font-size: 1.25rem; color: var(--color-text-main); margin: 0;">$0.00 / year</h5>
             <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.25rem;">The minimum salary required just to cover taxes, childcare, and commute.</p>
