@@ -1166,3 +1166,33 @@ body {
     text-align: right;
   }
 }
+
+/* ==========================================================================
+   Targeted Fix: Remove Default Mobile Blue Tap Highlight (Zero Risk Strategy)
+   ========================================================================== */
+
+/* 1. Target Native Dropdowns: Removes square tap highlight from all select menus 
+      (like Currency in Unit Price or Roommate Bill Splitter) */
+select, 
+.currency-pill {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Add a clean theme-matched tap effect for the currency pill */
+.currency-pill:active {
+  background-color: #e6f4f1 !important;
+  border-color: #99f6e4 !important;
+}
+
+/* 2. Target Search/Filter Jump Chips: Removes the blue flash and applies a subtle theme active state */
+.jump-chip {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Ensure the jump chips have a clean active state matching your primary color */
+.jump-chip:active {
+  background-color: #e6f4f1 !important;
+  border-color: var(--color-primary, #0f766e) !important;
+}
+}
+
