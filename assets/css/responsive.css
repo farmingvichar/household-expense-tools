@@ -1147,25 +1147,107 @@ body {
   #second-income-results ~ .action-bar .button { width: 100% !important; min-height: 44px !important; padding: 0 0.25rem !important; font-size: 0.8125rem !important; white-space: nowrap !important; }
 }
 
-/* --- Branded Print Export (1-Page Optimization) --- */
+/* --- Premium Branded Print Export (PDF Optimization) --- */
 @media print {
-  #second-income-form, #second-income-results[style*="display: block"] {
-    display: block !important;
-    margin-top: 0.65rem !important;
-    page-break-inside: avoid;
-    break-inside: avoid;
+  /* Hide unnecessary web UI elements in PDF */
+  .site-header, .site-footer, .action-bar, .currency-selector-wrapper {
+    display: none !important;
   }
+
+  /* Force background colors to print (fixes missing bar chart colors) */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Compact and align the input form for paper */
+  #second-income-form {
+    display: block !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  #second-income-form .form-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+  
+  #second-income-form .form-pair-row {
+    display: contents !important; /* Breaks out of nested div to join main grid */
+  }
+
+  #second-income-form .form-field {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Ensure inputs and selects look clean on paper */
+  #second-income-form input, 
+  #second-income-form select {
+    border: 1px solid #cbd5e1 !important;
+    background: transparent !important;
+    padding: 0.25rem !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+  
+  #second-income-form .tax-preset-group {
+    display: none !important; /* Hide preset buttons on print */
+  }
+
+  /* Protect the Results Section */
+  #second-income-results {
+    display: block !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    border: 2px solid #0f766e !important;
+    padding: 1rem !important;
+    border-radius: 8px !important;
+    margin-top: 1rem !important;
+  }
+
+  /* Fix 2x2 Grid for Results on Paper */
+  #second-income-results .calculator-results-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .result-tile {
+    border: 1px solid #e2e8f0 !important;
+    padding: 0.75rem !important;
+    break-inside: avoid !important;
+  }
+
+  /* Ensure Privacy Note stays at the very bottom of the tool section */
+  .privacy-note {
+    display: block !important;
+    text-align: center !important;
+    font-size: 0.7rem !important;
+    margin-top: 1.5rem !important;
+    color: #64748b !important;
+  }
+
+  /* Brand Signature at bottom of Results */
   #second-income-results::after {
-    content: "householdexpensetools.com";
-    display: block;
-    margin-top: 0.65rem;
-    padding-top: 0.45rem;
-    border-top: 1px solid #e2e8f0;
-    font-size: 0.75rem;
-    color: #64748b;
-    text-align: right;
+    content: "Generated via HouseholdExpenseTools.com";
+    display: block !important;
+    margin-top: 1rem !important;
+    padding-top: 0.5rem !important;
+    border-top: 1px solid #e2e8f0 !important;
+    font-size: 0.8rem !important;
+    font-weight: bold !important;
+    color: #0f766e !important;
+    text-align: right !important;
+  }
+  
+  /* Fix Educational Content Layout */
+  .educational-content {
+    page-break-before: always !important; /* Push text to page 2 */
   }
 }
+
 
 /* ==========================================================================
    Targeted Fix: Remove Default Mobile Blue Tap Highlight (Zero Risk Strategy)
