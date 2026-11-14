@@ -1278,3 +1278,83 @@ select,
 }
 }
 
+/* ==========================================================================
+   Ultimate 1-Page PDF Print Layout (100% Complete & Optimized)
+   ========================================================================== */
+@media print {
+  /* 1. Force Exact Colors - Taaki green boxes aur shades PDF mein bhi dikhein */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  
+  /* Force White Background for paper (Prevents dark-mode ink waste) */
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  /* 2. Hide Web Clutter (Header, Footer, Nav, Buttons, Privacy, Ads) */
+  .site-header, .site-footer, .nav-toggle, .skip-link, .ad-placeholder, 
+  .form-actions, .privacy-note {
+    display: none !important;
+  }
+  
+  /* 3. Compress Hero Section (Title) so it doesn't push content to Page 2 */
+  .hero-section {
+    padding-block: 1rem !important; 
+    margin-bottom: 0 !important;
+  }
+  
+  /* 4. The Calculator Box - Make it look like a clean receipt */
+  .tool-card {
+    border: 2px solid var(--color-primary, #0f766e) !important;
+    padding: 1.5rem !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid !important;
+  }
+  
+  /* 5. 2-Column Grid for Inputs - Saves 50% vertical paper space */
+  .form-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem 1rem !important;
+  }
+  .form-field { margin-bottom: 0 !important; }
+  .form-field input, .form-field select { 
+    padding: 0.25rem 0.5rem !important; 
+    min-block-size: 2rem !important; 
+  }
+  
+  /* 6. Results Section (Compact) */
+  .calculator-results-grid {
+    margin-top: 1.5rem !important;
+    margin-bottom: 0 !important;
+    gap: 0.5rem !important;
+    page-break-inside: avoid !important;
+  }
+  .summary-card {
+    padding: 0.75rem !important;
+    border: 1px solid var(--color-border, #e2e8f0) !important;
+  }
+  
+  /* 7. Push SEO/Article text (How it works) cleanly to Page 2 */
+  .content-section {
+    page-break-before: always !important;
+  }
+  
+  /* 8. Add Official Brand Signature at the bottom of the tool */
+  .tool-card::after {
+    content: "Calculated privately at HouseholdExpenseTools.com";
+    display: block !important;
+    margin-top: 1.5rem !important;
+    padding-top: 0.75rem !important;
+    border-top: 1px dotted #cbd5e1 !important;
+    font-size: 0.85rem !important;
+    color: #64748b !important;
+    text-align: center !important;
+  }
+}
+
