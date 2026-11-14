@@ -357,9 +357,18 @@
       state.bills = state.bills.filter(b => b.id !== bid); 
       renderBills(); compute(); 
     }
-    else if (t.id === "reset") { 
-      if (confirm("Clear all roommates and bills?")) { state = defaults(); renderPeople(); renderBills(); compute(); $("#copy-status").textContent = ""; } 
+        else if (t.id === "reset") { 
+      // Smart Check: See if any names or bill amounts have been entered
+      let hasData = false;
+      state.people.forEach(p => { if (p.name.trim() !== "") hasData = true; });
+      state.bills.forEach(b => { if (b.amount.trim() !== "") hasData = true; });
+      
+      // If blank, reset instantly. If data exists, ask for confirmation.
+      if (!hasData || confirm("Clear all roommates and bills?")) { 
+          state = defaults(); renderPeople(); renderBills(); compute(); $("#copy-status").textContent = ""; 
+      } 
     }
+
     else if (t.id === "copy" && lastText) { 
       copyText(lastText); 
     }
