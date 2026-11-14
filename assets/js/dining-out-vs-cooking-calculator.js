@@ -131,7 +131,13 @@
     // --- FEATURE 3: COPY SUMMARY ---
     function copySummary() {
         copyBtn.blur();
-        if (!hasCalculated) calculateSavings(); // Ensure results exist
+        
+        // FIX 1: Ab auto-calculate nahi hoga. Error message dikhayega.
+        if (!hasCalculated) {
+            statusMsg.textContent = "Please calculate your savings before copying.";
+            statusMsg.style.color = "#d32f2f";
+            return;
+        }
         
         const textToCopy = `Dining Out vs. Home Cooking Breakdown:\n` +
             `----------------------------------------\n` +
@@ -153,13 +159,58 @@
     // --- FEATURE 4: DOWNLOAD PDF (Native Print API for Speed) ---
     function downloadPDF() {
         pdfBtn.blur();
-        if (!hasCalculated) calculateSavings();
-        window.print(); // Triggers the @media print CSS layout in HTML
+        
+        // FIX 2: Ab auto-calculate nahi hoga. Error message dikhayega.
+        if (!hasCalculated) {
+            statusMsg.textContent = "Please calculate your savings before saving a PDF.";
+            statusMsg.style.color = "#d32f2f";
+            return;
+        }
+        window.print(); 
     }
 
-        // --- FEATURE 5: CLEAR ALL (Reset UI & Delete Save) ---
+    // --- FEATURE 5: CLEAR ALL (Reset UI & Delete Save) ---
     function clearAll() {
         resetBtn.blur();
+        
+        // Smart Check 1: Check karo ki kya saare boxes completely khali hain?
+        const isCompletelyEmpty = dinersInput.value.trim() === "" && 
+                                  mealsOutInput.value.trim() === "" && 
+                                  costOutInput.value.trim() === "" && 
+                                  markupInput.value.trim() === "" && 
+                                  costHomeInput.value.trim() === "";
+
+        // Smart Check 2: Check karo ki kya user ne default numbers change kiye hain?
+        const hasChanges = dinersInput.value !== dinersInput.defaultValue ||
+                           mealsOutInput.value !== mealsOutInput.defaultValue ||
+                           costOutInput.value !== costOutInput.defaultValue ||
+                           markupInput.value !== markupInput.defaultValue ||
+                           costHomeInput.value !== costHomeInput.defaultValue;
+
+        const needsPopup = hasCalculated || (hasChanges && !isCompletelyEmpty);
+
+        if (!needsPopup || confirm("Clear all numbers and delete saved data?")) {
+            form.reset();
+            hasCalculated = false;
+
+            // Delete from browser storage
+            localStorage.removeItem(storageKey); 
+            
+            const sym = currencySelect.value;
+            outMonthlyTotalEl.textContent = formatCurrency(0, sym);
+            homeMonthlyTotalEl.textContent = formatCurrency(0, sym);
+            monthlySavingsEl.textContent = formatCurrency(0, sym);
+            annualSavingsEl.textContent = formatCurrency(0, sym);
+            
+            statusMsg.textContent = "Enter your details to estimate the result.";
+            statusMsg.style.color = "inherit";
+
+            // FIX 3: SPEED FIX (1500ms ki jagah sirf 500ms tak Cleared likha aayega, jisse fast feel ho)
+            const originalText = resetBtn.textContent;
+            resetBtn.textContent = "Cleared!";
+            setTimeout(() => { resetBtn.textContent = originalText; }, 500);
+        }
+    }
         
         // Smart Check 1: Check karo ki kya saare boxes completely khali hain?
         const isCompletelyEmpty = dinersInput.value.trim() === "" && 
