@@ -357,11 +357,19 @@
       });
     }
 
-    // 2. Clear numbers पर Cancel दबाने से रीसेट रोकने का फाइनल पैच
+    // 2. Smart Clear Logic: Only show popup if form has actual data
     if (resetBtn) {
       resetBtn.addEventListener("click", function (e) {
         e.preventDefault(); 
-        if (confirm("Clear all package numbers?")) {
+        
+        // Check if any input field actually contains a value
+        const hasData = oldPriceIn.value.trim() !== "" || 
+                        oldSizeIn.value.trim() !== "" || 
+                        newPriceIn.value.trim() !== "" || 
+                        newSizeIn.value.trim() !== "";
+        
+        // If empty, clear silently without popup. If filled, ask for confirmation.
+        if (!hasData || confirm("Clear all package numbers?")) {
           form.reset();
           window.setTimeout(function () {
             setRestingState("Cleared all numbers. Enter new package details to compare.");
@@ -369,6 +377,7 @@
         }
       });
     }
+
 
     setRestingState();
   });
