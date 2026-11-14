@@ -157,12 +157,22 @@
         window.print(); // Triggers the @media print CSS layout in HTML
     }
 
-    // --- FEATURE 5: CLEAR ALL (Reset UI & Delete Save) ---
+        // --- FEATURE 5: CLEAR ALL (Reset UI & Delete Save) ---
     function clearAll() {
         resetBtn.blur();
-        if (confirm("Clear all numbers and delete saved data?")) {
+        
+        // Smart Check: Determine if the form actually has numeric data entered
+        const hasData = (parseFloat(dinersInput.value) > 0) || 
+                        (parseFloat(mealsOutInput.value) > 0) || 
+                        (parseFloat(costOutInput.value) > 0) || 
+                        (parseFloat(markupInput.value) > 0) || 
+                        (parseFloat(costHomeInput.value) > 0);
+
+        // If form is empty, bypass popup. If filled, ask for confirmation.
+        if (!hasData || confirm("Clear all numbers and delete saved data?")) {
             form.reset();
             hasCalculated = false;
+
             
             // Delete from browser storage
             localStorage.removeItem(storageKey); 
