@@ -357,17 +357,34 @@
       state.bills = state.bills.filter(b => b.id !== bid); 
       renderBills(); compute(); 
     }
-        else if (t.id === "reset") { 
-      // Smart Check: See if any names or bill amounts have been entered
+            else if (t.id === "reset") { 
+      // Smart Check: Ignore default names and check for REAL user data
       let hasData = false;
-      state.people.forEach(p => { if (p.name.trim() !== "") hasData = true; });
-      state.bills.forEach(b => { if (b.amount.trim() !== "") hasData = true; });
       
-      // If blank, reset instantly. If data exists, ask for confirmation.
+      const defNames = ["Alex", "Sam", "Jordan"];
+      if (state.people.length !== 3) {
+          hasData = true;
+      } else {
+          state.people.forEach((p, i) => { 
+              if (p.name.trim() !== defNames[i] && p.name.trim() !== "") hasData = true; 
+          });
+      }
+      
+      if (state.bills.length !== 1) hasData = true;
+      state.bills.forEach(b => { 
+          if (b.amount.trim() !== "") hasData = true; 
+          if (Object.values(b.vals).some(v => String(v).trim() !== "")) hasData = true;
+      });
+      
       if (!hasData || confirm("Clear all roommates and bills?")) { 
-          state = defaults(); renderPeople(); renderBills(); compute(); $("#copy-status").textContent = ""; 
+          state = defaults(); 
+          renderPeople(); 
+          renderBills(); 
+          compute(); 
+          $("#copy-status").textContent = ""; 
       } 
     }
+
 
     else if (t.id === "copy" && lastText) { 
       copyText(lastText); 
