@@ -161,17 +161,27 @@
     function clearAll() {
         resetBtn.blur();
         
-        // Smart Check: Determine if the form actually has numeric data entered
-        const hasData = (parseFloat(dinersInput.value) > 0) || 
-                        (parseFloat(mealsOutInput.value) > 0) || 
-                        (parseFloat(costOutInput.value) > 0) || 
-                        (parseFloat(markupInput.value) > 0) || 
-                        (parseFloat(costHomeInput.value) > 0);
+        // Smart Check 1: Check karo ki kya saare boxes completely khali hain?
+        const isCompletelyEmpty = dinersInput.value.trim() === "" && 
+                                  mealsOutInput.value.trim() === "" && 
+                                  costOutInput.value.trim() === "" && 
+                                  markupInput.value.trim() === "" && 
+                                  costHomeInput.value.trim() === "";
 
-        // If form is empty, bypass popup. If filled, ask for confirmation.
-        if (!hasData || confirm("Clear all numbers and delete saved data?")) {
+        // Smart Check 2: Check karo ki kya user ne default (pehle se bhare) numbers change kiye hain?
+        const hasChanges = dinersInput.value !== dinersInput.defaultValue ||
+                           mealsOutInput.value !== mealsOutInput.defaultValue ||
+                           costOutInput.value !== costOutInput.defaultValue ||
+                           markupInput.value !== markupInput.defaultValue ||
+                           costHomeInput.value !== costHomeInput.defaultValue;
+
+        // Final Logic: Pop-up SIRF tab aayega jab calculation ho chuki ho, YA user ne numbers badle hon (aur khali na ho).
+        const needsPopup = hasCalculated || (hasChanges && !isCompletelyEmpty);
+
+        if (!needsPopup || confirm("Clear all numbers and delete saved data?")) {
             form.reset();
             hasCalculated = false;
+
 
             
             // Delete from browser storage
