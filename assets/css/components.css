@@ -725,10 +725,28 @@ button,
     transform: none;
   }
   
+  /* 1. Primary Calculate Button Tap - Sirf Dark Green Hoga */
   .button-primary:active,
-  .form-actions button:active {
-    background: var(--color-primary-dark);
-    transition: none !important; /* यह उंगली रखते ही बिना एनीमेशन के तुरंत रंग बदलेगा */
+  .form-actions button[type="submit"]:active {
+    background: var(--color-primary-dark) !important;
+    transition: none !important; 
+  }
+
+  /* 2. Secondary/Outline Buttons Tap - Soft Premium Green (FIX) */
+  .button-secondary:active,
+  .form-actions button[type="reset"]:active,
+  .form-actions button[type="button"]:active {
+    background-color: #e6f4f1 !important;
+    border-color: var(--color-primary, #0f766e) !important;
+    transition: none !important;
   }
 }
+
+/* 3. Remove browser default black tap highlight globally for all outline buttons */
+.button-secondary,
+.form-actions button[type="reset"],
+.form-actions button[type="button"] {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
 
