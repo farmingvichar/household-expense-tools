@@ -30,8 +30,9 @@
     return (c < 0 ? "-" : "") + currencySym + Math.abs(c / 100).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); 
   }
 
-  function toCents(s) { 
-    const n = Number(String(s).replace(/[$,\s]/g, "")); 
+    function toCents(s) { 
+    const cleaned = String(s).trim().replace(/^(?:C\$|A\$|[$€£₹])/, "").replace(/[\s,]/g, "");
+    const n = Number(cleaned); 
     return isFinite(n) ? Math.round(n * 100) : NaN; 
   }
   function num(v) { 
@@ -125,13 +126,15 @@
       return { total: total, shares: allocate(total, w, idx) }; 
     }
 
-    if (b.split === "amount") {
+            if (b.split === "amount") {
       let cs = [], s = 0;
       for (i = 0; i < n; i++) { 
         let c = b.vals[state.people[i].id] === undefined || b.vals[state.people[i].id] === "" ? 0 : toCents(b.vals[state.people[i].id]);
-        if (!(c >= 0)) return { err: "Enter amounts of $0 or more." }; 
+        if (!(c >= 0)) return { err: "Enter amounts of " + currencySym + "0 or more." }; 
         cs.push(c); s += c; 
       }
+
+
       if (s !== total) return { err: "Amounts add up to " + fmt(s) + ". " + (s < total ? "Remaining: " : "Over by: ") + fmt(Math.abs(total - s)) + "." };
       return { total: total, shares: cs };
     }
@@ -192,7 +195,7 @@
 
   function valsHtml(b) {
     if (b.split === "equal") return "";
-    const unit = b.split === "percent" ? "%" : b.split === "amount" ? "$" : "days";
+    const unit = b.split === "percent" ? "%" : b.split === "amount" ? esc(currencySym) : "days";
     const label = b.split === "percent" ? "Percent" : b.split === "amount" ? "Amount" : "Days or shares";
     return `
       <div class="vals">
@@ -200,7 +203,7 @@
         ${state.people.map((p, i) => `
           <div class="vrow">
             <span data-lbl="${p.id}">${esc(pname(p, i))}</span>
-            <input type="text" inputmode="decimal" data-val="${p.id}" value="${esc(b.vals[p.id] === undefined ? "" : b.vals[p.id])}" placeholder="${unit}" aria-label="${esc(label)} for ${esc(pname(p, i))}">
+            <input type="text" inputmode="decimal" data-val="${p.id}" value="${esc(b.vals[p.id] === undefined ? "" : b.vals[p.id])}" placeholder="${unit}" aria-label="${esc(label)} for ${esc(pname(p, i))}" autocomplete="off">
           </div>`).join("")}
       </div>`;
   }
@@ -212,19 +215,28 @@
           <select data-f="cat" aria-label="Bill type">${CATS.map(c => `<option${c === b.cat ? " selected" : ""}>${c}</option>`).join("")}</select>
           <button type="button" class="x" data-rmb="${b.id}" aria-label="Remove bill"${state.bills.length <= 1 ? " disabled" : ""}>&times;</button>
         </div>
-        <label>Amount</label>
-                <div class="money">
-          <span aria-hidden="true">${esc(currencySym)}</span>
-          <input type="text" inputmode="decimal" data-f="amount" value="${esc(b.amount)}" placeholder="0.00" aria-label="Bill amount" autocomplete="off">
+        <div class="ubs-field">
+          <label>Amount</label>
+          <div class="money">
+            <span aria-hidden="true">${esc(currencySym)}</span>
+            <input type="text" inputmode="decimal" data-f="amount" value="${esc(b.amount)}" placeholder="0.00" aria-label="Bill amount" autocomplete="off">
+          </div>
         </div>
-        <label>Paid by</label>
-        <select data-f="payer">${optList(b.payer)}</select>
-        <label>Split method</label>
-        <select data-f="split">${SPLITS.map(s => `<option value="${s[0]}"${s[0] === b.split ? " selected" : ""}>${s[1]}</option>`).join("")}</select>
+        <div class="ubs-bill-meta">
+          <div class="ubs-field">
+            <label>Paid by</label>
+            <select data-f="payer">${optList(b.payer)}</select>
+          </div>
+          <div class="ubs-field">
+            <label>Split method</label>
+            <select data-f="split">${SPLITS.map(s => `<option value="${s[0]}"${s[0] === b.split ? " selected" : ""}>${s[1]}</option>`).join("")}</select>
+          </div>
+        </div>
         ${valsHtml(b)}
         <p class="err" role="alert"></p>
       </div>`).join("");
   }
+
 
   function compute() {
     const n = state.people.length;
@@ -254,11 +266,12 @@
       for (i = 0; i < n; i++) owed[i] += r.shares[i];
     });
 
-    const box = $("#results");
+        const box = $("#results");
     if (!used) {
-      box.innerHTML = `<p class="note">${bad ? "Fix the highlighted bill to see the summary." : "Enter a bill amount to see the summary."}</p>`;
+      box.innerHTML = `<div class="status-message">${bad ? "Fix the highlighted bill to see the summary." : "Enter a bill amount to see the summary."}</div>`;
       lastText = ""; $("#copy").disabled = true; save(); return;
     }
+
 
     const nets = [];
     let sumNet = 0;
@@ -276,11 +289,11 @@
     const pays = settle(nets);
     
     let html = (bad ? '<p class="err">Some bills have errors and are left out of this summary.</p>' : "") +
-      `<p class="note">${used} ${used === 1 ? "bill" : "bills"}, total ${fmt(total)}</p><div class="cards">` +
+      `<p class="ubs-meta-note">${used} ${used === 1 ? "bill" : "bills"}, total ${fmt(total)}</p><div class="cards ubs-results-grid">` +
       nets.map(x => {
-        const cls = x.net > 0 ? "pc get" : "pc";
+        const cls = x.net > 0 ? "pc get" : x.net < 0 ? "pc owe" : "pc settled";
         const msg = x.net > 0 ? "Gets back" : x.net < 0 ? "Owes" : "All settled";
-        return `<div class="${cls}"><b>${esc(names[x.i])}</b><span class="amt">${x.net === 0 ? "$0.00" : fmt(Math.abs(x.net))}</span> <span class="note">${msg}</span></div>`;
+        return `<div class="${cls}"><b class="ubs-name">${esc(names[x.i])}</b><span class="amt">${fmt(Math.abs(x.net))}</span><span class="ubs-status">${msg}</span></div>`;
       }).join("") + '</div>';
 
     if (pays.length) {
