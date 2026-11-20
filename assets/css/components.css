@@ -749,4 +749,449 @@ button,
   -webkit-tap-highlight-color: transparent !important;
 }
 
+/* ==========================================================================
+   Roommate Utility Bill Splitter (Strictly Scoped to .ubs-tool / .ubs-page)
+   ========================================================================== */
+
+.ubs-tool.tool-card:hover {
+  transform: none;
+  box-shadow: var(--shadow-sm);
+  border-color: var(--color-border-soft);
+}
+
+.ubs-tool button,
+.ubs-tool input,
+.ubs-tool select,
+.ubs-tool label {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Zero CLS reserved heights */
+.ubs-tool #people {
+  display: grid;
+  gap: 0.65rem;
+  min-height: 156px;
+}
+
+.ubs-tool #bills {
+  display: grid;
+  gap: 1rem;
+  min-height: 230px;
+}
+
+.ubs-tool #results {
+  min-height: 68px;
+}
+
+.ubs-tool #copy-status {
+  min-height: 1.5rem;
+  margin-top: 0.65rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-primary, #0f766e);
+}
+
+.ubs-tool .row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0;
+}
+
+.ubs-tool .row input,
+.ubs-tool .vals .vrow input,
+.ubs-tool .bill select,
+.ubs-tool .ubs-currency-field select {
+  min-height: 44px;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--color-border, #d9e0e8);
+  border-radius: var(--radius-md, 10px);
+  background: var(--color-surface, #ffffff);
+  color: var(--color-text-strong, #14213d);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.ubs-tool .row input {
+  flex: 1;
+  min-width: 0;
+}
+
+.ubs-tool .x {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  line-height: 1;
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #d9e0e8);
+  border-radius: var(--radius-md, 10px);
+  color: var(--color-text-muted, #5b6678);
+  cursor: pointer;
+}
+
+.ubs-tool .x:disabled,
+.ubs-tool button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ubs-tool .ubs-add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 0.75rem;
+  padding: 0.65rem 1.25rem;
+  border: 1px solid var(--color-border, #d9e0e8);
+  border-radius: var(--radius-full, 999px);
+  background: var(--color-surface, #ffffff);
+  color: var(--color-text-strong, #14213d);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ubs-tool .ubs-divider {
+  margin: 1.75rem 0;
+  border: 0;
+  border-top: 1px solid var(--color-border-soft, #d9e0e8);
+}
+
+.ubs-tool .ubs-currency-field {
+  margin-bottom: 1.25rem;
+  max-width: 18rem;
+}
+
+.ubs-tool .ubs-currency-field label,
+.ubs-tool .bill label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--color-text-strong, #14213d);
+}
+
+.ubs-tool .ubs-currency-field select,
+.ubs-tool .bill select {
+  width: 100%;
+  min-width: 0;
+}
+
+.ubs-tool .bill {
+  border: 1px solid var(--color-border-soft, #d9e0e8);
+  border-radius: var(--radius-lg, 14px);
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-xs);
+}
+
+.ubs-tool .bill .top {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.ubs-tool .bill .top select {
+  flex: 1;
+}
+
+.ubs-tool .ubs-field {
+  min-width: 0;
+  margin-bottom: 0.85rem;
+}
+
+/* Compact 2-column Paid by + Split method on mobile & desktop */
+.ubs-tool .ubs-bill-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.ubs-tool .ubs-bill-meta .ubs-field {
+  margin-bottom: 0;
+}
+
+.ubs-tool .money {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.ubs-tool .money span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding-inline: 0.5rem;
+  border: 1px solid var(--color-border, #d9e0e8);
+  border-right: 0;
+  border-radius: var(--radius-md, 10px) 0 0 var(--radius-md, 10px);
+  background: var(--color-bg-muted, #f5f7f9);
+  font-weight: 700;
+  color: var(--color-text-muted, #5b6678);
+}
+
+.ubs-tool .money input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--color-border, #d9e0e8);
+  border-radius: 0 var(--radius-md, 10px) var(--radius-md, 10px) 0;
+  background: var(--color-surface, #ffffff);
+  color: var(--color-text-strong, #14213d);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.ubs-tool .vals {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--color-border, #d9e0e8);
+}
+
+.ubs-tool .vals .vrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+.ubs-tool .vals .vrow span {
+  flex: 1;
+  min-width: 0;
+  font-weight: 500;
+  font-size: 0.95rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ubs-tool .vals .vrow input {
+  flex: 0 0 112px;
+  width: 112px;
+  text-align: right;
+}
+
+.ubs-tool .err {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.ubs-tool .err:empty {
+  display: none;
+}
+
+.ubs-tool .ubs-meta-note {
+  margin: 0 0 0.75rem;
+  font-size: 0.92rem;
+  color: var(--color-text-muted, #5b6678);
+}
+
+/* 2x2 Results Grid on Mobile with Overflow-Safe Number Scaling */
+.ubs-tool .ubs-results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.ubs-tool .pc {
+  min-width: 0;
+  border: 1px solid var(--color-border-soft, #d9e0e8);
+  border-radius: var(--radius-lg, 12px);
+  padding: 0.85rem;
+  background: var(--color-surface, #ffffff);
+  box-shadow: var(--shadow-xs);
+}
+
+.ubs-tool .pc.get {
+  border-color: var(--color-primary, #0f766e);
+  background: rgba(15, 118, 110, 0.06);
+}
+
+.ubs-tool .pc .ubs-name {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  color: var(--color-text-strong, #14213d);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ubs-tool .pc .amt {
+  display: block;
+  font-size: clamp(1rem, 4.3vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-strong, #14213d);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.ubs-tool .pc.get .amt {
+  color: var(--color-primary, #0f766e);
+}
+
+.ubs-tool .pc .ubs-status {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-muted, #5b6678);
+}
+
+.ubs-tool .pay {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--color-border-soft, #d9e0e8);
+  font-size: 0.98rem;
+}
+
+.ubs-tool .pay:last-child {
+  border-bottom: 0;
+}
+
+.ubs-tool .pay strong {
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: clamp(1rem, 3.8vw, 1.15rem);
+  color: var(--color-primary, #0f766e);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Balanced Copy + Reset buttons & Specificity Fix for type="button" primary */
+.ubs-tool .form-actions.ubs-actions button {
+  flex: 1 1 140px;
+  min-height: 44px;
+}
+
+.ubs-tool .form-actions.ubs-actions button.button-primary {
+  border: var(--border-width, 1px) solid transparent;
+  background: var(--color-primary, #0f766e);
+  color: var(--color-text-inverse, #ffffff);
+  box-shadow: var(--shadow-xs);
+}
+
+.ubs-tool .ubs-persist-box {
+  margin-top: 1.25rem;
+  padding: 0.9rem 1rem;
+  background: var(--color-bg-muted, #f5f7f9);
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--color-border-soft, #d9e0e8);
+}
+
+.ubs-tool .ubs-persist-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-text-strong, #14213d);
+}
+
+.ubs-tool .ubs-persist-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  accent-color: var(--color-primary, #0f766e);
+}
+
+.ubs-tool .ubs-persist-help {
+  margin: 0.15rem 0 0 2rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted, #5b6678);
+}
+
+/* Clean FAQ accordion styling inside this page (prevents double borders) */
+.ubs-page .faq-list .faq-item.feature-card {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.ubs-page .faq-list summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  padding-block: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.ubs-page .faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.footer-disclaimer {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #5b6678);
+}
+
+@media (min-width: 40rem) {
+  .ubs-tool #people {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: 100px;
+  }
+
+  .ubs-tool .form-actions.ubs-actions button {
+    flex: 0 1 auto;
+  }
+}
+
+@media (min-width: 48rem) {
+  .ubs-tool .ubs-results-grid {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ubs-tool .x:hover:not(:disabled) {
+    color: #dc2626;
+    border-color: #dc2626;
+  }
+
+  .ubs-tool .ubs-add-btn:hover:not(:disabled) {
+    border-color: var(--color-primary, #0f766e);
+    background: var(--color-primary-soft, #e6f4f1);
+    color: var(--color-primary-dark, #0b5d56);
+  }
+}
+
+@media (hover: none) {
+  .ubs-tool .x:hover,
+  .ubs-tool .ubs-add-btn:hover {
+    color: inherit;
+    border-color: var(--color-border, #d9e0e8);
+    background: var(--color-surface, #ffffff);
+  }
+
+  .ubs-tool .form-actions.ubs-actions button.button-primary:active:not(:disabled) {
+    background: var(--color-primary-dark, #0b5d56) !important;
+  }
+}
 
