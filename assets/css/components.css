@@ -1091,6 +1091,19 @@ button,
   box-shadow: var(--shadow-xs);
 }
 
+.ubs-tool .form-actions.ubs-actions button.button-primary:disabled,
+.ubs-tool .form-actions.ubs-actions button.button-primary:disabled:active,
+.ubs-tool .form-actions.ubs-actions button.button-primary:disabled:hover,
+.ubs-tool .form-actions.ubs-actions button.button-primary:disabled:focus {
+  background: var(--color-primary, #0f766e) !important;
+  background-color: var(--color-primary, #0f766e) !important;
+  border-color: transparent !important;
+  color: var(--color-text-inverse, #ffffff) !important;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+
 .ubs-tool .ubs-persist-box {
   margin-top: 1.25rem;
   padding: 0.9rem 1rem;
