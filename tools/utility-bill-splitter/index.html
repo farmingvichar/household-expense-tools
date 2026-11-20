@@ -93,7 +93,7 @@
     </div>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" class="ubs-page">
     <section class="hero-section">
       <div class="container">
         <p class="eyebrow">Shared expense calculator</p>
@@ -106,7 +106,7 @@
 
     <section class="tool-section">
       <div class="container">
-        <article class="tool-card">
+        <article class="tool-card ubs-tool">
           
           <!-- 1. Roommates -->
           <div class="section-heading">
@@ -114,20 +114,19 @@
           </div>
           <div id="people"></div>
           <p class="err" id="people-err" role="alert"></p>
-          <button type="button" id="add-person" class="button-secondary" style="margin-top:0.5rem">Add roommate</button>
+          <button type="button" id="add-person" class="button-secondary ubs-add-btn">Add roommate</button>
 
-          <hr style="margin: 2.5rem 0; border: 0; border-top: 1px solid var(--border-color, #d9e0e8);">
+          <hr class="ubs-divider">
 
-                    <!-- 2. Bills -->
+          <!-- 2. Bills -->
           <div class="section-heading">
             <h2 id="h-bills">2. Bills</h2>
             <p>Add each bill with who paid it and how to split it. Leave the amount empty to skip a bill.</p>
           </div>
 
-          <!-- Currency Selector added here -->
-          <div style="margin-bottom: 1.5rem;">
-            <label for="global-currency" style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text-main, #14213d);">Currency symbol</label>
-            <select id="global-currency" style="width: 100%; min-height: 44px; padding: 8px 12px; border: 1px solid var(--border-color, #d9e0e8); border-radius: 10px; font: inherit; background-color: var(--bg-color, #ffffff);">
+          <div class="ubs-currency-field">
+            <label for="global-currency">Currency symbol</label>
+            <select id="global-currency">
               <option value="$">$ USD</option>
               <option value="€">€ EUR</option>
               <option value="£">£ GBP</option>
@@ -138,9 +137,9 @@
           </div>
 
           <div id="bills"></div>
-          <button type="button" id="add-bill" class="button-secondary">Add bill</button>
+          <button type="button" id="add-bill" class="button-secondary ubs-add-btn">Add bill</button>
 
-          <hr style="margin: 2.5rem 0; border: 0; border-top: 1px solid var(--border-color, #d9e0e8);">
+          <hr class="ubs-divider">
 
           <!-- 3. Who pays whom -->
           <div class="section-heading">
@@ -150,24 +149,26 @@
             <div class="status-message">Enter a bill amount to see the summary.</div>
           </div>
 
-          <div class="actions">
+          <div class="form-actions ubs-actions">
             <button type="button" class="button-primary" id="copy" disabled>Copy summary</button>
             <button type="button" class="button-secondary" id="reset">Reset all</button>
           </div>
           <p id="copy-status" role="status"></p>
 
-          <div style="margin-top: 2rem; padding: 1rem 1.25rem; background: var(--bg-color, #f5f7f9); border-radius: var(--border-radius, 12px); border: 1px solid var(--border-color, #d9e0e8);">
-            <label style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer;">
-              <input type="checkbox" id="persist" style="width: 20px; height: 20px; flex-shrink: 0; margin-top: 0.15rem;">
-              <span style="font-weight: 600; color: var(--text-main, #14213d);">Save on this device so it is here when I come back</span>
+          <div class="ubs-persist-box">
+            <label class="ubs-persist-label">
+              <input type="checkbox" id="persist">
+              <span>Save on this device so it is here when I come back</span>
             </label>
-            <p style="margin-top: 0.25rem; font-size: 0.9rem; color: var(--text-muted, #5b6678); margin-left: 2rem;">
+            <p class="ubs-persist-help">
               Saved data stays in this browser only. Untick to delete it.
             </p>
           </div>
         </article>
       </div>
     </section>
+
+          
 
         <!-- Content, SEO Guide & FAQ Section -->
     <section class="content-section" aria-labelledby="methodology-heading">
@@ -308,9 +309,9 @@
         <a href="../../faq/">FAQ</a>
       </nav>
     </div>
-    <div class="container footer-bottom">
+        <div class="container footer-bottom">
       <p>&copy; <span id="current-year">2026</span> Household Expense Tools. All rights reserved. <br>
-      <span style="display:block; margin-top:0.5rem; font-size: 0.85rem; color: var(--text-muted, #5b6678);">For informational purposes only. This is not legal or financial advice. Utility billing rules vary by state, utility company and lease; check your lease and local rules.</span></p>
+      <span class="footer-disclaimer">For informational purposes only. This is not legal or financial advice. Utility billing rules vary by state, utility company and lease; check your lease and local rules.</span></p>
     </div>
   </footer>
 
