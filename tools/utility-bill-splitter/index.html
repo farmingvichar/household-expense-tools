@@ -169,116 +169,124 @@
       </div>
     </section>
 
-    <!-- Content, SEO Guide & FAQ Section -->
-    <section class="content-section">
+        <!-- Content, SEO Guide & FAQ Section -->
+    <section class="content-section" aria-labelledby="methodology-heading">
       <div class="narrow-container">
-        <h2>How we calculate</h2>
-        <p>All math uses whole cents, so shares always add up to the exact bill. When a bill cannot divide evenly, the extra cents go to different people on different bills.</p>
-        <ul style="padding-left: 20px; margin-bottom: 12px;">
-          <li><strong>Equal:</strong> everyone pays the same share.</li>
-          <li><strong>Percent:</strong> percentages must add up to 100%.</li>
-          <li><strong>Fixed amounts:</strong> amounts must add up to the bill total.</li>
-          <li><strong>Days / shares:</strong> share = bill &times; (your days &divide; everyone's days). Enter 0 to leave someone out.</li>
-        </ul>
-        <p><strong>Balance</strong> = what you paid &minus; what you owe. A positive balance means you get money back. A negative balance means you pay. Then the person who owes the most pays the person owed the most, and so on until everyone is settled. That takes at most one payment fewer than the number of roommates.</p>
-        
-        <div style="background: var(--bg-color, #f5f7f9); padding: 1rem; border-radius: var(--border-radius, 12px); border: 1px solid var(--border-color, #d9e0e8); margin: 1.5rem 0;">
-          <strong>Example:</strong> Alex pays a $150.00 electric bill for 3 roommates, split equally. Each owes $50.00. Alex paid $150.00, so Alex gets back $100.00. Sam and Jordan each pay Alex $50.00.
-        </div>
-        <p class="privacy-note">🔒 Calculations run in your browser. We do not receive your bill data.</p>
+        <article>
+          <h2 id="methodology-heading">Calculation Methodology: How This Shared Household Expense Calculator Works</h2>
+          <p>
+            This browser-based roommate bill splitter runs on <strong>whole-cent integer arithmetic</strong> to eliminate floating-point rounding drift. Every invoice total is converted into minor currency units before division so individual shares always add up to the exact bill.
+          </p>
+          <p>
+            When an amount cannot divide evenly—such as splitting 100.00 across three roommates—the engine allocates the extra minor unit to one person and rotates that remainder across subsequent bills.
+          </p>
+          <ul>
+            <li><strong>Equal split:</strong> Divides the total bill evenly across all active household members.</li>
+            <li><strong>Percentage split:</strong> Multiplies the total by each roommate's assigned share (inputs must total 100%).</li>
+            <li><strong>Fixed amount split:</strong> Assigns exact dollar or currency figures per person (inputs must match the bill total).</li>
+            <li><strong>Days / shares (prorated split):</strong> Uses the formula <code>Share = Bill Total &times; (Individual Days &divide; Combined Household Days)</code>. Enter <code>0</code> to exclude someone from a specific bill.</li>
+          </ul>
+          <p>
+            For final settlement, the calculator computes each roommate's net balance (<code>Total Paid &minus; Total Owed</code>). A positive balance indicates money owed back; a negative balance indicates an amount due. The settlement algorithm then pairs the largest debtor with the largest creditor until every balance reaches zero, requiring at most one transfer fewer than the total number of roommates.
+          </p>
+          <p class="privacy-note">
+            Calculations run locally in your browser with no account required. Your bill figures are never sent to a server.
+          </p>
+        </article>
 
-        <h2 style="margin-top: 2.5rem;">How to split household bills fairly</h2>
-        <p>Most roommate fights are not about money. They are about surprises. Agree on the rules before the first bill arrives, write them down, and run the numbers in one place everyone can see.</p>
-        
-        <h3>Equal split vs. usage-based split</h3>
-        <div style="overflow-x: auto; margin-bottom: 1.5rem;">
-          <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
-            <tr style="border-bottom: 2px solid var(--border-color, #d9e0e8);">
-              <th style="text-align: left; padding: 0.75rem 0.5rem; color: var(--text-main, #14213d);">Expense</th>
-              <th style="text-align: left; padding: 0.75rem 0.5rem; color: var(--text-main, #14213d);">Usually fair</th>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border-color, #d9e0e8);">
-              <td style="padding: 0.75rem 0.5rem;">Wi-Fi</td>
-              <td style="padding: 0.75rem 0.5rem;">Equal</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border-color, #d9e0e8);">
-              <td style="padding: 0.75rem 0.5rem;">Electricity, gas, water</td>
-              <td style="padding: 0.75rem 0.5rem;">Equal, or by days if someone moves in or out</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border-color, #d9e0e8);">
-              <td style="padding: 0.75rem 0.5rem;">Shared groceries</td>
-              <td style="padding: 0.75rem 0.5rem;">Equal, or fixed amounts for what each person actually uses</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border-color, #d9e0e8);">
-              <td style="padding: 0.75rem 0.5rem;">Streaming and subscriptions</td>
-              <td style="padding: 0.75rem 0.5rem;">Only people who use it</td>
-            </tr>
-          </table>
-        </div>
-        <p>Equal splits are simplest and cause the fewest arguments. Switch to a custom split only when the difference is large and easy to prove, such as one person working from home with a space heater running all day.</p>
+        <article>
+          <h2>Practical What-If Examples</h2>
+          <p>
+            The math works identically across any currency symbol selected above. Below are three common shared-housing scenarios showing how each split method behaves.
+          </p>
 
-        <h3>When someone moves in or out mid-month</h3>
-        <p>Use the days method. A roommate who lived there 10 of 30 days pays one third of what a full-month roommate pays. Count the actual days both sides agree on and keep the number in your group chat.</p>
+          <h3>1. Dividing Expenses Between 3 People Equally</h3>
+          <p>
+            Alex pays a <strong>150.00</strong> electricity bill shared equally among three roommates (Alex, Sam, and Jordan). Each roommate owes 50.00. Because Alex already paid 150.00, Alex holds a +100.00 balance while Sam and Jordan each sit at &minus;50.00. <strong>Result:</strong> Sam and Jordan each pay Alex 50.00.
+          </p>
 
-        <h3>When rooms are different sizes</h3>
-        <p>For rent, a common approach is to split by room size or features, for example 40/30/30. Use the percent method for that. Utilities are usually still split equally, since everyone shares the kitchen, heat and Wi-Fi.</p>
+          <h3>2. Mid-Month Move-In (Split Utility Bills by Days Lived)</h3>
+          <p>
+            A 30-day water and gas statement totals <strong>180.00</strong>. Two roommates lived in the unit all 30 days, while a third moved in mid-month and stayed 15 days. Combined occupancy equals 75 person-days (<code>30 + 30 + 15</code>). Using the <strong>Days / shares</strong> method, the full-month roommates owe <strong>72.00</strong> each (<code>180 &times; 30 &divide; 75</code>), and the new roommate pays a prorated share of <strong>36.00</strong> (<code>180 &times; 15 &divide; 75</code>).
+          </p>
 
-        <h3>How to ask for money without the awkwardness</h3>
-        <p>Send the summary the day the bill arrives. Keep it factual: the bill, the share, the due date. The copy button produces a plain message you can paste straight into your group chat. Many roommates then settle by Venmo, Zelle or Cash App; those are separate apps, and this tool does not connect to them.</p>
+          <h3>3. How to Split Utilities When One Person Works From Home</h3>
+          <p>
+            When one roommate works remotely full-time and runs heating, cooling, or lighting all day, a 50/50 split can feel lopsided. Households often keep fixed services like Wi-Fi on an <strong>Equal</strong> split, then assign electricity a custom <strong>60/40 percentage split</strong>. On a 200.00 power bill, the remote worker covers 120.00 and the commuting roommate covers 80.00.
+          </p>
+        </article>
 
-    <div class="section-header" style="margin-top: 3rem; text-align: left;">
-          <span style="display: inline-block; background-color: rgba(15, 118, 110, 0.1); color: var(--primary-color, #0f766e); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.75rem;">Frequently asked questions</span>
-          <h2 id="faq-heading" style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.5rem;">Roommate Bill Splitter FAQs</h2>
-          <p style="color: var(--text-muted, #5b6678); font-size: 0.95rem; margin-top: 0;">Practical answers on splitting mid-month bills, handling late payers, and managing shared utility costs.</p>
-        </div>
-        
-        <div class="faq-list feature-grid" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
-          
-          <article class="faq-item feature-card" style="background: var(--bg-color, #ffffff); border: 1px solid var(--border-color, #d9e0e8); border-radius: var(--border-radius, 12px); padding: 1.25rem;">
-            <details>
-              <summary style="font-weight: 600; cursor: pointer; color: var(--text-main, #14213d); font-size: 1.05rem;">
-                How do I split utilities when a roommate moves in or out mid-month?
-              </summary>
-              <p style="margin-top: 1rem; margin-bottom: 0; color: var(--text-muted, #5b6678); font-size: 0.95rem; line-height: 1.5;">Use the days method. Enter how many days each person lived there. Each person pays their share of the bill in proportion to those days.</p>
-            </details>
-          </article>
+        <article>
+          <h2>Limitations and Scope</h2>
+          <ul>
+            <li><strong>Display-only currency symbols:</strong> Changing the currency dropdown updates the label symbol only and does not apply live exchange rates.</li>
+            <li><strong>No sub-meter or tiered rate reading:</strong> Splits rely solely on the total bill and rules you enter, not individual appliance consumption or time-of-use utility tiers.</li>
+            <li><strong>Device-only storage:</strong> Because this tool requires no sign-up, turning on <em>Save on this device</em> stores data exclusively in your current browser's local storage. Clearing browser data deletes it.</li>
+            <li><strong>Informational use only:</strong> This calculator does not connect to payment apps and does not provide financial, tax, legal, or lease-compliance advice.</li>
+          </ul>
+        </article>
 
-          <article class="faq-item feature-card" style="background: var(--bg-color, #ffffff); border: 1px solid var(--border-color, #d9e0e8); border-radius: var(--border-radius, 12px); padding: 1.25rem;">
-            <details>
-              <summary style="font-weight: 600; cursor: pointer; color: var(--text-main, #14213d); font-size: 1.05rem;">
-                Should Wi-Fi be split equally?
-              </summary>
-              <p style="margin-top: 1rem; margin-bottom: 0; color: var(--text-muted, #5b6678); font-size: 0.95rem; line-height: 1.5;">Usually yes. Everyone benefits from the connection, and usage is hard to measure. If someone works from home and needs a premium plan, you can agree on a custom percentage instead.</p>
-            </details>
-          </article>
+        <section aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently Asked Questions</h2>
+          <div class="faq-list feature-grid">
+            <article class="faq-item feature-card">
+              <details>
+                <summary>How to split bills between roommates fairly?</summary>
+                <p>
+                  Agree on clear rules before the first bill arrives. Most households split fixed shared services like Wi-Fi and trash equally, reserving percentage or fixed-amount splits for major differences in room size, income-based agreements, or personal groceries.
+                </p>
+              </details>
+            </article>
 
-          <article class="faq-item feature-card" style="background: var(--bg-color, #ffffff); border: 1px solid var(--border-color, #d9e0e8); border-radius: var(--border-radius, 12px); padding: 1.25rem;">
-            <details>
-              <summary style="font-weight: 600; cursor: pointer; color: var(--text-main, #14213d); font-size: 1.05rem;">
-                What if one roommate pays late?
-              </summary>
-              <p style="margin-top: 1rem; margin-bottom: 0; color: var(--text-muted, #5b6678); font-size: 0.95rem; line-height: 1.5;">Agree on a due date up front, send the summary the day the bill arrives, and settle within a few days. Whoever put the bill on their card should not carry the cost for weeks.</p>
-            </details>
-          </article>
+            <article class="faq-item feature-card">
+              <details>
+                <summary>How do you calculate prorated utility bills for a partial month?</summary>
+                <p>
+                  Select the <strong>Days / shares</strong> split option and enter the exact number of days each roommate occupied the property during that billing cycle. The calculator divides the total proportionally across combined occupancy days, automatically adapting to 28-, 30-, or 31-day billing periods.
+                </p>
+              </details>
+            </article>
 
-          <article class="faq-item feature-card" style="background: var(--bg-color, #ffffff); border: 1px solid var(--border-color, #d9e0e8); border-radius: var(--border-radius, 12px); padding: 1.25rem;">
-            <details>
-              <summary style="font-weight: 600; cursor: pointer; color: var(--text-main, #14213d); font-size: 1.05rem;">
-                Why do the shares sometimes differ by one cent?
-              </summary>
-              <p style="margin-top: 1rem; margin-bottom: 0; color: var(--text-muted, #5b6678); font-size: 0.95rem; line-height: 1.5;">A bill like $100.00 cannot be divided evenly by three. The calculator gives the extra cent to one person and rotates it between bills, so the shares always add up to the exact total.</p>
-            </details>
-          </article>
+            <article class="faq-item feature-card">
+              <details>
+                <summary>How to split utilities when one person works from home?</summary>
+                <p>
+                  Keep baseline flat-rate bills like standard internet equal since everyone uses the connection. For usage-sensitive bills like electricity or gas, switch to the <strong>Percent</strong> method (such as 60/40 or 55/45) so daytime heating or cooling costs are shared without tracking individual devices.
+                </p>
+              </details>
+            </article>
 
-          <article class="faq-item feature-card" style="background: var(--bg-color, #ffffff); border: 1px solid var(--border-color, #d9e0e8); border-radius: var(--border-radius, 12px); padding: 1.25rem;">
-            <details>
-              <summary style="font-weight: 600; cursor: pointer; color: var(--text-main, #14213d); font-size: 1.05rem;">
-                Does this tool store my bills?
-              </summary>
-              <p style="margin-top: 1rem; margin-bottom: 0; color: var(--text-muted, #5b6678); font-size: 0.95rem; line-height: 1.5;">Calculations run in your browser and your bill data is not sent to our servers. If you tick Save on this device, the data is kept only in your own browser storage.</p>
-            </details>
-          </article>
-        </div>
+            <article class="faq-item feature-card">
+              <details>
+                <summary>Is there a free online bill splitter available with no sign-up?</summary>
+                <p>
+                  Yes. This calculator works directly in your browser with no registration, password, or app download. After entering your bills, select <strong>Copy summary</strong> to paste a plain-text settlement breakdown straight into your house group chat.
+                </p>
+              </details>
+            </article>
+
+            <article class="faq-item feature-card">
+              <details>
+                <summary>Why do shared bill totals sometimes differ by one cent?</summary>
+                <p>
+                  Amounts like 100.00 cannot divide evenly by three. To ensure the household never comes up short by a cent, the tool assigns the extra unit to one person and rotates it across multiple bills so shares remain balanced over time.
+                </p>
+              </details>
+            </article>
+          </div>
+        </section>
+
+        <article>
+          <h2>Related Tools</h2>
+          <p>
+            Manage the rest of your shared household budget with our free, browser-based calculators:
+          </p>
+          <ul>
+            <li><a href="../grocery-budget-calculator/">Grocery Budget Calculator</a> &ndash; Estimate weekly and monthly food spending for your household.</li>
+            <li><a href="../recipe-cost-calculator/">Recipe Cost Calculator</a> &ndash; Break down ingredient expenses per serving for shared meals.</li>
+            <li><a href="../paper-towel-value-calculator/">Paper Towel Value Calculator</a> &ndash; Compare bulk household supply packs by true cost per sheet.</li>
+          </ul>
+        </article>
       </div>
     </section>
   </main>
