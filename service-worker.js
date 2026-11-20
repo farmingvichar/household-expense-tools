@@ -1,6 +1,6 @@
 "use strict";
 
-var CACHE_NAME = "household-expense-tools-v147"; 
+var CACHE_NAME = "household-expense-tools-v148"; 
 var STARTER_FILES = [
   "./",
   "./index.html",
