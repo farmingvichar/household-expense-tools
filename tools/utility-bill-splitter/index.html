@@ -18,53 +18,7 @@
   <link rel="stylesheet" href="../../assets/css/utilities.css" />
   <link rel="stylesheet" href="../../assets/css/responsive.css" />
 
-  <style>
-    /* Utility Bill Splitter Specific UI Integration */
-    .bill { border: 1px solid var(--border-color, #d9e0e8); border-radius: var(--border-radius, 12px); padding: 1.25rem; margin-bottom: 1.25rem; background-color: var(--bg-color, #ffffff); }
-    .bill .top { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
-    .bill .top select { flex: 1; min-height: 44px; padding: 8px 12px; border: 1px solid var(--border-color, #d9e0e8); border-radius: 10px; font: inherit; }
-    .row { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.75rem; }
-    .row input { flex: 1; margin-bottom: 0 !important; min-height: 44px; padding: 8px 12px; border: 1px solid var(--border-color, #d9e0e8); border-radius: 10px; }
-    .x { flex: 0 0 44px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background: var(--bg-color, #ffffff); border: 1px solid var(--border-color, #d9e0e8); border-radius: var(--border-radius, 12px); color: var(--text-muted, #5b6678); cursor: pointer; }
-    .x:hover { color: var(--error-color, #ef4444); border-color: var(--error-color, #ef4444); }
-    .x:disabled { opacity: 0.5; cursor: not-allowed; }
-    
-    .money { display: flex; align-items: center; width: 100%; margin-bottom: 1.25rem; }
-    .money span { display: flex; align-items: center; justify-content: center; height: 44px; width: 44px; border: 1px solid var(--border-color, #d9e0e8); border-right: none; border-radius: var(--border-radius, 10px) 0 0 var(--border-radius, 10px); background: var(--bg-color, #f5f7f9); font-weight: 600; color: var(--text-muted, #5b6678); }
-    .money input { border-radius: 0 var(--border-radius, 10px) var(--border-radius, 10px) 0; margin-bottom: 0 !important; min-height: 44px; padding: 8px 12px; border: 1px solid var(--border-color, #d9e0e8); flex: 1; }
-    
-    .vals { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px dashed var(--border-color, #d9e0e8); }
-    .vals .vrow { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.75rem; }
-    .vals .vrow span { flex: 1; font-weight: 500; font-size: 0.95rem; }
-    .vals .vrow input { flex: 0 0 120px; width: 120px; text-align: right; margin-bottom: 0 !important; min-height: 44px; padding: 8px 12px; border: 1px solid var(--border-color, #d9e0e8); border-radius: 10px; }
-    
-    .err { color: var(--error-color, #ef4444); font-size: 0.9rem; margin-top: 0.5rem; font-weight: 500; }
-    .err:empty { display: none; }
-    
-    .cards { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin: 1rem 0 1.5rem; }
-    @media (min-width: 480px) { .cards { grid-template-columns: 1fr 1fr; } }
-    .pc { border: 1px solid var(--border-color, #d9e0e8); border-radius: var(--border-radius, 12px); padding: 1.25rem; background-color: var(--surface-color, #ffffff); }
-    .pc.get { border-color: var(--primary-color, #0f766e); background-color: rgba(15, 118, 110, 0.05); }
-    .pc b { display: block; font-size: 1.1rem; margin-bottom: 0.25rem; color: var(--text-main, #14213d); }
-    .pc .amt { font-size: 1.35rem; font-weight: 700; color: var(--text-main, #14213d); }
-    
-    .pay { display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 0; border-bottom: 1px solid var(--border-color, #d9e0e8); font-size: 1rem; }
-    .pay:last-child { border-bottom: none; }
-    .pay strong { font-weight: 700; font-size: 1.15rem; color: var(--primary-color, #0f766e); }
-    
-    .actions { margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
-    .bill label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text-main, #14213d); }
-    .bill select { margin-bottom: 1.25rem; width: 100%; }
-    
-    #copy-status { color: var(--primary-color, #0f766e); font-weight: 600; margin-top: 1rem; }
-    #copy-status:empty { display: none; }
-
-    /* Fix for consistent button styling */
-    button { font: inherit; cursor: pointer; min-height: 44px; border-radius: 10px; padding: 8px 16px; font-weight: 600; }
-    .button-primary { background: var(--primary-color, #0f766e); color: white; border: 1px solid var(--primary-color, #0f766e); }
-    .button-secondary { background: white; color: var(--text-main, #14213d); border: 1px solid var(--border-color, #d9e0e8); }
-    button:disabled { opacity: 0.5; cursor: not-allowed; }
-  </style>
+  
 </head>
 
 <body>
