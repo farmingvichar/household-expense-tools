@@ -59,121 +59,145 @@
   </div>
  </header>
 
- <main id="main-content">
+  <main id="main-content">
   <section class="hero section">
    <div class="container hero-grid">
     <div class="hero-content">
      <p class="eyebrow">Contact</p>
-     <h1>Contact Household Expense Tools.</h1>
+     <h1>Contact Household Expense Tools</h1>
      <p class="hero-text">
-      Use this page for site questions, tool feedback, privacy questions, correction requests, or reports about something that is not working correctly.
+      Have a question about a calculator, spotted a math error, or want to suggest a simple household tool? Send a message below.
      </p>
     </div>
 
-    <aside class="hero-card" aria-label="Contact summary">
-     <h2 class="card-title">Before you contact</h2>
+    <aside class="hero-card" aria-label="Before you write">
+     <h2 class="card-title">Before you write</h2>
      <ul class="check-list">
-      <li>No account is required to use the tools</li>
-      <li>No fake contact form is used on this page</li>
-      <li>Do not send passwords or sensitive financial details</li>
+      <li>Check the <a href="../faq/">FAQ page</a> first for quick answers</li>
+      <li>Include the tool name and numbers if reporting a calculation error</li>
+      <li>Never send passwords, bank details, or private financial records</li>
      </ul>
     </aside>
    </div>
   </section>
 
-  <section class="section section-soft" aria-labelledby="contact-method">
+  <section class="section section-soft" aria-labelledby="contact-form-heading">
    <div class="container">
     <div class="section-header">
-     <p class="eyebrow">Current contact method</p>
-     <h2 id="contact-method">Email contact</h2>
+     <p class="eyebrow">Direct message</p>
+     <h2 id="contact-form-heading">Send a message</h2>
      <p>
-      The current contact method is email. Please use it for site questions, tool feedback, privacy questions, or correction requests.
+      Use the form below to reach the site maintainer directly. No account or login is needed.
      </p>
     </div>
 
-    <div class="feature-card">
-     <h3>Email address</h3>
-     <p>
-      <strong>Email:</strong>
-<a href="mailto: householdexpensetool@gmail.com">householdexpensetool@gmail.com</a>
-     </p>
-     <p>
-      Please include a clear subject line so the message is easier to understand.
-     </p>
-    </div>
+    <article class="tool-card">
+     <form class="tool-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+      <input type="hidden" name="subject" value="New message from Household Expense Tools">
+      <input type="hidden" name="from_name" value="Household Expense Tools">
+      <input type="checkbox" name="botcheck" hidden tabindex="-1" autocomplete="off">
+
+      <div class="form-grid">
+       <div class="form-field">
+        <label for="contact-name">Your name</label>
+        <input id="contact-name" name="name" type="text" required autocomplete="name" placeholder="e.g. Alex" aria-describedby="contactNameHelp">
+        <small id="contactNameHelp">First name or nickname is fine.</small>
+       </div>
+
+       <div class="form-field">
+        <label for="contact-email">Your email</label>
+        <input id="contact-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" aria-describedby="contactEmailHelp">
+        <small id="contactEmailHelp">Used only if your message needs a reply.</small>
+       </div>
+      </div>
+
+      <div class="form-field">
+       <label for="contact-topic">Topic</label>
+       <select id="contact-topic" name="topic" aria-describedby="contactTopicHelp">
+        <option value="Calculator bug or math issue">Calculator bug or math issue</option>
+        <option value="Tool suggestion">Suggest a new tool</option>
+        <option value="Privacy or browser storage">Privacy or browser storage question</option>
+        <option value="Content correction or feedback">Content correction or general feedback</option>
+       </select>
+       <small id="contactTopicHelp">Choose the closest option so we can review it faster.</small>
+      </div>
+
+      <div class="form-field">
+       <label for="contact-message">Message</label>
+       <textarea id="contact-message" name="message" rows="5" required placeholder="Share the tool name, what happened, or your suggestion..." aria-describedby="contactMessageHelp"></textarea>
+       <small id="contactMessageHelp">For bug reports, include the tool URL, the values you entered, and your phone or browser type.</small>
+      </div>
+
+      <div class="form-actions">
+       <button class="button-primary" type="submit">Send message</button>
+       <button class="button-secondary" type="reset">Clear</button>
+      </div>
+
+      <p class="privacy-note">
+       Please do not send passwords, bank account numbers, card details, or personal tax documents. Details submitted here are used only to read and respond to your message.
+      </p>
+     </form>
+    </article>
    </div>
   </section>
 
   <section class="section" aria-labelledby="what-to-send">
    <div class="container">
     <div class="section-header">
-     <p class="eyebrow">Useful messages</p>
-     <h2 id="what-to-send">What you can send</h2>
+     <p class="eyebrow">Helpful topics</p>
+     <h2 id="what-to-send">What you can reach out about</h2>
      <p>
-      Short, specific messages are easiest to review.
+      Short, specific notes make it much easier to fix issues quickly.
      </p>
     </div>
 
     <ul class="check-list">
-     <li>Feedback about any household tool</li>
-     <li>Reports about broken links or page errors</li>
-     <li>Questions about privacy or browser storage</li>
-     <li>Suggestions for simple household expense tools</li>
-     <li>Requests to correct unclear or outdated site information</li>
+     <li>Unexpected math results or rounding errors in any calculator</li>
+     <li>Broken links, slow pages, or mobile layout problems</li>
+     <li>Ideas for practical grocery, utility, or monthly budget tools</li>
+     <li>Questions about browser-only calculations and local storage</li>
+     <li>Corrections to unclear or outdated guide information</li>
     </ul>
    </div>
   </section>
 
-  <section class="section section-soft" aria-labelledby="privacy-note">
+  <section class="section section-soft" aria-labelledby="response-expectation">
    <div class="container">
     <div class="section-header">
-     <p class="eyebrow">Message privacy</p>
-     <h2 id="privacy-note">Do not send sensitive information</h2>
+     <p class="eyebrow">About replies</p>
+     <h2 id="response-expectation">What to expect after you send a message</h2>
      <p>
-      If you send an email, the information in your message may be used to read and respond to your request.
+      Household Expense Tools is maintained independently, so there is no live chat or phone desk. Every message is read, and replies usually take 2 to 3 business days when a follow-up is needed.
      </p>
     </div>
 
     <p>
-      Please do not send passwords, bank account numbers, card details, tax documents, private family financial records, or other sensitive information. Household Expense Tools does not need those details to answer normal site questions.
+     This website provides general household estimation tools only and cannot give personal financial, tax, legal, or accounting advice. For important money or legal decisions, please consult a qualified professional.
     </p>
    </div>
   </section>
 
-  <section class="section" aria-labelledby="response-expectation">
+  <section class="section" aria-labelledby="related-pages">
    <div class="container">
     <div class="section-header">
-     <p class="eyebrow">Response expectation</p>
-     <h2 id="response-expectation">Replies may not be immediate</h2>
+     <p class="eyebrow">More information</p>
+     <h2 id="related-pages">Related pages</h2>
      <p>
-      Messages may be reviewed when possible, but a reply is not guaranteed. This website does not currently offer live support, phone support, or account-based customer service.
-     </p>
-    </div>
-
-    <p>
-      For important financial, tax, legal, investment, or accounting questions, do not rely on this contact page. Please use a qualified professional or trusted official source.
-    </p>
-   </div>
-  </section>
-
-  <section class="section section-soft" aria-labelledby="related-pages">
-   <div class="container">
-    <div class="section-header">
-     <p class="eyebrow">Related pages</p>
-     <h2 id="related-pages">Privacy and terms</h2>
-     <p>
-      For more details about browser storage, site limits, and user responsibilities, read the related pages below.
+      Read more about how the site works, how browser storage is handled, and common questions.
      </p>
     </div>
 
     <ul class="check-list">
+     <li><a href="../about/">About Household Expense Tools</a></li>
+     <li><a href="../faq/">Frequently Asked Questions</a></li>
      <li><a href="../privacy/">Privacy Policy</a></li>
      <li><a href="../terms/">Terms of Use</a></li>
-     <li><a href="../faq/">FAQ</a></li>
     </ul>
    </div>
   </section>
  </main>
+
 
  <footer class="site-footer" role="contentinfo">
   <div class="container footer-grid">
