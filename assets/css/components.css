@@ -459,7 +459,8 @@ a[data-coming-soon="true"] {
 }
 
 .form-field input,
-.form-field select {
+.form-field select,
+.form-field textarea {
   inline-size: 100%;
   min-block-size: 3rem;
   padding: var(--space-3) var(--space-4);
@@ -470,16 +471,25 @@ a[data-coming-soon="true"] {
   font: inherit;
 }
 
-.form-field input::placeholder {
+.form-field textarea {
+  min-block-size: 8.5rem;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
   color: var(--color-text-soft);
 }
 
 .form-field input:focus,
-.form-field select:focus {
+.form-field select:focus,
+.form-field textarea:focus {
   outline: var(--border-width-strong) solid var(--color-focus);
   outline-offset: 0.2em;
   border-color: var(--color-primary);
 }
+
 
 .form-actions {
   display: flex;
