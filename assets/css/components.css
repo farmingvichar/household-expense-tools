@@ -1218,7 +1218,7 @@ button,
   }
 }
 
-/* Toilet Paper Value Calculator — Scoped UI & Table Styles */
+  /* Toilet Paper Value Calculator — Scoped UI & Table Styles */
 .tp-currency-row {
   max-inline-size: 20rem;
   margin-block-end: var(--space-4, 1rem);
@@ -1230,13 +1230,8 @@ button,
   margin-block-end: var(--space-4, 1rem);
 }
 
-@media (min-width: 56rem) {
-  .tp-packs-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 .tp-pack-group {
+  min-inline-size: 0;
   margin: 0;
   padding: var(--space-4, 1rem);
   border: var(--border-width, 1px) solid var(--color-border, #d8e2df);
@@ -1256,13 +1251,28 @@ button,
   gap: var(--space-3, 0.75rem);
 }
 
+@media (min-width: 56rem) {
+  .tp-packs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tp-pack-group .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .tp-results-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-3, 0.75rem);
 }
 
 .tp-results-grid .summary-card {
+  min-inline-size: 0;
   padding: var(--space-3, 0.75rem);
+}
+
+.tp-results-grid .summary-card p {
+  overflow-wrap: break-word;
 }
 
 .tp-results-grid .tp-card-highlight {
