@@ -224,6 +224,15 @@ document.addEventListener("DOMContentLoaded", function () {
     return labelB + " is cheaper.";
   }
 
+    function formatUnitAreaCost(symbol, amount) {
+    const perSqFt = Math.abs(amount).toLocaleString("en-US", {
+      minimumFractionDigits: 3,
+      maximumFractionDigits: 3
+    });
+    const per100SqFt = formatMoney(symbol, amount * 100);
+    return symbol + perSqFt + "/sq ft (" + per100SqFt + "/100 sq ft)";
+  }
+
   function getSquareFootText(symbol, labelA, squareFeetA, priceA, labelB, squareFeetB, priceB) {
     const hasA = squareFeetA !== null;
     const hasB = squareFeetB !== null;
@@ -233,11 +242,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (hasA && !hasB) {
-      return labelA + ": " + formatMoney(symbol, priceA / squareFeetA) + "/sq ft. Add " + labelB + " square feet to compare.";
+      return labelA + ": " + formatUnitAreaCost(symbol, priceA / squareFeetA) + ". Add " + labelB + " square feet to compare.";
     }
 
     if (!hasA && hasB) {
-      return labelB + ": " + formatMoney(symbol, priceB / squareFeetB) + "/sq ft. Add " + labelA + " square feet to compare.";
+      return labelB + ": " + formatUnitAreaCost(symbol, priceB / squareFeetB) + ". Add " + labelA + " square feet to compare.";
     }
 
     const costA = priceA / squareFeetA;
@@ -252,15 +261,16 @@ document.addEventListener("DOMContentLoaded", function () {
     return (
       labelA +
       ": " +
-      formatMoney(symbol, costA) +
-      "/sq ft · " +
+      formatUnitAreaCost(symbol, costA) +
+      " · " +
       labelB +
       ": " +
-      formatMoney(symbol, costB) +
-      "/sq ft · " +
+      formatUnitAreaCost(symbol, costB) +
+      " · " +
       cheaperText
     );
   }
+
 
   function markResultAsChanged() {
     if (!hasCalculated) {
@@ -455,15 +465,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-    form.addEventListener("input", function () {
-    form.requestSubmit();
-  });
-  form.addEventListener("change", function () {
-    form.requestSubmit();
-  });
+      function areRequiredFieldsFilled() {
+    return (
+      packAPriceInput.value.trim() !== "" &&
+      packARollsInput.value.trim() !== "" &&
+      packASheetsPerRollInput.value.trim() !== "" &&
+      packAPlyInput.value.trim() !== "" &&
+      packBPriceInput.value.trim() !== "" &&
+      packBRollsInput.value.trim() !== "" &&
+      packBSheetsPerRollInput.value.trim() !== "" &&
+      packBPlyInput.value.trim() !== ""
+    );
+  }
+
+  function handleLiveUpdate() {
+    if (areRequiredFieldsFilled()) {
+      form.requestSubmit();
+    } else if (hasCalculated) {
+      markResultAsChanged();
+    }
+  }
+
+  form.addEventListener("input", handleLiveUpdate);
+  form.addEventListener("change", handleLiveUpdate);
   form.addEventListener("reset", function () {
     window.setTimeout(resetResults, 0);
   });
+
 
   resetResults();
 });
