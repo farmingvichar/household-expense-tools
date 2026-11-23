@@ -4,12 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Toilet Paper Calculator | Compare Cost Per Sheet</title>
-    <meta name="description" content="Compare toilet paper prices by sheet count, ply, and square footage. Free browser-based calculator to find the real cost per sheet and best pack value.">
-  <meta name="theme-color" content="#0f172a" />
-    <link rel="canonical" href="https://householdexpensetools.com/tools/toilet-paper-value-calculator/" />
+  <title>Toilet Paper Value Calculator – Cost Per Sheet &amp; Sq Ft</title>
+  <meta name="description" content="Compare two toilet paper packs by cost per 100 sheets, ply-adjusted value, and price per square foot. Free, private browser calculator for grocery trips." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0f766e" />
+  <link rel="canonical" href="https://householdexpensetools.com/tools/toilet-paper-value-calculator/" />
 
-  <!-- Structured Data: WebApplication + FAQPage Schema -->
+  <meta property="og:title" content="Toilet Paper Value Calculator – Cost Per Sheet &amp; Sq Ft" />
+  <meta property="og:description" content="Compare toilet paper deals by cost per 100 sheets, ply-adjusted cost, and price per square foot. Runs privately in your browser." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://householdexpensetools.com/tools/toilet-paper-value-calculator/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Toilet Paper Value Calculator – Cost Per Sheet &amp; Sq Ft" />
+  <meta name="twitter:description" content="Compare toilet paper packs by cost per 100 sheets, ply-adjusted value, and price per square foot." />
+
+  <!-- Structured Data: WebApplication + Exact-Match FAQPage Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -26,7 +36,7 @@
           "price": "0",
           "priceCurrency": "USD"
         },
-        "description": "Compare toilet paper packs by cost per 100 sheets, ply-adjusted value, and optional square-foot price to find the real best deal."
+        "description": "Compare two toilet paper packs side by side by cost per 100 sheets, ply-adjusted value, and optional price per square foot and per 100 square feet."
       },
       {
         "@type": "FAQPage",
@@ -34,34 +44,42 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "How do you calculate cost per 100 sheets of toilet paper?",
+            "name": "Is price per sheet or price per square foot better for comparing toilet paper?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Multiply rolls by sheets per roll to find total sheets, then divide package price by total sheets and multiply by 100: Cost per 100 sheets = (Total Price / Total Sheets) * 100."
+              "text": "Price per square foot (or per 100 sq ft) is the most accurate metric because brands often shrink individual sheet widths while keeping the sheet count high. When square footage is not printed on the package, cost per 100 sheets is the next best comparison."
             }
           },
           {
             "@type": "Question",
-            "name": "What is ply-adjusted cost and why does it matter?",
+            "name": "What is a good price per 100 sheets or per square foot in the US?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Ply-adjusted cost divides the cost per sheet by the number of paper plies (layers). This normalizes 1-ply and 2-ply rolls so you can accurately compare value between single and double-layer products."
+              "text": "For standard 2-ply toilet paper in the US, a strong stock-up deal is generally around $0.20 or less per 100 sheets, or under $1.50 per 100 sq ft ($0.015 per sq ft). Typical everyday retail pricing usually falls between $0.21 and $0.28 per 100 sheets, depending on brand and pack size."
             }
           },
           {
             "@type": "Question",
-            "name": "Can I use this calculator to compare paper towel packs?",
+            "name": "How do you fairly compare 1-ply vs. 2-ply toilet paper?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. Paper towels use the exact same calculation. Enter total rolls and sheets per roll to find cost per sheet, or enter total square footage for an area-based comparison."
+              "text": "Use the ply-adjusted cost per 100 ply-sheets. Because a 2-ply sheet contains two layers of paper, dividing pack price by total sheets multiplied by ply count puts 1-ply, 2-ply, and 3-ply rolls on a more balanced footing."
             }
           },
           {
             "@type": "Question",
-            "name": "Why is price per roll misleading when buying toilet paper?",
+            "name": "What does \"12 Mega Rolls = 48 Regular Rolls\" actually mean?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Brand packaging terms like Mega Roll or Double Roll are not standardized. Calculating cost per 100 sheets or cost per square foot reveals the true value regardless of packaging marketing."
+              "text": "Roll labels like Double, Mega, and Super Mega are not standardized across brands. Manufacturers compare their mega roll to their own small regular roll baseline. Checking total sheets and total square feet printed on the front label removes the marketing guesswork."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use this calculator to compare paper towel packs too?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Paper towels use the same unit math. Enter pack price, roll count, sheets per roll, and ply—or add total square footage to compare select-a-size rolls fairly against full-sheet rolls."
             }
           }
         ]
@@ -70,8 +88,7 @@
   }
   </script>
 
- <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
-
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="../../manifest.json" />
 
   <link rel="stylesheet" href="../../assets/css/reset.css" />
@@ -84,30 +101,32 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <header class="site-header" role="banner">
-  <div class="container header-inner">
-    <a class="brand" href="../../" aria-label="Household Expense Tools home">
-      <span class="brand-mark" aria-hidden="true">
-        <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
-          <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
-          <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-        </svg>
-      </span>
-      <span class="brand-text">Household Expense Tools</span>
-    </a>
+    <div class="container header-inner">
+      <a class="brand" href="../../" aria-label="Household Expense Tools home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
+            <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span class="brand-text">Household Expense Tools</span>
+      </a>
 
-    <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
-      <ul>
-        <li><a href="../../">Home</a></li>
-        <li><a href="../">Tools</a></li>
-        <li><a href="../../#why-use">Why Use Us</a></li>
-        <li><a href="../../faq/">FAQ</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+      <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="../../">Home</a></li>
+          <li><a href="../">Tools</a></li>
+          <li><a href="../../#why-use">Why Use Us</a></li>
+          <li><a href="../../faq/">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero-section">
       <div class="container">
         <p class="eyebrow">Household shopping comparison</p>
@@ -115,9 +134,9 @@
         <div class="hero-text">
           <h1>Toilet Paper Value Calculator</h1>
           <p>
-            Compare two toilet paper packs by sheets, ply-adjusted value, and optional square-foot
-            value. Use the actual rolls, sheets per roll, ply, and final pack price instead of
-            confusing roll names.
+            Compare two toilet paper packs side by side using cost per 100 sheets, ply-adjusted
+            value, and optional price per square foot. Skip confusing Mega and Double Roll labels and
+            check the real unit price in seconds.
           </p>
         </div>
       </div>
@@ -127,213 +146,222 @@
       <div class="container">
         <article class="tool-card">
           <div class="section-heading">
-            <h2 id="calculator-heading">Compare two toilet paper packs</h2>
+            <h2 id="calculator-heading">Toilet paper cost per sheet &amp; sq ft comparison</h2>
             <p>
-              Enter the final pack price after any coupon or discount. The calculator does not add
-              tax or shipping automatically. Include tax or shipping in the final price only if you
-              want to compare delivered cost.
+              Enter the final pack price after any store coupon, digital discount, or subscription
+              savings. Include tax or shipping only if you want to compare delivered cost.
             </p>
           </div>
 
           <form class="tool-form" id="toiletPaperValueForm" novalidate>
-            <div class="form-grid">
-                      <div class="form-field">
-                <label for="currencySymbol">Currency symbol</label>
-                <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
-                  <option value="$" selected>$ USD</option>
-                  <option value="₹">₹ INR</option>
-                  <option value="€">€ EUR</option>
-                  <option value="£">£ GBP</option>
-                  <option value="C$">C$ CAD</option>
-                  <option value="A$">A$ AUD</option>
-                  <option value="¥">¥ JPY</option>
-                </select>
-                <small id="currencySymbolHelp">Display symbol only. No currency conversion.</small>
-              </div>
+            <div class="form-field tp-currency-row">
+              <label for="currencySymbol">Currency symbol</label>
+              <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
+                <option value="$" selected>$ USD</option>
+                <option value="₹">₹ INR</option>
+                <option value="€">€ EUR</option>
+                <option value="£">£ GBP</option>
+                <option value="C$">C$ CAD</option>
+                <option value="A$">A$ AUD</option>
+                <option value="¥">¥ JPY</option>
+              </select>
+              <small id="currencySymbolHelp">Display symbol only. No live currency conversion.</small>
+            </div>
 
-              <div class="form-field">
-                <label for="packAName">Pack A name <span aria-hidden="true">(optional)</span></label>
-                <input
-                  type="text"
-                  id="packAName"
-                  name="packAName"
-                  placeholder="Example: Store brand 12-roll"
-                  autocomplete="off"
-                  aria-describedby="packANameHelp"
-                />
-                <small id="packANameHelp">Leave blank to use “Pack A” in the result.</small>
-              </div>
+            <div class="tp-packs-grid">
+              <fieldset class="tp-pack-group">
+                <legend class="tp-pack-legend">Pack A details</legend>
+                <div class="form-grid">
+                  <div class="form-field">
+                    <label for="packAName">Pack A name <span aria-hidden="true">(optional)</span></label>
+                    <input
+                      type="text"
+                      id="packAName"
+                      name="packAName"
+                      placeholder="e.g. Store 12 Mega Rolls"
+                      autocomplete="off"
+                      aria-describedby="packANameHelp"
+                    />
+                    <small id="packANameHelp">Leave blank to label as “Pack A”.</small>
+                  </div>
 
-              <div class="form-field">
-                <label for="packAPrice">Pack A final price</label>
-                <input
-                  type="number"
-                  id="packAPrice"
-                  name="packAPrice"
-                  inputmode="decimal"
-                  min="0.01"
-                  step="0.01"
-                  placeholder="Example: 8.99"
-                  required
-                  aria-describedby="packAPriceHelp"
-                />
-                <small id="packAPriceHelp">Use the final pack price after any coupon or discount.</small>
-              </div>
+                  <div class="form-field">
+                    <label for="packAPrice">Pack A final price</label>
+                    <input
+                      type="number"
+                      id="packAPrice"
+                      name="packAPrice"
+                      inputmode="decimal"
+                      min="0.01"
+                      step="0.01"
+                      placeholder="e.g. 11.99"
+                      required
+                      aria-describedby="packAPriceHelp"
+                    />
+                    <small id="packAPriceHelp">Final price after coupons or discounts.</small>
+                  </div>
 
-              <div class="form-field">
-                <label for="packARolls">Pack A rolls</label>
-                <input
-                  type="number"
-                  id="packARolls"
-                  name="packARolls"
-                  inputmode="numeric"
-                  min="1"
-                  step="1"
-                  placeholder="Example: 12"
-                  required
-                  aria-describedby="packARollsHelp"
-                />
-                <small id="packARollsHelp">Enter the actual number of rolls in the pack.</small>
-              </div>
+                  <div class="form-field">
+                    <label for="packARolls">Pack A rolls</label>
+                    <input
+                      type="number"
+                      id="packARolls"
+                      name="packARolls"
+                      inputmode="numeric"
+                      min="1"
+                      step="1"
+                      placeholder="e.g. 12"
+                      required
+                      aria-describedby="packARollsHelp"
+                    />
+                    <small id="packARollsHelp">Actual physical rolls in the package.</small>
+                  </div>
 
-              <div class="form-field">
-                <label for="packASheetsPerRoll">Pack A sheets per roll</label>
-                <input
-                  type="number"
-                  id="packASheetsPerRoll"
-                  name="packASheetsPerRoll"
-                  inputmode="numeric"
-                  min="1"
-                  step="1"
-                  placeholder="Example: 220"
-                  required
-                  aria-describedby="packASheetsPerRollHelp"
-                />
-                <small id="packASheetsPerRollHelp">Ignore words like mega, double, or family roll. Use the actual sheet count.</small>
-              </div>
+                  <div class="form-field">
+                    <label for="packASheetsPerRoll">Pack A sheets per roll</label>
+                    <input
+                      type="number"
+                      id="packASheetsPerRoll"
+                      name="packASheetsPerRoll"
+                      inputmode="numeric"
+                      min="1"
+                      step="1"
+                      placeholder="e.g. 264"
+                      required
+                      aria-describedby="packASheetsPerRollHelp"
+                    />
+                    <small id="packASheetsPerRollHelp">Printed in small text near the bottom front label.</small>
+                  </div>
 
-              <div class="form-field">
-                <label for="packAPly">Pack A ply</label>
-                <input
-                  type="number"
-                  id="packAPly"
-                  name="packAPly"
-                  inputmode="numeric"
-                  min="1"
-                  step="1"
-                  placeholder="Example: 2"
-                  required
-                  aria-describedby="packAPlyHelp"
-                />
-                <small id="packAPlyHelp">Ply means paper layers per sheet, such as 1-ply, 2-ply, or 3-ply.</small>
-              </div>
+                  <div class="form-field">
+                    <label for="packAPly">Pack A ply</label>
+                    <input
+                      type="number"
+                      id="packAPly"
+                      name="packAPly"
+                      inputmode="numeric"
+                      min="1"
+                      step="1"
+                      placeholder="e.g. 2"
+                      required
+                      aria-describedby="packAPlyHelp"
+                    />
+                    <small id="packAPlyHelp">Paper layers per sheet (1, 2, or 3).</small>
+                  </div>
 
-              <div class="form-field">
-                <label for="packASquareFeet">Pack A total square feet <span aria-hidden="true">(optional)</span></label>
-                <input
-                  type="number"
-                  id="packASquareFeet"
-                  name="packASquareFeet"
-                  inputmode="decimal"
-                  min="0.01"
-                  step="0.01"
-                  placeholder="Example: 300"
-                  aria-describedby="packASquareFeetHelp"
-                />
-                <small id="packASquareFeetHelp">Use this only if the package shows total area. Leave blank if unknown.</small>
-              </div>
+                  <div class="form-field">
+                    <label for="packASquareFeet">Pack A total sq ft <span aria-hidden="true">(optional)</span></label>
+                    <input
+                      type="number"
+                      id="packASquareFeet"
+                      name="packASquareFeet"
+                      inputmode="decimal"
+                      min="0.01"
+                      step="0.01"
+                      placeholder="e.g. 352"
+                      aria-describedby="packASquareFeetHelp"
+                    />
+                    <small id="packASquareFeetHelp">Optional total area printed on the front of the pack.</small>
+                  </div>
+                </div>
+              </fieldset>
 
-              <div class="form-field">
-                <label for="packBName">Pack B name <span aria-hidden="true">(optional)</span></label>
-                <input
-                  type="text"
-                  id="packBName"
-                  name="packBName"
-                  placeholder="Example: Brand pack 24-roll"
-                  autocomplete="off"
-                  aria-describedby="packBNameHelp"
-                />
-                <small id="packBNameHelp">Leave blank to use “Pack B” in the result.</small>
-              </div>
+              <fieldset class="tp-pack-group">
+                <legend class="tp-pack-legend">Pack B details</legend>
+                <div class="form-grid">
+                  <div class="form-field">
+                    <label for="packBName">Pack B name <span aria-hidden="true">(optional)</span></label>
+                    <input
+                      type="text"
+                      id="packBName"
+                      name="packBName"
+                      placeholder="e.g. Bulk 30-Roll Pack"
+                      autocomplete="off"
+                      aria-describedby="packBNameHelp"
+                    />
+                    <small id="packBNameHelp">Leave blank to label as “Pack B”.</small>
+                  </div>
 
-              <div class="form-field">
-                <label for="packBPrice">Pack B final price</label>
-                <input
-                  type="number"
-                  id="packBPrice"
-                  name="packBPrice"
-                  inputmode="decimal"
-                  min="0.01"
-                  step="0.01"
-                  placeholder="Example: 15.99"
-                  required
-                  aria-describedby="packBPriceHelp"
-                />
-                <small id="packBPriceHelp">Use the final pack price after any coupon or discount.</small>
-              </div>
+                  <div class="form-field">
+                    <label for="packBPrice">Pack B final price</label>
+                    <input
+                      type="number"
+                      id="packBPrice"
+                      name="packBPrice"
+                      inputmode="decimal"
+                      min="0.01"
+                      step="0.01"
+                      placeholder="e.g. 22.99"
+                      required
+                      aria-describedby="packBPriceHelp"
+                    />
+                    <small id="packBPriceHelp">Final price after coupons or discounts.</small>
+                  </div>
 
-              <div class="form-field">
-                <label for="packBRolls">Pack B rolls</label>
-                <input
-                  type="number"
-                  id="packBRolls"
-                  name="packBRolls"
-                  inputmode="numeric"
-                  min="1"
-                  step="1"
-                  placeholder="Example: 24"
-                  required
-                  aria-describedby="packBRollsHelp"
-                />
-                <small id="packBRollsHelp">Enter the actual number of rolls in the pack.</small>
-              </div>
+                  <div class="form-field">
+                    <label for="packBRolls">Pack B rolls</label>
+                    <input
+                      type="number"
+                      id="packBRolls"
+                      name="packBRolls"
+                      inputmode="numeric"
+                      min="1"
+                      step="1"
+                      placeholder="e.g. 30"
+                      required
+                      aria-describedby="packBRollsHelp"
+                    />
+                    <small id="packBRollsHelp">Actual physical rolls in the package.</small>
+                  </div>
 
-              <div class="form-field">
-                <label for="packBSheetsPerRoll">Pack B sheets per roll</label>
-                <input
-                  type="number"
-                  id="packBSheetsPerRoll"
-                  name="packBSheetsPerRoll"
-                  inputmode="numeric"
-                  min="1"
-                  step="1"
-                  placeholder="Example: 180"
-                  required
-                  aria-describedby="packBSheetsPerRollHelp"
-                />
-                <small id="packBSheetsPerRollHelp">Use the actual sheets per roll printed on the package.</small>
-              </div>
+                  <div class="form-field">
+                    <label for="packBSheetsPerRoll">Pack B sheets per roll</label>
+                    <input
+                      type="number"
+                      id="packBSheetsPerRoll"
+                      name="packBSheetsPerRoll"
+                      inputmode="numeric"
+                      min="1"
+                      step="1"
+                      placeholder="e.g. 380"
+                      required
+                      aria-describedby="packBSheetsPerRollHelp"
+                    />
+                    <small id="packBSheetsPerRollHelp">Use the exact sheet count printed on the package.</small>
+                  </div>
 
-              <div class="form-field">
-                <label for="packBPly">Pack B ply</label>
-                <input
-                  type="number"
-                  id="packBPly"
-                  name="packBPly"
-                  inputmode="numeric"
-                  min="1"
-                  step="1"
-                  placeholder="Example: 2"
-                  required
-                  aria-describedby="packBPlyHelp"
-                />
-                <small id="packBPlyHelp">Use the ply number shown on the package.</small>
-              </div>
+                  <div class="form-field">
+                    <label for="packBPly">Pack B ply</label>
+                    <input
+                      type="number"
+                      id="packBPly"
+                      name="packBPly"
+                      inputmode="numeric"
+                      min="1"
+                      step="1"
+                      placeholder="e.g. 2"
+                      required
+                      aria-describedby="packBPlyHelp"
+                    />
+                    <small id="packBPlyHelp">Paper layers per sheet (1, 2, or 3).</small>
+                  </div>
 
-              <div class="form-field">
-                <label for="packBSquareFeet">Pack B total square feet <span aria-hidden="true">(optional)</span></label>
-                <input
-                  type="number"
-                  id="packBSquareFeet"
-                  name="packBSquareFeet"
-                  inputmode="decimal"
-                  min="0.01"
-                  step="0.01"
-                  placeholder="Example: 420"
-                  aria-describedby="packBSquareFeetHelp"
-                />
-                <small id="packBSquareFeetHelp">Use this only if the package shows total area. Leave blank if unknown.</small>
-              </div>
+                  <div class="form-field">
+                    <label for="packBSquareFeet">Pack B total sq ft <span aria-hidden="true">(optional)</span></label>
+                    <input
+                      type="number"
+                      id="packBSquareFeet"
+                      name="packBSquareFeet"
+                      inputmode="decimal"
+                      min="0.01"
+                      step="0.01"
+                      placeholder="e.g. 1425"
+                      aria-describedby="packBSquareFeetHelp"
+                    />
+                    <small id="packBSquareFeetHelp">Optional total area printed on the front of the pack.</small>
+                  </div>
+                </div>
+              </fieldset>
             </div>
 
             <div class="form-actions">
@@ -356,7 +384,37 @@
             </div>
           </form>
 
-          <section class="summary-grid calculator-results-grid" aria-label="Toilet paper value results">
+          <section class="summary-grid calculator-results-grid tp-results-grid" aria-label="Toilet paper value results">
+            <div class="summary-card tp-card-highlight">
+              <p class="summary-label">Better value by sheets</p>
+              <p id="betterValueBySheets">—</p>
+            </div>
+
+            <div class="summary-card tp-card-highlight">
+              <p class="summary-label">Better value by ply</p>
+              <p id="betterValueByPly">—</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Pack A per 100 sheets</p>
+              <p id="packACostPer100Sheets">0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Pack B per 100 sheets</p>
+              <p id="packBCostPer100Sheets">0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Pack A per 100 ply-sheets</p>
+              <p id="packACostPer100PlySheets">0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Pack B per 100 ply-sheets</p>
+              <p id="packBCostPer100PlySheets">0.00</p>
+            </div>
+
             <div class="summary-card">
               <p class="summary-label">Pack A total sheets</p>
               <p id="packATotalSheets">0</p>
@@ -368,129 +426,176 @@
             </div>
 
             <div class="summary-card">
-              <p class="summary-label">Pack A cost per 100 sheets</p>
-              <p id="packACostPer100Sheets">0.00</p>
-            </div>
-
-            <div class="summary-card">
-              <p class="summary-label">Pack B cost per 100 sheets</p>
-              <p id="packBCostPer100Sheets">0.00</p>
-            </div>
-
-            <div class="summary-card">
-              <p class="summary-label">Pack A cost per 100 ply-sheets</p>
-              <p id="packACostPer100PlySheets">0.00</p>
-            </div>
-
-            <div class="summary-card">
-              <p class="summary-label">Pack B cost per 100 ply-sheets</p>
-              <p id="packBCostPer100PlySheets">0.00</p>
-            </div>
-
-            <div class="summary-card">
-              <p class="summary-label">Better value by sheets</p>
-              <p id="betterValueBySheets">—</p>
-            </div>
-
-            <div class="summary-card">
-              <p class="summary-label">Better value by ply-adjusted cost</p>
-              <p id="betterValueByPly">—</p>
-            </div>
-
-            <div class="summary-card">
               <p class="summary-label">Difference per 100 sheets</p>
               <p id="differencePer100Sheets">0.00</p>
             </div>
 
             <div class="summary-card">
-              <p class="summary-label">Difference percentage</p>
+              <p class="summary-label">Savings percentage</p>
               <p id="differencePercentage">—</p>
             </div>
 
-            <div class="summary-card">
-              <p class="summary-label">Cost per square foot</p>
+            <div class="summary-card tp-card-wide">
+              <p class="summary-label">Cost per square foot &amp; per 100 sq ft</p>
               <p id="costPerSquareFoot">—</p>
             </div>
           </section>
         </article>
       </div>
     </section>
-<!-- SEO-CONTENT-START -->
+
+    <!-- SEO-CONTENT-START -->
     <section class="content-section">
       <div class="narrow-container">
-        <h2>How to compare toilet paper prices</h2>
+        <h2>How to use this toilet paper math calculator</h2>
         <p>
-          Toilet paper packaging often uses confusing labels like "Mega Roll," "Double Roll," or "12 = 48 Regular Rolls." Because sheet counts and roll sizes vary widely between brands, comparing price per roll rarely reflects true value.
+          Grocery store aisles make toilet paper pricing deliberately hard to compare. One brand
+          advertises 12 Mega Rolls, another sells 24 Double Rolls, and bulk club packs often list
+          different sheet sizes altogether. To find the real winner before it goes in your cart,
+          look at the fine print near the bottom front of each package for four numbers: total
+          rolls, sheets per roll, ply count, and optional total square feet.
         </p>
         <p>
-          To find the best deal, calculate the total number of sheets in each pack (number of rolls multiplied by sheets per roll), then divide the pack price by total sheets. Multiplying that number by 100 gives you the standard cost per 100 sheets:
-        </p>
-        <p>
-          <strong>Cost per 100 sheets = (Pack Price / (Rolls &times; Sheets per Roll)) &times; 100</strong>
+          Enter the final pack price after any digital store coupon or subscribe-and-save discount.
+          The calculator immediately runs three transparent unit-price formulas:
         </p>
 
-        <h2>Understanding ply-adjusted value and square footage</h2>
+        <div class="tp-formula-box">
+          <p><strong>Cost per 100 sheets</strong> = (Final Price &divide; (Rolls &times; Sheets per Roll)) &times; 100</p>
+          <p><strong>Ply-adjusted cost (per 100 ply-sheets)</strong> = (Final Price &divide; (Total Sheets &times; Ply)) &times; 100</p>
+          <p><strong>Price per square foot</strong> = Final Price &divide; Total Square Feet (multiply by 100 for store shelf-tag cost per 100 sq ft)</p>
+        </div>
+
+        <h2>Price per square foot vs. cost per 100 sheets</h2>
         <p>
-          Comparing single-ply to 2-ply or 3-ply paper on sheet count alone is not always balanced, as multi-ply sheets use multiple layers of paper. The calculator provides a ply-adjusted cost to account for these additional layers. If package dimensions or total square footage are listed on the label, entering that area provides a direct cost-per-square-foot comparison.
+          Cost per 100 sheets is a quick way to compare two packs when both rolls have identical
+          sheet dimensions. However, manufacturers frequently reduce sheet width—a common form of
+          shrinkflation where sheets narrow from 4.5 inches down to 3.8 or 4.0 inches while the
+          sheet count stays the same.
         </p>
+        <p>
+          When total square footage is printed on both packages (standard on most US retail packs),
+          entering it gives you the most accurate comparison. Price per 100 square feet also matches
+          the unit pricing format printed on many US supermarket shelf tags, making it easy to spot
+          true bulk value.
+        </p>
+
+        <h2>Why "Mega" and "Super Mega" roll labels are misleading</h2>
+        <p>
+          Claims like "12 Mega Rolls = 48 Regular Rolls" are not governed by a single industry
+          standard. Each manufacturer defines its own "regular roll" baseline—often using a very
+          small legacy roll of 70 to 100 sheets. A 12-roll Mega pack from one brand can contain
+          hundreds fewer sheets than a 12-roll Mega pack from another brand at the exact same shelf
+          price. Ignoring roll nicknames and comparing total sheets, ply, and square footage eliminates
+          that confusion.
+        </p>
+
+        <h2>US toilet paper stock-up price benchmarks</h2>
+        <p>
+          If you are shopping in the United States for standard 2-ply toilet paper, the reference
+          ranges below can help you judge whether a bulk sale or coupon is a genuine stock-up deal.
+          Prices vary by region, retailer, and paper softness.
+        </p>
+
+        <div class="tp-table-wrap">
+          <table class="tp-benchmark-table">
+            <thead>
+              <tr>
+                <th scope="col">Value Tier (US 2-Ply Reference)</th>
+                <th scope="col">Cost per 100 Sheets</th>
+                <th scope="col">Price per Sq. Ft.</th>
+                <th scope="col">Price per 100 Sq. Ft.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Great stock-up deal</strong></td>
+                <td>Under $0.20</td>
+                <td>Under $0.015</td>
+                <td>Under $1.50</td>
+              </tr>
+              <tr>
+                <td><strong>Typical retail price</strong></td>
+                <td>$0.21 – $0.28</td>
+                <td>$0.016 – $0.023</td>
+                <td>$1.60 – $2.30</td>
+              </tr>
+              <tr>
+                <td><strong>High / convenience price</strong></td>
+                <td>Above $0.29</td>
+                <td>Above $0.024</td>
+                <td>Above $2.40</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h2>Limitations</h2>
         <p>
-          This calculator provides direct numerical cost comparisons based on user inputs. It does not evaluate paper softness, strength, absorbency, brand preference, sales tax, or shipping fees. It does not convert currencies.
+          This calculator provides objective mathematical comparisons based only on the numbers you
+          enter. It does not measure paper softness, tear strength, absorbency, septic safety, or
+          brand preference—a slightly pricier plush roll may still be worth it if your household
+          uses fewer sheets per visit. Retail benchmarks are general estimates for informational
+          purposes only, and the tool does not automatically add sales tax, shipping, or live
+          currency conversion.
         </p>
 
         <h2>Related tools</h2>
         <p>
-          Compare grocery package prices with the <a href="../grocery-price-compare-calculator/">Grocery Unit Price Calculator</a>,
-          calculate monthly household costs with the <a href="../monthly-expense-calculator/">Monthly Expense Calculator</a>,
-          plan grocery spending with the <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a>,
-          or track purchases with the <a href="../daily-expense-tracker/">Daily Expense Tracker</a>.
+          Compare everyday grocery package sizes with the <a href="../grocery-price-compare-calculator/">Grocery Unit Price Calculator</a>,
+          review recurring home bills with the <a href="../monthly-expense-calculator/">Monthly Expense Calculator</a>,
+          plan food spending with the <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a>,
+          or log receipts in the <a href="../daily-expense-tracker/">Daily Expense Tracker</a>.
         </p>
 
-           <div class="section-header" style="margin-top: 3rem;">
+        <div class="section-header tp-faq-header">
           <span class="eyebrow">Frequently Asked Questions</span>
           <h2 id="faq-heading">Toilet Paper Value FAQs</h2>
-          <p>Practical shopping tips on decoding mega rolls, calculating ply value, and comparing unit pricing.</p>
+          <p>Practical answers on sheet math, square footage, ply value, and Mega Roll labels.</p>
         </div>
 
-        <div class="faq-list feature-grid" style="margin-top: 1.5rem;">
+        <div class="faq-list feature-grid tp-faq-list">
           <article class="faq-item feature-card">
             <details>
-              <summary>Why is comparing cost per roll misleading?</summary>
-              <p>Roll sizes are not standardized across manufacturers. A 12-roll pack of Mega Rolls often contains 2x to 3x more paper than standard rolls. Comparing cost per 100 sheets or total square feet reveals the true unit price.</p>
+              <summary>Is price per sheet or price per square foot better for comparing toilet paper?</summary>
+              <p>Price per square foot (or per 100 sq ft) is the most accurate metric because brands often shrink individual sheet widths while keeping the sheet count high. When square footage is not printed on the package, cost per 100 sheets is the next best comparison.</p>
             </details>
           </article>
 
           <article class="faq-item feature-card">
             <details>
-              <summary>What is the difference between cost per 100 sheets and ply-adjusted cost?</summary>
-              <p>Cost per 100 sheets treats every sheet identically regardless of thickness. Ply-adjusted cost accounts for paper layers, allowing fair value comparisons between 1-ply, 2-ply, and 3-ply brands.</p>
+              <summary>What is a good price per 100 sheets or per square foot in the US?</summary>
+              <p>For standard 2-ply toilet paper in the US, a strong stock-up deal is generally around $0.20 or less per 100 sheets, or under $1.50 per 100 sq ft ($0.015 per sq ft). Typical everyday retail pricing usually falls between $0.21 and $0.28 per 100 sheets, depending on brand and pack size.</p>
             </details>
           </article>
 
           <article class="faq-item feature-card">
             <details>
-              <summary>Should I enter total square footage if it is available?</summary>
-              <p>Yes. When listed on the packaging, entering square footage calculates cost per square foot, accounting for sheet width differences and custom sheet perforations.</p>
+              <summary>How do you fairly compare 1-ply vs. 2-ply toilet paper?</summary>
+              <p>Use the ply-adjusted cost per 100 ply-sheets. Because a 2-ply sheet contains two layers of paper, dividing pack price by total sheets multiplied by ply count puts 1-ply, 2-ply, and 3-ply rolls on a more balanced footing.</p>
             </details>
           </article>
 
           <article class="faq-item feature-card">
             <details>
-              <summary>Can I use this calculator to compare paper towel packs?</summary>
-              <p>Yes. Paper towels share identical specifications. Enter pack prices, roll counts, and sheets per roll to find true cost per sheet, or compare square footage for select-a-size formats.</p>
+              <summary>What does "12 Mega Rolls = 48 Regular Rolls" actually mean?</summary>
+              <p>Roll labels like Double, Mega, and Super Mega are not standardized across brands. Manufacturers compare their mega roll to their own small regular roll baseline. Checking total sheets and total square feet printed on the front label removes the marketing guesswork.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Can I use this calculator to compare paper towel packs too?</summary>
+              <p>Yes. Paper towels use the same unit math. Enter pack price, roll count, sheets per roll, and ply—or add total square footage to compare select-a-size rolls fairly against full-sheet rolls.</p>
             </details>
           </article>
         </div>
-        
       </div>
     </section>
-
     <!-- SEO-CONTENT-END -->
-
   </main>
 
-    <footer class="section site-footer" role="contentinfo">
+  <footer class="section site-footer" role="contentinfo">
     <div class="footer-inner">
       <div>
         <p class="footer-brand">Household Expense Tools</p>
