@@ -4,14 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Grocery Budget Calculator | Track Monthly Spending</title>
-
-<meta name="description" content="Plan your grocery spending with a free grocery budget calculator. Check your remaining budget, daily spending limit, and budget used—all in your browser.">
-
+  <title>Grocery Budget Calculator – Monthly, Weekly &amp; Daily Food Limit</title>
+  <meta name="description" content="Calculate your remaining grocery budget, daily and weekly food spending limit, and per-person cost. Free, private grocery budget calculator with US USDA benchmarks." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0f766e" />
   <link rel="canonical" href="https://householdexpensetools.com/tools/grocery-budget-calculator/" />
 
+  <meta property="og:title" content="Grocery Budget Calculator – Monthly, Weekly &amp; Daily Food Limit" />
+  <meta property="og:description" content="Check your remaining grocery budget, daily and weekly spending limits, and per-person food cost in seconds. Free, private, browser-based calculator." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://householdexpensetools.com/tools/grocery-budget-calculator/" />
 
-  <!-- Structured Data: WebApplication + FAQPage Schema -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Grocery Budget Calculator – Monthly, Weekly &amp; Daily Food Limit" />
+  <meta name="twitter:description" content="Calculate remaining grocery budget, daily and weekly spending limits, and per-person cost." />
+
+  <!-- Structured Data: WebApplication + Exact-Match FAQPage Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -28,42 +36,34 @@
           "price": "0",
           "priceCurrency": "USD"
         },
-        "description": "Calculate remaining grocery budget, average daily spending limit, and budget percentage directly in your browser without login."
+        "description": "Calculate remaining monthly grocery budget, daily and weekly spending limits, budget used percentage, and optional per-person food costs directly in your browser without login."
       },
-            {
+      {
         "@type": "FAQPage",
         "@id": "https://householdexpensetools.com/tools/grocery-budget-calculator/#faq",
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "How often should I recalculate my grocery budget?",
+            "name": "How much should I spend on groceries per month or per week in the US?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Update it after every grocery trip, or at least once a week. Because the calculator divides your remaining balance by the days left in the month, recalculating regularly keeps your daily spending target accurate."
+              "text": "Based on US Department of Agriculture (USDA) Food Plans and recent US household benchmarks, a single adult typically spends roughly $300 to $445 per month ($70 to $103 per week) on home groceries. A couple averages around $625 to $920 per month, while a family of four typically budgets $1,025 to $1,815 per month ($235 to $419 per week) depending on plan tier and local prices."
             }
           },
           {
             "@type": "Question",
-            "name": "What if I go over budget one week?",
+            "name": "What percentage of a monthly budget should go toward groceries?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Enter your new cumulative spent amount and recalculate. The tool automatically adjusts your daily spending limit across the remaining days of the month so you can pace future trips without abandoning your budget."
+              "text": "Most household budgeting guidelines recommend keeping groceries around 10% to 15% of net take-home pay, though inflation pushes many households into the 10% to 17% range. For example, if a household spends $600 per month on groceries and that equals 15% of their monthly budget, their total monthly budget is $4,000 ($600 / 0.15 = $4,000)."
             }
           },
           {
             "@type": "Question",
-            "name": "Does this grocery calculator include sales tax?",
+            "name": "What is the 5-4-3-2-1 grocery shopping rule?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Enter the final receipt total you actually paid at the register (including any state or local grocery tax) in the already-spent field so your remaining balance stays accurate."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does the calculator adjust automatically for household size?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Not automatically. Enter your total household grocery budget for the month. To check per-person spending, divide your monthly total by the number of household members and compare that against previous months."
+              "text": "The 5-4-3-2-1 grocery method is a simple weekly list framework to prevent impulse buying: pick 5 fruits and vegetables, 4 protein items, 3 grains or starches, 2 sauces or spreads, and 1 fun treat. It keeps carts balanced and helps stay inside a weekly spending limit."
             }
           },
           {
@@ -76,18 +76,26 @@
           },
           {
             "@type": "Question",
-            "name": "What percentage of a monthly budget should go toward groceries?",
+            "name": "How often should I recalculate my grocery budget, and what if I overspend one week?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Standard household budgeting guidelines suggest allocating 10% to 15% of net take-home pay to groceries. For example, if a household spends $600 per month on groceries and that equals 15% of their monthly budget, their total monthly budget is $4,000 ($600 / 0.15 = $4,000)."
+              "text": "Update your already-spent total after every major grocery trip or once a week. If you go over budget one week, entering your new cumulative total automatically adjusts your daily and weekly spending limits across the remaining days of the month so you can pace future trips."
             }
           },
           {
             "@type": "Question",
-            "name": "Are the grocery budget results exact?",
+            "name": "Does this grocery calculator include sales tax?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The results are mathematical estimates based on your inputs. Actual food spending varies by store pricing, seasonal produce costs, bulk purchases, sales tax, and delivery fees."
+              "text": "No. Enter the final register receipt total you actually paid (including any state or local grocery tax or delivery fees) in the already-spent field so your remaining balance stays accurate."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the calculator adjust for household size?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can enter your optional household size (1 to 20 people) to automatically see your monthly grocery budget per person and remaining balance per person alongside your household totals."
             }
           }
         ]
@@ -96,54 +104,55 @@
   }
   </script>
 
-  <link rel="stylesheet" href="../../assets/css/reset.css" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="../../manifest.json" />
 
+  <link rel="stylesheet" href="../../assets/css/reset.css" />
   <link rel="stylesheet" href="../../assets/css/variables.css" />
   <link rel="stylesheet" href="../../assets/css/typography.css" />
   <link rel="stylesheet" href="../../assets/css/layout.css" />
   <link rel="stylesheet" href="../../assets/css/components.css" />
   <link rel="stylesheet" href="../../assets/css/utilities.css" />
   <link rel="stylesheet" href="../../assets/css/responsive.css" />
-<link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
-  <link rel="manifest" href="../../manifest.json" />
-  <meta name="theme-color" content="#0f172a" />
 </head>
 
 <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-  <header class="site-header" role="banner">
-  <div class="container header-inner">
-    <a class="brand" href="../../" aria-label="Household Expense Tools home">
-      <span class="brand-mark" aria-hidden="true">
-        <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
-          <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
-          <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-        </svg>
-      </span>
-      <span class="brand-text">Household Expense Tools</span>
-    </a>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <nav class="primary-nav" aria-label="Primary navigation">
-      <ul>
-        <li><a href="../../">Home</a></li>
-        <li><a href="../">Tools</a></li>
-        <li><a href="../../#why-use">Why Use Us</a></li>
-        <li><a href="../../faq/">FAQ</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="../../" aria-label="Household Expense Tools home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
+            <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span class="brand-text">Household Expense Tools</span>
+      </a>
+
+      <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="../../">Home</a></li>
+          <li><a href="../">Tools</a></li>
+          <li><a href="../../#why-use">Why Use Us</a></li>
+          <li><a href="../../faq/">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <main id="main-content">
     <section class="hero-section">
       <div class="container">
-        <p class="eyebrow">Simple grocery planning tool</p>
-
+        <p class="eyebrow">Monthly &amp; weekly food planning</p>
         <div class="hero-text">
           <h1>Grocery Budget Calculator</h1>
           <p>
-  Estimate your remaining grocery budget, average daily grocery spending limit, and budget used percentage from your monthly grocery budget, already spent amount, and days left.
-</p>
+            Find out exactly how much grocery money you have left for the month, along with your
+            daily limit, weekly shopping target, and optional per-person food budget—calculated
+            instantly in your browser with no sign-up.
+          </p>
         </div>
       </div>
     </section>
@@ -152,28 +161,29 @@
       <div class="container">
         <article class="tool-card">
           <div class="section-heading">
-            <h2 id="calculator-heading">Calculate your grocery budget</h2>
+            <h2 id="calculator-heading">Calculate your remaining grocery budget &amp; weekly limit</h2>
             <p>
-  Enter your monthly grocery budget, how much you have already spent, and how many days are left in the month.
-</p>
+              Enter your monthly food budget, how much you have spent so far, and how many days
+              remain in the month. Leave already spent blank if you are planning a fresh month.
+            </p>
           </div>
 
-                    <form class="tool-form" id="groceryBudgetForm" novalidate>
-            <div class="form-grid">
-             <div class="form-field">
-                <label for="currencySymbol">Currency symbol</label>
-                <select id="currencySymbol" name="currencySymbol" aria-describedby="currencySymbolHelp">
-                  <option value="$" selected>$ USD</option>
-                  <option value="₹">₹ INR</option>
-                  <option value="€">€ EUR</option>
-                  <option value="£">£ GBP</option>
-                  <option value="C$">C$ CAD</option>
-                  <option value="A$">A$ AUD</option>
-                  <option value="¥">¥ JPY</option>
-                </select>
-                <small id="currencySymbolHelp">Display symbol only. No conversion.</small>
-              </div>
+          <form class="tool-form" id="groceryBudgetForm" novalidate>
+            <div class="form-field tp-currency-row">
+              <label for="currencySymbol">Currency symbol</label>
+              <select id="currencySymbol" name="currencySymbol" aria-describedby="currencySymbolHelp">
+                <option value="$" selected>$ USD</option>
+                <option value="C$">C$ CAD</option>
+                <option value="£">£ GBP</option>
+                <option value="A$">A$ AUD</option>
+                <option value="€">€ EUR</option>
+                <option value="₹">₹ INR</option>
+                <option value="¥">¥ JPY</option>
+              </select>
+              <small id="currencySymbolHelp">Display symbol only. No live currency conversion.</small>
+            </div>
 
+            <div class="form-grid">
               <div class="form-field">
                 <label for="monthlyBudget">Monthly grocery budget</label>
                 <input
@@ -181,17 +191,17 @@
                   id="monthlyBudget"
                   name="monthlyBudget"
                   inputmode="decimal"
-                  min="0"
+                  min="0.01"
                   step="0.01"
                   placeholder="e.g. 600"
                   required
                   aria-describedby="monthlyBudgetHelp"
                 />
-                <small id="monthlyBudgetHelp">Total planned grocery spending for the month.</small>
+                <small id="monthlyBudgetHelp">Total planned supermarket and food spending for the month.</small>
               </div>
 
               <div class="form-field">
-                <label for="alreadySpent">Already spent amount</label>
+                <label for="alreadySpent">Already spent so far <span aria-hidden="true">(optional)</span></label>
                 <input
                   type="number"
                   id="alreadySpent"
@@ -200,10 +210,9 @@
                   min="0"
                   step="0.01"
                   placeholder="e.g. 215.50"
-                  required
                   aria-describedby="alreadySpentHelp"
                 />
-                <small id="alreadySpentHelp">Amount spent so far this month.</small>
+                <small id="alreadySpentHelp">Include tax from receipts. Leave blank to count as 0.</small>
               </div>
 
               <div class="form-field">
@@ -220,7 +229,23 @@
                   required
                   aria-describedby="daysLeftHelp"
                 />
-                <small id="daysLeftHelp">Include today if you plan to shop today (1-31).</small>
+                <small id="daysLeftHelp">Include today if you plan to shop today (1–31).</small>
+              </div>
+
+              <div class="form-field">
+                <label for="householdSize">Household size <span aria-hidden="true">(optional)</span></label>
+                <input
+                  type="number"
+                  id="householdSize"
+                  name="householdSize"
+                  inputmode="numeric"
+                  min="1"
+                  max="20"
+                  step="1"
+                  placeholder="e.g. 2"
+                  aria-describedby="householdSizeHelp"
+                />
+                <small id="householdSizeHelp">Enter people eating at home to see your per-person cost.</small>
               </div>
             </div>
 
@@ -230,151 +255,222 @@
             </div>
 
             <p class="privacy-note">
-              🔒 <strong>Privacy First:</strong> Calculated locally in your browser. No data is saved or sent to any server.
+              Your numbers stay strictly in your browser for this session. Nothing is saved,
+              uploaded, or tied to an account.
             </p>
 
-            <div
-              class="status-message"
-              id="groceryBudgetStatus"
-              role="status"
-              aria-live="polite"
-            >
-              Start typing to see your budget calculate automatically.
+            <div class="status-message" id="groceryBudgetStatus" role="status" aria-live="polite">
+              Enter your monthly grocery budget and days left to calculate.
             </div>
           </form>
 
-
-          <section class="summary-grid calculator-results-grid" aria-label="Grocery budget results">
-            <div class="summary-card">
+          <section class="summary-grid calculator-results-grid tp-results-grid" aria-label="Grocery budget results">
+            <div class="summary-card tp-card-highlight">
               <p class="summary-label">Remaining budget</p>
-              <p id="remainingBudget">0.00</p>
+              <p id="remainingBudget">$0.00</p>
+            </div>
+
+            <div class="summary-card tp-card-highlight">
+              <p class="summary-label">Weekly spending limit</p>
+              <p id="weeklyLimit">$0.00</p>
             </div>
 
             <div class="summary-card">
-              <p class="summary-label">Average daily amount left</p>
-              <p id="dailyLimit">0.00</p>
+              <p class="summary-label">Average daily limit</p>
+              <p id="dailyLimit">$0.00</p>
             </div>
 
             <div class="summary-card">
               <p class="summary-label">Budget used</p>
               <p id="budgetUsedPercentage">0%</p>
             </div>
+
+            <div class="summary-card tp-card-wide">
+              <p class="summary-label">Per-person grocery breakdown (optional household size)</p>
+              <p id="perPersonBudget">Add household size above to see per-person monthly and remaining amounts.</p>
+            </div>
           </section>
         </article>
       </div>
     </section>
-<!-- SEO-CONTENT-START -->
-<section class="content-section">
-  <div class="narrow-container">
-    <h2>How this grocery budget calculator works</h2>
-    <p>
-      Enter your monthly grocery budget, how much you've already spent, and how many days are left in the month. The calculator subtracts your spent amount from your budget to
-      find what's remaining, then divides that by the days left to give you a daily spending
-      limit you can check before each trip to the store.
-    </p>
 
-    <h2>A quick example</h2>
-    <p>
-      Say your monthly grocery budget is $600. By day 18, you've spent $410, leaving 12 days in
-      the month. Remaining budget: $190. Daily amount left: $190 &divide; 12 = $15.83 per day.
-      Budget used: 68%. That daily number turns a vague "don't overspend" goal into a specific
-      figure you can check against before you shop.
-    </p>
+    <!-- SEO-CONTENT-START -->
+    <section class="content-section">
+      <div class="narrow-container">
+        <h2>How this grocery budget calculator works</h2>
+        <p>
+          Enter your monthly grocery budget, what you have spent so far, and how many days are left
+          in the month. The calculator subtracts your spent receipts from your monthly target, then
+          converts what is left into a daily limit and a weekly grocery shopping target you can
+          check before heading to the store.
+        </p>
 
-        <h2>How to choose a grocery budget</h2>
-    <p>
-      Review your grocery receipts and bank transactions from the past two to three months to estimate what your household usually spends. Decide which purchases belong in your grocery budget, and track restaurant meals or household supplies separately if you do not want to include them. Use your recent spending as a starting point, then adjust the amount to fit your household's needs and available money.
-    </p>
+        <div class="tp-formula-box">
+          <p><strong>Remaining Budget</strong> = Monthly Grocery Budget &minus; Already Spent</p>
+          <p><strong>Daily Spending Limit</strong> = Remaining Budget &divide; Days Left in Month</p>
+          <p><strong>Weekly Shopping Target</strong> = Daily Spending Limit &times; 7 (capped at Remaining Budget if under 7 days left)</p>
+          <p><strong>Budget Used (%)</strong> = (Already Spent &divide; Monthly Grocery Budget) &times; 100</p>
+          <p><strong>Per-Person Monthly Target</strong> = Monthly Grocery Budget &divide; Household Size</p>
+        </div>
 
-    <h2>How to stay within your grocery budget</h2>
-    <p>
-      Before shopping, check how much of your grocery budget remains and make a list based on the food you need. After each trip, update the amount you have spent and recalculate your daily spending limit. If you spend more than planned, use the new remaining balance to guide spending for the rest of the month. These steps help you monitor spending but do not guarantee savings.
-    </p>
+        <h2>A quick worked example</h2>
+        <p>
+          Say your monthly grocery budget is $600 for a 2-person household. By day 18, you have
+          spent $410, leaving 12 days in the month:
+        </p>
+        <ul>
+          <li><strong>Remaining budget:</strong> $600 &minus; $410 = $190.00 left.</li>
+          <li><strong>Daily spending limit:</strong> $190 &divide; 12 = $15.83 per day.</li>
+          <li><strong>Weekly shopping target:</strong> $15.83 &times; 7 = $110.83 per week.</li>
+          <li><strong>Budget used:</strong> 68.3% spent, with $95.00 left per person.</li>
+        </ul>
 
+        <h2>Average US grocery costs by household size (USDA reference)</h2>
+        <p>
+          If you are not sure what a realistic monthly food budget looks like, the US Department of
+          Agriculture (USDA) Food Plans and recent US grocery spending benchmarks give a helpful
+          starting point. A common guideline is keeping groceries around 10% to 15% of net
+          take-home pay (roughly 10% to 17% including inflation shifts), then adjusting for your
+          city and cooking habits.
+        </p>
 
-    <h2>Why the daily number matters more than the monthly total</h2>
-    <p>
-      Grocery overspending rarely happens in one big purchase. It happens $8 to $15 at a time,
-      across a dozen small trips, until the month runs out before the budget does. Checking your
-      daily limit before shopping catches that drift early, without needing a full spreadsheet.
-    </p>
+        <div class="tp-table-wrap">
+          <table class="tp-benchmark-table">
+            <thead>
+              <tr>
+                <th scope="col">Household Size (US Reference)</th>
+                <th scope="col">Typical Low / Thrifty</th>
+                <th scope="col">Typical Average</th>
+                <th scope="col">Weekly Equivalent (Avg)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1 person (single adult)</strong></td>
+                <td>~$300 – $344 / mo</td>
+                <td>~$441 / mo</td>
+                <td>~$102 / week</td>
+              </tr>
+              <tr>
+                <td><strong>2 people (couple)</strong></td>
+                <td>~$625 – $650 / mo</td>
+                <td>~$808 / mo</td>
+                <td>~$186 / week</td>
+              </tr>
+              <tr>
+                <td><strong>Family of 3</strong></td>
+                <td>~$821 / mo</td>
+                <td>~$1,091 / mo</td>
+                <td>~$252 / week</td>
+              </tr>
+              <tr>
+                <td><strong>Family of 4</strong></td>
+                <td>~$1,024 – $1,025 / mo</td>
+                <td>~$1,388 – $1,815 / mo</td>
+                <td>~$320 – $419 / week</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-    <h2>Limitations</h2>
-    <p>
-      This tool gives a basic estimate from the numbers you enter. It does not account for sales
-      tax automatically, predict future prices, compare store prices, convert currencies, or
-      provide financial, tax, legal, investment, or accounting advice. If your area charges sales
-      tax on groceries, include that in your spent amount for an accurate remaining balance.
-    </p>
+        <h2>Why the daily and weekly numbers matter more than the monthly total</h2>
+        <p>
+          Grocery overspending rarely happens in one big purchase. It happens $8 to $15 at a time,
+          across a dozen quick midweek runs, until the month outlasts the budget. Checking your
+          weekly target before a main supermarket trip—and your daily limit before quick stops—catches
+          that drift early without needing a complex spreadsheet.
+        </p>
 
-    <h2>Related tools</h2>
-    <p>
-      Track everyday purchases with the <a href="../daily-expense-tracker/">Daily Expense Tracker</a>,
-      calculate monthly household costs with the <a href="../monthly-expense-calculator/">Monthly Expense Calculator</a>,
-      compare grocery package prices with the <a href="../grocery-price-compare-calculator/">Grocery Unit Price Calculator</a>,
-      or estimate wasted food cost with the <a href="../food-waste-cost-calculator/">Food Waste Cost Calculator</a>.
-    </p>
+        <h2>Using the 5-4-3-2-1 grocery rule to stay under your weekly limit</h2>
+        <p>
+          Before you shop, check your pantry and write a short list around meals you actually plan
+          to cook. Many shoppers use the <strong>5-4-3-2-1 grocery rule</strong> for a balanced
+          weekly cart without impulse bloat: <strong>5</strong> fruits and vegetables,
+          <strong>4</strong> protein sources, <strong>3</strong> grains or starches,
+          <strong>2</strong> sauces or spreads, and <strong>1</strong> fun treat. Pair that with
+          checking unit prices on shelf tags, and update your spent total right after checkout.
+        </p>
 
-        <div class="section-header">
-      <span class="eyebrow">Frequently Asked Questions</span>
-      <h2 id="faq-heading">Grocery Budget &amp; Daily Spending Limit FAQs</h2>
-      <p>Practical answers on tracking food receipts, adjusting for mid-month overspending, and setting realistic household grocery targets.</p>
-    </div>
+        <h2>Limitations</h2>
+        <p>
+          This tool gives a straightforward mathematical estimate from the numbers you enter. It
+          does not automatically add sales tax, predict grocery price changes, compare store prices,
+          or convert currencies. USDA benchmark ranges are general US national references for
+          home-cooked food and do not include restaurant meals or household paper goods unless you
+          choose to include them in your budget.
+        </p>
+        <p>
+          This calculator is for everyday household planning only and does not provide financial,
+          tax, legal, investment, or accounting advice.
+        </p>
 
-    <div class="faq-list feature-grid">
-      <article class="faq-item feature-card">
-        <details>
-          <summary>How often should I recalculate my grocery budget?</summary>
-          <p>Update it after every grocery trip, or at least once a week. Because the calculator divides your remaining balance by the days left in the month, recalculating regularly keeps your daily spending target accurate.</p>
-        </details>
-      </article>
+        <h2>Related tools</h2>
+        <p>
+          Track everyday purchases with the <a href="../daily-expense-tracker/">Daily Expense Tracker</a>,
+          plan your full monthly bills with the <a href="../monthly-expense-calculator/">Monthly Expense Calculator</a>,
+          compare grocery package prices using the <a href="../grocery-price-compare-calculator/">Grocery Unit Price Calculator</a>,
+          or estimate wasted food cost with the <a href="../food-waste-cost-calculator/">Food Waste Cost Calculator</a>.
+        </p>
 
-      <article class="faq-item feature-card">
-        <details>
-          <summary>What if I go over budget one week?</summary>
-          <p>Enter your new cumulative spent amount and recalculate. The tool automatically adjusts your daily spending limit across the remaining days of the month so you can pace future trips without abandoning your budget.</p>
-        </details>
-      </article>
+        <div class="section-header tp-faq-header">
+          <span class="eyebrow">Frequently Asked Questions</span>
+          <h2 id="faq-heading">Grocery Budget &amp; Weekly Spending FAQs</h2>
+          <p>Practical answers on USDA food costs, the 5-4-3-2-1 rule, sales tax, and pacing mid-month trips.</p>
+        </div>
 
-      <article class="faq-item feature-card">
-        <details>
-          <summary>Does this grocery calculator include sales tax?</summary>
-          <p>No. Enter the final receipt total you actually paid at the register (including any state or local grocery tax) in the already-spent field so your remaining balance stays accurate.</p>
-        </details>
-      </article>
+        <div class="faq-list feature-grid tp-faq-list">
+          <article class="faq-item feature-card">
+            <details>
+              <summary>How much should I spend on groceries per month or per week in the US?</summary>
+              <p>Based on US Department of Agriculture (USDA) Food Plans and recent US household benchmarks, a single adult typically spends roughly $300 to $445 per month ($70 to $103 per week) on home groceries. A couple averages around $625 to $920 per month, while a family of four typically budgets $1,025 to $1,815 per month ($235 to $419 per week) depending on plan tier and local prices.</p>
+            </details>
+          </article>
 
-      <article class="faq-item feature-card">
-        <details>
-          <summary>Does the calculator adjust automatically for household size?</summary>
-          <p>Not automatically. Enter your total household grocery budget for the month. To check per-person spending, divide your monthly total by the number of household members and compare that against previous months.</p>
-        </details>
-      </article>
+          <article class="faq-item feature-card">
+            <details>
+              <summary>What percentage of a monthly budget should go toward groceries?</summary>
+              <p>Most household budgeting guidelines recommend keeping groceries around 10% to 15% of net take-home pay, though inflation pushes many households into the 10% to 17% range. For example, if a household spends $600 per month on groceries and that equals 15% of their monthly budget, their total monthly budget is $4,000 ($600 &divide; 0.15 = $4,000).</p>
+            </details>
+          </article>
 
-      <article class="faq-item feature-card">
-        <details>
-          <summary>How do I calculate remaining grocery money after spending part of my budget?</summary>
-          <p>Subtract the amount already spent from your total monthly grocery budget (Remaining = Total Budget &minus; Amount Spent). For example, if your budget is $100 and you spend $63.50 on produce, you have $36.50 remaining ($100.00 &minus; $63.50 = $36.50).</p>
-        </details>
-      </article>
+          <article class="faq-item feature-card">
+            <details>
+              <summary>What is the 5-4-3-2-1 grocery shopping rule?</summary>
+              <p>The 5-4-3-2-1 grocery method is a simple weekly list framework to prevent impulse buying: pick 5 fruits and vegetables, 4 protein items, 3 grains or starches, 2 sauces or spreads, and 1 fun treat. It keeps carts balanced and helps stay inside a weekly spending limit.</p>
+            </details>
+          </article>
 
-      <article class="faq-item feature-card">
-        <details>
-          <summary>What percentage of a monthly budget should go toward groceries?</summary>
-          <p>Standard household budgeting guidelines suggest allocating 10% to 15% of net take-home pay to groceries. For example, if a household spends $600 per month on groceries and that equals 15% of their monthly budget, their total monthly budget is $4,000 ($600 &divide; 0.15 = $4,000).</p>
-        </details>
-      </article>
+          <article class="faq-item feature-card">
+            <details>
+              <summary>How do I calculate remaining grocery money after spending part of my budget?</summary>
+              <p>Subtract the amount already spent from your total monthly grocery budget (Remaining = Total Budget &minus; Amount Spent). For example, if your budget is $100 and you spend $63.50 on produce, you have $36.50 remaining ($100.00 &minus; $63.50 = $36.50).</p>
+            </details>
+          </article>
 
-      <article class="faq-item feature-card">
-        <details>
-          <summary>Are the grocery budget results exact?</summary>
-          <p>The results are mathematical estimates based on your inputs. Actual food spending varies by store pricing, seasonal produce costs, bulk purchases, sales tax, and delivery fees.</p>
-        </details>
-      </article>
-    </div>
-  </div>
-</section>
-<!-- SEO-CONTENT-END -->
+          <article class="faq-item feature-card">
+            <details>
+              <summary>How often should I recalculate my grocery budget, and what if I overspend one week?</summary>
+              <p>Update your already-spent total after every major grocery trip or once a week. If you go over budget one week, entering your new cumulative total automatically adjusts your daily and weekly spending limits across the remaining days of the month so you can pace future trips.</p>
+            </details>
+          </article>
 
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Does this grocery calculator include sales tax?</summary>
+              <p>No. Enter the final register receipt total you actually paid (including any state or local grocery tax or delivery fees) in the already-spent field so your remaining balance stays accurate.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Does the calculator adjust for household size?</summary>
+              <p>Yes. You can enter your optional household size (1 to 20 people) to automatically see your monthly grocery budget per person and remaining balance per person alongside your household totals.</p>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- SEO-CONTENT-END -->
   </main>
 
   <footer class="section site-footer" role="contentinfo">
