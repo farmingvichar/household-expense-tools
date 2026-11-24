@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monthly Expense Calculator | Track Household Budget</title>
-    <meta name="description" content="Calculate monthly household expenses, remaining balance, and spending percentages with this free expense calculator. Private, browser-based, no login.">
-    <link rel="canonical" href="https://householdexpensetools.com/tools/monthly-expense-calculator/">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Structured Data: WebApplication + FAQPage Schema -->
+  <title>Monthly Expense Calculator – Free Household Budget &amp; Bills</title>
+  <meta name="description" content="Calculate monthly household expenses, remaining balance, annual spending, and 50/30/20 budget targets. Free, private monthly bills calculator with no login." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0f766e" />
+  <link rel="canonical" href="https://householdexpensetools.com/tools/monthly-expense-calculator/" />
+
+  <meta property="og:title" content="Monthly Expense Calculator – Free Household Budget &amp; Bills" />
+  <meta property="og:description" content="Estimate monthly living expenses, remaining income, yearly costs, and 3–6 month emergency fund targets directly in your browser. Free and private." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://householdexpensetools.com/tools/monthly-expense-calculator/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Monthly Expense Calculator – Free Household Budget &amp; Bills" />
+  <meta name="twitter:description" content="Calculate monthly household expenses, remaining income, annual costs, and 50/30/20 targets with no login." />
+
+  <!-- Structured Data: WebApplication + Exact-Match FAQPage Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -24,58 +36,58 @@
           "price": "0",
           "priceCurrency": "USD"
         },
-        "description": "Calculate monthly household expenses, remaining income balance, and spending percentages across living categories in your browser without login."
+        "description": "Calculate monthly household expenses, remaining take-home balance, expense percentage, annual costs, emergency fund targets, and 50/30/20 budget guidelines directly in your browser."
       },
-            {
+      {
         "@type": "FAQPage",
         "@id": "https://householdexpensetools.com/tools/monthly-expense-calculator/#faq",
         "mainEntity": [
           {
             "@type": "Question",
+            "name": "What is the formula for calculating monthly expenses?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Add all fixed monthly bills (housing, utilities, phone, debt payments, insurance) and variable living costs (groceries, gas, personal spending) together: Total Monthly Expenses = Fixed Bills + Variable Expenses. Then subtract that total from your monthly take-home pay to find your remaining balance."
+            }
+          },
+          {
+            "@type": "Question",
             "name": "Should I enter gross income or net take-home pay?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Enter your net take-home pay (after taxes and payroll deductions). Budgeting against the actual money deposited into your checking account gives an accurate picture of your true monthly cash flow."
+              "text": "Enter your net take-home pay—the actual amount deposited into your bank account after taxes, health insurance, and payroll deductions. Budgeting from take-home pay shows your real cash flow and prevents overestimating what is left to spend or save."
             }
           },
           {
             "@type": "Question",
-            "name": "How do I account for annual or irregular bills?",
+            "name": "What are the average monthly expenses for one person or a family in the US?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Divide annual expenses by 12 and quarterly bills by 3 (such as car insurance premiums or registration fees). Add that monthly share into the Other expenses field so seasonal bills do not catch you off guard."
+              "text": "According to recent US Bureau of Labor Statistics (BLS) Consumer Expenditure Survey data, the average American household spends about $6,825 per month ($81,905 per year), up from $6,545 per month ($78,535 per year) in 2024. Typical monthly spending runs roughly $4,066 to $4,641 for a single person, $7,341 for a married couple without children, and $8,809 to $9,780 for families with children, with housing (~33.9%) and transportation (~16.5%) as the two largest costs."
             }
           },
           {
             "@type": "Question",
-            "name": "Can I use this calculator without entering an income?",
+            "name": "What is the difference between the 50/30/20 and 70/20/10 budget rules?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. If you leave income blank, the calculator still totals your household expenses. Entering take-home pay is only required if you want to calculate your remaining balance and overall expense percentage."
+              "text": "The 50/30/20 rule splits take-home pay into 50% essential needs, 30% wants, and 20% savings or extra debt payoff. The 70/20/10 rule is a helpful alternative in high-cost areas: 70% covers all living expenses (needs plus wants), 20% goes to savings or investing, and 10% goes toward debt payoff or giving."
             }
           },
           {
             "@type": "Question",
-            "name": "What percentage of my income should go toward living expenses?",
+            "name": "How do I account for annual, quarterly, or irregular bills?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Under the standard 50/30/20 budgeting framework, essential living costs (housing, groceries, utilities, transportation) should stay at or below 50% of take-home pay, leaving 20% for savings or debt payoff and 30% for discretionary spending."
+              "text": "Divide annual bills by 12 and quarterly bills by 3—such as car insurance renewals, vehicle registration, property taxes, or holiday costs—and include that monthly share inside the Other expenses field so irregular bills do not disrupt your monthly budget."
             }
           },
           {
             "@type": "Question",
-            "name": "Does this calculator save or store my financial data?",
+            "name": "Can I calculate my monthly bills without entering income, and is my data saved?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Calculations run 100% in your local browser session without cookies, localStorage persistence, user logins, or transmitting numbers to any server."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does this calculator provide certified financial advice?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. This tool generates basic mathematical estimates based on the figures you supply. It is intended for everyday personal planning and does not constitute certified financial, tax, or accounting advice."
+              "text": "Yes. If you leave income blank, the calculator still totals your monthly expenses, annual spending, biggest category, and 3 to 6 month emergency fund range. All math runs strictly inside your browser—nothing is saved, uploaded, or tracked."
             }
           }
         ]
@@ -84,275 +96,481 @@
   }
   </script>
 
-  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="../../manifest.json" />
 
-  <link rel="manifest" href="../../manifest.json">
-
-  <link rel="stylesheet" href="../../assets/css/reset.css">
-  <link rel="stylesheet" href="../../assets/css/variables.css">
-  <link rel="stylesheet" href="../../assets/css/typography.css">
-  <link rel="stylesheet" href="../../assets/css/layout.css">
-  <link rel="stylesheet" href="../../assets/css/components.css">
-  <link rel="stylesheet" href="../../assets/css/utilities.css">
-  <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <link rel="stylesheet" href="../../assets/css/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/variables.css" />
+  <link rel="stylesheet" href="../../assets/css/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/layout.css" />
+  <link rel="stylesheet" href="../../assets/css/components.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
 </head>
+
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-<header class="site-header" role="banner">
-  <div class="container header-inner">
-    <a class="brand" href="../../" aria-label="Household Expense Tools home">
-      <span class="brand-mark" aria-hidden="true">
-        <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
-          <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
-          <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-        </svg>
-      </span>
-      <span class="brand-text">Household Expense Tools</span>
-    </a>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="../../" aria-label="Household Expense Tools home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
+            <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span class="brand-text">Household Expense Tools</span>
+      </a>
 
-    <nav class="primary-nav" aria-label="Primary navigation">
-      <ul>
-        <li><a href="../../">Home</a></li>
-        <li><a href="../">Tools</a></li>
-        <li><a href="../../#why-use">Why Use Us</a></li>
-        <li><a href="../../faq/">FAQ</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+      <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="../../">Home</a></li>
+          <li><a href="../">Tools</a></li>
+          <li><a href="../../#why-use">Why Use Us</a></li>
+          <li><a href="../../faq/">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <main id="main-content">
-    <section class="section hero-section">
+    <section class="hero-section">
       <div class="container">
-        <p class="eyebrow">Free household calculator</p>
-        <h1>Monthly Expense Calculator</h1>
-        <p class="hero-text">
-          Estimate your monthly household expenses, remaining money, and expense percentage directly in your browser. Enter only the categories you need and calculate when ready.
-        </p>
-      </div>
-    </section>
-
-    <section class="section section-soft" aria-labelledby="calculator-heading">
-      <div class="container">
-        <div class="section-header">
-          <h2 id="calculator-heading">Calculate monthly expenses</h2>
-          <p>Add monthly income and common household costs. Blank expense fields are treated as 0.</p>
-        </div>
-
-        <form id="monthly-expense-form" class="tool-form" novalidate>
-          <div class="form-grid">
-            <div class="form-field">
-              <label for="monthly-income">Monthly income</label>
-              <input id="monthly-income" name="monthly-income" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
-            </div>
-
-            <div class="form-field">
-              <label for="rent-housing">Rent or housing</label>
-              <input id="rent-housing" name="rent-housing" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
-            </div>
-
-            <div class="form-field">
-              <label for="groceries">Groceries</label>
-              <input id="groceries" name="groceries" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
-            </div>
-
-            <div class="form-field">
-              <label for="utilities">Utilities</label>
-              <input id="utilities" name="utilities" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
-            </div>
-
-            <div class="form-field">
-              <label for="transport">Transport</label>
-              <input id="transport" name="transport" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
-            </div>
-
-            <div class="form-field">
-              <label for="phone-internet">Phone and internet</label>
-              <input id="phone-internet" name="phone-internet" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
-            </div>
-
-       <div class="form-field">
-              <label for="debt-emi">Debt or loan payments</label>
-              <input id="debt-emi" name="debt-emi" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
-            </div>
-
-            <div class="form-field">
-              <label for="insurance-health">Insurance or health</label>
-              <input id="insurance-health" name="insurance-health" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
-            </div>
-
-            <div class="form-field">
-              <label for="other-expenses">Other expenses</label>
-              <input id="other-expenses" name="other-expenses" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
-            </div>
-          </div>
-
-          <div class="form-actions">
-            <button id="calculate-expenses" class="button button-primary" type="submit">Calculate monthly expenses</button>
-            <button id="reset-calculator" class="button button-secondary" type="button">Reset</button>
-          </div>
-
-          <p class="privacy-note">
-            This calculator runs in your browser only. It does not save your entries.
-          </p>
-        </form>
-
-        <div id="monthly-expense-result" class="summary-card status-message" aria-live="polite">
-          Enter monthly income or expenses, then calculate to see the summary.
-        </div>
-      </div>
-    </section>
-<!-- SEO-CONTENT-START -->
-    <section class="section" aria-labelledby="how-to-use-heading">
-      <div class="container">
-        <div class="section-header">
-          <h2 id="how-to-use-heading">How to use</h2>
-        </div>
-
-        <ol class="content-list">
-          <li>Enter your monthly take-home income if you want to calculate remaining balance and expense percentage.</li>
-          <li>Add the household expense categories that apply to your month.</li>
-          <li>Leave unused expense fields blank. They will count as 0.</li>
-          <li>Select calculate to view total expenses, remaining money, expense percentage, and your biggest spending category.</li>
-        </ol>
-      </div>
-    </section>
-
-        <section class="section section-soft" aria-labelledby="includes-heading">
-      <div class="container">
-        <div class="section-header">
-          <h2 id="includes-heading">What this calculator includes</h2>
+        <p class="eyebrow">Household budget &amp; living costs</p>
+        <div class="hero-text">
+          <h1>Monthly Expense Calculator</h1>
           <p>
-            The form covers primary monthly household costs: housing (rent or mortgage), groceries, utilities, transportation, phone and internet, debt or loan payments, insurance or medical care, and general miscellaneous expenses.
+            Add up your monthly household bills, check what is left from your take-home pay, and
+            see your yearly spending, 3–6 month emergency fund range, and 50/30/20 budget targets
+            in seconds—no spreadsheet or sign-up required.
           </p>
         </div>
-
-        <p>
-          <strong>Formulas used:</strong><br>
-          Total Monthly Expenses = Housing + Groceries + Utilities + Transport + Phone/Internet + Debt/Loans + Insurance + Other Expenses.<br>
-          Remaining Balance = Monthly Income &minus; Total Monthly Expenses.<br>
-          Expense Percentage = (Total Monthly Expenses &divide; Monthly Income) &times; 100.
-        </p>
-
-        <p>
-          Irregular or seasonal costs such as vehicle maintenance, annual subscriptions, childcare, or emergency repairs can be combined under Other expenses to keep monthly estimates balanced.
-        </p>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="related-tools-heading">
+    <section class="tool-section" aria-labelledby="calculator-heading">
       <div class="container">
-        <div class="section-header">
-          <h2 id="related-tools-heading">Related tools</h2>
+        <article class="tool-card">
+          <div class="section-heading">
+            <h2 id="calculator-heading">Calculate monthly household expenses &amp; budget balance</h2>
+            <p>
+              Enter only the categories that apply to your household. Leave unused fields blank to
+              count them as 0.
+            </p>
+          </div>
+
+          <form id="monthly-expense-form" class="tool-form" novalidate>
+            <div class="form-field tp-currency-row">
+              <label for="currencySymbol">Currency symbol</label>
+              <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
+                <option value="$" selected>$ USD</option>
+                <option value="C$">C$ CAD</option>
+                <option value="£">£ GBP</option>
+                <option value="A$">A$ AUD</option>
+                <option value="€">€ EUR</option>
+                <option value="₹">₹ INR</option>
+                <option value="¥">¥ JPY</option>
+              </select>
+              <small id="currencySymbolHelp">Display symbol only. No live currency conversion.</small>
+            </div>
+
+            <div class="tp-packs-grid">
+              <fieldset class="tp-pack-group">
+                <legend class="tp-pack-legend">Income &amp; fixed monthly bills</legend>
+                <div class="form-grid">
+                  <div class="form-field">
+                    <label for="monthly-income">Monthly take-home income <span aria-hidden="true">(optional)</span></label>
+                    <input
+                      id="monthly-income"
+                      name="monthly-income"
+                      type="number"
+                      inputmode="decimal"
+                      min="0"
+                      step="0.01"
+                      placeholder="e.g. 4500"
+                      aria-describedby="monthlyIncomeHelp"
+                    />
+                    <small id="monthlyIncomeHelp">Net pay after taxes. Leave blank if you only want to total bills.</small>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="rent-housing">Rent or mortgage</label>
+                    <input
+                      id="rent-housing"
+                      name="rent-housing"
+                      type="number"
+                      inputmode="decimal"
+                      min="0"
+                      step="0.01"
+                      placeholder="e.g. 1500"
+                      aria-describedby="rentHousingHelp"
+                    />
+                    <small id="rentHousingHelp">Monthly rent, mortgage, HOA dues, or property tax escrow.</small>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="utilities">Utilities</label>
+                    <input
+                      id="utilities"
+                      name="utilities"
+                      type="number"
+                      inputmode="decimal"
+                      min="0"
+                      step="0.01"
+                      placeholder="e.g. 220"
+                      aria-describedby="utilitiesHelp"
+                    />
+                    <small id="utilitiesHelp">Electricity, water, natural gas, heating, and trash pickup.</small>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="phone-internet">Phone and internet</label>
+                    <input
+                      id="phone-internet"
+                      name="phone-internet"
+                      type="number"
+                      inputmode="decimal"
+                      min="0"
+                      step="0.01"
+                      placeholder="e.g. 130"
+                      aria-describedby="phoneInternetHelp"
+                    />
+                    <small id="phoneInternetHelp">Home Wi-Fi, mobile plans, and basic streaming or cable.</small>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="debt-emi">Debt or loan payments</label>
+                    <input
+                      id="debt-emi"
+                      name="debt-emi"
+                      type="number"
+                      inputmode="decimal"
+                      min="0"
+                      step="0.01"
+                      placeholder="e.g. 380"
+                      aria-describedby="debtEmiHelp"
+                    />
+                    <small id="debtEmiHelp">Auto loan, student loans, credit card minimums, or personal loans.</small>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="tp-pack-group">
+                <legend class="tp-pack-legend">Variable &amp; everyday living costs</legend>
+                <div class="form-grid">
+                  <div class="form-field">
+                    <label for="groceries">Groceries &amp; household food</label>
+                    <input
+                      id="groceries"
+                      name="groceries"
+                      type="number"
+                      inputmode="decimal"
+                      min="0"
+                      step="0.01"
+                      placeholder="e.g. 550"
+                      aria-describedby="groceriesHelp"
+                    />
+                    <small id="groceriesHelp">Supermarket food, pantry basics, and everyday household supplies.</small>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="transport">Transport &amp; gas</label>
+                    <input
+                      id="transport"
+                      name="transport"
+                      type="number"
+                      inputmode="decimal"
+                      min="0"
+                      step="0.01"
+                      placeholder="e.g. 260"
+                      aria-describedby="transportHelp"
+                    />
+                    <small id="transportHelp">Fuel, public transit passes, parking, tolls, or routine car upkeep.</small>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="insurance-health">Insurance &amp; health</label>
+                    <input
+                      id="insurance-health"
+                      name="insurance-health"
+                      type="number"
+                      inputmode="decimal"
+                      min="0"
+                      step="0.01"
+                      placeholder="e.g. 240"
+                      aria-describedby="insuranceHealthHelp"
+                    />
+                    <small id="insuranceHealthHelp">Auto, renters, or home insurance, prescriptions, and copays.</small>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="other-expenses">Other &amp; irregular expenses</label>
+                    <input
+                      id="other-expenses"
+                      name="other-expenses"
+                      type="number"
+                      inputmode="decimal"
+                      min="0"
+                      step="0.01"
+                      placeholder="e.g. 320"
+                      aria-describedby="otherExpensesHelp"
+                    />
+                    <small id="otherExpensesHelp">Childcare, dining out, pets, subscriptions, or 1/12th of annual bills.</small>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="form-actions">
+              <button id="calculate-expenses" class="button button-primary" type="submit">Calculate monthly expenses</button>
+              <button id="reset-calculator" class="button button-secondary" type="reset">Reset</button>
+            </div>
+
+            <p class="privacy-note">
+              Your numbers stay strictly inside your browser for this session. Nothing is saved,
+              sent to a server, or tied to an account.
+            </p>
+
+            <div id="monthly-expense-result" class="status-message" role="status" aria-live="polite">
+              Enter monthly income or expenses, then calculate to see your summary.
+            </div>
+          </form>
+
+          <section class="summary-grid calculator-results-grid tp-results-grid" aria-label="Monthly expense calculation results">
+            <div class="summary-card tp-card-highlight">
+              <p class="summary-label">Total monthly expenses</p>
+              <p id="totalMonthlyExpenses">$0.00</p>
+            </div>
+
+            <div class="summary-card tp-card-highlight">
+              <p class="summary-label">Remaining balance</p>
+              <p id="remainingBalance">$0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Expense % of income</p>
+              <p id="expensePercentage">0.0%</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Biggest expense</p>
+              <p id="biggestExpense">—</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Annual expenses (12 mo)</p>
+              <p id="annualExpenses">$0.00</p>
+            </div>
+
+            <div class="summary-card">
+              <p class="summary-label">Emergency fund (3–6 mo)</p>
+              <p id="emergencyFundTarget">—</p>
+            </div>
+
+            <div class="summary-card tp-card-wide">
+              <p class="summary-label">50/30/20 monthly budget guideline (based on take-home income)</p>
+              <p id="budgetRuleSummary">Enter your monthly take-home income above to see your 50/30/20 budget targets.</p>
+            </div>
+          </section>
+        </article>
+      </div>
+    </section>
+
+    <!-- SEO-CONTENT-START -->
+    <section class="content-section">
+      <div class="narrow-container">
+        <h2>How to calculate your monthly living expenses</h2>
+        <p>
+          Whether you are building a simple monthly budget based on salary, checking how much you
+          need for a 3–6 month emergency fund, or planning a move, the cleanest way to start is to
+          pull up your last two bank and credit card statements. Separate fixed bills that stay the
+          same each month (rent, car payment, internet) from variable costs that shift week to week
+          (groceries, gas, utilities).
+        </p>
+
+        <div class="tp-formula-box">
+          <p><strong>Total Monthly Expenses</strong> = Fixed Monthly Bills + Variable Living Costs</p>
+          <p><strong>Remaining Balance</strong> = Monthly Take-Home Income &minus; Total Monthly Expenses</p>
+          <p><strong>Expense Percentage</strong> = (Total Monthly Expenses &divide; Monthly Take-Home Income) &times; 100</p>
+          <p><strong>Annual Spending</strong> = Total Monthly Expenses &times; 12</p>
+          <p><strong>Emergency Fund Target (3–6 Months)</strong> = Total Monthly Expenses &times; 3 to 6</p>
         </div>
 
-        <div class="tool-grid">
-  <a class="tool-card" href="../electricity-cost-calculator/">
-    <h3>Electricity Cost Calculator</h3>
-    <p>Estimate appliance electricity cost from watts, usage time, rate, and days used.</p>
-  </a>
+        <h2>Worked example: budgeting $4,500 a month</h2>
+        <p>
+          Suppose your household brings home $4,500 after taxes each month and has the following
+          living costs: $1,500 rent, $220 utilities, $130 phone and internet, $380 auto/student
+          loans, $550 groceries, $260 gas and transit, $240 insurance, and $320 in other expenses:
+        </p>
+        <ul>
+          <li><strong>Total monthly expenses:</strong> $3,600.00 per month ($43,200.00 per year).</li>
+          <li><strong>Remaining balance:</strong> $4,500 &minus; $3,600 = $900.00 left over each month.</li>
+          <li><strong>Expense percentage:</strong> ($3,600 &divide; $4,500) &times; 100 = 80.0% spent, leaving a 20.0% savings rate.</li>
+          <li><strong>Emergency fund range:</strong> 3 months = $10,800; 6 months = $21,600.</li>
+        </ul>
 
-  <a class="tool-card" href="../daily-expense-tracker/">
-    <h3>Daily Expense Tracker</h3>
-    <p>Track day-to-day household spending in your browser.</p>
-  </a>
+        <h2>Average monthly expenses in the US (BLS reference)</h2>
+        <p>
+          Actual household spending depends heavily on your state, housing market, and family size,
+          but recent figures from the US Bureau of Labor Statistics (BLS) Consumer Expenditure
+          Survey give a practical baseline. Across all US households, <strong>housing</strong>
+          averages roughly $2,316/month (~33.9% of spending) and <strong>transportation</strong>
+          averages around $1,124/month (~16.5%).
+        </p>
 
-  <a class="tool-card" href="../grocery-budget-calculator/">
-    <h3>Grocery Budget Calculator</h3>
-    <p>Plan grocery spending before shopping.</p>
-  </a>
+        <div class="tp-table-wrap">
+          <table class="tp-benchmark-table">
+            <thead>
+              <tr>
+                <th scope="col">US Household Type (BLS Reference)</th>
+                <th scope="col">Typical Monthly Spending</th>
+                <th scope="col">Approx. Annual Total</th>
+                <th scope="col">3-Month Emergency Target</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Single-person household</strong></td>
+                <td>~$4,066 – $4,641 / month</td>
+                <td>~$48,792 – $55,692 / year</td>
+                <td>~$12,200 – $13,923</td>
+              </tr>
+              <tr>
+                <td><strong>All US households (latest average)</strong></td>
+                <td>~$6,825 / month (up from $6,545 in 2024)</td>
+                <td>~$81,905 / year</td>
+                <td>~$20,475</td>
+              </tr>
+              <tr>
+                <td><strong>Married couple (no children)</strong></td>
+                <td>~$7,341 / month</td>
+                <td>~$88,092 / year</td>
+                <td>~$22,023</td>
+              </tr>
+              <tr>
+                <td><strong>Family with children</strong></td>
+                <td>~$8,809 – $9,780 / month</td>
+                <td>~$105,700 – $117,360 / year</td>
+                <td>~$26,427 – $29,340</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-  <a class="tool-card" href="../laundry-cost-calculator/">
-    <h3>Laundry Cost Calculator</h3>
-    <p>Estimate laundry cost by load and usage.</p>
-  </a>
-</div>
-      </div>
-    </section>
+        <h2>50/30/20 vs. 70/20/10 budget rules</h2>
+        <p>
+          When you enter your monthly take-home pay above, the calculator automatically displays
+          the classic <strong>50/30/20 rule</strong>: roughly 50% for essential needs (housing,
+          groceries, utilities, minimum debt payments), 30% for wants (dining out, streaming,
+          travel), and 20% for savings or extra debt payoff.
+        </p>
+        <p>
+          If housing takes up a larger share of your paycheck—which is common on a $2,000 to $3,500
+          monthly budget or in higher-cost metro areas—the <strong>70/20/10 rule</strong> can feel
+          more realistic: keep total living expenses (needs plus wants) near 70%, direct 20% to
+          savings, and put 10% toward debt reduction or personal goals.
+        </p>
 
-        <section class="section section-soft" aria-labelledby="faq-heading">
-      <div class="container">
-        <div class="section-header">
+        <h2>Limitations</h2>
+        <p>
+          This calculator totals only the numbers you type in during your current session. It does
+          not automatically calculate payroll taxes, inflation adjustments, or seasonal utility
+          spikes unless you average those into your monthly inputs. National BLS benchmarks are
+          general historical averages for reference only.
+        </p>
+        <p>
+          This tool is for everyday personal planning only and does not provide financial, tax,
+          legal, investment, or accounting advice.
+        </p>
+
+        <h2>Related tools</h2>
+        <p>
+          Plan your food spending with the <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a>,
+          track day-to-day receipts in the <a href="../daily-expense-tracker/">Daily Expense Tracker</a>,
+          divide shared apartment bills using the <a href="../roommate-utility-bill-splitter/">Roommate Utility Bill Splitter</a>,
+          or estimate home power usage with the <a href="../electricity-cost-calculator/">Electricity Cost Calculator</a>.
+        </p>
+
+        <div class="section-header tp-faq-header">
           <span class="eyebrow">Frequently Asked Questions</span>
-          <h2 id="faq-heading">Monthly Budget &amp; Household Expense FAQs</h2>
-          <p>Practical answers on calculating take-home pay, handling irregular bills, and applying common budgeting guidelines like 50/30/20.</p>
+          <h2 id="faq-heading">Monthly Expense &amp; Budget FAQs</h2>
+          <p>Clear answers on expense formulas, take-home pay, US household averages, and handling irregular bills.</p>
         </div>
 
-        <div class="faq-list feature-grid">
+        <div class="faq-list feature-grid tp-faq-list">
+          <article class="faq-item feature-card">
+            <details>
+              <summary>What is the formula for calculating monthly expenses?</summary>
+              <p>Add all fixed monthly bills (housing, utilities, phone, debt payments, insurance) and variable living costs (groceries, gas, personal spending) together: Total Monthly Expenses = Fixed Bills + Variable Expenses. Then subtract that total from your monthly take-home pay to find your remaining balance.</p>
+            </details>
+          </article>
+
           <article class="faq-item feature-card">
             <details>
               <summary>Should I enter gross income or net take-home pay?</summary>
-              <p>Enter your net take-home pay (after taxes and payroll deductions). Budgeting against the actual money deposited into your checking account gives an accurate picture of your true monthly cash flow.</p>
+              <p>Enter your net take-home pay—the actual amount deposited into your bank account after taxes, health insurance, and payroll deductions. Budgeting from take-home pay shows your real cash flow and prevents overestimating what is left to spend or save.</p>
             </details>
           </article>
 
           <article class="faq-item feature-card">
             <details>
-              <summary>How do I account for annual or irregular bills?</summary>
-              <p>Divide annual expenses by 12 and quarterly bills by 3 (such as car insurance premiums or registration fees). Add that monthly share into the Other expenses field so seasonal bills do not catch you off guard.</p>
+              <summary>What are the average monthly expenses for one person or a family in the US?</summary>
+              <p>According to recent US Bureau of Labor Statistics (BLS) Consumer Expenditure Survey data, the average American household spends about $6,825 per month ($81,905 per year), up from $6,545 per month ($78,535 per year) in 2024. Typical monthly spending runs roughly $4,066 to $4,641 for a single person, $7,341 for a married couple without children, and $8,809 to $9,780 for families with children, with housing (~33.9%) and transportation (~16.5%) as the two largest costs.</p>
             </details>
           </article>
 
           <article class="faq-item feature-card">
             <details>
-              <summary>Can I use this calculator without entering an income?</summary>
-              <p>Yes. If you leave income blank, the calculator still totals your household expenses. Entering take-home pay is only required if you want to calculate your remaining balance and overall expense percentage.</p>
+              <summary>What is the difference between the 50/30/20 and 70/20/10 budget rules?</summary>
+              <p>The 50/30/20 rule splits take-home pay into 50% essential needs, 30% wants, and 20% savings or extra debt payoff. The 70/20/10 rule is a helpful alternative in high-cost areas: 70% covers all living expenses (needs plus wants), 20% goes to savings or investing, and 10% goes toward debt payoff or giving.</p>
             </details>
           </article>
 
           <article class="faq-item feature-card">
             <details>
-              <summary>What percentage of my income should go toward living expenses?</summary>
-              <p>Under the standard 50/30/20 budgeting framework, essential living costs (housing, groceries, utilities, transportation) should stay at or below 50% of take-home pay, leaving 20% for savings or debt payoff and 30% for discretionary spending.</p>
+              <summary>How do I account for annual, quarterly, or irregular bills?</summary>
+              <p>Divide annual bills by 12 and quarterly bills by 3—such as car insurance renewals, vehicle registration, property taxes, or holiday costs—and include that monthly share inside the Other expenses field so irregular bills do not disrupt your monthly budget.</p>
             </details>
           </article>
 
           <article class="faq-item feature-card">
             <details>
-              <summary>Does this calculator save or store my financial data?</summary>
-              <p>No. Calculations run 100% in your local browser session without cookies, localStorage persistence, user logins, or transmitting numbers to any server.</p>
-            </details>
-          </article>
-
-          <article class="faq-item feature-card">
-            <details>
-              <summary>Does this calculator provide certified financial advice?</summary>
-              <p>No. This tool generates basic mathematical estimates based on the figures you supply. It is intended for everyday personal planning and does not constitute certified financial, tax, or accounting advice.</p>
+              <summary>Can I calculate my monthly bills without entering income, and is my data saved?</summary>
+              <p>Yes. If you leave income blank, the calculator still totals your monthly expenses, annual spending, biggest category, and 3 to 6 month emergency fund range. All math runs strictly inside your browser—nothing is saved, uploaded, or tracked.</p>
             </details>
           </article>
         </div>
       </div>
     </section>
-
     <!-- SEO-CONTENT-END -->
   </main>
 
   <footer class="section site-footer" role="contentinfo">
-  <div class="footer-inner">
-    <div>
-      <p class="footer-brand">Household Expense Tools</p>
-      <p class="footer-text">
-        Simple, fast, privacy-friendly tools for home expenses, groceries, budgets, and kitchen planning.
-      </p>
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Household Expense Tools</p>
+        <p class="footer-text">
+          Simple, fast, privacy-friendly tools for home expenses, groceries, budgets, and kitchen planning.
+        </p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../../about/">About</a>
+        <a href="../">Tools</a>
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../terms/">Terms</a>
+        <a href="../../contact/">Contact</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
     </div>
 
-    <nav class="footer-nav" aria-label="Footer navigation">
-      <a href="../../about/">About</a>
-      <a href="../">Tools</a>
-      <a href="../../privacy/">Privacy</a>
-      <a href="../../terms/">Terms</a>
-      <a href="../../contact/">Contact</a>
-      <a href="../../faq/">FAQ</a>
-    </nav>
-  </div>
+    <div class="container footer-bottom">
+      <p>&copy; <span id="current-year">2026</span> Household Expense Tools. All rights reserved.</p>
+    </div>
+  </footer>
 
-  <div class="container footer-bottom">
-    <p>&copy; <span id="current-year">2026</span> Household Expense Tools. All rights reserved.</p>
-  </div>
-</footer>
-
-  <script src="../../assets/js/app.js"></script>
-  <script src="../../assets/js/monthly-expense-calculator.js"></script>
+  <script src="../../assets/js/app.js" defer></script>
+  <script src="../../assets/js/monthly-expense-calculator.js" defer></script>
 </body>
 </html>
