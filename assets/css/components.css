@@ -1347,3 +1347,37 @@ button,
 .tp-faq-list {
   margin-block-start: 1.5rem;
 }
+
+/* Compact one-tap quick preset chips */
+.quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.quick-chip {
+  appearance: none;
+  border: 1px solid #cbd5e1;
+  background: #f8fafb;
+  color: #1e293b;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.25;
+  min-height: 30px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.quick-chip:hover {
+  border-color: #0f766e;
+  color: #0f766e;
+}
+
+.quick-chip.is-active {
+  background: #0f766e;
+  border-color: #0f766e;
+  color: #ffffff;
+}
