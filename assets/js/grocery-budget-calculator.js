@@ -1,105 +1,187 @@
-"use strict";
+(function () {
+  "use strict";
 
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("groceryBudgetForm");
-  const currencySymbolInput = document.getElementById("currencySymbol");
-  const monthlyBudgetInput = document.getElementById("monthlyBudget");
-  const alreadySpentInput = document.getElementById("alreadySpent");
-  const daysLeftInput = document.getElementById("daysLeft");
-  const statusMessage = document.getElementById("groceryBudgetStatus");
-  const remainingBudgetOutput = document.getElementById("remainingBudget");
-  const dailyLimitOutput = document.getElementById("dailyLimit");
-  const budgetUsedPercentageOutput = document.getElementById("budgetUsedPercentage");
+  var form = document.getElementById("groceryBudgetForm");
+  if (!form) return;
 
-  if (!form || !currencySymbolInput || !monthlyBudgetInput || !alreadySpentInput || !daysLeftInput) return;
+  var currencySelect = document.getElementById("currencySymbol");
+  var monthlyBudgetInput = document.getElementById("monthlyBudget");
+  var alreadySpentInput = document.getElementById("alreadySpent");
+  var daysLeftInput = document.getElementById("daysLeft");
+  var householdSizeInput = document.getElementById("householdSize");
+  var submitBtn = form.querySelector('button[type="submit"]');
 
-  // स्मार्ट कॉमा फ़ॉर्मेटिंग (e.g., 1,250.00)
+  var statusEl = document.getElementById("groceryBudgetStatus");
+  var outRemaining = document.getElementById("remainingBudget");
+  var outDaily = document.getElementById("dailyLimit");
+  var outWeekly = document.getElementById("weeklyLimit");
+  var outPercent = document.getElementById("budgetUsedPercentage");
+  var outPerPerson = document.getElementById("perPersonBudget");
+
+  var hasCalculated = false;
+
+  function getCurrency() {
+    return currencySelect && currencySelect.value ? currencySelect.value : "$";
+  }
+
   function formatMoney(symbol, amount) {
-    const cleanAmount = Math.abs(amount).toLocaleString('en-US', {
+    if (!Number.isFinite(amount)) {
+      return symbol + "0.00";
+    }
+    var formatted = Math.abs(amount).toLocaleString("en-US", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
     });
-    return (amount < 0 ? "-" : "") + symbol + cleanAmount;
+    return (amount < 0 ? "-" : "") + symbol + formatted;
   }
 
   function formatPercentage(value) {
-    const roundedValue = Math.round(value * 10) / 10;
-    return (Number.isInteger(roundedValue) ? roundedValue : roundedValue.toFixed(1)) + "%";
+    var rounded = Math.round(value * 10) / 10;
+    return (Number.isInteger(rounded) ? rounded : rounded.toFixed(1)) + "%";
   }
 
-  function resetResults() {
-    remainingBudgetOutput.textContent = "0.00";
-    dailyLimitOutput.textContent = "0.00";
-    budgetUsedPercentageOutput.textContent = "0%";
-    statusMessage.textContent = "Start typing to see your budget calculate automatically.";
+  function clearOutputs(message) {
+    var cur = getCurrency();
+    if (outRemaining) outRemaining.textContent = cur + "0.00";
+    if (outDaily) outDaily.textContent = cur + "0.00";
+    if (outWeekly) outWeekly.textContent = cur + "0.00";
+    if (outPercent) outPercent.textContent = "0%";
+    if (outPerPerson) {
+      outPerPerson.textContent = "Add household size above to see per-person monthly and remaining amounts.";
+    }
+    if (statusEl) statusEl.textContent = message;
+    hasCalculated = false;
+    if (submitBtn) submitBtn.textContent = "Calculate budget";
   }
 
-  function clearResultsForError(message) {
-    remainingBudgetOutput.textContent = "0.00";
-    dailyLimitOutput.textContent = "0.00";
-    budgetUsedPercentageOutput.textContent = "0%";
-    statusMessage.textContent = message;
+  function isReady() {
+    return (
+      monthlyBudgetInput.value.trim() !== "" &&
+      daysLeftInput.value.trim() !== ""
+    );
   }
 
-  // लाइव कैलकुलेशन फंक्शन
-  function calculateLive() {
-    const currencySymbol = currencySymbolInput.value.trim();
-    const monthlyBudgetValue = monthlyBudgetInput.value.trim();
-    const alreadySpentValue = alreadySpentInput.value.trim();
-    const daysLeftValue = daysLeftInput.value.trim();
+  function calculate(showErrors) {
+    var cur = getCurrency();
+    var rawBudget = monthlyBudgetInput.value.trim();
+    var rawSpent = alreadySpentInput.value.trim();
+    var rawDays = daysLeftInput.value.trim();
+    var rawSize = householdSizeInput ? householdSizeInput.value.trim() : "";
 
-    // अगर कोई भी फ़ील्ड खाली है, तो रिसेट स्टेट में रखें
-    if (!monthlyBudgetValue || !alreadySpentValue || !daysLeftValue) {
-      resetResults();
+    if (rawBudget === "" || rawDays === "") {
+      if (showErrors) {
+        clearOutputs("Please enter your monthly grocery budget and days left in the month.");
+      } else {
+        clearOutputs("Enter your monthly grocery budget and days left to calculate.");
+      }
       return;
     }
 
-    const monthlyBudget = Number(monthlyBudgetValue);
-    const alreadySpent = Number(alreadySpentValue);
-    const daysLeft = Number(daysLeftValue);
+    var monthlyBudget = Number(rawBudget);
+    var alreadySpent = rawSpent === "" ? 0 : Number(rawSpent);
+    var daysLeft = Number(rawDays);
+    var householdSize = rawSize === "" ? null : Number(rawSize);
 
-    if (monthlyBudget <= 0) {
-      clearResultsForError("Monthly budget must be greater than 0.");
+    if (!Number.isFinite(monthlyBudget) || monthlyBudget <= 0) {
+      clearOutputs("Monthly grocery budget must be greater than 0.");
       return;
     }
-    if (alreadySpent < 0) {
-      clearResultsForError("Already spent amount cannot be negative.");
+    if (!Number.isFinite(alreadySpent) || alreadySpent < 0) {
+      clearOutputs("Already spent amount cannot be negative.");
       return;
     }
-    if (daysLeft < 1 || daysLeft > 31 || !Number.isInteger(daysLeft)) {
-      clearResultsForError("Days left must be a whole number between 1 and 31.");
+    if (!Number.isFinite(daysLeft) || daysLeft < 1 || daysLeft > 31 || !Number.isInteger(daysLeft)) {
+      clearOutputs("Days left must be a whole number between 1 and 31.");
+      return;
+    }
+    if (householdSize !== null && (!Number.isFinite(householdSize) || householdSize < 1 || householdSize > 20 || !Number.isInteger(householdSize))) {
+      clearOutputs("Household size must be a whole number between 1 and 20 (or leave blank).");
       return;
     }
 
-    const remainingBudget = monthlyBudget - alreadySpent;
-    const dailySpendingLimit = remainingBudget / daysLeft;
-    const budgetUsedPercentage = (alreadySpent / monthlyBudget) * 100;
+    var remaining = monthlyBudget - alreadySpent;
+    var dailyLimit = remaining / daysLeft;
+    var weeklyLimit = daysLeft >= 7 ? dailyLimit * 7 : remaining;
+    var usedPct = (alreadySpent / monthlyBudget) * 100;
 
-    remainingBudgetOutput.textContent = formatMoney(currencySymbol, remainingBudget);
-    dailyLimitOutput.textContent = formatMoney(currencySymbol, dailySpendingLimit);
-    budgetUsedPercentageOutput.textContent = formatPercentage(budgetUsedPercentage);
+    if (outRemaining) outRemaining.textContent = formatMoney(cur, remaining);
+    if (outDaily) outDaily.textContent = formatMoney(cur, dailyLimit);
+    if (outWeekly) {
+      outWeekly.textContent =
+        daysLeft >= 7
+          ? formatMoney(cur, weeklyLimit)
+          : formatMoney(cur, weeklyLimit) + " (" + daysLeft + "d left)";
+    }
+    if (outPercent) outPercent.textContent = formatPercentage(usedPct);
+
+    if (outPerPerson) {
+      if (householdSize !== null && householdSize >= 1) {
+        var perPersonMonthly = monthlyBudget / householdSize;
+        var perPersonRemaining = remaining / householdSize;
+        outPerPerson.textContent =
+          formatMoney(cur, perPersonMonthly) +
+          "/month per person · " +
+          formatMoney(cur, perPersonRemaining) +
+          " left per person (" +
+          householdSize +
+          (householdSize === 1 ? " person)" : " people)");
+      } else {
+        outPerPerson.textContent =
+          "Add optional household size above to see your per-person monthly and remaining budget.";
+      }
+    }
 
     if (alreadySpent > monthlyBudget) {
-      statusMessage.textContent = "⚠️ You are over your grocery budget.";
+      statusEl.textContent =
+        "Over budget by " +
+        formatMoney(cur, Math.abs(remaining)) +
+        " with " +
+        daysLeft +
+        (daysLeft === 1 ? " day" : " days") +
+        " left in the month.";
     } else if (alreadySpent === monthlyBudget) {
-      statusMessage.textContent = "Your grocery budget is fully used.";
+      statusEl.textContent = "Your monthly grocery budget is fully used (100%).";
     } else {
-      statusMessage.textContent = "Budget updated successfully.";
+      statusEl.textContent =
+        "You have " +
+        formatMoney(cur, remaining) +
+        " left (" +
+        formatMoney(cur, dailyLimit) +
+        "/day) for the next " +
+        daysLeft +
+        (daysLeft === 1 ? " day." : " days.");
+    }
+
+    hasCalculated = true;
+    if (submitBtn) submitBtn.textContent = "Calculated ✓";
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    calculate(true);
+  });
+
+  function handleLiveChange() {
+    if (isReady()) {
+      calculate(false);
+    } else if (hasCalculated) {
+      clearOutputs("Enter your monthly grocery budget and days left to calculate.");
+    } else {
+      var cur = getCurrency();
+      if (outRemaining) outRemaining.textContent = cur + "0.00";
+      if (outDaily) outDaily.textContent = cur + "0.00";
+      if (outWeekly) outWeekly.textContent = cur + "0.00";
     }
   }
 
-  // हर कीस्ट्रोक (Type करने) पर लाइव अपडेट
-  form.addEventListener("input", calculateLive);
-  
-  // एंटर दबाने पर पेज रीफ्रेश होने से रोकना
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    calculateLive();
-  });
+  form.addEventListener("input", handleLiveChange);
+  form.addEventListener("change", handleLiveChange);
 
   form.addEventListener("reset", function () {
-    window.setTimeout(resetResults, 0);
+    window.setTimeout(function () {
+      clearOutputs("Enter your monthly grocery budget and days left to calculate.");
+    }, 0);
   });
 
-  resetResults();
-});
+  clearOutputs("Enter your monthly grocery budget and days left to calculate.");
+})();
