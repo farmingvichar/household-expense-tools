@@ -200,9 +200,20 @@
   form.addEventListener("input", handleLiveChange);
   form.addEventListener("change", handleLiveChange);
 
-  form.addEventListener("reset", function () {
+    form.addEventListener("reset", function (e) {
+    var hasData =
+      monthlyBudgetInput.value.trim() !== "" ||
+      alreadySpentInput.value.trim() !== "" ||
+      daysLeftInput.value.trim() !== "" ||
+      (householdSizeInput && householdSizeInput.value.trim() !== "");
+
+    if (hasData && !window.confirm("Clear all entered grocery budget numbers?")) {
+      e.preventDefault();
+      return;
+    }
+
     window.setTimeout(function () {
-      clearOutputs("Enter your monthly grocery budget and days left to calculate.");
+      clearOutputs("All numbers cleared. Enter your monthly grocery budget and days left to calculate.");
     }, 0);
   });
 
