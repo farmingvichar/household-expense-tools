@@ -19,6 +19,7 @@
   var outPerPerson = document.getElementById("perPersonBudget");
 
   var hasCalculated = false;
+  var btnTimer = null;
 
   function getCurrency() {
     return currencySelect && currencySelect.value ? currencySelect.value : "$";
@@ -40,6 +41,15 @@
     return (Number.isInteger(rounded) ? rounded : rounded.toFixed(1)) + "%";
   }
 
+  function setButtonLabel(text) {
+    if (!submitBtn) return;
+    if (btnTimer) {
+      window.clearTimeout(btnTimer);
+      btnTimer = null;
+    }
+    submitBtn.textContent = text;
+  }
+
   function clearOutputs(message) {
     var cur = getCurrency();
     if (outRemaining) outRemaining.textContent = cur + "0.00";
@@ -51,7 +61,7 @@
     }
     if (statusEl) statusEl.textContent = message;
     hasCalculated = false;
-    if (submitBtn) submitBtn.textContent = "Calculate budget";
+    setButtonLabel("Calculate budget");
   }
 
   function isReady() {
@@ -61,7 +71,7 @@
     );
   }
 
-  function calculate(showErrors) {
+  function calculate(fromButtonClick) {
     var cur = getCurrency();
     var rawBudget = monthlyBudgetInput.value.trim();
     var rawSpent = alreadySpentInput.value.trim();
@@ -69,7 +79,7 @@
     var rawSize = householdSizeInput ? householdSizeInput.value.trim() : "";
 
     if (rawBudget === "" || rawDays === "") {
-      if (showErrors) {
+      if (fromButtonClick) {
         clearOutputs("Please enter your monthly grocery budget and days left in the month.");
       } else {
         clearOutputs("Enter your monthly grocery budget and days left to calculate.");
@@ -153,7 +163,19 @@
     }
 
     hasCalculated = true;
-    if (submitBtn) submitBtn.textContent = "Calculated ✓";
+
+    if (fromButtonClick && submitBtn) {
+      if (submitBtn.textContent === "Calculated ✓") {
+        setButtonLabel("Updated ✓");
+        btnTimer = window.setTimeout(function () {
+          submitBtn.textContent = "Calculated ✓";
+        }, 900);
+      } else {
+        setButtonLabel("Calculated ✓");
+      }
+    } else {
+      setButtonLabel("Calculate budget");
+    }
   }
 
   form.addEventListener("submit", function (e) {
@@ -171,6 +193,7 @@
       if (outRemaining) outRemaining.textContent = cur + "0.00";
       if (outDaily) outDaily.textContent = cur + "0.00";
       if (outWeekly) outWeekly.textContent = cur + "0.00";
+      setButtonLabel("Calculate budget");
     }
   }
 
