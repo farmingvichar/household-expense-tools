@@ -220,9 +220,8 @@
         btn.textContent = cur + Number(chipVal).toLocaleString("en-US");
       }
 
-      var isActive = targetEl && targetEl.value.trim() === chipVal;
-      btn.classList.toggle("button-primary", Boolean(isActive));
-      btn.classList.toggle("button-secondary", !isActive);
+            var isActive = targetEl && targetEl.value.trim() === chipVal;
+      btn.classList.toggle("is-active", Boolean(isActive));
       btn.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
   }
