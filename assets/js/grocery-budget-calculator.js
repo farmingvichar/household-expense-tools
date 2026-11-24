@@ -93,21 +93,27 @@
     var householdSize = rawSize === "" ? null : Number(rawSize);
 
     if (!Number.isFinite(monthlyBudget) || monthlyBudget <= 0) {
-      clearOutputs("Monthly grocery budget must be greater than 0.");
+      clearOutputs("Enter your monthly grocery budget above (greater than 0) to calculate.");
+      if (fromButtonClick) monthlyBudgetInput.focus();
       return;
     }
     if (!Number.isFinite(alreadySpent) || alreadySpent < 0) {
-      clearOutputs("Already spent amount cannot be negative.");
+      clearOutputs("Already spent amount cannot be negative (enter 0 or leave blank).");
+      if (fromButtonClick) alreadySpentInput.focus();
       return;
     }
-    if (!Number.isFinite(daysLeft) || daysLeft < 1 || daysLeft > 31 || !Number.isInteger(daysLeft)) {
-      clearOutputs("Days left must be a whole number between 1 and 31.");
+    if (!Number.isFinite(daysLeft) || daysLeft < 1 || daysLeft > 365 || !Number.isInteger(daysLeft)) {
+      clearOutputs("Days left must be a whole number between 1 and 365.");
+      if (fromButtonClick) daysLeftInput.focus();
       return;
     }
-    if (householdSize !== null && (!Number.isFinite(householdSize) || householdSize < 1 || householdSize > 20 || !Number.isInteger(householdSize))) {
-      clearOutputs("Household size must be a whole number between 1 and 20 (or leave blank).");
-      return;
-    }
+
+    var validHouseholdSize =
+      householdSize !== null &&
+      Number.isFinite(householdSize) &&
+      householdSize >= 1 &&
+      householdSize <= 999 &&
+      Number.isInteger(householdSize);
 
     var remaining = monthlyBudget - alreadySpent;
     var dailyLimit = remaining / daysLeft;
@@ -125,7 +131,7 @@
     if (outPercent) outPercent.textContent = formatPercentage(usedPct);
 
     if (outPerPerson) {
-      if (householdSize !== null && householdSize >= 1) {
+      if (validHouseholdSize) {
         var perPersonMonthly = monthlyBudget / householdSize;
         var perPersonRemaining = remaining / householdSize;
         outPerPerson.textContent =
@@ -135,11 +141,15 @@
           " left per person (" +
           householdSize +
           (householdSize === 1 ? " person)" : " people)");
+      } else if (householdSize !== null) {
+        outPerPerson.textContent =
+          "Enter a whole number from 1 to 999 above to see per-person cost (or leave blank).";
       } else {
         outPerPerson.textContent =
           "Add optional household size above to see your per-person monthly and remaining budget.";
       }
     }
+
 
     if (alreadySpent > monthlyBudget) {
       statusEl.textContent =
@@ -197,10 +207,50 @@
     }
   }
 
-  form.addEventListener("input", handleLiveChange);
-  form.addEventListener("change", handleLiveChange);
+    var chipButtons = form.querySelectorAll("[data-chip-target]");
 
-    form.addEventListener("reset", function (e) {
+  function syncChipStates() {
+    var cur = getCurrency();
+    chipButtons.forEach(function (btn) {
+      var targetId = btn.getAttribute("data-chip-target");
+      var chipVal = btn.getAttribute("data-chip-value");
+      var targetEl = document.getElementById(targetId);
+
+      if (targetId === "monthlyBudget") {
+        btn.textContent = cur + Number(chipVal).toLocaleString("en-US");
+      }
+
+      var isActive = targetEl && targetEl.value.trim() === chipVal;
+      btn.classList.toggle("button-primary", Boolean(isActive));
+      btn.classList.toggle("button-secondary", !isActive);
+      btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+  }
+
+  chipButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var targetId = btn.getAttribute("data-chip-target");
+      var chipVal = btn.getAttribute("data-chip-value");
+      var targetEl = document.getElementById(targetId);
+      if (!targetEl) return;
+
+      targetEl.value = chipVal;
+      syncChipStates();
+      handleLiveChange();
+    });
+  });
+
+  form.addEventListener("input", function () {
+    syncChipStates();
+    handleLiveChange();
+  });
+
+  form.addEventListener("change", function () {
+    syncChipStates();
+    handleLiveChange();
+  });
+
+  form.addEventListener("reset", function (e) {
     var hasData =
       monthlyBudgetInput.value.trim() !== "" ||
       alreadySpentInput.value.trim() !== "" ||
@@ -213,9 +263,11 @@
     }
 
     window.setTimeout(function () {
+      syncChipStates();
       clearOutputs("All numbers cleared. Enter your monthly grocery budget and days left to calculate.");
     }, 0);
   });
 
+  syncChipStates();
   clearOutputs("Enter your monthly grocery budget and days left to calculate.");
 })();
