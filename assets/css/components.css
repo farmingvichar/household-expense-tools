@@ -1274,6 +1274,18 @@ button,
 .tp-results-grid .summary-card p {
   overflow-wrap: break-word;
 }
+.tp-results-grid .summary-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #4b635c);
+  margin-block-end: 0.25rem;
+}
+
+.tp-results-grid .summary-card p:last-child {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--color-text, #102a24);
+}
 
 .tp-results-grid .tp-card-highlight {
   border-color: var(--color-primary, #0f766e);
