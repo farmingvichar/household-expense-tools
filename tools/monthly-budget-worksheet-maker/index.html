@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Custom Monthly Budget Worksheet Maker – Free Printable PDF</title>
+  <meta name="description" content="Build and download a custom monthly budget worksheet PDF in US Letter or A4. Switch between Zero-Based and 50/30/20 layouts with 7 currencies—free, private, no login." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0f766e" />
+  <link rel="canonical" href="https://householdexpensetools.com/tools/monthly-budget-worksheet-maker/" />
+
+  <meta property="og:title" content="Custom Monthly Budget Worksheet Maker – Free Printable PDF" />
+  <meta property="og:description" content="Customize income sources, expense rows, currency symbols, and US Letter or A4 paper size to print a clean ink-saver monthly budget PDF directly in your browser." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://householdexpensetools.com/tools/monthly-budget-worksheet-maker/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Custom Monthly Budget Worksheet Maker – Free Printable PDF" />
+  <meta name="twitter:description" content="Create a custom printable monthly budget worksheet PDF (Zero-Based or 50/30/20) in US Letter or A4 with zero sign-up." />
+
+  <!-- Structured Data: WebApplication + Exact-Match FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://householdexpensetools.com/tools/monthly-budget-worksheet-maker/#app",
+        "name": "Custom Monthly Budget Worksheet Maker",
+        "url": "https://householdexpensetools.com/tools/monthly-budget-worksheet-maker/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Free, browser-based monthly budget worksheet maker and printable PDF generator supporting Zero-Based and 50/30/20 budgeting, US Letter and A4 paper sizes, and 7 currency symbols."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://householdexpensetools.com/tools/monthly-budget-worksheet-maker/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is a monthly budget worksheet and how do I use it?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A monthly budget worksheet is a one-page sheet that compares your expected monthly take-home pay against your planned bills and living costs. Enter your planned amounts before the month begins, print the PDF, and write your real bank-statement totals in the blank Actual Spent column as bills clear."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I create a zero-based budget on paper?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Start with your total monthly take-home income, list every bill, everyday expense, and savings transfer, and adjust the planned amounts until Income minus Planned Expenses equals zero. Zero leftover does not mean an empty bank account; it means every dollar or rupee has a clear job."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between Zero-Based budgeting and the 50/30/20 rule?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Zero-Based budgeting assigns 100% of your take-home pay to specific line items so nothing sits unallocated. The 50/30/20 rule groups your spending into three broad buckets—50% Needs, 30% Wants, and 20% Savings or extra debt payoff—making it faster for households that prefer high-level guardrails."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What expense categories should I include on a household budget sheet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Cover fixed essentials first—rent or mortgage, utilities, phone and internet, insurance, and minimum debt payments—then add variable costs like groceries, gas or transit, childcare, dining out, and personal spending. Include a monthly line for savings and 1/12th of annual bills such as car registration or renewals."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Should I download US Letter or A4 paper size for my printer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Choose US Letter (8.5 × 11 inches) if you print in the United States, Canada, or Mexico. Choose A4 (210 × 297 mm) if you print in the UK, Europe, Australia, India, or most other countries, and set your print dialog scale to 100% so margins stay crisp."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this printable budget worksheet free, and is my data saved online?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, the worksheet maker and PDF download are completely free with no login or email required. Your numbers stay strictly inside your browser using local JavaScript (jsPDF) and optional local browser storage—zero data is uploaded or stored on a server."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="../../manifest.json" />
+
+  <link rel="stylesheet" href="../../assets/css/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/variables.css" />
+  <link rel="stylesheet" href="../../assets/css/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/layout.css" />
+  <link rel="stylesheet" href="../../assets/css/components.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
+  <link rel="stylesheet" href="../../assets/css/pdf-maker.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="../../" aria-label="Household Expense Tools home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
+            <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span class="brand-text">Household Expense Tools</span>
+      </a>
+
+      <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="../../">Home</a></li>
+          <li><a href="../">Tools</a></li>
+          <li><a href="../../#why-use">Why Use Us</a></li>
+          <li><a href="../../faq/">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero-section">
+      <div class="container hbw-container">
+        <p class="eyebrow">Printable household budget PDF</p>
+        <div class="hero-text">
+          <h1>Custom Monthly Budget Worksheet Maker</h1>
+          <p>
+            Customize your income sources, monthly bills, and currency symbol, then download a
+            clean ink-saver PDF formatted for US Letter or A4 paper—no sign-up, no spreadsheet
+            formulas, and zero data uploaded.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-section hbw-tool-section" aria-labelledby="worksheet-maker-heading">
+      <div class="container hbw-container">
+        <article id="hbw-shell" class="tool-card hbw-shell" data-mode="zero-based">
+          <div class="section-heading hbw-header-row">
+            <div>
+              <h2 id="worksheet-maker-heading">Build your printable monthly budget sheet</h2>
+              <p>
+                Pick a budgeting method and paper size, edit the rows below, and inspect the live
+                printable sheet before downloading your PDF.
+              </p>
+            </div>
+          </div>
+
+          <!-- Top Settings Bar -->
+          <div class="hbw-settings-bar" role="region" aria-label="Worksheet settings">
+            <div class="hbw-setting-group">
+              <span class="hbw-setting-label" id="hbw-mode-label">Budget Method</span>
+              <div class="hbw-pill-group" role="radiogroup" aria-labelledby="hbw-mode-label">
+                <button
+                  type="button"
+                  class="quick-chip hbw-chip is-active"
+                  id="hbw-mode-zero"
+                  data-mode="zero-based"
+                  role="radio"
+                  aria-checked="true"
+                >
+                  Zero-Based Budget
+                </button>
+                <button
+                  type="button"
+                  class="quick-chip hbw-chip"
+                  id="hbw-mode-503020"
+                  data-mode="50-30-20"
+                  role="radio"
+                  aria-checked="false"
+                >
+                  50/30/20 Rule
+                </button>
+              </div>
+            </div>
+
+            <div class="hbw-setting-group">
+              <span class="hbw-setting-label" id="hbw-paper-label">Paper Size</span>
+              <div class="hbw-pill-group" role="radiogroup" aria-labelledby="hbw-paper-label">
+                <button
+                  type="button"
+                  class="quick-chip hbw-chip is-active"
+                  id="hbw-paper-letter"
+                  data-paper="letter"
+                  role="radio"
+                  aria-checked="true"
+                >
+                  US Letter (8.5&Prime; &times; 11&Prime;)
+                </button>
+                <button
+                  type="button"
+                  class="quick-chip hbw-chip"
+                  id="hbw-paper-a4"
+                  data-paper="a4"
+                  role="radio"
+                  aria-checked="false"
+                >
+                  A4 (210 &times; 297 mm)
+                </button>
+              </div>
+            </div>
+
+            <div class="hbw-setting-group hbw-select-group">
+              <label class="hbw-setting-label" for="hbw-currency">Currency</label>
+              <select id="hbw-currency" class="hbw-select" aria-describedby="hbw-currency-note">
+                <option value="$" data-code="USD" selected>$ USD</option>
+                <option value="C$" data-code="CAD">C$ CAD</option>
+                <option value="£" data-code="GBP">&pound; GBP</option>
+                <option value="A$" data-code="AUD">A$ AUD</option>
+                <option value="€" data-code="EUR">&euro; EUR</option>
+                <option value="₹" data-code="INR">&#8377; INR</option>
+                <option value="¥" data-code="JPY">&yen; JPY</option>
+              </select>
+              <small id="hbw-currency-note" class="hbw-micro-note">Display symbol only. No live currency conversion.</small>
+            </div>
+
+            <div class="hbw-setting-group hbw-select-group">
+              <label class="hbw-setting-label" for="hbw-date-format">Date Format</label>
+              <select id="hbw-date-format" class="hbw-select" aria-describedby="hbw-date-note">
+                <option value="MM/DD/YYYY" selected>MM/DD/YYYY (US)</option>
+                <option value="DD/MM/YYYY">DD/MM/YYYY (Global)</option>
+              </select>
+              <small id="hbw-date-note" class="hbw-micro-note">Shown on your printed sheet header.</small>
+            </div>
+          </div>
+
+          <!-- 2-Column Split Workspace -->
+          <div class="hbw-workspace">
+            <!-- Left Column: Builder Form -->
+            <div class="hbw-builder-panel">
+              <form id="hbw-form" class="hbw-form" novalidate>
+                <!-- Worksheet Title & Period -->
+                <div class="hbw-card-block">
+                  <div class="hbw-field-row">
+                    <div class="form-field">
+                      <label for="hbw-title">Worksheet title</label>
+                      <input
+                        id="hbw-title"
+                        name="hbw-title"
+                        type="text"
+                        maxlength="60"
+                        value="Monthly Household Budget"
+                        placeholder="e.g. Monthly Household Budget"
+                        aria-describedby="hbw-title-help"
+                      />
+                      <small id="hbw-title-help">Prints at the top of your worksheet PDF.</small>
+                    </div>
+
+                    <div class="form-field">
+                      <label for="hbw-period">Budget month / period</label>
+                      <input
+                        id="hbw-period"
+                        name="hbw-period"
+                        type="text"
+                        maxlength="32"
+                        placeholder="e.g. December 2026"
+                        aria-describedby="hbw-period-help"
+                      />
+                      <small id="hbw-period-help">Optional label; leave blank to write by hand.</small>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Dynamic Income Sources -->
+                <fieldset class="hbw-card-block hbw-fieldset">
+                  <legend class="visually-hidden">Income sources (take-home pay)</legend>
+                  <div class="hbw-block-head">
+                    <h3 class="hbw-block-title">Income sources (take-home pay)</h3>
+                    <button type="button" id="hbw-add-income" class="button button-secondary hbw-btn-sm">
+                      + Add Income
+                    </button>
+                  </div>
+                  <p class="hbw-block-desc">Enter net pay deposited into your bank account after taxes.</p>
+
+                  <div id="hbw-income-list" class="hbw-rows-list" aria-label="Income sources list"></div>
+                </fieldset>
+
+                <!-- Dynamic Expense Items -->
+                <fieldset class="hbw-card-block hbw-fieldset">
+                  <legend class="visually-hidden">Monthly expenses and savings lines</legend>
+                  <div class="hbw-block-head">
+                    <h3 class="hbw-block-title">Monthly expenses &amp; savings lines</h3>
+                    <button type="button" id="hbw-add-expense" class="button button-secondary hbw-btn-sm">
+                      + Add Expense
+                    </button>
+                  </div>
+                  <p class="hbw-block-desc">
+                    List fixed bills, variable living costs, and savings transfers. In 50/30/20 mode,
+                    tag each line as Needs, Wants, or Savings/Debt.
+                  </p>
+
+                  <div class="hbw-expense-col-headers" aria-hidden="true">
+                    <span>Category / Expense Item</span>
+                    <span class="hbw-col-bucket">Bucket</span>
+                    <span>Planned</span>
+                    <span></span>
+                  </div>
+
+                  <div id="hbw-expense-list" class="hbw-rows-list" aria-label="Expense items list"></div>
+                </fieldset>
+
+                <!-- Optional Goals & Notes -->
+                <div class="hbw-card-block">
+                  <div class="form-field">
+                    <label for="hbw-notes">Monthly goals &amp; notes <span aria-hidden="true">(optional)</span></label>
+                    <textarea
+                      id="hbw-notes"
+                      name="hbw-notes"
+                      rows="2"
+                      maxlength="240"
+                      placeholder="Leave blank for ruled writing lines on paper, or type a reminder (e.g. Car insurance renewal due on the 18th)."
+                      aria-describedby="hbw-notes-help"
+                    ></textarea>
+                    <small id="hbw-notes-help">Appears inside the Monthly Goals &amp; Notes box at the bottom of the sheet.</small>
+                  </div>
+                </div>
+
+                <!-- Live Summary Totals Bar -->
+                <div class="hbw-summary-bar" aria-label="Live budget totals">
+                  <div class="hbw-summary-stat">
+                    <span class="hbw-stat-label">Total Income</span>
+                    <strong id="hbw-total-income" class="hbw-stat-value">$0.00</strong>
+                  </div>
+                  <div class="hbw-summary-stat">
+                    <span class="hbw-stat-label">Total Planned</span>
+                    <strong id="hbw-total-planned" class="hbw-stat-value">$0.00</strong>
+                  </div>
+                  <div class="hbw-summary-stat hbw-stat-balance" id="hbw-balance-card">
+                    <span class="hbw-stat-label" id="hbw-balance-label">Left to Assign</span>
+                    <strong id="hbw-remaining-balance" class="hbw-stat-value">$0.00</strong>
+                  </div>
+                </div>
+
+                <!-- 50/30/20 Live Split Summary (Visible only in 50/30/20 mode) -->
+                <div id="hbw-rule-summary" class="hbw-rule-summary" hidden aria-live="polite">
+                  <div class="hbw-rule-pill">
+                    <span>Needs (Target 50%)</span>
+                    <strong id="hbw-rule-needs">0% ($0.00)</strong>
+                  </div>
+                  <div class="hbw-rule-pill">
+                    <span>Wants (Target 30%)</span>
+                    <strong id="hbw-rule-wants">0% ($0.00)</strong>
+                  </div>
+                  <div class="hbw-rule-pill">
+                    <span>Savings/Debt (Target 20%)</span>
+                    <strong id="hbw-rule-savings">0% ($0.00)</strong>
+                  </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="hbw-actions-row">
+                  <button type="button" id="hbw-download-pdf" class="button button-primary hbw-btn-download">
+                    &#11015;&#65039; Download Printable PDF
+                  </button>
+                  <button type="button" id="hbw-clear-btn" class="button button-secondary">
+                    Clear / Start Blank
+                  </button>
+                  <button type="button" id="hbw-reset-btn" class="button button-secondary">
+                    Reset Defaults
+                  </button>
+                </div>
+
+                <p class="privacy-note hbw-trust-badge">
+                  &#128274; 100% Private: Generated locally in your browser. Zero data is uploaded or stored.
+                </p>
+
+                <div id="hbw-status" class="status-message" role="status" aria-live="polite">
+                  Customize your rows above, then click Download Printable PDF.
+                </div>
+              </form>
+
+              <!-- Row Templates for JS Cloning -->
+              <template id="hbw-income-row-tpl">
+                <div class="hbw-row hbw-income-row">
+                  <input
+                    type="text"
+                    class="hbw-row-name"
+                    maxlength="48"
+                    placeholder="Income source (e.g. Primary Paycheck)"
+                    aria-label="Income source name"
+                  />
+                  <input
+                    type="number"
+                    class="hbw-row-amount"
+                    inputmode="decimal"
+                    min="0"
+                    step="0.01"
+                    placeholder="0.00"
+                    aria-label="Income amount"
+                  />
+                  <button type="button" class="hbw-row-remove" aria-label="Remove income row">&times;</button>
+                </div>
+              </template>
+
+              <template id="hbw-expense-row-tpl">
+                <div class="hbw-row hbw-expense-row">
+                  <input
+                    type="text"
+                    class="hbw-row-name"
+                    maxlength="48"
+                    placeholder="Category / Expense item"
+                    aria-label="Expense item name"
+                  />
+                  <select class="hbw-row-bucket" aria-label="50/30/20 bucket">
+                    <option value="Needs">Needs</option>
+                    <option value="Wants">Wants</option>
+                    <option value="Savings/Debt">Savings/Debt</option>
+                  </select>
+                  <input
+                    type="number"
+                    class="hbw-row-amount"
+                    inputmode="decimal"
+                    min="0"
+                    step="0.01"
+                    placeholder="0.00"
+                    aria-label="Planned expense amount"
+                  />
+                  <button type="button" class="hbw-row-remove" aria-label="Remove expense row">&times;</button>
+                </div>
+              </template>
+            </div>
+
+            <!-- Right Column: Live WYSIWYG Ink-Saver Paper Preview -->
+            <aside class="hbw-preview-panel" aria-label="Live printable worksheet preview">
+              <div class="hbw-preview-toolbar">
+                <span class="hbw-preview-badge">Live Print Preview</span>
+                <span id="hbw-preview-meta" class="hbw-preview-meta">US Letter &bull; Ink-Saver B&amp;W</span>
+              </div>
+
+              <div class="hbw-paper-stage">
+                <div id="hbw-paper-sheet" class="hbw-paper-sheet" data-paper="letter">
+                  <!-- Sheet Header -->
+                  <header class="hbw-sheet-header">
+                    <div>
+                      <h3 id="hbw-sheet-title" class="hbw-sheet-title">Monthly Household Budget</h3>
+                      <p id="hbw-sheet-subtitle" class="hbw-sheet-subtitle">Zero-Based Monthly Worksheet</p>
+                    </div>
+                    <div class="hbw-sheet-date-box">
+                      <span class="hbw-sheet-date-label">Date / Period:</span>
+                      <span id="hbw-sheet-date" class="hbw-sheet-date-value">MM/DD/YYYY</span>
+                    </div>
+                  </header>
+
+                  <!-- Sheet Summary Strip -->
+                  <section class="hbw-sheet-summary" aria-label="Worksheet summary">
+                    <div class="hbw-sheet-kpi">
+                      <span>Total Income</span>
+                      <strong id="hbw-sheet-income">$0.00</strong>
+                    </div>
+                    <div class="hbw-sheet-kpi">
+                      <span>Total Planned</span>
+                      <strong id="hbw-sheet-planned">$0.00</strong>
+                    </div>
+                    <div class="hbw-sheet-kpi">
+                      <span id="hbw-sheet-balance-label">Unallocated</span>
+                      <strong id="hbw-sheet-balance">$0.00</strong>
+                    </div>
+                    <div class="hbw-sheet-kpi">
+                      <span>Actual Total</span>
+                      <strong class="hbw-write-line">&nbsp;</strong>
+                    </div>
+                  </section>
+
+                  <!-- Sheet 50/30/20 Breakdown Line (Visible only in 50/30/20 mode) -->
+                  <div id="hbw-sheet-rule-bar" class="hbw-sheet-rule-bar" hidden>
+                    <span><strong>50/30/20 Split:</strong></span>
+                    <span id="hbw-sheet-rule-text">Needs 0% &bull; Wants 0% &bull; Savings/Debt 0%</span>
+                  </div>
+
+                  <!-- Sheet Income Section -->
+                  <section class="hbw-sheet-block" aria-label="Income summary on sheet">
+                    <h4 class="hbw-sheet-section-title">Income Sources</h4>
+                    <div id="hbw-sheet-income-list" class="hbw-sheet-income-grid"></div>
+                  </section>
+
+                  <!-- Sheet 4-Column Expense Table -->
+                  <section class="hbw-sheet-block" aria-label="Expenses table on sheet">
+                    <h4 class="hbw-sheet-section-title">Planned vs. Actual Monthly Expenses</h4>
+                    <table class="hbw-sheet-table">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="hbw-col-item">Category / Expense Item</th>
+                          <th scope="col" class="hbw-col-planned">Planned</th>
+                          <th scope="col" class="hbw-col-actual">Actual Spent</th>
+                          <th scope="col" class="hbw-col-paid">Paid [&#9744;]</th>
+                        </tr>
+                      </thead>
+                      <tbody id="hbw-sheet-tbody"></tbody>
+                      <tfoot>
+                        <tr>
+                          <th scope="row">Total</th>
+                          <td id="hbw-sheet-table-total" class="hbw-num-cell">$0.00</td>
+                          <td class="hbw-blank-cell"></td>
+                          <td class="hbw-check-cell"></td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </section>
+
+                  <!-- Monthly Goals & Notes Box -->
+                  <section class="hbw-sheet-notes" aria-label="Monthly goals and notes">
+                    <h4 class="hbw-sheet-section-title">Monthly Goals &amp; Notes</h4>
+                    <div id="hbw-sheet-notes-content" class="hbw-sheet-notes-box">
+                      <div class="hbw-note-line"></div>
+                      <div class="hbw-note-line"></div>
+                      <div class="hbw-note-line"></div>
+                    </div>
+                  </section>
+
+                  <footer class="hbw-sheet-footer">
+                    <span>householdexpensetools.com</span>
+                    <span>Print at 100% scale &bull; Ink-saver layout</span>
+                  </footer>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Mobile Sticky Thumb-Bar (<900px) -->
+    <div class="hbw-mobile-bar" role="region" aria-label="Quick worksheet actions">
+      <button type="button" id="hbw-mobile-preview-btn" class="button button-secondary hbw-mobile-btn">
+        &#128065;&#65039; Preview Sheet
+      </button>
+      <button type="button" id="hbw-mobile-download-btn" class="button button-primary hbw-mobile-btn">
+        &#11015;&#65039; Download PDF
+      </button>
+    </div>
+
+    <!-- Mobile Zoomable Preview Modal -->
+    <div
+      id="hbw-preview-modal"
+      class="hbw-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="hbw-modal-title"
+      hidden
+    >
+      <div class="hbw-modal-backdrop" data-close-modal="true"></div>
+      <div class="hbw-modal-dialog">
+        <div class="hbw-modal-header">
+          <h3 id="hbw-modal-title">Printable Sheet Preview</h3>
+          <div class="hbw-modal-controls">
+            <button type="button" id="hbw-zoom-out" class="hbw-zoom-btn" aria-label="Zoom out">&minus;</button>
+            <span id="hbw-zoom-level" class="hbw-zoom-level">100%</span>
+            <button type="button" id="hbw-zoom-in" class="hbw-zoom-btn" aria-label="Zoom in">+</button>
+            <button type="button" id="hbw-modal-close" class="hbw-modal-close" aria-label="Close preview">&times;</button>
+          </div>
+        </div>
+        <div id="hbw-modal-body" class="hbw-modal-body">
+          <div id="hbw-modal-zoom-stage" class="hbw-modal-zoom-stage"></div>
+        </div>
+        <div class="hbw-modal-footer">
+          <button type="button" id="hbw-modal-download-btn" class="button button-primary">
+            &#11015;&#65039; Download PDF
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO-CONTENT-START -->
+    <section class="content-section">
+      <div class="narrow-container">
+        <h2>1. How to customize and print your budget worksheet</h2>
+        <p>
+          Build your sheet in three quick steps before the month starts so every bill and savings
+          transfer is accounted for on one clean page:
+        </p>
+        <ol>
+          <li>
+            <strong>Pick your setup:</strong> Select <em>Zero-Based Budget</em> or
+            <em>50/30/20 Rule</em>, choose US Letter or A4 paper, and pick your currency symbol and
+            date format.
+          </li>
+          <li>
+            <strong>Edit your real rows:</strong> Enter your net take-home pay, rename or delete
+            default bills, and add custom categories. Click <em>Clear / Start Blank</em> if you
+            prefer an empty write-in sheet.
+          </li>
+          <li>
+            <strong>Download and print cleanly:</strong> Click <em>Download Printable PDF</em> and
+            print on standard 20 lb copy paper using black-and-white &ldquo;Draft&rdquo; mode at
+            <strong>100% scale</strong> (never &ldquo;Fit to Page&rdquo;) so the 12.7 mm margins
+            stay sharp and never clip.
+          </li>
+        </ol>
+        <p>
+          The <strong>Actual Spent</strong> column is intentionally left blank on your PDF. At
+          month-end, open your bank statement, write what you actually spent with a pen, and check
+          off each <strong>Paid [&#9744;]</strong> box to spot overspending without opening a
+          spreadsheet.
+        </p>
+
+        <h2>2. Zero-Based vs. 50/30/20: Which worksheet fits your household?</h2>
+        <p>
+          Both methods work on paper, but they solve different household habits. Compare how each
+          layout handles fixed salaries versus variable paychecks:
+        </p>
+
+        <div class="tp-table-wrap">
+          <table class="tp-benchmark-table">
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col">Zero-Based Budget</th>
+                <th scope="col">50/30/20 Rule</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Core formula</strong></td>
+                <td>Take-Home Income &minus; Planned Expenses &minus; Savings = $0</td>
+                <td>50% Needs &bull; 30% Wants &bull; 20% Savings / Extra Debt</td>
+              </tr>
+              <tr>
+                <td><strong>Best for</strong></td>
+                <td>Tight cash flow, variable/hourly income, or active debt payoff</td>
+                <td>Steady salaried paychecks and quick big-picture guardrails</td>
+              </tr>
+              <tr>
+                <td><strong>Setup time</strong></td>
+                <td>5&ndash;10 minutes to assign every remaining dollar</td>
+                <td>3&ndash;5 minutes by tagging each row into three buckets</td>
+              </tr>
+              <tr>
+                <td><strong>Paper benefit</strong></td>
+                <td>Shows exact unallocated cash before bills are due</td>
+                <td>Highlights if housing or dining out pushes past your targets</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>3. Worked monthly household example ($5,000 take-home)</h2>
+        <p>
+          Suppose a household brings home <strong>$5,000.00</strong> after taxes in a month and
+          wants a Zero-Based sheet balanced down to <strong>$0.00</strong> unallocated:
+        </p>
+        <ul>
+          <li><strong>Needs ($3,100 / 62%):</strong> $1,650 rent or mortgage, $250 utilities and internet, $600 groceries, $350 fuel and transit, and $250 insurance and healthcare.</li>
+          <li><strong>Wants ($700 / 14%):</strong> $450 dining out and personal spending, plus $250 subscriptions and family extras.</li>
+          <li><strong>Savings &amp; Debt ($1,200 / 24%):</strong> $700 emergency fund transfer and $500 extra debt payoff or sinking funds.</li>
+        </ul>
+        <p>
+          Adding all nine lines totals <strong>$5,000.00</strong>, leaving <strong>$0.00</strong>
+          unassigned. Print that sheet, pin it to the fridge or clip it into a binder, and compare
+          your real receipts in the blank <em>Actual Spent</em> column before the next paycheck.
+        </p>
+
+        <h2>4. US vs. Global paper sizes &amp; US spending benchmarks</h2>
+        <p>
+          Matching your PDF to your local paper tray prevents shrunk text and awkward margins. Use
+          the table below for printer settings alongside US Bureau of Labor Statistics (BLS)
+          Consumer Expenditure average household shares for general context:
+        </p>
+
+        <div class="tp-table-wrap">
+          <table class="tp-benchmark-table">
+            <thead>
+              <tr>
+                <th scope="col">Reference Item</th>
+                <th scope="col">US Standard</th>
+                <th scope="col">Global / International Standard</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Paper size</strong></td>
+                <td>US Letter (8.5&Prime; &times; 11&Prime; / 215.9 &times; 279.4 mm)</td>
+                <td>A4 (8.27&Prime; &times; 11.69&Prime; / 210 &times; 297 mm)</td>
+              </tr>
+              <tr>
+                <td><strong>Recommended print scale</strong></td>
+                <td>100% (Actual Size), 12.7 mm margins, B&amp;W Draft</td>
+                <td>100% (Actual Size), 12.7 mm margins, B&amp;W Draft</td>
+              </tr>
+              <tr>
+                <td><strong>Common date format</strong></td>
+                <td>MM/DD/YYYY (US, Canada mixed)</td>
+                <td>DD/MM/YYYY (UK, EU, Australia, India)</td>
+              </tr>
+              <tr>
+                <td><strong>US BLS average shares (reference)</strong></td>
+                <td colspan="2">Housing ~33% &bull; Transportation ~17% &bull; Food (groceries + dining) ~13% of typical US household spending</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>5. Privacy, browser storage &amp; tool limitations</h2>
+        <p>
+          PDF generation runs 100% locally inside your browser using <code>jsPDF</code>. Your
+          worksheet entries stay on your device (with optional browser <code>localStorage</code>
+          for convenience until you clear or reset them)—zero data is uploaded, logged, or tied to
+          an account.
+        </p>
+        <p>
+          Currency options change the display symbol only and do not convert live exchange rates.
+          This worksheet maker is built for everyday household cash-flow awareness—it does not
+          provide tax filing guidance, investment advice, legal counsel, or certified financial
+          planning.
+        </p>
+        <p>
+          <strong>Related household tools:</strong> Estimate your baseline bills with the
+          <a href="../monthly-expense-calculator/">Monthly Expense Calculator</a>, log everyday
+          receipts in the <a href="../daily-expense-tracker/">Daily Expense Tracker</a>, plan food
+          costs with the <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a>, or
+          divide shared apartment bills using the
+          <a href="../utility-bill-splitter/">Roommate Utility Bill Splitter</a>.
+        </p>
+
+        <div class="section-header tp-faq-header">
+          <span class="eyebrow">Frequently Asked Questions</span>
+          <h2 id="faq-heading">6. Printable Monthly Budget Worksheet FAQs</h2>
+          <p>Direct answers on paper budgeting, zero-based math, paper sizes, and browser privacy.</p>
+        </div>
+
+        <div class="faq-list feature-grid tp-faq-list">
+          <article class="faq-item feature-card">
+            <details>
+              <summary>What is a monthly budget worksheet and how do I use it?</summary>
+              <p>A monthly budget worksheet is a one-page sheet that compares your expected monthly take-home pay against your planned bills and living costs. Enter your planned amounts before the month begins, print the PDF, and write your real bank-statement totals in the blank Actual Spent column as bills clear.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>How do I create a zero-based budget on paper?</summary>
+              <p>Start with your total monthly take-home income, list every bill, everyday expense, and savings transfer, and adjust the planned amounts until Income minus Planned Expenses equals zero. Zero leftover does not mean an empty bank account; it means every dollar or rupee has a clear job.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>What is the difference between Zero-Based budgeting and the 50/30/20 rule?</summary>
+              <p>Zero-Based budgeting assigns 100% of your take-home pay to specific line items so nothing sits unallocated. The 50/30/20 rule groups your spending into three broad buckets—50% Needs, 30% Wants, and 20% Savings or extra debt payoff—making it faster for households that prefer high-level guardrails.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>What expense categories should I include on a household budget sheet?</summary>
+              <p>Cover fixed essentials first—rent or mortgage, utilities, phone and internet, insurance, and minimum debt payments—then add variable costs like groceries, gas or transit, childcare, dining out, and personal spending. Include a monthly line for savings and 1/12th of annual bills such as car registration or renewals.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Should I download US Letter or A4 paper size for my printer?</summary>
+              <p>Choose US Letter (8.5 &times; 11 inches) if you print in the United States, Canada, or Mexico. Choose A4 (210 &times; 297 mm) if you print in the UK, Europe, Australia, India, or most other countries, and set your print dialog scale to 100% so margins stay crisp.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Is this printable budget worksheet free, and is my data saved online?</summary>
+              <p>Yes, the worksheet maker and PDF download are completely free with no login or email required. Your numbers stay strictly inside your browser using local JavaScript (jsPDF) and optional local browser storage—zero data is uploaded or stored on a server.</p>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- SEO-CONTENT-END -->
+  </main>
+
+  <footer class="section site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Household Expense Tools</p>
+        <p class="footer-text">
+          Simple, fast, privacy-friendly tools for home expenses, groceries, budgets, and kitchen planning.
+        </p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../../about/">About</a>
+        <a href="../">Tools</a>
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../terms/">Terms</a>
+        <a href="../../contact/">Contact</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="current-year">2026</span> Household Expense Tools. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js" defer></script>
+  <script src="../../assets/js/app.js" defer></script>
+  <script src="../../assets/js/monthly-budget-worksheet-maker.js" defer></script>
+</body>
+</html>
