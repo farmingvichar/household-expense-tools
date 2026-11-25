@@ -1,0 +1,1152 @@
+/* ==========================================================================
+   Household Expense Tools — Custom Monthly Budget Worksheet Maker
+   Scoped strictly to .hbw-* classes (zero global style overrides)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Container & Outer Shell
+   -------------------------------------------------------------------------- */
+.hbw-container {
+  inline-size: min(100% - (var(--container-padding) * 2), 1200px);
+  max-inline-size: 1200px;
+  margin-inline: auto;
+}
+
+.hbw-tool-section {
+  padding-block-start: var(--space-4);
+}
+
+.hbw-shell {
+  display: block;
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.hbw-header-row {
+  margin-block-end: var(--space-5);
+}
+
+/* --------------------------------------------------------------------------
+   2. Top Settings Bar (Web UI — Brand Teal & Soft-Mint Tokens)
+   -------------------------------------------------------------------------- */
+.hbw-settings-bar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, auto));
+  gap: var(--space-4);
+  align-items: start;
+  padding: var(--space-4);
+  margin-block-end: var(--space-6);
+  background: var(--color-bg-soft);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.hbw-setting-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-inline-size: 0;
+}
+
+.hbw-setting-label {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.hbw-pill-group {
+  display: inline-flex;
+  align-items: stretch;
+  gap: var(--space-1);
+  padding: 0.25rem;
+  background: var(--color-bg);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+.hbw-chip {
+  flex: 1 1 auto;
+  min-block-size: 2.25rem;
+  padding: 0.375rem 0.875rem;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+  color: var(--color-text);
+  background: transparent;
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition-fast), color var(--transition-fast),
+    border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.hbw-chip:hover {
+  background: var(--color-surface-soft);
+  color: var(--color-primary-hover);
+}
+
+.hbw-chip:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.hbw-chip.is-active {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.hbw-select {
+  inline-size: 100%;
+  min-block-size: var(--control-height);
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-strong);
+  background-color: var(--color-bg);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.hbw-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}
+
+.hbw-micro-note {
+  display: block;
+  font-size: var(--font-size-xs);
+  line-height: 1.35;
+  color: var(--color-text-soft);
+}
+
+/* --------------------------------------------------------------------------
+   3. 2-Column Split Workspace (Desktop >= 900px: 55% Left / 45% Right Sticky)
+   -------------------------------------------------------------------------- */
+.hbw-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.hbw-builder-panel {
+  min-inline-size: 0;
+}
+
+.hbw-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.hbw-card-block {
+  padding: var(--space-4);
+  background: var(--color-bg-soft);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.hbw-fieldset {
+  margin: 0;
+  min-inline-size: 0;
+}
+
+.hbw-field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.hbw-block-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-block-end: var(--space-2);
+}
+
+.hbw-block-title {
+  margin: 0;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-strong);
+}
+
+.hbw-block-desc {
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.hbw-btn-sm {
+  min-block-size: 2.25rem;
+  padding: 0.375rem 0.75rem;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+}
+
+/* Inputs & Textareas inside Builder */
+.hbw-shell input[type="text"],
+.hbw-shell input[type="number"],
+.hbw-shell textarea {
+  inline-size: 100%;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-strong);
+  background: var(--color-bg);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.hbw-shell input[type="text"],
+.hbw-shell input[type="number"] {
+  min-block-size: var(--control-height);
+  padding: 0.5rem 0.75rem;
+}
+
+.hbw-shell textarea {
+  padding: 0.625rem 0.75rem;
+  resize: vertical;
+  min-block-size: 4.5rem;
+}
+
+.hbw-shell input:focus,
+.hbw-shell textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}
+
+/* --------------------------------------------------------------------------
+   4. Dynamic Rows & Mode-Based Visibility (data-mode)
+   -------------------------------------------------------------------------- */
+.hbw-rows-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.hbw-row {
+  display: grid;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.hbw-income-row {
+  grid-template-columns: minmax(0, 1fr) 8.5rem 2.5rem;
+}
+
+.hbw-expense-col-headers {
+  display: grid;
+  gap: var(--space-2);
+  padding-inline: 0.125rem;
+  margin-block-end: var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-soft);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Mode A: Zero-Based Budget (Hide 50/30/20 buckets & split bars cleanly) */
+.hbw-shell[data-mode="zero-based"] .hbw-col-bucket,
+.hbw-shell[data-mode="zero-based"] .hbw-row-bucket,
+.hbw-shell[data-mode="zero-based"] .hbw-rule-summary,
+.hbw-shell[data-mode="zero-based"] .hbw-sheet-rule-bar,
+.hbw-shell[data-mode="zero-based"] .hbw-sheet-bucket-tag {
+  display: none;
+}
+
+.hbw-shell[data-mode="zero-based"] .hbw-expense-col-headers,
+.hbw-shell[data-mode="zero-based"] .hbw-expense-row {
+  grid-template-columns: minmax(0, 1fr) 8.5rem 2.5rem;
+}
+
+/* Mode B: 50/30/20 Rule (Show bucket dropdowns & split bars smoothly) */
+.hbw-shell[data-mode="50-30-20"] .hbw-col-bucket,
+.hbw-shell[data-mode="50-30-20"] .hbw-row-bucket {
+  display: block;
+}
+
+.hbw-shell[data-mode="50-30-20"] .hbw-expense-col-headers,
+.hbw-shell[data-mode="50-30-20"] .hbw-expense-row {
+  grid-template-columns: minmax(0, 1fr) 7.75rem 7.5rem 2.5rem;
+}
+
+.hbw-shell[data-mode="50-30-20"] .hbw-rule-summary {
+  display: grid;
+}
+
+.hbw-shell[data-mode="50-30-20"] .hbw-sheet-rule-bar {
+  display: flex;
+}
+
+.hbw-row-bucket {
+  inline-size: 100%;
+  min-block-size: var(--control-height);
+  padding: 0.45rem 0.5rem;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-strong);
+  background: var(--color-bg);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.hbw-row-bucket:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}
+
+.hbw-row-amount {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.hbw-row-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.5rem;
+  block-size: var(--control-height);
+  padding: 0;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.hbw-row-remove:hover {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+  border-color: var(--color-error-border);
+}
+
+.hbw-row-remove:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+/* --------------------------------------------------------------------------
+   5. Live Summary Totals Bar, 50/30/20 Split & Actions
+   -------------------------------------------------------------------------- */
+.hbw-summary-bar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.hbw-summary-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-muted);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.hbw-stat-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+}
+
+.hbw-stat-value {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.hbw-stat-balance {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary-light);
+}
+
+.hbw-stat-balance .hbw-stat-value {
+  color: var(--color-primary);
+}
+
+.hbw-stat-balance.is-balanced {
+  background: var(--color-success-bg);
+  border-color: var(--color-success-border);
+}
+
+.hbw-stat-balance.is-balanced .hbw-stat-value {
+  color: var(--color-success);
+}
+
+.hbw-stat-balance.is-unallocated {
+  background: var(--color-warning-bg);
+  border-color: var(--color-warning-border);
+}
+
+.hbw-stat-balance.is-unallocated .hbw-stat-value {
+  color: var(--color-warning);
+}
+
+.hbw-stat-balance.is-over {
+  background: var(--color-error-bg);
+  border-color: var(--color-error-border);
+}
+
+.hbw-stat-balance.is-over .hbw-stat-value {
+  color: var(--color-error);
+}
+
+/* 50/30/20 Live Split Bar */
+.hbw-rule-summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.hbw-rule-pill {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: var(--space-3);
+  background: var(--color-surface-soft);
+  border: var(--border-width) solid var(--color-primary-light);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.hbw-rule-pill strong {
+  font-size: var(--font-size-sm);
+  color: var(--color-primary-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Actions Row & Trust Badge */
+.hbw-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.hbw-btn-download {
+  flex: 1 1 14rem;
+  min-block-size: var(--control-height);
+  font-weight: var(--font-weight-semibold);
+}
+
+.hbw-trust-badge {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-soft);
+  border: var(--border-width) solid var(--color-primary-light);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-primary-dark);
+}
+
+/* --------------------------------------------------------------------------
+   6. Right Column: Sticky Live WYSIWYG Ink-Saver Paper Preview
+   -------------------------------------------------------------------------- */
+.hbw-preview-panel {
+  position: sticky;
+  top: 90px;
+  align-self: start;
+  min-inline-size: 0;
+}
+
+.hbw-preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-block-end: var(--space-3);
+}
+
+.hbw-preview-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  background: var(--color-primary-soft);
+  border: var(--border-width) solid var(--color-primary-light);
+  border-radius: var(--radius-full);
+}
+
+.hbw-preview-meta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-soft);
+  font-weight: var(--font-weight-medium);
+}
+
+.hbw-paper-stage {
+  padding: var(--space-3);
+  background: var(--color-bg-muted);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+/* 100% Pure White Ink-Saver Paper Sheet (#ffffff / #111111 / #cccccc) */
+.hbw-paper-sheet {
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  padding: 1.35rem 1.25rem;
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #cccccc;
+  border-radius: 2px;
+  box-shadow: var(--shadow-md);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  transition: aspect-ratio var(--transition-base), padding var(--transition-base);
+}
+
+.hbw-paper-sheet[data-paper="letter"] {
+  aspect-ratio: 8.5 / 11;
+}
+
+.hbw-paper-sheet[data-paper="a4"] {
+  aspect-ratio: 210 / 297;
+}
+
+.hbw-sheet-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-block-end: 0.55rem;
+  margin-block-end: 0.65rem;
+  border-bottom: 1.5px solid #111111;
+}
+
+.hbw-sheet-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #111111;
+  letter-spacing: -0.01em;
+}
+
+.hbw-sheet-subtitle {
+  margin: 0.2rem 0 0;
+  font-size: 0.68rem;
+  color: #444444;
+}
+
+.hbw-sheet-date-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.hbw-sheet-date-label {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #444444;
+}
+
+.hbw-sheet-date-value {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #111111;
+}
+
+/* Sheet Summary Strip */
+.hbw-sheet-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid #cccccc;
+  margin-block-end: 0.6rem;
+  background: #ffffff;
+}
+
+.hbw-sheet-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.38rem 0.45rem;
+  border-right: 1px solid #cccccc;
+}
+
+.hbw-sheet-kpi:last-child {
+  border-right: none;
+}
+
+.hbw-sheet-kpi span {
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #444444;
+}
+
+.hbw-sheet-kpi strong {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #111111;
+  font-variant-numeric: tabular-nums;
+}
+
+.hbw-write-line {
+  display: block;
+  min-block-size: 0.9rem;
+  border-bottom: 1px solid #888888;
+}
+
+/* Sheet 50/30/20 Breakdown Line */
+.hbw-sheet-rule-bar {
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.3rem 0.45rem;
+  margin-block-end: 0.6rem;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  font-size: 0.64rem;
+  color: #111111;
+}
+
+/* Sheet Sections */
+.hbw-sheet-block {
+  margin-block-end: 0.65rem;
+}
+
+.hbw-sheet-section-title {
+  margin: 0 0 0.3rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #111111;
+}
+
+/* Sheet Income Grid */
+.hbw-sheet-income-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25rem 0.75rem;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid #cccccc;
+  background: #ffffff;
+}
+
+.hbw-sheet-income-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding-block: 0.1rem;
+  border-bottom: 1px dotted #cccccc;
+  font-size: 0.68rem;
+  color: #111111;
+}
+
+.hbw-sheet-income-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hbw-sheet-income-amt {
+  font-weight: 600;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sheet 4-Column Expense Table */
+.hbw-sheet-table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: #ffffff;
+  color: #111111;
+}
+
+.hbw-sheet-table th,
+.hbw-sheet-table td {
+  padding: 0.28rem 0.38rem;
+  border: 1px solid #cccccc;
+  color: #111111;
+  background: #ffffff;
+  vertical-align: middle;
+}
+
+.hbw-sheet-table thead th {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-align: left;
+  border-bottom: 1.5px solid #111111;
+}
+
+.hbw-sheet-table tbody td {
+  font-size: 0.68rem;
+  word-wrap: break-word;
+}
+
+.hbw-sheet-table tfoot th,
+.hbw-sheet-table tfoot td {
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-top: 1.5px solid #111111;
+}
+
+.hbw-col-item {
+  inline-size: 46%;
+}
+
+.hbw-col-planned {
+  inline-size: 20%;
+  text-align: right;
+}
+
+.hbw-col-actual {
+  inline-size: 22%;
+  text-align: right;
+}
+
+.hbw-col-paid {
+  inline-size: 12%;
+  text-align: center;
+}
+
+.hbw-sheet-table thead .hbw-col-planned,
+.hbw-sheet-table thead .hbw-col-actual {
+  text-align: right;
+}
+
+.hbw-sheet-table thead .hbw-col-paid {
+  text-align: center;
+}
+
+.hbw-num-cell {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.hbw-blank-cell {
+  background: #ffffff;
+}
+
+.hbw-check-cell {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #111111;
+}
+
+.hbw-sheet-bucket-tag {
+  display: inline-block;
+  margin-inline-start: 0.3rem;
+  padding: 0.05rem 0.25rem;
+  font-size: 0.56rem;
+  font-weight: 600;
+  color: #333333;
+  border: 1px solid #cccccc;
+  border-radius: 2px;
+  vertical-align: middle;
+}
+
+/* Monthly Goals & Notes Box */
+.hbw-sheet-notes {
+  margin-block-start: auto;
+  padding-block-start: 0.25rem;
+}
+
+.hbw-sheet-notes-box {
+  min-block-size: 3.4rem;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid #cccccc;
+  background: #ffffff;
+}
+
+.hbw-note-line {
+  block-size: 1.05rem;
+  border-bottom: 1px solid #cccccc;
+}
+
+.hbw-note-line:last-child {
+  border-bottom: none;
+}
+
+.hbw-sheet-notes-text {
+  margin: 0;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  color: #111111;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.hbw-sheet-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-block-start: 0.55rem;
+  padding-block-start: 0.35rem;
+  border-top: 1px solid #cccccc;
+  font-size: 0.58rem;
+  color: #555555;
+}
+
+/* --------------------------------------------------------------------------
+   7. Mobile Sticky Thumb-Bar & Full-Screen 100dvh Preview Modal
+   -------------------------------------------------------------------------- */
+.hbw-mobile-bar {
+  display: none;
+}
+
+.hbw-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  block-size: 100vh;
+  block-size: 100dvh;
+}
+
+.hbw-modal[hidden] {
+  display: none;
+}
+
+.hbw-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(15 23 42 / 0.65);
+}
+
+.hbw-modal-dialog {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  max-inline-size: 56rem;
+  block-size: 100vh;
+  block-size: 100dvh;
+  background: var(--color-bg-muted);
+}
+
+.hbw-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.hbw-modal-header h3 {
+  margin: 0;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-strong);
+}
+
+.hbw-modal-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.hbw-zoom-btn,
+.hbw-modal-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 2.25rem;
+  min-block-size: 2.25rem;
+  padding: 0 0.5rem;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-strong);
+  background: var(--color-bg-soft);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.hbw-zoom-btn:hover,
+.hbw-modal-close:hover {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.hbw-zoom-level {
+  min-inline-size: 3rem;
+  text-align: center;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.hbw-modal-body {
+  flex: 1 1 auto;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--space-4);
+}
+
+.hbw-modal-zoom-stage {
+  transform-origin: top left;
+  margin-inline: auto;
+  max-inline-size: 44rem;
+  transition: transform var(--transition-fast);
+}
+
+.hbw-modal-footer {
+  padding: var(--space-3) var(--space-4);
+  padding-block-end: calc(var(--space-3) + env(safe-area-inset-bottom, 0px));
+  background: var(--color-surface);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.hbw-modal-footer .button {
+  inline-size: 100%;
+  min-block-size: var(--touch-target);
+}
+
+/* --------------------------------------------------------------------------
+   8. Responsive Breakpoints — Mobile Chrome UX (< 900px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) and (min-width: 900px) {
+  .hbw-settings-bar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 899.98px) {
+  /* Prevent fixed mobile thumb-bar from overlapping footer links */
+  body:has(.hbw-mobile-bar) {
+    padding-block-end: 5rem;
+  }
+
+  .hbw-shell {
+    padding: var(--space-4);
+  }
+
+  /* Single-column flow on mobile; preview moves into 100dvh modal */
+  .hbw-workspace {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+
+  .hbw-preview-panel {
+    display: none;
+  }
+
+  /* Settings Bar: Row 1 Full-Width Budget Mode Toggle, Row 2 3 Compact Pills (33% each) */
+  .hbw-settings-bar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-3) var(--space-2);
+    padding: var(--space-3);
+  }
+
+  .hbw-setting-group:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .hbw-setting-group:first-child .hbw-pill-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    inline-size: 100%;
+  }
+
+  /* Compact 33% Paper Size control alongside Currency & Date selects */
+  .hbw-setting-group:nth-child(2) .hbw-pill-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.125rem;
+    padding: 0.1875rem;
+    inline-size: 100%;
+    min-block-size: var(--control-height);
+    border-radius: var(--radius-md);
+  }
+
+  .hbw-setting-group:nth-child(2) .hbw-chip {
+    min-block-size: 2.25rem;
+    padding: 0.25rem 0.2rem;
+    font-size: 0.6875rem;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hbw-select-group .hbw-select {
+    padding: 0.45rem 1.35rem 0.45rem 0.45rem;
+    text-overflow: ellipsis;
+  }
+
+  .hbw-settings-bar .hbw-micro-note {
+    font-size: 0.6875rem;
+    line-height: 1.25;
+  }
+
+  /* Prevent Mobile Safari / Chrome auto-zoom on inputs & selects */
+  .hbw-shell input[type="text"],
+  .hbw-shell input[type="number"],
+  .hbw-shell select,
+  .hbw-shell textarea {
+    font-size: 16px;
+  }
+
+  .hbw-field-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  /* Hide desktop table-like column headers; rows become 2-line soft-mint cards */
+  .hbw-expense-col-headers {
+    display: none;
+  }
+
+  .hbw-rows-list {
+    gap: var(--space-3);
+  }
+
+  .hbw-row {
+    padding: 0.625rem;
+    background: var(--color-surface-soft);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-md);
+    gap: var(--space-2);
+  }
+
+  /* Income Card: Line 1 Name + x, Line 2 Amount */
+  .hbw-income-row {
+    grid-template-columns: minmax(0, 1fr) 2.75rem;
+    grid-template-areas:
+      "name remove"
+      "amount amount";
+  }
+
+  .hbw-income-row .hbw-row-name {
+    grid-area: name;
+  }
+
+  .hbw-income-row .hbw-row-remove {
+    grid-area: remove;
+    inline-size: 2.75rem;
+  }
+
+  .hbw-income-row .hbw-row-amount {
+    grid-area: amount;
+    text-align: left;
+  }
+
+  /* Expense Card (Zero-Based): Line 1 Name + x, Line 2 Amount */
+  .hbw-shell[data-mode="zero-based"] .hbw-expense-row {
+    grid-template-columns: minmax(0, 1fr) 2.75rem;
+    grid-template-areas:
+      "name remove"
+      "amount amount";
+  }
+
+  /* Expense Card (50/30/20): Line 1 Name + x, Line 2 Amount + Category dropdown */
+  .hbw-shell[data-mode="50-30-20"] .hbw-expense-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 2.75rem;
+    grid-template-areas:
+      "name name remove"
+      "amount bucket bucket";
+  }
+
+  .hbw-expense-row .hbw-row-name {
+    grid-area: name;
+  }
+
+  .hbw-expense-row .hbw-row-remove {
+    grid-area: remove;
+    inline-size: 2.75rem;
+  }
+
+  .hbw-expense-row .hbw-row-amount {
+    grid-area: amount;
+    text-align: left;
+  }
+
+  .hbw-expense-row .hbw-row-bucket {
+    grid-area: bucket;
+  }
+
+  /* Summary Stats & Actions */
+  .hbw-summary-bar,
+  .hbw-rule-summary {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-2);
+  }
+
+  .hbw-summary-stat {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hbw-actions-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hbw-btn-download {
+    grid-column: 1 / -1;
+  }
+
+  /* Fixed Bottom Thumb-Bar */
+  .hbw-mobile-bar {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: 0;
+    z-index: 90;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+    padding: 0.625rem var(--space-4);
+    padding-block-end: calc(0.625rem + env(safe-area-inset-bottom, 0px));
+    background: var(--color-surface);
+    border-top: var(--border-width) solid var(--color-border);
+    box-shadow: 0 -4px 16px rgb(15 23 42 / 0.08);
+  }
+
+  .hbw-mobile-btn {
+    inline-size: 100%;
+    min-block-size: var(--touch-target);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+}
