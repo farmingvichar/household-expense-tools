@@ -95,17 +95,29 @@ document.addEventListener("DOMContentLoaded", function () {
     const wastedQuantity = Number(wastedQuantityValue);
 
     if (!Number.isFinite(totalCost) || totalCost <= 0) {
-      if (isExplicitSubmit) clearResultsForError("Total food or item cost must be greater than 0.");
+      if (isExplicitSubmit) {
+        clearResultsForError("Total food or item cost must be greater than 0.");
+      } else {
+        resetResults();
+      }
       return;
     }
 
     if (!Number.isFinite(totalQuantity) || totalQuantity <= 0) {
-      if (isExplicitSubmit) clearResultsForError("Total quantity bought must be greater than 0.");
+      if (isExplicitSubmit) {
+        clearResultsForError("Total quantity bought must be greater than 0.");
+      } else {
+        resetResults();
+      }
       return;
     }
 
     if (!Number.isFinite(wastedQuantity) || wastedQuantity < 0) {
-      if (isExplicitSubmit) clearResultsForError("Wasted quantity must be 0 or greater.");
+      if (isExplicitSubmit) {
+        clearResultsForError("Wasted quantity must be 0 or greater.");
+      } else {
+        resetResults();
+      }
       return;
     }
 
