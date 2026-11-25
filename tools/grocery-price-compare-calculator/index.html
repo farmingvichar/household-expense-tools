@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Grocery Unit Price Calculator | Compare Price Per Unit</title>
-  <meta name="description" content="Compare grocery package prices by unit to find the best deal. Calculate price per ounce, pound, kilogram, liter, or item. Free browser tool with no login." />
+      <title>Grocery Unit Price Calculator | Compare Price Per Oz &amp; Unit</title>
+  <meta name="description" content="Compare two grocery prices by oz, lb, fl oz, 100g, kg, liter, or item to see which package is cheaper and how much you save. Free browser tool, no login." />
 
-  <meta name="theme-color" content="#0f172a" />
-    <link rel="canonical" href="https://householdexpensetools.com/tools/grocery-price-compare-calculator/" />
+  <meta name="theme-color" content="#0f766e" />
+  <link rel="canonical" href="https://householdexpensetools.com/tools/grocery-price-compare-calculator/" />
 
   <!-- Structured Data: WebApplication + FAQPage Schema -->
   <script type="application/ld+json">
@@ -27,9 +27,9 @@
           "price": "0",
           "priceCurrency": "USD"
         },
-        "description": "Compare grocery package prices by unit to find the best deal. Calculate price per ounce, pound, kilogram, liter, or item in your browser."
+        "description": "Compare two grocery prices by oz, lb, fl oz, 100g, kg, liter, or item to see which package is cheaper and how much you save in your browser."
       },
-            {
+      {
         "@type": "FAQPage",
         "@id": "https://householdexpensetools.com/tools/grocery-price-compare-calculator/#faq",
         "mainEntity": [
@@ -38,39 +38,39 @@
             "name": "How do you calculate unit price?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Divide the total package price by the total quantity (ounces, pounds, grams, or count). For example, an 8-pack of paper towels costing $18.16 equals $2.27 per roll ($18.16 / 8)."
+              "text": "Divide the total package price by its total quantity in ounces, pounds, grams, milliliters, or count (Unit Price = Total Price / Quantity). For example, an 18 oz box of cereal for $4.50 costs $0.250 per oz, while a 24 oz box for $5.76 costs $0.240 per oz."
             }
           },
           {
             "@type": "Question",
-            "name": "How do I compare different package sizes (like grams and kilograms)?",
+            "name": "How do I compare price per ounce (oz) against pound (lb) or fluid ounce (fl oz)?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Enter the package quantities and choose each item's unit from the dropdown. The calculator automatically converts compatible metric or imperial measurements into a normalized baseline, such as cost per kilogram or cost per pound."
+              "text": "Enter each item's price and size, then select oz, lb, fl oz (US), or gal (US). Because 1 lb equals 16 oz and 1 US gallon equals 128 US fl oz, the calculator converts compatible units automatically so you can compare the true unit rate side by side."
             }
           },
           {
             "@type": "Question",
-            "name": "Can I compare items sold by count, such as rolls, cans, or multi-packs?",
+            "name": "How do I calculate price per 100g or compare grams with kilograms?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. Select 'items' or 'packs' in the unit dropdown. As long as both items use the same count unit, the calculator will accurately compare their price per individual piece."
+              "text": "Select g for both items to compare rates per 100 g, or pair g with kg to compare both per kg. The calculator uses exact metric conversion (1 kg = 1,000 g and 1 liter = 1,000 ml) to show which pack costs less and the exact savings percentage."
             }
           },
           {
             "@type": "Question",
-            "name": "Does buying in bulk always guarantee a lower unit price?",
+            "name": "Does buying a larger or bulk package always have a lower unit price?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Not always. Retail sales, manufacturer coupons, and clearance discounts frequently make standard sizes cheaper per ounce or pound than club-store bulk packs. Always compare normalized unit rates before buying."
+              "text": "No. Store sales, digital coupons, and store-brand regular sizes often beat warehouse or family-size packs on price per oz or per 100 g. Larger packs also cost more in practice if perishable food spoils before you finish it."
             }
           },
           {
             "@type": "Question",
-            "name": "Does this grocery calculator save or transmit my data?",
+            "name": "Does this grocery unit price calculator save or transmit my data?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Calculations run entirely in your local browser session without using cookies, localStorage, accounts, or sending data to an external server."
+              "text": "No. All calculations run locally in your browser without accounts, cookies, localStorage, or external server requests."
             }
           }
         ]
@@ -78,6 +78,7 @@
     ]
   }
   </script>
+
 
  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
 
@@ -123,11 +124,11 @@
 
         <div class="hero-text">
           <h1>Grocery Unit Price Calculator</h1>
-<p>
-  Compare two grocery items or package sizes by unit price. Enter each item’s
-  price, quantity, and unit to see which option has the lower price per kg,
-  liter, item, or pack.
-</p>
+          <p>
+            Compare two grocery items or pack sizes by price per oz, lb, fl oz, 100 g, kg, liter,
+            or item. Enter each price, quantity, and unit to instantly see which option is cheaper
+            and how much you save.
+          </p>
         </div>
       </div>
     </section>
@@ -138,14 +139,14 @@
           <div class="section-heading">
             <h2 id="calculator-heading">Compare two grocery options</h2>
             <p>
-              Use this for rice bags, milk packs, vegetables, or grocery pack sizes. The tool can
-              compare compatible units such as g with kg, ml with liters, and oz with lb.
+              Compare weight with weight (oz, lb, g, kg), liquid volume with volume (fl oz, gal,
+              ml, liters), or count with count (items or packs). Results update live as you type.
             </p>
           </div>
 
           <form class="tool-form" id="groceryPriceCompareForm" novalidate>
             <div class="form-grid">
-            <div class="form-field">
+              <div class="form-field">
                 <label for="currencySymbol">Currency symbol</label>
                 <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
                   <option value="$" selected>$ USD</option>
@@ -156,21 +157,7 @@
                   <option value="A$">A$ AUD</option>
                   <option value="¥">¥ JPY</option>
                 </select>
-                <small id="currencySymbolHelp">This only changes the display symbol. It does not convert currencies.</small>
-              </div>
-
-
-              <div class="form-field">
-                <label for="itemAName">Item A name <span aria-hidden="true">(optional)</span></label>
-                <input
-                  type="text"
-                  id="itemAName"
-                  name="itemAName"
-                  placeholder="Example: Small rice bag"
-                  autocomplete="off"
-                  aria-describedby="itemANameHelp"
-                />
-                <small id="itemANameHelp">Leave blank to use “Item A” in the result.</small>
+                <small id="currencySymbolHelp">Display symbol only; does not convert exchange rates.</small>
               </div>
 
               <div class="form-field">
@@ -182,11 +169,11 @@
                   inputmode="decimal"
                   min="0.01"
                   step="0.01"
-                  placeholder="Example: 20"
+                  placeholder="Example: 4.50"
                   required
                   aria-describedby="itemAPriceHelp"
                 />
-                <small id="itemAPriceHelp">Enter the full price for Item A.</small>
+                <small id="itemAPriceHelp">Full shelf price for Item A.</small>
               </div>
 
               <div class="form-field">
@@ -198,40 +185,28 @@
                   inputmode="decimal"
                   min="0.01"
                   step="0.01"
-                  placeholder="Example: 500"
+                  placeholder="Example: 18"
                   required
                   aria-describedby="itemAQuantityHelp"
                 />
-                <small id="itemAQuantityHelp">Enter the number only, then choose the unit below.</small>
-              </div>
-
-                             <div class="form-field">
-                <label for="itemAUnit">Item A unit</label>
-                <select id="itemAUnit" name="itemAUnit" required aria-describedby="itemAUnitHelp">
-                  <option value="">Select unit</option>
-                  <option value="oz">oz</option>
-                  <option value="lb">lb</option>
-                  <option value="items">items</option>
-                  <option value="packs">packs</option>
-                  <option value="g">g</option>
-                  <option value="kg">kg</option>
-                  <option value="ml">ml</option>
-                  <option value="liters">liters</option>
-                </select>
-                <small id="itemAUnitHelp">Choose the unit printed on Item A, such as oz, lb, items, packs, g, kg, ml, or liters.</small>
+                <small id="itemAQuantityHelp">Net weight, volume, or count number on the label.</small>
               </div>
 
               <div class="form-field">
-                <label for="itemBName">Item B name <span aria-hidden="true">(optional)</span></label>
-                <input
-                  type="text"
-                  id="itemBName"
-                  name="itemBName"
-                  placeholder="Example: Large rice bag"
-                  autocomplete="off"
-                  aria-describedby="itemBNameHelp"
-                />
-                <small id="itemBNameHelp">Leave blank to use “Item B” in the result.</small>
+                <label for="itemAUnit">Item A unit</label>
+                <select id="itemAUnit" name="itemAUnit" required aria-describedby="itemAUnitHelp">
+                  <option value="oz" selected>oz (ounce)</option>
+                  <option value="lb">lb (pound)</option>
+                  <option value="fl_oz">fl oz (US fluid oz)</option>
+                  <option value="gal">gal (US gallon)</option>
+                  <option value="g">g (gram)</option>
+                  <option value="kg">kg (kilogram)</option>
+                  <option value="ml">ml (milliliter)</option>
+                  <option value="liters">liters (L)</option>
+                  <option value="items">items (count / pieces)</option>
+                  <option value="packs">packs</option>
+                </select>
+                <small id="itemAUnitHelp">Changing Item A syncs Item B automatically until you pick a different unit.</small>
               </div>
 
               <div class="form-field">
@@ -243,11 +218,11 @@
                   inputmode="decimal"
                   min="0.01"
                   step="0.01"
-                  placeholder="Example: 35"
+                  placeholder="Example: 7.36"
                   required
                   aria-describedby="itemBPriceHelp"
                 />
-                <small id="itemBPriceHelp">Enter the full price for Item B.</small>
+                <small id="itemBPriceHelp">Full shelf price for Item B.</small>
               </div>
 
               <div class="form-field">
@@ -259,38 +234,65 @@
                   inputmode="decimal"
                   min="0.01"
                   step="0.01"
-                  placeholder="Example: 1"
+                  placeholder="Example: 2"
                   required
                   aria-describedby="itemBQuantityHelp"
                 />
-                <small id="itemBQuantityHelp">Enter the number only, then choose the unit below.</small>
+                <small id="itemBQuantityHelp">Net weight, volume, or count number for Item B.</small>
               </div>
 
               <div class="form-field">
                 <label for="itemBUnit">Item B unit</label>
                 <select id="itemBUnit" name="itemBUnit" required aria-describedby="itemBUnitHelp">
-                  <option value="">Select unit</option>
-                  <option value="oz">oz</option>
-                  <option value="lb">lb</option>
-                  <option value="items">items</option>
+                  <option value="oz" selected>oz (ounce)</option>
+                  <option value="lb">lb (pound)</option>
+                  <option value="fl_oz">fl oz (US fluid oz)</option>
+                  <option value="gal">gal (US gallon)</option>
+                  <option value="g">g (gram)</option>
+                  <option value="kg">kg (kilogram)</option>
+                  <option value="ml">ml (milliliter)</option>
+                  <option value="liters">liters (L)</option>
+                  <option value="items">items (count / pieces)</option>
                   <option value="packs">packs</option>
-                  <option value="g">g</option>
-                  <option value="kg">kg</option>
-                  <option value="ml">ml</option>
-                  <option value="liters">liters</option>
                 </select>
-                <small id="itemBUnitHelp">Choose the unit printed on Item B, such as oz, lb, items, packs, g, kg, ml, or liters.</small>
+                <small id="itemBUnitHelp">Pick any compatible unit—for example, oz with lb or g with kg.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="itemAName">Item A label <span aria-hidden="true">(optional)</span></label>
+                <input
+                  type="text"
+                  id="itemAName"
+                  name="itemAName"
+                  placeholder="Example: Regular box"
+                  autocomplete="off"
+                  aria-describedby="itemANameHelp"
+                />
+                <small id="itemANameHelp">Leave blank to show “Item A” in the results.</small>
+              </div>
+
+              <div class="form-field">
+                <label for="itemBName">Item B label <span aria-hidden="true">(optional)</span></label>
+                <input
+                  type="text"
+                  id="itemBName"
+                  name="itemBName"
+                  placeholder="Example: Family size"
+                  autocomplete="off"
+                  aria-describedby="itemBNameHelp"
+                />
+                <small id="itemBNameHelp">Leave blank to show “Item B” in the results.</small>
               </div>
             </div>
 
             <div class="form-actions">
               <button class="button-primary" type="submit">Compare prices</button>
-              <button class="button-secondary" type="reset">Reset</button>
+              <button class="button-secondary" type="button" id="resetCompareBtn">Clear numbers</button>
             </div>
 
             <p class="privacy-note">
-              Your values are used only in your browser for this calculation. They are not saved,
-              not sent to a server, and no login is used.
+              Your values stay in your browser for this calculation only. Nothing is saved, sent to
+              a server, or tied to an account.
             </p>
 
             <div
@@ -299,18 +301,18 @@
               role="status"
               aria-live="polite"
             >
-              Enter two item prices, quantities, and units to compare normalized unit price.
+              Enter both prices and quantities to compare unit prices live.
             </div>
           </form>
 
           <section class="summary-grid calculator-results-grid" aria-label="Grocery price comparison results">
             <div class="summary-card">
-              <p class="summary-label">Item A normalized unit price</p>
+              <p class="summary-label">Item A unit price</p>
               <p id="itemAUnitPrice">0.00</p>
             </div>
 
             <div class="summary-card">
-              <p class="summary-label">Item B normalized unit price</p>
+              <p class="summary-label">Item B unit price</p>
               <p id="itemBUnitPrice">0.00</p>
             </div>
 
@@ -320,7 +322,7 @@
             </div>
 
             <div class="summary-card">
-              <p class="summary-label">Difference per normalized unit</p>
+              <p class="summary-label">Savings per unit</p>
               <p id="differencePerUnit">0.00</p>
             </div>
           </section>
@@ -328,103 +330,118 @@
       </div>
     </section>
 
+
     <section class="content-section">
       <div class="narrow-container">
-       <h2>How it works</h2>
-<p>
-  The calculator converts compatible quantities into a normalized comparison unit. Weight
-  items are compared per kg, volume items are compared per liter, and count items are
-  compared per item or per pack.
-</p>
-
-<h2>Formula used</h2>
-<p>
-  The calculator first converts compatible quantities into one comparison unit. Then it divides
-  total price by normalized quantity. Weight items are shown per kg, volume items are shown per
-  liter, and count items are shown per item or per pack.
-</p>
-<p>
-  Unit price = total price ÷ normalized quantity.
-</p>
-
-<h2>How to compare different package sizes</h2>
+        <h2>How unit price calculation works</h2>
         <p>
-          You can enter 500 with g and 1 with kg to compare both as price per kg. You can also
-          enter 500 with ml and 1 with liters to compare both as price per liter. The tool converts
-          compatible units only for comparison.
+          The calculator converts compatible package sizes into one shared unit and then divides
+          each item's shelf price by its converted quantity:
+          <strong>Unit Price = Total Price &divide; Quantity</strong>.
         </p>
         <p>
-          It does not convert currencies. It also does not compare quality, freshness, brand,
-          taxes, delivery fee, or discounts.
+          Results automatically match the units you enter—showing price per <strong>oz</strong> or
+          <strong>lb</strong> for US weights, per <strong>fl oz</strong> or <strong>gal (US)</strong>
+          for US liquids, per <strong>100 g</strong> or <strong>kg</strong> for metric weights, per
+          <strong>100 ml</strong> or <strong>liter</strong> for metric liquids, and per
+          <strong>item</strong> or <strong>pack</strong> for count goods. When rates are below 1.00,
+          the tool displays three decimal places so small per-ounce differences stay accurate.
         </p>
 
-        <h2>What the result means</h2>
+        <h2>Real supermarket comparison examples</h2>
         <p>
-          The better value result shows the option with the lower normalized unit price. The
-          difference per unit shows how far apart the two normalized unit prices are.
+          <strong>US weight (oz vs. lb):</strong> An 18 oz cereal box for $4.50 costs
+          <strong>$0.250 / oz</strong>, while a 2 lb (32 oz) box for $7.36 costs
+          <strong>$0.230 / oz</strong>. The 2 lb box saves $0.020 per oz (8% cheaper).
+        </p>
+        <p>
+          <strong>Metric weight (g vs. kg):</strong> A 500 g bag of rice for $2.20 equals
+          <strong>$4.40 / kg</strong>, whereas a 1 kg bag for $3.90 equals
+          <strong>$3.90 / kg</strong>—saving $0.50 per kg (11.4% cheaper).
+        </p>
+        <p>
+          <strong>Item count:</strong> A 12-count carton of eggs at $3.60 costs
+          <strong>$0.300 / item</strong>, while an 18-count carton at $4.86 costs
+          <strong>$0.270 / item</strong>—saving $0.030 per egg (10% cheaper).
+        </p>
+
+        <h2>Why store shelf unit tags can mislead</h2>
+        <p>
+          <strong>Mixed units on the same shelf:</strong> One brand's tag may list price per ounce
+          while the neighboring size lists price per pound or per count, making a quick glance unreliable.
+        </p>
+        <p>
+          <strong>Net weight vs. drained weight:</strong> Canned beans, tuna, and jarred vegetables
+          include packing liquid in net weight. Compare drained weight when brands pack differently.
+        </p>
+        <p>
+          <strong>Bulk spoilage traps:</strong> A family pack that is 10% cheaper per ounce still
+          wastes money if part of it goes stale or spoils before you finish it.
         </p>
 
         <h2>Limitations</h2>
         <p>
-          This is a simple personal estimate only. Weight can be compared with weight, volume
-          with volume, items with items, and packs with packs. It does not compare weight with
-          volume or items with packs.
+          This calculator compares weight with weight (1 lb = 16 oz; 1 kg = 1,000 g; 1 oz = 28.35 g),
+          volume with volume (1 US gal = 128 US fl oz; 1 liter = 1,000 ml), items with items, and
+          packs with packs. It cannot compare weight with liquid volume because product density varies.
         </p>
         <p>
+          It does not convert currencies or factor in sales tax, product quality, or delivery fees.
           This tool does not provide financial, tax, legal, investment, or accounting advice.
         </p>
 
-                <h2>Related tools</h2>
+        <h2>Related tools</h2>
         <p>
-  Plan grocery spending with the <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a>,
-  calculate monthly household costs with the <a href="../monthly-expense-calculator/">Monthly Expense Calculator</a>,
-  estimate wasted food cost with the <a href="../food-waste-cost-calculator/">Food Waste Cost Calculator</a>,
-  or record daily purchases with the <a href="../daily-expense-tracker/">Daily Expense Tracker</a>.
-</p>
+          Set a realistic food target with the <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a>,
+          check whether warehouse packs beat spoilage with the <a href="../bulk-buy-value-calculator/">Bulk-Buy Value Calculator</a>,
+          spot hidden pack-size cuts with the <a href="../shrinkflation-calculator/">Grocery Shrinkflation Calculator</a>,
+          estimate spoiled food loss with the <a href="../food-waste-cost-calculator/">Food Waste Cost Calculator</a>,
+          track everyday spending in the <a href="../daily-expense-tracker/">Daily Expense Tracker</a>,
+          or review full household bills with the <a href="../monthly-expense-calculator/">Monthly Expense Calculator</a>.
+        </p>
 
-          <div class="section-header" style="margin-top: 2rem;">
+        <div class="section-header">
           <span class="eyebrow">Frequently Asked Questions</span>
           <h2 id="faq-heading">Grocery Unit Price &amp; Package Comparison FAQs</h2>
-          <p>Practical answers on comparing shelf prices, converting metric and imperial weights, and identifying genuine bulk savings at the supermarket.</p>
+          <p>Quick answers on calculating price per ounce, converting metric and US labels, and spotting genuine supermarket value.</p>
         </div>
 
         <div class="faq-list feature-grid">
           <article class="faq-item feature-card">
             <details>
               <summary>How do you calculate unit price?</summary>
-              <p>Divide the total package price by the total quantity (ounces, pounds, grams, or count). For example, an 8-pack of paper towels costing $18.16 equals $2.27 per roll ($18.16 &divide; 8).</p>
+              <p>Divide the total package price by its total quantity in ounces, pounds, grams, milliliters, or count (Unit Price = Total Price &divide; Quantity). For example, an 18 oz box of cereal for $4.50 costs $0.250 per oz, while a 24 oz box for $5.76 costs $0.240 per oz.</p>
             </details>
           </article>
 
           <article class="faq-item feature-card">
             <details>
-              <summary>How do I compare different package sizes (like grams and kilograms)?</summary>
-              <p>Enter the package quantities and choose each item's unit from the dropdown. The calculator automatically converts compatible metric or imperial measurements into a normalized baseline, such as cost per kilogram or cost per pound.</p>
+              <summary>How do I compare price per ounce (oz) against pound (lb) or fluid ounce (fl oz)?</summary>
+              <p>Enter each item's price and size, then select oz, lb, fl oz (US), or gal (US). Because 1 lb equals 16 oz and 1 US gallon equals 128 US fl oz, the calculator converts compatible units automatically so you can compare the true unit rate side by side.</p>
             </details>
           </article>
 
           <article class="faq-item feature-card">
             <details>
-              <summary>Can I compare items sold by count, such as rolls, cans, or multi-packs?</summary>
-              <p>Yes. Select "items" or "packs" in the unit dropdown. As long as both items use the same count unit, the calculator will accurately compare their price per individual piece.</p>
+              <summary>How do I calculate price per 100g or compare grams with kilograms?</summary>
+              <p>Select g for both items to compare rates per 100 g, or pair g with kg to compare both per kg. The calculator uses exact metric conversion (1 kg = 1,000 g and 1 liter = 1,000 ml) to show which pack costs less and the exact savings percentage.</p>
             </details>
           </article>
 
           <article class="faq-item feature-card">
             <details>
-              <summary>Does buying in bulk always guarantee a lower unit price?</summary>
-              <p>Not always. Retail sales, manufacturer coupons, and clearance discounts frequently make standard sizes cheaper per ounce or pound than club-store bulk packs. Always compare normalized unit rates before buying.</p>
+              <summary>Does buying a larger or bulk package always have a lower unit price?</summary>
+              <p>No. Store sales, digital coupons, and store-brand regular sizes often beat warehouse or family-size packs on price per oz or per 100 g. Larger packs also cost more in practice if perishable food spoils before you finish it.</p>
             </details>
           </article>
 
           <article class="faq-item feature-card">
             <details>
-              <summary>Does this grocery calculator save or transmit my data?</summary>
-              <p>No. Calculations run entirely in your local browser session without using cookies, localStorage, accounts, or sending data to an external server.</p>
+              <summary>Does this grocery unit price calculator save or transmit my data?</summary>
+              <p>No. All calculations run locally in your browser without accounts, cookies, localStorage, or external server requests.</p>
             </details>
           </article>
         </div>
-
       </div>
     </section>
 
