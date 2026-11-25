@@ -14,6 +14,8 @@
     const itemBUnitInput = document.getElementById("itemBUnit");
     const resetButton = document.getElementById("resetCompareBtn");
     const statusMessage = document.getElementById("priceCompareStatus");
+    const itemAUnitPriceLabel = document.getElementById("itemAUnitPriceLabel");
+    const itemBUnitPriceLabel = document.getElementById("itemBUnitPriceLabel");
     const itemAUnitPriceOutput = document.getElementById("itemAUnitPrice");
     const itemBUnitPriceOutput = document.getElementById("itemBUnitPrice");
     const betterValueResultOutput = document.getElementById("betterValueResult");
@@ -86,10 +88,11 @@
 
       compareButton.textContent = "Compared ✓";
 
-      buttonTimerId = window.setTimeout(function () {
-        compareButton.textContent = "Compare prices";
+            buttonTimerId = window.setTimeout(function () {
+        compareButton.textContent = "Compare";
         buttonTimerId = null;
       }, 1000);
+
     }
 
     function getDisplayName(inputValue, fallbackName) {
@@ -174,7 +177,20 @@
       return { label: "pack", baseSize: 1 };
     }
 
+        function updateCardLabels(nameA, nameB) {
+      if (itemAUnitPriceLabel) {
+        itemAUnitPriceLabel.textContent = nameA + " rate";
+      }
+      if (itemBUnitPriceLabel) {
+        itemBUnitPriceLabel.textContent = nameB + " rate";
+      }
+    }
+
     function clearOutputs(message) {
+      updateCardLabels(
+        getDisplayName(itemANameInput.value, "Item A"),
+        getDisplayName(itemBNameInput.value, "Item B")
+      );
       itemAUnitPriceOutput.textContent = "0.00";
       itemBUnitPriceOutput.textContent = "0.00";
       betterValueResultOutput.textContent = "—";
@@ -189,8 +205,9 @@
       }
 
       if (compareButton) {
-        compareButton.textContent = "Compare prices";
+        compareButton.textContent = "Compare";
       }
+
 
       hasUserChangedItemBUnit = false;
       form.reset();
@@ -314,12 +331,15 @@
 
       const unitSuffix = " / " + target.label;
 
+            updateCardLabels(itemAName, itemBName);
       itemAUnitPriceOutput.textContent = formatMoney(currencySymbol, itemAUnitPrice, decimals) + unitSuffix;
       itemBUnitPriceOutput.textContent = formatMoney(currencySymbol, itemBUnitPrice, decimals) + unitSuffix;
 
       if (fromSubmit) {
         setCompareButtonFeedback();
+        statusMessage.scrollIntoView({ behavior: "smooth", block: "center" });
       }
+
 
       if (isEffectivelyEqual) {
         differencePerUnitOutput.textContent = formatMoney(currencySymbol, 0, decimals) + unitSuffix;
