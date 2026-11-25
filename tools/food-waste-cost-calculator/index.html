@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Food Waste Cost Calculator | Estimate Wasted Grocery Money</title>
-  <meta name="description" content="Estimate the financial cost of wasted food at home. Enter item price, total quantity bought, and wasted amount. Free browser calculator with no login." />
+  <title>Food Waste Cost Calculator | Wasted Grocery Money &amp; %</title>
+  <meta name="description" content="Estimate the cost of wasted food and spoiled groceries at home. Enter item price, total amount bought, and wasted quantity to see lost money and waste %." />
 
-  <meta name="theme-color" content="#0f172a" />
-    <link rel="canonical" href="https://householdexpensetools.com/tools/food-waste-cost-calculator/" />
+  <meta name="theme-color" content="#0f766e" />
+  <link rel="canonical" href="https://householdexpensetools.com/tools/food-waste-cost-calculator/" />
+
   <!-- Structured Data: WebApplication + FAQPage Schema -->
   <script type="application/ld+json">
   {
@@ -26,7 +27,7 @@
           "price": "0",
           "priceCurrency": "USD"
         },
-        "description": "Estimate the financial cost of wasted food at home from item purchase price, total quantity bought, and wasted portion directly in your browser."
+        "description": "Estimate the cost of wasted food and spoiled groceries at home from purchase price, total quantity bought, and wasted amount directly in your browser."
       },
       {
         "@type": "FAQPage",
@@ -37,23 +38,31 @@
             "name": "How do I calculate the cost of wasted food?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Divide the amount of food thrown away by the total amount purchased, then multiply that fraction by the original price paid. For example, if half of an $8.00 salad mix goes bad, your wasted food cost is $4.00 ($8.00 * 0.50)."
+              "text": "Divide the wasted quantity by the total quantity bought, then multiply by the price paid. For example, if 1.5 lb of a 5 lb bag of apples costing $10.00 spoils, 30% is wasted and the cost of wasted food is $3.00."
             }
           },
           {
             "@type": "Question",
-            "name": "What should I enter if an entire unopened item or package spoils?",
+            "name": "What should I enter if a whole unopened package spoils?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Enter 1 for total quantity bought, 1 for wasted quantity, and choose 'items' or 'packs' as the unit. The wasted value will equal the full purchase price (100% waste)."
+              "text": "Enter 1 for total quantity bought, 1 for wasted quantity, and pick items or packs as the unit. The wasted value equals the full purchase price (100% waste)."
             }
           },
           {
             "@type": "Question",
-            "name": "Can I calculate wasted food cost for restaurant takeout or meal leftovers?",
+            "name": "Can I estimate leftover food waste cost from meals or takeout?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. Enter the total meal price and use 'items' or 'packs' with an estimated fraction (for example, enter 1 for total quantity and 0.25 if approximately one-fourth of the dish was discarded)."
+              "text": "Yes. Enter the meal cost and use a simple portion scale—such as 1 for total quantity and 0.25 if about a quarter of the food was thrown away."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I keep grocery waste and food waste percentage down at home?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Check fridge staples before shopping, move older items to the front so leftovers get eaten first, and avoid oversized perishable packs unless you can freeze or finish them in time."
             }
           },
           {
@@ -61,7 +70,7 @@
             "name": "Does this calculator convert units automatically?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. You must enter both total quantity and wasted quantity in the same measurement unit (such as ounces with ounces, or pounds with pounds)."
+              "text": "No. Enter both total quantity and wasted quantity in the same unit so the percentage and cost stay direct and transparent."
             }
           }
         ]
@@ -165,11 +174,10 @@
                 <small id="totalCostHelp">Enter the total cost paid for the food or item.</small>
               </div>
 
-              <div class="form-field">
+             <div class="form-field">
                 <label for="quantityUnit">Quantity unit</label>
                 <select id="quantityUnit" name="quantityUnit" required aria-describedby="quantityUnitHelp">
-                  <option value="">Select unit</option>
-                  <option value="oz">oz</option>
+                  <option value="oz" selected>oz</option>
                   <option value="lb">lb</option>
                   <option value="items">items</option>
                   <option value="packs">packs</option>
@@ -178,7 +186,7 @@
                   <option value="ml">ml</option>
                   <option value="liters">liters</option>
                 </select>
-                <small id="quantityUnitHelp">Use the same unit for total quantity and wasted quantity. This tool does not convert units.</small>
+                <small id="quantityUnitHelp">Same unit for both quantities (no unit conversion).</small>
               </div>
 
               <div class="form-field">
@@ -194,7 +202,7 @@
                   required
                   aria-describedby="totalQuantityHelp"
                 />
-                <small id="totalQuantityHelp">Enter the full quantity bought in the selected unit.</small>
+                <small id="totalQuantityHelp">Full pack or batch size in this unit.</small>
               </div>
 
               <div class="form-field">
@@ -210,19 +218,18 @@
                   required
                   aria-describedby="wastedQuantityHelp"
                 />
-                <small id="wastedQuantityHelp">Enter the wasted quantity in the same selected unit.</small>
+                <small id="wastedQuantityHelp">Amount spoiled or thrown out in this unit.</small>
               </div>
             </div>
 
-                        <div class="form-actions">
+            <div class="form-actions">
               <button class="button-primary" type="submit">Calculate waste cost</button>
               <button class="button-secondary" type="reset">Clear numbers</button>
             </div>
 
             <p class="privacy-note">
-              🔒 <strong>Privacy First:</strong> Calculated locally in your browser. No data is saved or sent to any server.
+              Runs locally in your browser—no data is saved, sent to a server, or tied to an account.
             </p>
-
             <div
               class="status-message"
               id="foodWasteStatus"
@@ -252,81 +259,93 @@
         </article>
       </div>
     </section>
-    <section class="content-section">
+        <section class="content-section">
       <div class="narrow-container">
-        <h2>How it works</h2>
+        <h2>How the food waste cost is calculated</h2>
         <p>
-          The calculator determines the percentage of purchased food that was discarded, then calculates the proportional monetary loss based on your original purchase price:
+          First the tool finds what share of your purchase went unused, then splits your item
+          cost between what was thrown out and what you actually used:
         </p>
         <p>
-          <strong>Wasted Percentage = (Wasted Quantity &divide; Total Quantity) &times; 100</strong><br />
-          <strong>Estimated Wasted Value = Total Cost &times; (Wasted Quantity &divide; Total Quantity)</strong><br />
-          <strong>Estimated Used Value = Total Cost &minus; Estimated Wasted Value</strong>
+          <strong>Food Waste % = (Wasted Quantity &divide; Total Quantity) &times; 100</strong><br />
+          <strong>Wasted Cost = Total Cost &times; (Wasted Quantity &divide; Total Quantity)</strong><br />
+          <strong>Used Value = Total Cost &minus; Wasted Cost</strong>
         </p>
 
-        <h2>Calculation example</h2>
+        <h2>Everyday kitchen example</h2>
         <p>
-          Suppose you buy a 5 lb bag of apples for $10.00. If 1.5 lbs spoil and are discarded, the calculation is:
+          Say you pick up a 5 lb bag of apples for $10.00 and 1.5 lb go soft before you finish them:
         </p>
         <ul>
-          <li><strong>Wasted Percentage:</strong> (1.5 &divide; 5) &times; 100 = 30%</li>
-          <li><strong>Wasted Value:</strong> $10.00 &times; 0.30 = $3.00 lost</li>
-          <li><strong>Used Value:</strong> $10.00 &minus; $3.00 = $7.00 consumed</li>
+          <li><strong>Food waste percentage:</strong> (1.5 &divide; 5) &times; 100 = 30%</li>
+          <li><strong>Wasted cost:</strong> $10.00 &times; 0.30 = $3.00 gone to waste</li>
+          <li><strong>Used value:</strong> $10.00 &minus; $3.00 = $7.00 of apples eaten</li>
         </ul>
 
-        <h2>What the result means</h2>
+        <h2>Reading your results &amp; cutting waste</h2>
         <p>
-          Estimated wasted value is the approximate dollar cost of the uneaten portion. Estimated used value is the portion of your purchase that was successfully consumed.
+          <strong>Wasted value</strong> shows how much money went into the bin on that item, while
+          <strong>used value</strong> shows the portion that paid off in meals. When a family pack
+          is cheaper per ounce but half of it spoils in the crisper, the real cost per usable
+          serving can end up higher than a smaller pack.
         </p>
 
         <h2>Limitations</h2>
         <p>
-          This is a direct mathematical estimate. It assumes uniform cost distribution across the entire item weight or quantity. It does not convert between different unit dimensions (e.g., fluid volume to dry weight) or convert currency exchange rates.
-        </p>
-        <p>
-          This tool does not provide certified financial, accounting, tax, or legal advice.
+          This is a straightforward cost estimate assuming even value across the whole item or
+          pack. It does not convert between units or currencies, and it does not replace financial,
+          accounting, tax, or legal advice.
         </p>
 
         <h2>Related tools</h2>
         <p>
-  Plan grocery spending with the <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a>,
-  calculate monthly household costs with the <a href="../monthly-expense-calculator/">Monthly Expense Calculator</a>,
-  compare package prices with the <a href="../grocery-price-compare-calculator/">Grocery Unit Price Calculator</a>,
-  or record everyday purchases with the <a href="../daily-expense-tracker/">Daily Expense Tracker</a>.
-</p>
+          Compare pack prices before buying with the <a href="../grocery-price-compare-calculator/">Grocery Unit Price Calculator</a>,
+          check whether larger packs actually pay off with the <a href="../bulk-buy-value-calculator/">Bulk-Buy Value Calculator</a>,
+          watch for smaller pack sizes with the <a href="../shrinkflation-calculator/">Grocery Shrinkflation Calculator</a>,
+          plan weekly food spend with the <a href="../grocery-budget-calculator/">Grocery Budget Calculator</a>,
+          log daily spending in the <a href="../daily-expense-tracker/">Daily Expense Tracker</a>,
+          or review bills with the <a href="../monthly-expense-calculator/">Monthly Expense Calculator</a>.
+        </p>
 
-             <div class="section-header" style="margin-top: 3rem;">
+        <div class="section-header">
           <span class="eyebrow">Frequently Asked Questions</span>
           <h2 id="faq-heading">Food Waste Cost FAQs</h2>
-          <p>Practical answers on tracking spoiled groceries, evaluating takeout leftovers, and preventing kitchen budget leaks.</p>
+          <p>Practical answers on calculating spoiled grocery costs, leftover food waste, and keeping kitchen losses low.</p>
         </div>
 
-        <div class="faq-list feature-grid" style="margin-top: 1.5rem;">
+        <div class="faq-list feature-grid">
           <article class="faq-item feature-card">
             <details>
               <summary>How do I calculate the cost of wasted food?</summary>
-              <p>Divide the amount of food thrown away by the total amount purchased, then multiply that fraction by the original price paid. For example, if half of an $8.00 salad mix goes bad, your wasted food cost is $4.00 ($8.00 &times; 0.50).</p>
+              <p>Divide the wasted quantity by the total quantity bought, then multiply by the price paid. For example, if 1.5 lb of a 5 lb bag of apples costing $10.00 spoils, 30% is wasted and the cost of wasted food is $3.00.</p>
             </details>
           </article>
 
           <article class="faq-item feature-card">
             <details>
-              <summary>What should I enter if an entire unopened item or package spoils?</summary>
-              <p>Enter 1 for total quantity bought, 1 for wasted quantity, and choose 'items' or 'packs' as the unit. The wasted value will equal the full purchase price (100% waste).</p>
+              <summary>What should I enter if a whole unopened package spoils?</summary>
+              <p>Enter 1 for total quantity bought, 1 for wasted quantity, and pick items or packs as the unit. The wasted value equals the full purchase price (100% waste).</p>
             </details>
           </article>
 
           <article class="faq-item feature-card">
             <details>
-              <summary>Can I calculate wasted food cost for restaurant takeout or meal leftovers?</summary>
-              <p>Yes. Enter the total meal price and use 'items' or 'packs' with an estimated fraction (for example, enter 1 for total quantity and 0.25 if approximately one-fourth of the dish was discarded).</p>
+              <summary>Can I estimate leftover food waste cost from meals or takeout?</summary>
+              <p>Yes. Enter the meal cost and use a simple portion scale—such as 1 for total quantity and 0.25 if about a quarter of the food was thrown away.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>How do I keep grocery waste and food waste percentage down at home?</summary>
+              <p>Check fridge staples before shopping, move older items to the front so leftovers get eaten first, and avoid oversized perishable packs unless you can freeze or finish them in time.</p>
             </details>
           </article>
 
           <article class="faq-item feature-card">
             <details>
               <summary>Does this calculator convert units automatically?</summary>
-              <p>No. You must enter both total quantity and wasted quantity in the same measurement unit (such as ounces with ounces, or pounds with pounds).</p>
+              <p>No. Enter both total quantity and wasted quantity in the same unit so the percentage and cost stay direct and transparent.</p>
             </details>
           </article>
         </div>
