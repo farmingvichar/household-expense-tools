@@ -145,7 +145,21 @@
           </div>
 
       <form class="tool-form" id="groceryPriceCompareForm" novalidate>
-            <div class="form-grid">
+                        <div class="form-grid">
+              <div class="form-field">
+                <label for="currencySymbol">Currency symbol</label>
+                <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
+                  <option value="$" selected>$ USD</option>
+                  <option value="₹">₹ INR</option>
+                  <option value="€">€ EUR</option>
+                  <option value="£">£ GBP</option>
+                  <option value="C$">C$ CAD</option>
+                  <option value="A$">A$ AUD</option>
+                  <option value="¥">¥ JPY</option>
+                </select>
+                <small id="currencySymbolHelp">Symbol only (no currency conversion).</small>
+              </div>
+
               <div class="form-field">
                 <label for="itemAPrice">Item A — Total price</label>
                 <input
@@ -243,47 +257,38 @@
                 </select>
                 <small id="itemBUnitHelp">Any compatible unit (e.g., oz with lb).</small>
               </div>
-
-              <div class="form-field">
-                <label for="currencySymbol">Currency symbol</label>
-                <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
-                  <option value="$" selected>$ USD</option>
-                  <option value="₹">₹ INR</option>
-                  <option value="€">€ EUR</option>
-                  <option value="£">£ GBP</option>
-                  <option value="C$">C$ CAD</option>
-                  <option value="A$">A$ AUD</option>
-                  <option value="¥">¥ JPY</option>
-                </select>
-                <small id="currencySymbolHelp">Symbol only (no currency conversion).</small>
-              </div>
-
-              <div class="form-field">
-                <label for="itemAName">Item A label <span aria-hidden="true">(optional)</span></label>
-                <input
-                  type="text"
-                  id="itemAName"
-                  name="itemAName"
-                  placeholder="Example: Regular box"
-                  autocomplete="off"
-                  aria-describedby="itemANameHelp"
-                />
-                <small id="itemANameHelp">Optional; defaults to “Item A”.</small>
-              </div>
-
-              <div class="form-field">
-                <label for="itemBName">Item B label <span aria-hidden="true">(optional)</span></label>
-                <input
-                  type="text"
-                  id="itemBName"
-                  name="itemBName"
-                  placeholder="Example: Family size"
-                  autocomplete="off"
-                  aria-describedby="itemBNameHelp"
-                />
-                <small id="itemBNameHelp">Optional; defaults to “Item B”.</small>
-              </div>
             </div>
+
+            <details>
+              <summary>Optional: Add custom item names</summary>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="itemAName">Item A label <span aria-hidden="true">(optional)</span></label>
+                  <input
+                    type="text"
+                    id="itemAName"
+                    name="itemAName"
+                    placeholder="Example: Regular box"
+                    autocomplete="off"
+                    aria-describedby="itemANameHelp"
+                  />
+                  <small id="itemANameHelp">Optional; defaults to “Item A”.</small>
+                </div>
+
+                <div class="form-field">
+                  <label for="itemBName">Item B label <span aria-hidden="true">(optional)</span></label>
+                  <input
+                    type="text"
+                    id="itemBName"
+                    name="itemBName"
+                    placeholder="Example: Family size"
+                    autocomplete="off"
+                    aria-describedby="itemBNameHelp"
+                  />
+                  <small id="itemBNameHelp">Optional; defaults to “Item B”.</small>
+                </div>
+              </div>
+            </details>
 
             <div class="form-actions">
               <button class="button-primary" type="submit">Compare</button>
