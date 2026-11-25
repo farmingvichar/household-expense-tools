@@ -10,7 +10,7 @@
     <loc>https://householdexpensetools.com/tools/</loc>
   </url>
 
-  <!-- 10 Calculator Tools -->
+  <!-- 16 Calculator Tools -->
   <url>
     <loc>https://householdexpensetools.com/tools/daily-expense-tracker/</loc>
   </url>
@@ -36,14 +36,33 @@
   <url>
     <loc>https://householdexpensetools.com/tools/electricity-cost-calculator/</loc>
   </url>
-  <url>
+    <url>
     <loc>https://householdexpensetools.com/tools/recipe-cost-calculator/</loc>
   </url>
   <url>
     <loc>https://householdexpensetools.com/tools/paper-towel-value-calculator/</loc>
   </url>
+  <url>
+    <loc>https://householdexpensetools.com/tools/bulk-buy-value-calculator/</loc>
+  </url>
+  <url>
+    <loc>https://householdexpensetools.com/tools/childcare-vs-income-calculator/</loc>
+  </url>
+  <url>
+    <loc>https://householdexpensetools.com/tools/dining-out-vs-cooking-calculator/</loc>
+  </url>
+  <url>
+    <loc>https://householdexpensetools.com/tools/second-income-childcare-calculator/</loc>
+  </url>
+  <url>
+    <loc>https://householdexpensetools.com/tools/shrinkflation-calculator/</loc>
+  </url>
+  <url>
+    <loc>https://householdexpensetools.com/tools/utility-bill-splitter/</loc>
+  </url>
 
   <!-- Supporting Static Pages -->
+
   <url>
     <loc>https://householdexpensetools.com/about/</loc>
   </url>
