@@ -144,24 +144,10 @@
             </p>
           </div>
 
-          <form class="tool-form" id="groceryPriceCompareForm" novalidate>
+      <form class="tool-form" id="groceryPriceCompareForm" novalidate>
             <div class="form-grid">
               <div class="form-field">
-                <label for="currencySymbol">Currency symbol</label>
-                <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
-                  <option value="$" selected>$ USD</option>
-                  <option value="₹">₹ INR</option>
-                  <option value="€">€ EUR</option>
-                  <option value="£">£ GBP</option>
-                  <option value="C$">C$ CAD</option>
-                  <option value="A$">A$ AUD</option>
-                  <option value="¥">¥ JPY</option>
-                </select>
-                <small id="currencySymbolHelp">Display symbol only; does not convert exchange rates.</small>
-              </div>
-
-              <div class="form-field">
-                <label for="itemAPrice">Item A total price</label>
+                <label for="itemAPrice">Item A — Total price</label>
                 <input
                   type="number"
                   id="itemAPrice"
@@ -177,7 +163,7 @@
               </div>
 
               <div class="form-field">
-                <label for="itemAQuantity">Item A quantity</label>
+                <label for="itemAQuantity">Item A — Quantity</label>
                 <input
                   type="number"
                   id="itemAQuantity"
@@ -189,11 +175,11 @@
                   required
                   aria-describedby="itemAQuantityHelp"
                 />
-                <small id="itemAQuantityHelp">Net weight, volume, or count number on the label.</small>
+                <small id="itemAQuantityHelp">Net weight, volume, or count only.</small>
               </div>
 
               <div class="form-field">
-                <label for="itemAUnit">Item A unit</label>
+                <label for="itemAUnit">Item A — Unit</label>
                 <select id="itemAUnit" name="itemAUnit" required aria-describedby="itemAUnitHelp">
                   <option value="oz" selected>oz (ounce)</option>
                   <option value="lb">lb (pound)</option>
@@ -206,11 +192,11 @@
                   <option value="items">items (count / pieces)</option>
                   <option value="packs">packs</option>
                 </select>
-                <small id="itemAUnitHelp">Changing Item A syncs Item B automatically until you pick a different unit.</small>
+                <small id="itemAUnitHelp">Auto-syncs Item B until you change it.</small>
               </div>
 
               <div class="form-field">
-                <label for="itemBPrice">Item B total price</label>
+                <label for="itemBPrice">Item B — Total price</label>
                 <input
                   type="number"
                   id="itemBPrice"
@@ -226,7 +212,7 @@
               </div>
 
               <div class="form-field">
-                <label for="itemBQuantity">Item B quantity</label>
+                <label for="itemBQuantity">Item B — Quantity</label>
                 <input
                   type="number"
                   id="itemBQuantity"
@@ -238,11 +224,11 @@
                   required
                   aria-describedby="itemBQuantityHelp"
                 />
-                <small id="itemBQuantityHelp">Net weight, volume, or count number for Item B.</small>
+                <small id="itemBQuantityHelp">Net weight, volume, or count only.</small>
               </div>
 
               <div class="form-field">
-                <label for="itemBUnit">Item B unit</label>
+                <label for="itemBUnit">Item B — Unit</label>
                 <select id="itemBUnit" name="itemBUnit" required aria-describedby="itemBUnitHelp">
                   <option value="oz" selected>oz (ounce)</option>
                   <option value="lb">lb (pound)</option>
@@ -255,7 +241,21 @@
                   <option value="items">items (count / pieces)</option>
                   <option value="packs">packs</option>
                 </select>
-                <small id="itemBUnitHelp">Pick any compatible unit—for example, oz with lb or g with kg.</small>
+                <small id="itemBUnitHelp">Any compatible unit (e.g., oz with lb).</small>
+              </div>
+
+              <div class="form-field">
+                <label for="currencySymbol">Currency symbol</label>
+                <select id="currencySymbol" name="currencySymbol" required aria-describedby="currencySymbolHelp">
+                  <option value="$" selected>$ USD</option>
+                  <option value="₹">₹ INR</option>
+                  <option value="€">€ EUR</option>
+                  <option value="£">£ GBP</option>
+                  <option value="C$">C$ CAD</option>
+                  <option value="A$">A$ AUD</option>
+                  <option value="¥">¥ JPY</option>
+                </select>
+                <small id="currencySymbolHelp">Symbol only (no currency conversion).</small>
               </div>
 
               <div class="form-field">
@@ -268,7 +268,7 @@
                   autocomplete="off"
                   aria-describedby="itemANameHelp"
                 />
-                <small id="itemANameHelp">Leave blank to show “Item A” in the results.</small>
+                <small id="itemANameHelp">Optional; defaults to “Item A”.</small>
               </div>
 
               <div class="form-field">
@@ -281,18 +281,17 @@
                   autocomplete="off"
                   aria-describedby="itemBNameHelp"
                 />
-                <small id="itemBNameHelp">Leave blank to show “Item B” in the results.</small>
+                <small id="itemBNameHelp">Optional; defaults to “Item B”.</small>
               </div>
             </div>
 
             <div class="form-actions">
-              <button class="button-primary" type="submit">Compare prices</button>
-              <button class="button-secondary" type="button" id="resetCompareBtn">Clear numbers</button>
+              <button class="button-primary" type="submit">Compare</button>
+              <button class="button-secondary" type="button" id="resetCompareBtn">Clear</button>
             </div>
 
             <p class="privacy-note">
-              Your values stay in your browser for this calculation only. Nothing is saved, sent to
-              a server, or tied to an account.
+              Runs locally in your browser—no data saved, sent, or login needed.
             </p>
 
             <div
@@ -307,12 +306,12 @@
 
           <section class="summary-grid calculator-results-grid" aria-label="Grocery price comparison results">
             <div class="summary-card">
-              <p class="summary-label">Item A unit price</p>
+              <p class="summary-label" id="itemAUnitPriceLabel">Item A rate</p>
               <p id="itemAUnitPrice">0.00</p>
             </div>
 
             <div class="summary-card">
-              <p class="summary-label">Item B unit price</p>
+              <p class="summary-label" id="itemBUnitPriceLabel">Item B rate</p>
               <p id="itemBUnitPrice">0.00</p>
             </div>
 
@@ -322,7 +321,7 @@
             </div>
 
             <div class="summary-card">
-              <p class="summary-label">Savings per unit</p>
+              <p class="summary-label">Unit savings</p>
               <p id="differencePerUnit">0.00</p>
             </div>
           </section>
