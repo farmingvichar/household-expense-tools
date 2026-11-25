@@ -8,12 +8,12 @@
   const VALID_PAPERS = ["letter", "a4"];
   const VALID_DATE_FORMATS = ["MM/DD/YYYY", "DD/MM/YYYY"];
 
-  const PDF_CURRENCY_MAP = {
+    const PDF_CURRENCY_MAP = {
     "$": "$",
     "C$": "C$",
     "£": "£",
     "A$": "A$",
-    "€": "€",
+    "€": "EUR ",
     "₹": "INR ",
     "¥": "JPY "
   };
@@ -399,7 +399,7 @@
       return periodStr ? periodStr + " (" + todayStr + ")" : todayStr;
     }
 
-    function syncModalPreviewIfOpen() {
+        function syncModalPreviewIfOpen() {
       if (el.modal.hidden) {
         return;
       }
@@ -408,6 +408,10 @@
       clone.querySelectorAll("[id]").forEach((node) => {
         node.removeAttribute("id");
       });
+      const clonedRuleBar = clone.querySelector(".hbw-sheet-rule-bar");
+      if (clonedRuleBar) {
+        clonedRuleBar.style.display = state.mode === "50-30-20" ? "flex" : "none";
+      }
       el.modalZoomStage.innerHTML = "";
       el.modalZoomStage.appendChild(clone);
       applyModalZoom();
@@ -575,9 +579,10 @@
     // ----------------------------------------------------------------------
     // Mobile Preview Modal Controls (100dvh)
     // ----------------------------------------------------------------------
-    function applyModalZoom() {
+      function applyModalZoom() {
+      el.modalZoomStage.style.transformOrigin = modalZoom < 1 ? "top center" : "top left";
       el.modalZoomStage.style.transform = "scale(" + modalZoom + ")";
-      el.modalZoomStage.style.width = (100 / modalZoom).toFixed(2) + "%";
+      el.modalZoomStage.style.width = "100%";
       el.zoomLevelOut.textContent = Math.round(modalZoom * 100) + "%";
       el.zoomOutBtn.disabled = modalZoom <= 0.75;
       el.zoomInBtn.disabled = modalZoom >= 1.75;
@@ -865,6 +870,7 @@
         tableWidth: printableWidth,
         theme: "grid",
         showHead: "everyPage",
+        showFoot: "lastPage",
         rowPageBreak: "avoid",
         head: [["Category / Expense Item", "Planned", "Actual Spent", "Paid / Diff"]],
         body: tableBody,
