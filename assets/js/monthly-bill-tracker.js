@@ -113,11 +113,12 @@
     return num;
   }
 
-  function formatOrdinalDay(rawValue) {
+    function formatOrdinalDay(rawValue, forPdf) {
     const day = parseDueDay(rawValue);
     if (day === null) {
-      return "\u2014";
+      return forPdf ? "-" : "\u2014";
     }
+
     const mod100 = day % 100;
     if (mod100 >= 11 && mod100 <= 13) {
       return day + "th";
@@ -755,7 +756,7 @@
         const bodyRows =
           state.bills.length > 0
             ? state.bills.map((bill, idx) => [
-                formatOrdinalDay(bill.dueDay),
+                formatOrdinalDay(bill.dueDay, true),
                 bill.name.trim() || ("Bill " + (idx + 1)),
                 formatMoney(parseAmount(bill.amount), sym, true),
                 bill.method === "Auto-Pay" ? "Auto-Pay" : "Manual",
