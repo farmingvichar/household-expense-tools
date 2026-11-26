@@ -1160,3 +1160,320 @@
     font-weight: var(--font-weight-semibold);
   }
 }
+
+/* ==========================================================================
+   Tool #2: Printable Monthly Bill Tracker & Checklist Generator (.mbt-*)
+   Append-only scoped styles (zero impact on Tool #1 .hbw-* layout)
+   ========================================================================== */
+
+/* Settings Bar: Month + Year Pair */
+.mbt-period-inputs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 4.75rem;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.mbt-year-input {
+  min-inline-size: 0;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.mbt-shell[data-mode="annual"] .mbt-month-select {
+  opacity: 0.65;
+}
+
+/* Builder Title & Sort/Add Header */
+.mbt-title-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.mbt-block-head {
+  flex-wrap: wrap;
+}
+
+.mbt-block-actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.mbt-sort-btn {
+  border-color: var(--color-primary-light);
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+}
+
+.mbt-sort-btn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary-hover);
+}
+
+/* Desktop Bill Row Grid: Due | Bill Name | Est. Amount | Method | Remove */
+.mbt-bill-col-headers {
+  display: grid;
+  grid-template-columns: 4.25rem minmax(0, 1fr) 6.75rem 6.5rem 2.5rem;
+  gap: var(--space-2);
+  padding-inline: 0.125rem;
+  margin-block-end: var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-soft);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.mbt-bill-row {
+  grid-template-columns: 4.25rem minmax(0, 1fr) 6.75rem 6.5rem 2.5rem;
+}
+
+.mbt-row-due,
+.mbt-row-name,
+.mbt-row-amount,
+.mbt-row-method {
+  min-inline-size: 0;
+}
+
+.mbt-row-due {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.mbt-row-method {
+  inline-size: 100%;
+  min-block-size: var(--control-height);
+  padding: 0.45rem 0.45rem;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-strong);
+  background: var(--color-bg);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.mbt-row-method:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}
+
+/* Mode-Based Paper View Visibility */
+.mbt-shell[data-mode="monthly"] .mbt-annual-view {
+  display: none;
+}
+
+.mbt-shell[data-mode="annual"] .mbt-monthly-view {
+  display: none;
+}
+
+/* Mode A: Single-Month Bill Checklist Table (Ink-Saver Paper Preview) */
+.mbt-col-due {
+  inline-size: 13%;
+  text-align: center;
+}
+
+.mbt-col-name {
+  inline-size: 39%;
+}
+
+.mbt-col-amt {
+  inline-size: 19%;
+  text-align: right;
+}
+
+.mbt-col-method {
+  inline-size: 17%;
+  text-align: center;
+}
+
+.mbt-col-paid {
+  inline-size: 12%;
+  text-align: center;
+}
+
+.mbt-monthly-table thead .mbt-col-due,
+.mbt-monthly-table thead .mbt-col-method,
+.mbt-monthly-table thead .mbt-col-paid {
+  text-align: center;
+}
+
+.mbt-monthly-table thead .mbt-col-amt {
+  text-align: right;
+}
+
+.mbt-due-cell {
+  text-align: center;
+  font-weight: 600;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.mbt-method-cell {
+  text-align: center;
+}
+
+/* Ink-Saver Monochrome Badges (Auto-Pay vs. Manual) */
+.mbt-method-badge {
+  display: inline-block;
+  padding: 0.08rem 0.3rem;
+  font-size: 0.56rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #111111;
+  background: #ffffff;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.mbt-badge-auto {
+  border: 1px solid #111111;
+}
+
+.mbt-badge-manual {
+  border: 1px dashed #666666;
+  font-weight: 600;
+}
+
+/* Mode B: 12-Month Annual Grid (Jan-Dec Compact Table on Paper) */
+.mbt-annual-table th,
+.mbt-annual-table td {
+  padding: 0.24rem 0.14rem;
+}
+
+.mbt-annual-table thead th {
+  font-size: 0.55rem;
+}
+
+.mbt-annual-table tbody td {
+  font-size: 0.6rem;
+}
+
+.mbt-ann-col-name {
+  inline-size: 26%;
+  text-align: left;
+  padding-inline: 0.3rem;
+}
+
+.mbt-ann-col-amt {
+  inline-size: 14%;
+  text-align: right;
+  padding-inline: 0.25rem;
+}
+
+.mbt-annual-table thead .mbt-ann-col-amt {
+  text-align: right;
+}
+
+.mbt-ann-col-m {
+  inline-size: 5%;
+  text-align: center;
+}
+
+.mbt-annual-table thead .mbt-ann-col-m {
+  text-align: center;
+}
+
+.mbt-ann-check {
+  text-align: center;
+  font-size: 0.66rem;
+  line-height: 1;
+  color: #111111;
+}
+
+.mbt-ann-foot-note {
+  font-size: 0.56rem;
+  font-weight: 400;
+  color: #444444;
+  text-align: right;
+  padding-inline-end: 0.3rem;
+}
+
+/* Mobile Chrome UX (< 900px) — Scoped to .mbt-* Only */
+@media (max-width: 899.98px) {
+  /* Allow long mode pill text to wrap cleanly instead of clipping */
+  .mbt-settings-bar .hbw-setting-group:first-child .hbw-chip {
+    white-space: normal;
+    line-height: 1.2;
+    padding: 0.4rem 0.35rem;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  /* Stack Month & Year cleanly inside the 33% mobile settings slot */
+  .mbt-period-inputs {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .mbt-month-select,
+  .mbt-year-input {
+    min-block-size: 2.25rem;
+    padding: 0.3rem 0.35rem;
+  }
+
+  /* Enforce 16px on all Tool #2 inputs/selects to prevent mobile auto-zoom */
+  .mbt-shell .mbt-row-due,
+  .mbt-shell .mbt-row-name,
+  .mbt-shell .mbt-row-amount,
+  .mbt-shell .mbt-row-method,
+  .mbt-shell .mbt-month-select,
+  .mbt-shell .mbt-year-input {
+    font-size: 16px;
+  }
+
+  .mbt-block-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mbt-block-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-2);
+  }
+
+  .mbt-sort-btn {
+    white-space: normal;
+    line-height: 1.2;
+    font-size: 0.8125rem;
+  }
+
+  .mbt-bill-col-headers {
+    display: none;
+  }
+
+  /* 2-Line Soft-Mint Bill Card: Line 1 = Due + Name + Remove, Line 2 = Amount + Method */
+  .mbt-bill-row {
+    grid-template-columns: 4.25rem minmax(0, 1fr) minmax(0, 1fr) 2.75rem;
+    grid-template-areas:
+      "due name name remove"
+      "amount amount method method";
+  }
+
+  .mbt-bill-row .mbt-row-due {
+    grid-area: due;
+  }
+
+  .mbt-bill-row .mbt-row-name {
+    grid-area: name;
+  }
+
+  .mbt-bill-row .mbt-row-remove {
+    grid-area: remove;
+    inline-size: 2.75rem;
+  }
+
+  .mbt-bill-row .mbt-row-amount {
+    grid-area: amount;
+    text-align: left;
+  }
+
+  .mbt-bill-row .mbt-row-method {
+    grid-area: method;
+  }
+}
