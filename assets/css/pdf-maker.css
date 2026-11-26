@@ -1227,8 +1227,12 @@
 }
 
 .mbt-bill-row {
+  display: grid;
+  gap: var(--space-2);
+  align-items: center;
   grid-template-columns: 4.25rem minmax(0, 1fr) 6.75rem 6.5rem 2.5rem;
 }
+
 
 .mbt-row-due,
 .mbt-row-name,
@@ -1362,8 +1366,13 @@
 .mbt-ann-col-amt {
   inline-size: 14%;
   text-align: right;
-  padding-inline: 0.25rem;
+  padding-inline: 0.25rem 0.35rem;
 }
+
+.mbt-annual-table .hbw-num-cell {
+  padding-inline-end: 0.35rem;
+}
+
 
 .mbt-annual-table thead .mbt-ann-col-amt {
   text-align: right;
@@ -1447,13 +1456,21 @@
     display: none;
   }
 
-  /* 2-Line Soft-Mint Bill Card: Line 1 = Due + Name + Remove, Line 2 = Amount + Method */
+  /* 2-Line Soft-Mint Bill Card: Line 1 = Due (4.25rem) + Name (1fr) + x (2.75rem), Line 2 = Amount (50%) + Method (50%) */
   .mbt-bill-row {
-    grid-template-columns: 4.25rem minmax(0, 1fr) minmax(0, 1fr) 2.75rem;
+    display: grid;
+    gap: var(--space-2);
+    align-items: center;
+    grid-template-columns:
+      4.25rem
+      minmax(0, calc(50% - 4.25rem - (var(--space-2) * 1.5)))
+      minmax(0, calc(50% - 2.75rem - (var(--space-2) * 1.5)))
+      2.75rem;
     grid-template-areas:
       "due name name remove"
       "amount amount method method";
   }
+
 
   .mbt-bill-row .mbt-row-due {
     grid-area: due;
