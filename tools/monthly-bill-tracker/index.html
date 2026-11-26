@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Printable Monthly Bill Tracker &amp; Checklist Generator – Free PDF</title>
+  <meta name="description" content="Create and print a custom monthly bill checklist or 12-month annual (Jan–Dec) bill tracker PDF in US Letter or A4. Sort by due date, tag Auto-Pay vs. Manual—free, private, no login." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0f766e" />
+  <link rel="canonical" href="https://householdexpensetools.com/tools/monthly-bill-tracker/" />
+
+  <meta property="og:title" content="Printable Monthly Bill Tracker &amp; Checklist Generator – Free PDF" />
+  <meta property="og:description" content="Customize recurring household bills, sort by due date, tag Auto-Pay vs. Manual, and download a clean ink-saver monthly or 12-month annual bill tracker PDF in US Letter or A4." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://householdexpensetools.com/tools/monthly-bill-tracker/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Printable Monthly Bill Tracker &amp; Checklist Generator – Free PDF" />
+  <meta name="twitter:description" content="Build a custom printable monthly bill checklist or 12-month yearly bill grid PDF (US Letter or A4) directly in your browser with zero sign-up." />
+
+  <!-- Structured Data: WebApplication + Exact-Match FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://householdexpensetools.com/tools/monthly-bill-tracker/#app",
+        "name": "Printable Monthly Bill Tracker & Checklist Generator",
+        "url": "https://householdexpensetools.com/tools/monthly-bill-tracker/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Free, browser-based monthly bill checklist and 12-month annual (Jan–Dec) bill tracker PDF generator with due-date sorting, Auto-Pay vs. Manual tagging, US Letter and A4 paper sizes, and 7 currency symbols."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://householdexpensetools.com/tools/monthly-bill-tracker/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I make a list of my monthly bills?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Review your last two bank and credit card statements to capture every recurring charge—housing, electricity, water, internet, mobile plans, insurance, loan minimums, and subscriptions. Enter each bill name, due day (1st to 31st), estimated amount, and payment method, then click Sort by Due Date to order your month chronologically."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Should I print a single-month bill checklist or a 12-month yearly bill tracker?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Print the Single-Month Checklist if your utility amounts fluctuate each month and you want room to verify each due date and payment method. Print the 12-Month Annual Grid (Jan–Dec) if your recurring bills stay predictable and you want one fridge or binder sheet that lasts the entire year."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why should I mark Auto-Pay vs. Manual on a printed bill sheet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Manual bills require a physical check-off before the due date to avoid $25 to $40 late fees and credit-score dings. Auto-Pay bills still belong on paper so you audit your bank statement each month for silent rate increases, expired promo pricing, or unwanted subscriptions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I sort or change my bill due dates to match my paychecks?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Use the Sort by Due Date button here to group early-month and late-month bills clearly, and call or log in to utility, phone, or credit card providers if you want to request a due-date shift that aligns better with your paycheck schedule."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Should I choose US Letter or A4 paper size for my bill tracker PDF?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Select US Letter (8.5 × 11 inches) for standard printers in the United States, Canada, and Mexico. Select A4 (210 × 297 mm) in the UK, Europe, Australia, India, and most other regions so the PDF prints natively at 100% scale without shrinking to fit."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this bill tracker free, and is my bill data stored online?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, the checklist maker and vector PDF downloads are completely free with no login or watermark. Your bill entries stay strictly inside your current browser via local storage and jsPDF—nothing is uploaded, logged, or shared with a server."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="../../manifest.json" />
+
+  <link rel="stylesheet" href="../../assets/css/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/variables.css" />
+  <link rel="stylesheet" href="../../assets/css/typography.css" />
+  <link rel="stylesheet" href="../../assets/css/layout.css" />
+  <link rel="stylesheet" href="../../assets/css/components.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
+  <link rel="stylesheet" href="../../assets/css/pdf-maker.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="../../" aria-label="Household Expense Tools home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" focusable="false">
+            <rect x="4" y="3" width="20" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            <path d="M9 9h10M9 14h10M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span class="brand-text">Household Expense Tools</span>
+      </a>
+
+      <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="../../">Home</a></li>
+          <li><a href="../">Tools</a></li>
+          <li><a href="../../#why-use">Why Use Us</a></li>
+          <li><a href="../../faq/">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero-section">
+      <div class="container hbw-container">
+        <p class="eyebrow">Printable bill payment checklist PDF</p>
+        <div class="hero-text">
+          <h1>Printable Monthly Bill Tracker &amp; Checklist Generator</h1>
+          <p>
+            List your recurring household bills, sort them in due-date order, mark Auto-Pay vs.
+            Manual payments, and download a crisp ink-saver PDF for a single month or a full
+            12-month Jan&ndash;Dec grid—free, private, and ready for US Letter or A4 paper.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-section hbw-tool-section" aria-labelledby="bill-tracker-heading">
+      <div class="container hbw-container">
+        <article id="mbt-shell" class="tool-card hbw-shell mbt-shell" data-mode="monthly">
+          <div class="section-heading hbw-header-row">
+            <div>
+              <h2 id="bill-tracker-heading">Build your printable bill tracker sheet</h2>
+              <p>
+                Switch between a Single-Month Checklist and a 12-Month Annual Grid, customize your
+                bills below, and preview the white ink-saver sheet before downloading.
+              </p>
+            </div>
+          </div>
+
+          <!-- Top Settings Bar -->
+          <div class="hbw-settings-bar mbt-settings-bar" role="region" aria-label="Bill tracker settings">
+            <div class="hbw-setting-group">
+              <span class="hbw-setting-label" id="mbt-mode-label">Tracker Mode</span>
+              <div class="hbw-pill-group" role="radiogroup" aria-labelledby="mbt-mode-label">
+                <button
+                  type="button"
+                  class="quick-chip hbw-chip is-active"
+                  id="mbt-mode-monthly"
+                  data-mode="monthly"
+                  role="radio"
+                  aria-checked="true"
+                >
+                  Single-Month Checklist
+                </button>
+                <button
+                  type="button"
+                  class="quick-chip hbw-chip"
+                  id="mbt-mode-annual"
+                  data-mode="annual"
+                  role="radio"
+                  aria-checked="false"
+                >
+                  12-Month Annual Grid (Jan&ndash;Dec)
+                </button>
+              </div>
+            </div>
+
+            <div class="hbw-setting-group">
+              <span class="hbw-setting-label" id="mbt-paper-label">Paper Size</span>
+              <div class="hbw-pill-group" role="radiogroup" aria-labelledby="mbt-paper-label">
+                <button
+                  type="button"
+                  class="quick-chip hbw-chip is-active"
+                  id="mbt-paper-letter"
+                  data-paper="letter"
+                  role="radio"
+                  aria-checked="true"
+                >
+                  US Letter (8.5&Prime; &times; 11&Prime;)
+                </button>
+                <button
+                  type="button"
+                  class="quick-chip hbw-chip"
+                  id="mbt-paper-a4"
+                  data-paper="a4"
+                  role="radio"
+                  aria-checked="false"
+                >
+                  A4 (210 &times; 297 mm)
+                </button>
+              </div>
+            </div>
+
+            <div class="hbw-setting-group hbw-select-group">
+              <label class="hbw-setting-label" for="mbt-currency">Currency</label>
+              <select id="mbt-currency" class="hbw-select" aria-describedby="mbt-currency-note">
+                <option value="$" data-code="USD" selected>$ USD</option>
+                <option value="C$" data-code="CAD">C$ CAD</option>
+                <option value="£" data-code="GBP">&pound; GBP</option>
+                <option value="A$" data-code="AUD">A$ AUD</option>
+                <option value="€" data-code="EUR">&euro; EUR</option>
+                <option value="₹" data-code="INR">&#8377; INR</option>
+                <option value="¥" data-code="JPY">&yen; JPY</option>
+              </select>
+              <small id="mbt-currency-note" class="hbw-micro-note">Display symbol only. No live currency conversion.</small>
+            </div>
+
+            <div class="hbw-setting-group hbw-select-group mbt-period-group">
+              <label class="hbw-setting-label" for="mbt-month">Month &amp; Year</label>
+              <div class="mbt-period-inputs">
+                <select id="mbt-month" class="hbw-select mbt-month-select" aria-label="Bill tracker month">
+                  <option value="January">January</option>
+                  <option value="February">February</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November" selected>November</option>
+                  <option value="December">December</option>
+                </select>
+                <input
+                  id="mbt-year"
+                  type="number"
+                  class="mbt-year-input"
+                  inputmode="numeric"
+                  min="2020"
+                  max="2099"
+                  step="1"
+                  value="2026"
+                  aria-label="Bill tracker year"
+                />
+              </div>
+              <small id="mbt-period-note" class="hbw-micro-note">Month prints on Single-Month; Year prints on both.</small>
+            </div>
+          </div>
+
+          <!-- 2-Column Split Workspace -->
+          <div class="hbw-workspace">
+            <!-- Left Column: Builder Form -->
+            <div class="hbw-builder-panel">
+              <form id="mbt-form" class="hbw-form" novalidate>
+                <!-- Worksheet Title & Due-Date Sort -->
+                <div class="hbw-card-block">
+                  <div class="mbt-title-row">
+                    <div class="form-field">
+                      <label for="mbt-title">Checklist title</label>
+                      <input
+                        id="mbt-title"
+                        name="mbt-title"
+                        type="text"
+                        maxlength="60"
+                        value="Monthly Household Bill Tracker"
+                        placeholder="e.g. Monthly Household Bill Tracker"
+                        aria-describedby="mbt-title-help"
+                      />
+                      <small id="mbt-title-help">Prints at the top of your checklist PDF.</small>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Dynamic Recurring Bills List -->
+                <fieldset class="hbw-card-block hbw-fieldset">
+                  <legend class="visually-hidden">Recurring household bills</legend>
+                  <div class="hbw-block-head mbt-block-head">
+                    <h3 class="hbw-block-title">Recurring bills &amp; due dates</h3>
+                    <div class="mbt-block-actions">
+                      <button type="button" id="mbt-sort-due" class="button button-secondary hbw-btn-sm mbt-sort-btn">
+                        Sort by Due Date (1st &rarr; 31st)
+                      </button>
+                      <button type="button" id="mbt-add-bill" class="button button-secondary hbw-btn-sm">
+                        + Add Bill
+                      </button>
+                    </div>
+                  </div>
+                  <p class="hbw-block-desc">
+                    Enter the due day (1&ndash;31), bill name, estimated amount, and whether each
+                    bill runs on Auto-Pay or Manual payment. Do not enter account numbers or passwords.
+                  </p>
+
+                  <div class="mbt-bill-col-headers" aria-hidden="true">
+                    <span>Due</span>
+                    <span>Bill / Utility Name</span>
+                    <span>Est. Amount</span>
+                    <span>Method</span>
+                    <span></span>
+                  </div>
+
+                  <div id="mbt-bill-list" class="hbw-rows-list" aria-label="Recurring bills list"></div>
+                </fieldset>
+
+                <!-- Optional Notes -->
+                <div class="hbw-card-block">
+                  <div class="form-field">
+                    <label for="mbt-notes">Bill reminders &amp; notes <span aria-hidden="true">(optional)</span></label>
+                    <textarea
+                      id="mbt-notes"
+                      name="mbt-notes"
+                      rows="2"
+                      maxlength="240"
+                      placeholder="Leave blank for ruled writing lines on paper, or add a reminder (e.g. Check internet promo expiry in March)."
+                      aria-describedby="mbt-notes-help"
+                    ></textarea>
+                    <small id="mbt-notes-help">Prints inside the Notes box at the bottom of your sheet.</small>
+                  </div>
+                </div>
+
+                <!-- Live Summary Totals Bar -->
+                <div class="hbw-summary-bar" aria-label="Live monthly bill totals">
+                  <div class="hbw-summary-stat hbw-stat-balance">
+                    <span class="hbw-stat-label">Total Monthly Bills</span>
+                    <strong id="mbt-total-bills" class="hbw-stat-value">$0.00</strong>
+                  </div>
+                  <div class="hbw-summary-stat">
+                    <span class="hbw-stat-label">Auto-Pay Total</span>
+                    <strong id="mbt-total-autopay" class="hbw-stat-value">$0.00</strong>
+                  </div>
+                  <div class="hbw-summary-stat">
+                    <span class="hbw-stat-label">Manual Pay Total</span>
+                    <strong id="mbt-total-manual" class="hbw-stat-value">$0.00</strong>
+                  </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="hbw-actions-row">
+                  <button type="button" id="mbt-download-pdf" class="button button-primary hbw-btn-download">
+                    &#11015;&#65039; Download Printable PDF
+                  </button>
+                  <button type="button" id="mbt-clear-btn" class="button button-secondary">
+                    Clear / Start Blank
+                  </button>
+                  <button type="button" id="mbt-reset-btn" class="button button-secondary">
+                    Reset Defaults
+                  </button>
+                </div>
+
+                <p class="privacy-note hbw-trust-badge">
+                  &#128274; 100% Private: Stored only in your browser (<code>mbt_bill_tracker_v1</code>) and generated locally. Zero data is uploaded.
+                </p>
+
+                <div id="mbt-status" class="status-message" role="status" aria-live="polite">
+                  Customize your bills above, sort by due date, then click Download Printable PDF.
+                </div>
+              </form>
+
+              <!-- HTML5 Row Template for JS Cloning -->
+              <template id="mbt-bill-row-tpl">
+                <div class="hbw-row mbt-bill-row">
+                  <input
+                    type="number"
+                    class="mbt-row-due"
+                    inputmode="numeric"
+                    min="1"
+                    max="31"
+                    step="1"
+                    placeholder="1–31"
+                    aria-label="Due day of month (1 to 31)"
+                  />
+                  <input
+                    type="text"
+                    class="mbt-row-name"
+                    maxlength="48"
+                    placeholder="Bill / utility name (e.g. Electric)"
+                    aria-label="Bill or utility name"
+                  />
+                  <input
+                    type="number"
+                    class="mbt-row-amount hbw-row-amount"
+                    inputmode="decimal"
+                    min="0"
+                    step="0.01"
+                    placeholder="0.00"
+                    aria-label="Estimated bill amount"
+                  />
+                  <select class="mbt-row-method" aria-label="Payment method">
+                    <option value="Auto-Pay">Auto-Pay</option>
+                    <option value="Manual">Manual</option>
+                  </select>
+                  <button type="button" class="hbw-row-remove mbt-row-remove" aria-label="Remove bill row">&times;</button>
+                </div>
+              </template>
+            </div>
+
+            <!-- Right Column: Live WYSIWYG Ink-Saver Paper Preview -->
+            <aside class="hbw-preview-panel" aria-label="Live printable bill tracker preview">
+              <div class="hbw-preview-toolbar">
+                <span class="hbw-preview-badge">Live Print Preview</span>
+                <span id="mbt-preview-meta" class="hbw-preview-meta">US Letter &bull; Ink-Saver B&amp;W</span>
+              </div>
+
+              <div class="hbw-paper-stage">
+                <div id="mbt-paper-sheet" class="hbw-paper-sheet mbt-paper-sheet" data-paper="letter">
+                  <!-- Sheet Header -->
+                  <header class="hbw-sheet-header">
+                    <div>
+                      <h3 id="mbt-sheet-title" class="hbw-sheet-title">Monthly Household Bill Tracker</h3>
+                      <p id="mbt-sheet-subtitle" class="hbw-sheet-subtitle">Single-Month Bill Payment Checklist</p>
+                    </div>
+                    <div class="hbw-sheet-date-box">
+                      <span class="hbw-sheet-date-label">Period:</span>
+                      <span id="mbt-sheet-period" class="hbw-sheet-date-value">November 2026</span>
+                    </div>
+                  </header>
+
+                  <!-- Sheet Summary Strip -->
+                  <section class="hbw-sheet-summary" aria-label="Bill tracker summary">
+                    <div class="hbw-sheet-kpi">
+                      <span>Est. Monthly Total</span>
+                      <strong id="mbt-sheet-total">$0.00</strong>
+                    </div>
+                    <div class="hbw-sheet-kpi">
+                      <span>Auto-Pay</span>
+                      <strong id="mbt-sheet-autopay">$0.00</strong>
+                    </div>
+                    <div class="hbw-sheet-kpi">
+                      <span>Manual Pay</span>
+                      <strong id="mbt-sheet-manual">$0.00</strong>
+                    </div>
+                    <div class="hbw-sheet-kpi">
+                      <span>Bills Listed</span>
+                      <strong id="mbt-sheet-count">0</strong>
+                    </div>
+                  </section>
+
+                  <!-- Mode A: Single-Month Bill Checklist Table -->
+                  <section id="mbt-monthly-view" class="hbw-sheet-block mbt-monthly-view" aria-label="Single-month bill checklist">
+                    <h4 class="hbw-sheet-section-title">Monthly Bill Payment Checklist</h4>
+                    <table class="hbw-sheet-table mbt-monthly-table">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="mbt-col-due">Due Date</th>
+                          <th scope="col" class="mbt-col-name">Bill Name</th>
+                          <th scope="col" class="mbt-col-amt">Est. Amount</th>
+                          <th scope="col" class="mbt-col-method">Method</th>
+                          <th scope="col" class="mbt-col-paid">Paid [&#9744;]</th>
+                        </tr>
+                      </thead>
+                      <tbody id="mbt-sheet-monthly-tbody"></tbody>
+                      <tfoot>
+                        <tr>
+                          <th scope="row" colspan="2">Total Estimated Bills</th>
+                          <td id="mbt-sheet-monthly-total" class="hbw-num-cell">$0.00</td>
+                          <td class="hbw-blank-cell"></td>
+                          <td class="hbw-check-cell"></td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </section>
+
+                  <!-- Mode B: 12-Month Annual Bill Grid (Jan–Dec) -->
+                  <section id="mbt-annual-view" class="hbw-sheet-block mbt-annual-view" aria-label="12-month annual bill tracker grid" hidden>
+                    <h4 class="hbw-sheet-section-title">12-Month Annual Bill Grid (Jan&ndash;Dec)</h4>
+                    <table class="hbw-sheet-table mbt-annual-table">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="mbt-ann-col-name">Bill Name</th>
+                          <th scope="col" class="mbt-ann-col-amt">Est. Amt</th>
+                          <th scope="col" class="mbt-ann-col-m">J</th>
+                          <th scope="col" class="mbt-ann-col-m">F</th>
+                          <th scope="col" class="mbt-ann-col-m">M</th>
+                          <th scope="col" class="mbt-ann-col-m">A</th>
+                          <th scope="col" class="mbt-ann-col-m">M</th>
+                          <th scope="col" class="mbt-ann-col-m">J</th>
+                          <th scope="col" class="mbt-ann-col-m">J</th>
+                          <th scope="col" class="mbt-ann-col-m">A</th>
+                          <th scope="col" class="mbt-ann-col-m">S</th>
+                          <th scope="col" class="mbt-ann-col-m">O</th>
+                          <th scope="col" class="mbt-ann-col-m">N</th>
+                          <th scope="col" class="mbt-ann-col-m">D</th>
+                        </tr>
+                      </thead>
+                      <tbody id="mbt-sheet-annual-tbody"></tbody>
+                      <tfoot>
+                        <tr>
+                          <th scope="row">Monthly Total</th>
+                          <td id="mbt-sheet-annual-total" class="hbw-num-cell">$0.00</td>
+                          <td colspan="12" class="mbt-ann-foot-note">Check &#9744; each month after verifying payment</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </section>
+
+                  <!-- Notes Box -->
+                  <section class="hbw-sheet-notes" aria-label="Bill tracker notes">
+                    <h4 class="hbw-sheet-section-title">Notes &amp; Rate-Change Reminders</h4>
+                    <div id="mbt-sheet-notes-content" class="hbw-sheet-notes-box">
+                      <div class="hbw-note-line"></div>
+                      <div class="hbw-note-line"></div>
+                      <div class="hbw-note-line"></div>
+                    </div>
+                  </section>
+
+                  <footer class="hbw-sheet-footer">
+                    <span>householdexpensetools.com</span>
+                    <span>Print at 100% scale &bull; Ink-saver layout</span>
+                  </footer>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Mobile Sticky Thumb-Bar (<900px) -->
+    <div class="hbw-mobile-bar" role="region" aria-label="Quick bill tracker actions">
+      <button type="button" id="mbt-mobile-preview-btn" class="button button-secondary hbw-mobile-btn">
+        &#128065;&#65039; Preview Sheet
+      </button>
+      <button type="button" id="mbt-mobile-download-btn" class="button button-primary hbw-mobile-btn">
+        &#11015;&#65039; Download PDF
+      </button>
+    </div>
+
+    <!-- Mobile Zoomable Preview Modal (100dvh) -->
+    <div
+      id="mbt-preview-modal"
+      class="hbw-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="mbt-modal-title"
+      hidden
+    >
+      <div class="hbw-modal-backdrop" data-close-modal="true"></div>
+      <div class="hbw-modal-dialog">
+        <div class="hbw-modal-header">
+          <h3 id="mbt-modal-title">Printable Bill Tracker Preview</h3>
+          <div class="hbw-modal-controls">
+            <button type="button" id="mbt-zoom-out" class="hbw-zoom-btn" aria-label="Zoom out">&minus;</button>
+            <span id="mbt-zoom-level" class="hbw-zoom-level">100%</span>
+            <button type="button" id="mbt-zoom-in" class="hbw-zoom-btn" aria-label="Zoom in">+</button>
+            <button type="button" id="mbt-modal-close" class="hbw-modal-close" aria-label="Close preview">&times;</button>
+          </div>
+        </div>
+        <div id="mbt-modal-body" class="hbw-modal-body">
+          <div id="mbt-modal-zoom-stage" class="hbw-modal-zoom-stage"></div>
+        </div>
+        <div class="hbw-modal-footer">
+          <button type="button" id="mbt-modal-download-btn" class="button button-primary">
+            &#11015;&#65039; Download PDF
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO-CONTENT-START -->
+    <section class="content-section">
+      <div class="narrow-container">
+        <h2>1. How to customize and print your monthly bill tracker</h2>
+        <p>
+          Build a clean fridge-door or binder bill sheet in three quick steps so every recurring
+          due date sits in plain sight before payments clear:
+        </p>
+        <ol>
+          <li>
+            <strong>Choose your layout and paper:</strong> Toggle between the
+            <em>Single-Month Checklist</em> and the <em>12-Month Annual Grid (Jan&ndash;Dec)</em>,
+            pick US Letter or A4 paper, and select your currency, month, and year.
+          </li>
+          <li>
+            <strong>Add bills and sort chronologically:</strong> Edit the default rows with your
+            due day (1&ndash;31), bill name, estimated amount, and <em>Auto-Pay</em> or
+            <em>Manual</em> tag. Click <strong>Sort by Due Date (1st &rarr; 31st)</strong> to put
+            the earliest bills at the top.
+          </li>
+          <li>
+            <strong>Print cleanly at home:</strong> Download the PDF and print on standard 20 lb
+            copy paper in black-and-white &ldquo;Draft&rdquo; mode at <strong>100% scale</strong>
+            (avoid &ldquo;Fit to Page&rdquo;) so the 12.7 mm margins stay even and every checkbox
+            stays sharp.
+          </li>
+        </ol>
+
+        <h2>2. Single-Month Checklist vs. 12-Month Annual Grid: Which sheet should you print?</h2>
+        <p>
+          Both layouts fit cleanly on one white ink-saver page. Pick the format that matches how
+          often your bill amounts change during the year:
+        </p>
+
+        <div class="tp-table-wrap">
+          <table class="tp-benchmark-table">
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col">Single-Month Checklist</th>
+                <th scope="col">12-Month Annual Grid (Jan&ndash;Dec)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Columns on PDF</strong></td>
+                <td>Due Date, Bill Name, Est. Amount, Method, Paid [&#9744;]</td>
+                <td>Bill Name, Est. Amt, plus 12 Jan&ndash;Dec checkboxes</td>
+              </tr>
+              <tr>
+                <td><strong>Best for</strong></td>
+                <td>Variable utilities (heating, AC, water) and paycheck-by-paycheck tracking</td>
+                <td>Steady recurring bills tracked on a single year-long binder sheet</td>
+              </tr>
+              <tr>
+                <td><strong>How often to print</strong></td>
+                <td>Once per month (12 sheets per year)</td>
+                <td>Once per year (reprint only if bills change)</td>
+              </tr>
+              <tr>
+                <td><strong>Audit advantage</strong></td>
+                <td>Shows exact due date and Auto-Pay vs. Manual split at a glance</td>
+                <td>Spots missed months or seasonal billing gaps across the entire year</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>3. Worked monthly household bill schedule example</h2>
+        <p>
+          Sorting bills from the 1st to the 25th separates early-month rent from mid-month
+          utilities and late-month card statements. Here is a realistic six-bill US household
+          schedule totaling <strong>$2,450.00</strong> per month:
+        </p>
+        <ul>
+          <li><strong>1st &mdash; Rent / Mortgage:</strong> $1,650.00 (Manual)</li>
+          <li><strong>5th &mdash; Electric &amp; Gas:</strong> $165.00 (Auto-Pay)</li>
+          <li><strong>10th &mdash; Home Internet &amp; Wi-Fi:</strong> $75.00 (Auto-Pay)</li>
+          <li><strong>14th &mdash; Auto Insurance:</strong> $145.00 (Auto-Pay)</li>
+          <li><strong>18th &mdash; Mobile Phone Plan:</strong> $65.00 (Auto-Pay)</li>
+          <li><strong>25th &mdash; Credit Card Statement:</strong> $350.00 (Manual)</li>
+        </ul>
+        <p>
+          In this schedule, <strong>$450.00</strong> drafts automatically via Auto-Pay while
+          <strong>$2,000.00</strong> requires manual action. Keeping both totals visible helps you
+          verify checking-account cash before the 1st and 25th.
+        </p>
+
+        <h2>4. US Letter vs. A4 paper sizes &amp; Auto-Pay audit checklist</h2>
+        <p>
+          Marking <strong>Auto-Pay vs. Manual</strong> on paper serves two practical purposes.
+          Manual bills need a physical checkmark <strong>[&#9744;]</strong> before the due date to
+          prevent $25&ndash;$40 US late fees, while Auto-Pay bills still need a quick monthly bank
+          audit to catch silent rate hikes, expired promo discounts, or zombie subscriptions.
+        </p>
+
+        <div class="tp-table-wrap">
+          <table class="tp-benchmark-table">
+            <thead>
+              <tr>
+                <th scope="col">Print &amp; Audit Detail</th>
+                <th scope="col">US Standard</th>
+                <th scope="col">Global / International Standard</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Native PDF paper size</strong></td>
+                <td>US Letter (8.5&Prime; &times; 11&Prime; / 215.9 &times; 279.4 mm)</td>
+                <td>A4 (8.27&Prime; &times; 11.69&Prime; / 210 &times; 297 mm)</td>
+              </tr>
+              <tr>
+                <td><strong>Home printer settings</strong></td>
+                <td>20 lb paper, B&amp;W Draft, 100% scale, 12.7 mm margins</td>
+                <td>80 gsm paper, B&amp;W Draft, 100% scale, 12.7 mm margins</td>
+              </tr>
+              <tr>
+                <td><strong>Manual bill check</strong></td>
+                <td colspan="2">Pay 3&ndash;5 days early (7 days for mailed checks), then tick Paid [&#9744;] once confirmed</td>
+              </tr>
+              <tr>
+                <td><strong>Auto-Pay bill audit</strong></td>
+                <td colspan="2">Compare drafted bank amount against Est. Amount each month to flag rate hikes or forgotten subscriptions</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>5. Privacy, browser storage &amp; safety tips</h2>
+        <p>
+          Your bill list stays strictly inside your current browser under local storage key
+          <code>mbt_bill_tracker_v1</code>, and PDFs build locally using <code>jsPDF</code>. Zero
+          bill names, amounts, or dates are uploaded to any server or tied to an account.
+        </p>
+        <p>
+          For your physical security, <strong>never type bank account numbers, routing numbers,
+          card numbers, or login passwords</strong> into a printable worksheet that hangs on a
+          fridge or sits in a shared binder. Use short labels like &ldquo;Electric Utility&rdquo;
+          or &ldquo;Main Visa&rdquo; instead.
+        </p>
+        <p>
+          Currency symbols are display-only with no live exchange-rate conversion. This tracker is
+          intended for everyday household bill organization and does not provide financial, legal,
+          credit, tax, or accounting advice.
+        </p>
+        <p>
+          <strong>Related household tools:</strong> Pair your bill checklist with the
+          <a href="../monthly-budget-worksheet-maker/">Custom Monthly Budget Worksheet Maker</a>,
+          calculate full living totals in the
+          <a href="../monthly-expense-calculator/">Monthly Expense Calculator</a>, or divide shared
+          apartment utilities using the
+          <a href="../utility-bill-splitter/">Roommate Utility Bill Splitter</a>.
+        </p>
+
+        <div class="section-header tp-faq-header">
+          <span class="eyebrow">Frequently Asked Questions</span>
+          <h2 id="faq-heading">6. Printable Monthly Bill Tracker FAQs</h2>
+          <p>Direct answers on listing bills, choosing monthly vs. yearly sheets, Auto-Pay audits, and browser privacy.</p>
+        </div>
+
+        <div class="faq-list feature-grid tp-faq-list">
+          <article class="faq-item feature-card">
+            <details>
+              <summary>How do I make a list of my monthly bills?</summary>
+              <p>Review your last two bank and credit card statements to capture every recurring charge—housing, electricity, water, internet, mobile plans, insurance, loan minimums, and subscriptions. Enter each bill name, due day (1st to 31st), estimated amount, and payment method, then click Sort by Due Date to order your month chronologically.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Should I print a single-month bill checklist or a 12-month yearly bill tracker?</summary>
+              <p>Print the Single-Month Checklist if your utility amounts fluctuate each month and you want room to verify each due date and payment method. Print the 12-Month Annual Grid (Jan&ndash;Dec) if your recurring bills stay predictable and you want one fridge or binder sheet that lasts the entire year.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Why should I mark Auto-Pay vs. Manual on a printed bill sheet?</summary>
+              <p>Manual bills require a physical check-off before the due date to avoid $25 to $40 late fees and credit-score dings. Auto-Pay bills still belong on paper so you audit your bank statement each month for silent rate increases, expired promo pricing, or unwanted subscriptions.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Can I sort or change my bill due dates to match my paychecks?</summary>
+              <p>Yes. Use the Sort by Due Date button here to group early-month and late-month bills clearly, and call or log in to utility, phone, or credit card providers if you want to request a due-date shift that aligns better with your paycheck schedule.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Should I choose US Letter or A4 paper size for my bill tracker PDF?</summary>
+              <p>Select US Letter (8.5 &times; 11 inches) for standard printers in the United States, Canada, and Mexico. Select A4 (210 &times; 297 mm) in the UK, Europe, Australia, India, and most other regions so the PDF prints natively at 100% scale without shrinking to fit.</p>
+            </details>
+          </article>
+
+          <article class="faq-item feature-card">
+            <details>
+              <summary>Is this bill tracker free, and is my bill data stored online?</summary>
+              <p>Yes, the checklist maker and vector PDF downloads are completely free with no login or watermark. Your bill entries stay strictly inside your current browser via local storage and jsPDF—nothing is uploaded, logged, or shared with a server.</p>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- SEO-CONTENT-END -->
+  </main>
+
+  <footer class="section site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Household Expense Tools</p>
+        <p class="footer-text">
+          Simple, fast, privacy-friendly tools for home expenses, groceries, budgets, and kitchen planning.
+        </p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../../about/">About</a>
+        <a href="../">Tools</a>
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../terms/">Terms</a>
+        <a href="../../contact/">Contact</a>
+        <a href="../../faq/">FAQ</a>
+      </nav>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="current-year">2026</span> Household Expense Tools. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js" defer></script>
+  <script src="../../assets/js/app.js" defer></script>
+  <script src="../../assets/js/monthly-bill-tracker.js" defer></script>
+</body>
+</html>
