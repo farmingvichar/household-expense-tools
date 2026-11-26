@@ -1208,8 +1208,14 @@
     el.incomeList.addEventListener("focusin", handleAmountFocus);
     el.expenseList.addEventListener("focusin", handleAmountFocus);
 
-    // Clear / Start Blank
+        // Clear / Start Blank
     el.clearBtn.addEventListener("click", () => {
+      const confirmed = window.confirm(
+        "Clear all rows and start with a blank worksheet? Your current entries will be removed."
+      );
+      if (!confirmed) {
+        return;
+      }
       state.incomes = [];
       state.expenses = [];
       state.period = "";
