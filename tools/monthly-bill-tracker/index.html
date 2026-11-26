@@ -233,8 +233,8 @@
 
             <div class="hbw-setting-group hbw-select-group mbt-period-group">
               <label class="hbw-setting-label" for="mbt-month">Month &amp; Year</label>
-              <div class="mbt-period-inputs">
-                <select id="mbt-month" class="hbw-select mbt-month-select" aria-label="Bill tracker month">
+                            <div class="mbt-period-inputs">
+                <select id="mbt-month" class="hbw-select mbt-month-select" aria-label="Bill tracker month" aria-describedby="mbt-period-note">
                   <option value="January">January</option>
                   <option value="February">February</option>
                   <option value="March">March</option>
@@ -258,6 +258,7 @@
                   step="1"
                   value="2026"
                   aria-label="Bill tracker year"
+                  aria-describedby="mbt-period-note"
                 />
               </div>
               <small id="mbt-period-note" class="hbw-micro-note">Month prints on Single-Month; Year prints on both.</small>
